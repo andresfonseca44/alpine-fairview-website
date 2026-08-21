@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers & Agent Contracting | Alpine Fairview Agency</title>
+  <meta name="description" content="Join the team at Alpine Fairview Agency. 110% Commission Contracts, Exclusive Leads, A-Rated Carriers, Mentorship & Coaching, 100% Book Ownership." />
+  
+  <!-- Google Fonts: Alice, Instrument Serif & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    /* CAREERS DEDICATED STYLING (Ethos Layout + Matterhorn Hero + Alpine Fairview Palette) */
+    .careers-hero {
+      position: relative;
+      background-color: var(--color-slate-teal);
+      color: var(--color-white);
+      padding: 100px 0 110px 0;
+      text-align: center;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 480px;
+    }
+    .careers-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+    .careers-hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(27, 40, 44, 0.72) 0%, rgba(95, 123, 130, 0.88) 100%);
+      z-index: 2;
+    }
+    .careers-hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .careers-hero-badge {
+      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      color: var(--color-mint-green);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .careers-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 4.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      color: var(--color-white);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    .careers-hero-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 680px;
+      margin: 0 auto 40px auto;
+      line-height: 1.5;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .careers-hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    /* STATS BANNER */
+    .careers-stats-section {
+      background-color: var(--color-offwhite);
+      padding: 60px 0;
+      border-bottom: 1px solid var(--color-card-border);
+    }
+    .stats-4-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-card);
+      padding: 32px 20px;
+      border: 1px solid var(--color-card-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      font-weight: 400;
+      color: var(--color-slate-teal);
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-near-black);
+    }
+
+    /* WHY JOIN US PILLARS */
+    .pillars-section {
+      background-color: var(--color-white);
+      padding: 90px 0;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .pillar-card {
+      background-color: var(--color-offwhite);
+      border-radius: var(--radius-card);
+      padding: 36px 28px;
+      border: 1.5px solid var(--color-card-border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-slate-teal);
+    }
+    .pillar-icon {
+      font-size: 2.2rem;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background-color: var(--color-icy-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pillar-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-near-black);
+    }
+    .pillar-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    /* OPEN OPPORTUNITIES SECTION */
+    .roles-section {
+      background-color: var(--color-offwhite);
+      padding: 90px 0;
+    }
+    .roles-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 48px;
+      max-width: 840px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .role-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-card);
+      padding: 36px 40px;
+      border: 2px solid var(--color-slate-teal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+    .role-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(95, 123, 130, 0.2);
+    }
+    .role-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .role-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--color-near-black);
+    }
+    .role-tags {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .role-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-slate-teal);
+      background-color: var(--color-icy-blue);
+      padding: 6px 14px;
+      border-radius: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .stats-4-grid, .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .role-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="ethos-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+
+      <nav class="header-nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#life-insurance-guide" class="nav-link">Life insurance ▾</a>
+        <a href="index.html#about-us" class="nav-link">About us ▾</a>
+        <a href="index.html#faqs" class="nav-link">Resources ▾</a>
+      </nav>
+
+      <div class="header-right-actions">
+        <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="nav-contact-btn">
+          Schedule Interview
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- CAREERS HERO SECTION (Matterhorn Background Image + Ethos Style) -->
+    <section class="careers-hero">
+      <img src="matterhorn.jpg" alt="Iconic Matterhorn Alpine Mountain Peak" class="careers-hero-bg" />
+      <div class="careers-hero-overlay"></div>
+
+      <div class="container careers-hero-content">
+        <span class="careers-hero-badge">Careers at Alpine Fairview Agency</span>
+        <h1 class="careers-hero-title">Get Contracted. Get Leads. Start Earning THE RIGHT WAY.</h1>
+        <p class="careers-hero-sub">
+          110% Commission Contracts • Exclusive In-House Leads • Top A-Rated Carriers • 1-on-1 Mentorship & Coaching • 100% Book Ownership
+        </p>
+
+        <div class="careers-hero-cta">
+          <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 340px;">
+            Schedule 1-on-1 Interview
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY HIGHLIGHT STATS -->
+    <section class="careers-stats-section">
+      <div class="container">
+        <div class="stats-4-grid">
+          
+          <div class="stat-card">
+            <div class="stat-num">110%</div>
+            <div class="stat-label">Top Starting Commission Contracts</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Book Ownership Day One</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-num">A+</div>
+            <div class="stat-label">Top National Carriers</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-num">#1</div>
+            <div class="stat-label">Exclusive In-House Lead Engine</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY JOIN ALPINE FAIRVIEW (Pillars Grid) -->
+    <section class="pillars-section">
+      <div class="container text-center">
+        <h2 class="section-title font-serif">Why Top Agents Choose Alpine Fairview</h2>
+        <p class="section-subtitle">Everything you need to build a high-income, sustainable insurance career.</p>
+
+        <div class="pillars-grid">
+          
+          <div class="pillar-card">
+            <div class="pillar-icon">📈</div>
+            <h3 class="pillar-title">110% Top Commission Contracts</h3>
+            <p class="pillar-desc">
+              Maximized producer compensation schedules designed to reward your effort. Earn top-tier commissions with zero hidden reductions or delayed payouts.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">🎯</div>
+            <h3 class="pillar-title">Exclusive In-House Leads</h3>
+            <p class="pillar-desc">
+              Stop fighting over old, recycled lead lists. Our proprietary digital marketing platform generates real-time, high-intent Whole Life and Final Expense leads daily.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">🔑</div>
+            <h3 class="pillar-title">100% Book Ownership</h3>
+            <p class="pillar-desc">
+              You build your business, you own your business. From Day 1, your client renewals, book of business, and vested residuals remain 100% yours.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">🤝</div>
+            <h3 class="pillar-title">Mentorship & Coaching</h3>
+            <p class="pillar-desc">
+              Work directly with active 6-figure and 7-figure producers. Receive hands-on sales training, phone script coaching, and daily masterminds.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">🏆</div>
+            <h3 class="pillar-title">A-Rated Carrier Access</h3>
+            <p class="pillar-desc">
+              Instant contracting with the nation's premier A+ rated life insurance companies, offering instant-approval whole life, final expense, and term products.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">⚡</div>
+            <h3 class="pillar-title">Instant Approval Technology</h3>
+            <p class="pillar-desc">
+              Issue policies in minutes with our 100% online underwriting suite—no blood draws, paramedical exams, or long waiting periods for your clients.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN OPPORTUNITIES / CONTRACTING ROLES -->
+    <section class="roles-section">
+      <div class="container text-center">
+        <h2 class="section-title font-serif">Open Contracting Opportunities</h2>
+        <p class="section-subtitle">Select your career track and schedule a 1-on-1 interview with our leadership team.</p>
+
+        <div class="roles-stack">
+          
+          <!-- Single Role: Licensed Life Insurance Agent (Remote) -->
+          <div class="role-card">
+            <div class="role-info text-left">
+              <h3 class="role-title">Licensed Life Insurance Agent (Remote)</h3>
+              <div class="role-tags">
+                <span class="role-tag">Full-Time / Part-Time</span>
+                <span class="role-tag">100% Remote</span>
+                <span class="role-tag">110% Commission Contract</span>
+              </div>
+            </div>
+            <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint">
+              Schedule Interview →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCK IN YOUR FUTURE BANNER -->
+    <section class="lock-price-section container">
+      <div class="lock-price-banner">
+        <div class="lock-price-left">
+          <h2 class="lock-price-title font-serif">Ready to start earning the right way?</h2>
+          <p class="lock-price-subtext">
+            Get contracted with Alpine Fairview Agency today and take complete control of your financial future.
+          </p>
+          <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint">
+            Schedule 1-on-1 Meeting
+          </a>
+        </div>
+
+        <div class="lock-price-right">
+          <img src="senior-couple.jpg" alt="Alpine Fairview Team Success" class="lock-price-img" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="ethos-site-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-col">
+        <h4 class="footer-col-title">Contact Us</h4>
+        <p class="footer-text">Alpine Fairview Insurance</p>
+        <p class="footer-text"><a href="tel:7738000116" class="footer-link-inline">773-800-0116</a></p>
+        <p class="footer-text"><a href="mailto:andres@alpinefairview.com" class="footer-link-inline">andres@alpinefairview.com</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Resources</h4>
+        <a href="index.html#landing-view" class="footer-link">Our policies</a>
+        <a href="index.html#faqs" class="footer-link">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Company</h4>
+        <a href="index.html" class="footer-link">About us</a>
+        <a href="index.html" class="footer-link">Our carriers</a>
+        <a href="careers.html" class="footer-link">Careers</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Partnerships</h4>
+        <a href="careers.html" class="footer-link">Alpine Fairview for Agents</a>
+        <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="footer-link">Agent Contracting</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Legal</h4>
+        <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Alpine Fairview Insurance Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

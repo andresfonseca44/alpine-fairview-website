@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alpine Fairview Insurance Group | Instant Whole Life Insurance Online</title>
+  <meta name="description" content="Get fast, affordable whole life insurance online in minutes. No medical exams, no blood tests. Locked-in rates guaranteed for life." />
+  
+  <!-- Google Fonts: Alice, Instrument Serif & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- SITE HEADER (Ethos Navbar with Brand Text Logo & Nav Links) -->
+  <header class="ethos-header">
+    <div class="header-container">
+      
+      <a href="#" class="brand-logo" id="header-brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+
+      <nav class="header-nav-menu">
+        <a href="#life-insurance-guide" class="nav-link">Life insurance ▾</a>
+        <a href="#about-us" class="nav-link">About us ▾</a>
+        <a href="#faqs" class="nav-link">Resources ▾</a>
+      </nav>
+
+      <div class="header-right-actions">
+        <button class="nav-contact-btn" id="nav-contact-btn">
+          Contact Us
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTACT US INTERSTITIAL MODAL (Call Us, Email Us, Careers, Get a Quote) -->
+  <div class="modal-overlay hidden" id="contact-modal">
+    <div class="contact-modal-card">
+      <button class="modal-close-btn" id="close-contact-modal" aria-label="Close">✕</button>
+      <h2 class="contact-modal-title font-serif">Contact Alpine Fairview</h2>
+      <p class="contact-modal-sub">How can we assist you today? Please select an option below:</p>
+
+      <div class="contact-options-stack">
+        
+        <!-- Functioning Call Us Button (773-800-0116) -->
+        <a href="tel:7738000116" class="contact-opt-card">
+          <div class="contact-opt-icon">📞</div>
+          <div class="contact-opt-text">
+            <span class="contact-opt-title">Call Us</span>
+            <span class="contact-opt-desc">773-800-0116 • Speak directly with an advisor</span>
+          </div>
+          <span class="contact-opt-arrow">→</span>
+        </a>
+
+        <!-- Functioning Email Us Button (andres@alpinefairview.com) -->
+        <a href="mailto:andres@alpinefairview.com" class="contact-opt-card">
+          <div class="contact-opt-icon">✉️</div>
+          <div class="contact-opt-text">
+            <span class="contact-opt-title">Email Us</span>
+            <span class="contact-opt-desc">andres@alpinefairview.com • Instant support</span>
+          </div>
+          <span class="contact-opt-arrow">→</span>
+        </a>
+
+        <!-- Careers Option (Google Calendar Link) -->
+        <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="contact-opt-card">
+          <div class="contact-opt-icon">💼</div>
+          <div class="contact-opt-text">
+            <span class="contact-opt-title">Careers</span>
+            <span class="contact-opt-desc">Schedule a meeting with our recruiting team</span>
+          </div>
+          <span class="contact-opt-arrow">→</span>
+        </a>
+
+        <!-- Get a Quote Option (Triggers Quote Process) -->
+        <button class="contact-opt-card check-price-btn" id="contact-get-quote-btn">
+          <div class="contact-opt-icon">⚡</div>
+          <div class="contact-opt-text text-left">
+            <span class="contact-opt-title">Get a Quote</span>
+            <span class="contact-opt-desc">Calculate instant rates & start your application</span>
+          </div>
+          <span class="contact-opt-arrow">→</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- LANDING PAGE VIEW (Full-Width Ethos Background & Sections) -->
+    <section class="landing-view" id="landing-view">
+      
+      <!-- HERO SECTION (Screenshot 1) -->
+      <div class="ethos-hero-section">
+        <div class="hero-bg-overlay"></div>
+        <img src="senior-couple.jpg" alt="Smiling senior couple protected by Alpine Fairview Whole Life Insurance" class="hero-bg-image" />
+
+        <div class="hero-center-content container">
+          
+          <!-- Rating Banner -->
+          <div class="policy-stats-banner">
+            <span class="score-badge">4.9</span>
+            <span class="stars">★★★★★</span>
+            <span class="policy-stats-text">Over <strong>1,000</strong> policies approved • Over <strong>$5M</strong> in coverage</span>
+          </div>
+
+          <!-- Hero Headline -->
+          <h1 class="hero-title">
+            Whole life insurance<br />
+            <span class="hero-title-dynamic" id="hero-dynamic-text">for any budget</span>
+          </h1>
+
+          <p class="hero-subtext">
+            Fast, affordable burial & final expense protection with a 30-day money-back guarantee.
+          </p>
+
+          <!-- Primary CTA Button -->
+          <div class="hero-cta-wrapper">
+            <button class="btn btn-mint check-price-btn" id="start-quiz-btn">
+              Check my price
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <div class="badge-item">
+              <span class="badge-sub">Best</span>
+              <span class="badge-main">WHOLE LIFE</span>
+              <span class="badge-source">PERMANENT PROTECTION</span>
+            </div>
+            <div class="badge-divider"></div>
+            <div class="badge-item">
+              <span class="badge-sub">#1 online</span>
+              <span class="badge-main">FINAL EXPENSE</span>
+              <span class="badge-source">GUARANTEED BENEFIT</span>
+            </div>
+            <div class="badge-divider"></div>
+            <div class="badge-item">
+              <span class="badge-sub">Trusted</span>
+              <span class="badge-main">A+ CARRIERS</span>
+              <span class="badge-source">STATE LICENSED</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CUSTOMER REVIEWS CAROUSEL (Screenshot 2) -->
+      <div class="landing-testimonials-wrapper">
+        <div class="container">
+          <div class="testimonials-grid">
+            
+            <div class="review-card highlight-card">
+              <div class="card-quote-content">
+                <p class="review-quote font-sans">
+                  “I always tell other seniors, you’ll never regret protecting your family with whole life insurance. Alpine Fairview makes it fast, easy and affordable.”
+                </p>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <p class="review-quote font-serif">
+                “Loved the bonus locked-in lifetime rates and instant online approval.”
+              </p>
+              <span class="reviewer-name">K.L.</span>
+            </div>
+
+            <div class="review-card">
+              <p class="review-quote font-serif">
+                “Alpine Fairview has brought me so much relief knowing my family will be taken care of.”
+              </p>
+              <span class="reviewer-name">Georgia O.</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- VALUE PROPOSITION GRID (Screenshot 3) -->
+      <div class="value-props-section">
+        <div class="container text-center">
+          <h2 class="section-title font-serif">The #1 no-medical-exam, instant life insurance provider</h2>
+
+          <div class="props-4-grid">
+            
+            <div class="prop-card">
+              <div class="prop-icon">⚡</div>
+              <h3 class="prop-card-title">Get covered in 10 minutes</h3>
+            </div>
+
+            <div class="prop-card">
+              <div class="prop-icon">💵</div>
+              <h3 class="prop-card-title">Up to $50,000 in coverage</h3>
+            </div>
+
+            <div class="prop-card">
+              <div class="prop-icon">🔒</div>
+              <h3 class="prop-card-title">Locked-in rates guaranteed for life</h3>
+            </div>
+
+            <div class="prop-card">
+              <div class="prop-icon">🤝</div>
+              <h3 class="prop-card-title">Your best price from multiple A+ carriers</h3>
+            </div>
+
+          </div>
+
+          <div class="props-cta-row">
+            <button class="btn btn-mint check-price-btn">
+              Check my price
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIFE INSURANCE POLICY GUIDE SECTION (#life-insurance-guide) -->
+      <section class="guide-section" id="life-insurance-guide">
+        <div class="container guide-container">
+          
+          <div class="guide-header-box">
+            <span class="guide-tag">Life Insurance Guide & Policy Overview</span>
+            <h2 class="guide-title font-serif">Understanding Life Insurance Made Simple</h2>
+            <p class="guide-intro">
+              Life insurance helps protect the people who count on you, giving your family financial breathing room if something unexpected happens. Here is your clear guide to the basics, policy types, and key decisions.
+            </p>
+          </div>
+
+          <!-- KEY TAKEAWAYS BANNER -->
+          <div class="takeaways-card">
+            <h3 class="takeaways-title">⚡ Key Takeaways</h3>
+            <div class="takeaways-grid">
+              <div class="takeaway-item">
+                <span class="takeaway-icon">✓</span>
+                <span><strong>Financial Protection:</strong> Life insurance provides a tax-free cash payout to your beneficiaries if you pass away while the policy is active.</span>
+              </div>
+              <div class="takeaway-item">
+                <span class="takeaway-icon">✓</span>
+                <span><strong>Permanent Whole Life:</strong> Offers guaranteed lifelong coverage with locked-in rates and cash value growth for final expenses.</span>
+              </div>
+              <div class="takeaway-item">
+                <span class="takeaway-icon">✓</span>
+                <span><strong>Term Life Insurance:</strong> Budget-friendly protection designed for 10 to 30 years to cover mortgages or child-rearing years.</span>
+              </div>
+              <div class="takeaway-item">
+                <span class="takeaway-icon">✓</span>
+                <span><strong>Instant No-Exam Approval:</strong> Modern digital underwriting lets you compare real-time quotes and get approved online in minutes.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3-COLUMN TYPES & BENEFITS GRID -->
+          <div class="guide-3-grid">
+            
+            <div class="guide-card">
+              <div class="guide-card-icon">🛡️</div>
+              <h3 class="guide-card-title">Whole Life Insurance</h3>
+              <p class="guide-card-text">
+                Permanent lifelong protection with monthly premiums that never increase as you age. Includes guaranteed cash value growth and final expense burial coverage.
+              </p>
+            </div>
+
+            <div class="guide-card">
+              <div class="guide-card-icon">⏳</div>
+              <h3 class="guide-card-title">Term Life Insurance</h3>
+              <p class="guide-card-text">
+                Temporary coverage for a set period (10–30+ years). Highly affordable protection to replace lost income, pay off a mortgage, or support growing children.
+              </p>
+            </div>
+
+            <div class="guide-card">
+              <div class="guide-card-icon">⚡</div>
+              <h3 class="guide-card-title">Instant No-Exam Options</h3>
+              <p class="guide-card-text">
+                Fast digital underwriting uses health questions and data checks instead of blood draws or paramedical exams—ideal for fast approval in under 10 minutes.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- KEY TERMS GLOSSARY -->
+          <div class="terms-box">
+            <h3 class="terms-header-title font-serif">Key Terms You Should Know</h3>
+            <div class="terms-grid">
+              
+              <div class="term-card-item">
+                <div class="term-name">Death Benefit</div>
+                <div class="term-def">The tax-free payout your beneficiaries receive if you pass away during the policy term.</div>
+              </div>
+
+              <div class="term-card-item">
+                <div class="term-name">Premium</div>
+                <div class="term-def">The fixed monthly or annual rate you pay to keep your coverage active.</div>
+              </div>
+
+              <div class="term-card-item">
+                <div class="term-name">Beneficiary</div>
+                <div class="term-def">The person or loved ones designated to receive the policy payout.</div>
+              </div>
+
+              <div class="term-card-item">
+                <div class="term-name">Cash Value</div>
+                <div class="term-def">A tax-deferred savings component built into permanent whole life policies.</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS ANIMATED IPHONE SHOWCASE (Screenshot 4 - Dynamic Screen Demonstration) -->
+      <div class="how-it-works-showcase">
+        <div class="container showcase-grid">
+          
+          <!-- Left Animated iPhone Mockup -->
+          <div class="phone-mockup-wrapper">
+            <div class="phone-frame">
+              <div class="phone-screen" id="phone-screen-container">
+                
+                <!-- Slide 1: Goals -->
+                <div class="phone-slide active" id="phone-slide-1">
+                  <div class="phone-header">ALPINE FAIRVIEW</div>
+                  <h4 class="phone-title">Let’s get started! What are your goals?</h4>
+                  <div class="phone-options-grid">
+                    <div class="phone-opt-card active">
+                      <span class="opt-icon">👥</span>
+                      <span class="opt-label">Protect loved ones</span>
+                    </div>
+                    <div class="phone-opt-card">
+                      <span class="opt-icon">🎁</span>
+                      <span class="opt-label">Inheritance</span>
+                    </div>
+                    <div class="phone-opt-card">
+                      <span class="opt-icon">🕊️</span>
+                      <span class="opt-label">Burial costs</span>
+                    </div>
+                    <div class="phone-opt-card">
+                      <span class="opt-icon">❓</span>
+                      <span class="opt-label">Exploring</span>
+                    </div>
+                  </div>
+                  <div class="phone-btn">Continue →</div>
+                </div>
+
+                <!-- Slide 2: Details -->
+                <div class="phone-slide hidden-slide" id="phone-slide-2">
+                  <div class="phone-header">ALPINE FAIRVIEW</div>
+                  <h4 class="phone-title">Basic Details</h4>
+                  <div class="phone-form-mock">
+                    <div class="phone-input-mock">Age: 68 • Male</div>
+                    <div class="phone-input-mock">State: California</div>
+                    <div class="phone-input-mock">Desired Coverage: $25,000</div>
+                  </div>
+                  <div class="phone-btn">Scanning Carriers...</div>
+                </div>
+
+                <!-- Slide 3: Real-Time Rate Engine -->
+                <div class="phone-slide hidden-slide" id="phone-slide-3">
+                  <div class="phone-header">ALPINE FAIRVIEW</div>
+                  <div class="phone-calc-spinner">⚡</div>
+                  <h4 class="phone-title text-center">Calculating Rate...</h4>
+                  <p class="phone-subtext text-center">Instant A+ carrier approval</p>
+                </div>
+
+                <!-- Slide 4: Approved & Covered -->
+                <div class="phone-slide hidden-slide" id="phone-slide-4">
+                  <div class="phone-header">ALPINE FAIRVIEW</div>
+                  <div class="phone-check-circle">✓</div>
+                  <h4 class="phone-title text-center font-serif">Congrats, you’re covered!</h4>
+                  <div class="phone-quote-badge">
+                    <span class="badge-price">$24.50/mo</span>
+                    <span class="badge-detail">$25,000 Whole Life Policy</span>
+                  </div>
+                  <div class="phone-btn mint-btn">Policy Approved ✓</div>
+                </div>
+
+                <!-- Slide Dots Indicator -->
+                <div class="phone-slide-dots">
+                  <span class="p-dot active" id="p-dot-1"></span>
+                  <span class="p-dot" id="p-dot-2"></span>
+                  <span class="p-dot" id="p-dot-3"></span>
+                  <span class="p-dot" id="p-dot-4"></span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content -->
+          <div class="showcase-content">
+            <span class="sub-tag">How it works:</span>
+            <h2 class="showcase-title font-serif">
+              Instant rates, zero medical exams, and coverage approved in under 10 minutes.
+            </h2>
+
+            <div class="step-indicator-box">
+              <p class="step-label" id="showcase-step-label">1/3: Answer online questions (no med exam)</p>
+              <div class="step-progress-track">
+                <div class="step-progress-fill" id="showcase-progress-fill" style="width: 33%;"></div>
+              </div>
+            </div>
+
+            <div class="showcase-cta">
+              <button class="btn btn-mint check-price-btn">
+                Check my price
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMPARISON TABLE -->
+      <div class="comparison-table-section">
+        <div class="container text-center">
+          <h2 class="section-title font-serif">Smarter, faster whole life protection</h2>
+          <p class="section-subtitle">See how Alpine Fairview is changing the way people buy life insurance.</p>
+
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th class="feature-col"></th>
+                  <th class="brand-card-col">
+                    <div class="table-brand-card">
+                      <span class="table-brand-text">ALPINE FAIRVIEW</span>
+                    </div>
+                  </th>
+                  <th class="traditional-col">Traditionally sold life insurance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="feature-name">Instant underwriting</td>
+                  <td class="brand-cell"><span class="check-icon">✓</span></td>
+                  <td class="trad-cell"><span class="empty-circle">◯</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">No medical exams</td>
+                  <td class="brand-cell"><span class="check-icon">✓</span></td>
+                  <td class="trad-cell"><span class="empty-circle">◯</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Same-day coverage</td>
+                  <td class="brand-cell"><span class="check-icon">✓</span></td>
+                  <td class="trad-cell"><span class="empty-circle">◯</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Locked-in lifetime rates</td>
+                  <td class="brand-cell"><span class="check-icon">✓</span></td>
+                  <td class="trad-cell"><span class="empty-circle">◯</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Trusted A+ carriers</td>
+                  <td class="brand-cell"><span class="check-icon">✓</span></td>
+                  <td class="trad-cell"><span class="check-icon-gray">✓</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-cta-row">
+            <button class="btn btn-mint check-price-btn">
+              Check my price
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT US SECTION (Matching Reference Screenshot Layout & Brand Palette) -->
+      <section class="about-us-section" id="about-us">
+        <div class="container about-us-container">
+          
+          <h2 class="about-us-title font-serif">About Alpine Fairview</h2>
+
+          <div class="about-pills-row">
+            <span class="about-pill"><span class="star-gold">★ 5.0</span> • 1,000+ Verified Reviews</span>
+            <span class="about-pill">Independent agency</span>
+            <span class="about-pill">Founded 2017 • State Licensed</span>
+          </div>
+
+          <div class="about-body-text">
+            <p>
+              Alpine Fairview is an independent life insurance agency. We were founded in 2017 by licensed insurance specialists who spent their careers helping families protect what matters most — and who believed seniors deserved a simpler, more honest, and affordable way to shop for coverage. Today we specialize in whole life, final expense, and burial insurance programs.
+            </p>
+            <p>
+              Because we are independent, we work for you — not for any single insurance company. Our licensed agents compare plans side by side from many of America’s best-known A+ rated carriers and tell you honestly which option fits your age, health, and budget. Many plans include no medical exam and day-one coverage options. Our help is always 100% free — no pressure, no obligation.
+            </p>
+            <p>
+              Families have shared thousands of five-star reviews about our agents — praising their patience, clear explanations, and care in finding coverage that fits a fixed income.
+            </p>
+          </div>
+
+          <div class="about-divider"></div>
+
+          <h3 class="about-mission-statement font-serif">
+            Our mission is simple: to provide insurance solutions that empower our clients to protect what matters most to them.
+          </h3>
+
+        </div>
+      </section>
+
+      <!-- EXPANDABLE FAQS ACCORDION SECTION (Matching Reference Image Exact Functionality) -->
+      <div class="expandable-faqs-section" id="faqs">
+        <div class="container faq-expandable-grid">
+          
+          <div class="faq-left-header">
+            <h2 class="faq-main-title font-serif">FAQs</h2>
+            <p class="faq-main-subtitle">
+              Find answers to common questions about Alpine Fairview whole life insurance policies.
+            </p>
+          </div>
+
+          <div class="faq-right-list">
+            
+            <!-- Question 1 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">What does whole life insurance cover?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  Whole life insurance provides guaranteed permanent coverage that pays a tax-free cash benefit to your beneficiaries. It covers final funeral and burial costs, outstanding medical bills, mortgage payments, and daily living expenses for your loved ones.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">What kind of life insurance does Alpine Fairview offer?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  We specialize in 100% online, instant-approval Whole Life and Final Expense insurance policies from top-tier A+ rated carriers. Unlike term policies that expire, your whole life policy stays locked in for life with premiums that never increase as you age.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">But I have insurance through my employer, isn’t that enough?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  Employer-provided life insurance is a great perk, but it is rarely enough. Employer policies are usually tied to your job and terminate if you retire, change employers, or leave. Securing your own individual whole life policy with Alpine Fairview ensures your coverage stays locked in for life regardless of employment status.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">Who is eligible to apply?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  US citizens and permanent residents aged 18 to 85 are eligible for instant online approval. Because we offer guaranteed whole life coverage with no medical exams or blood draws required, most applicants qualify immediately regardless of past health history.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">How much life insurance do I need?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  A common and easy way to come up with a coverage estimate is to calculate your long-term financial obligations, final burial expenses, and any legacy you wish to leave for children or grandchildren. Most Alpine Fairview clients select between $10,000 and $50,000 to cover final expenses, medical bills, and ensure complete financial peace of mind.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">Does Alpine Fairview offer a money-back guarantee?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  Yes. Our application is 100% free and won’t affect your credit score. Additionally, each policy has a 30-day free look period with a money-back guarantee. So if you aren't satisfied, you are eligible for a full refund if you cancel within the first 30 days after purchase. After the first 30 days, you may cancel your policy whenever you want to, for any reason. There are never any cancellation fees or penalties. You can cancel your policy by calling or emailing us, and there's never any cancellation fees.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">What makes Alpine Fairview different?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  We’ve built an industry-leading digital product that is transforming how people apply for life insurance. Our proprietary underwriting engine digitally assigns each customer to the appropriate product from top A+ carriers so applicants can get the coverage that best fits their unique needs as fast as possible. Check your final, approved rates in a matter of minutes and get covered today.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="faq-accordion-item">
+              <div class="faq-accordion-header">
+                <span class="faq-accordion-q">Can I speak with a real person?</span>
+                <span class="faq-plus">+</span>
+              </div>
+              <div class="faq-accordion-body hidden">
+                <p>
+                  Yes—we're happy to assist and support you anytime. You can get in touch directly with our licensed Alpine Fairview customer support team by sending an email at <a href="mailto:andres@alpinefairview.com" class="faq-link-inline">andres@alpinefairview.com</a> or calling <a href="tel:7738000116" class="faq-link-inline">(773) 800-0116</a>.
+                </p>
+              </div>
+            </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LOCK IN YOUR BEST PRICE TODAY BANNER -->
+      <div class="lock-price-section container">
+        <div class="lock-price-banner">
+          <div class="lock-price-left">
+            <h2 class="lock-price-title font-serif">Lock in your best price today</h2>
+            <p class="lock-price-subtext">
+              The cost of life insurance can go up 8-10% every year. With Alpine Fairview, getting covered only takes 10 minutes.
+            </p>
+            <button class="btn btn-mint check-price-btn">
+              Check my price
+            </button>
+          </div>
+
+          <div class="lock-price-right">
+            <img src="senior-couple.jpg" alt="Happy Protected Seniors" class="lock-price-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- SITE FOOTER -->
+      <footer class="ethos-site-footer">
+        <div class="container footer-grid">
+          
+          <div class="footer-col">
+            <h4 class="footer-col-title">Contact Us</h4>
+            <p class="footer-text">Alpine Fairview Insurance</p>
+            <p class="footer-text"><a href="tel:7738000116" class="footer-link-inline">773-800-0116</a></p>
+            <p class="footer-text"><a href="mailto:andres@alpinefairview.com" class="footer-link-inline">andres@alpinefairview.com</a></p>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Resources</h4>
+            <a href="#" class="footer-link">Our policies</a>
+            <a href="#faqs" class="footer-link">FAQs</a>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Company</h4>
+            <a href="#" class="footer-link">About us</a>
+            <a href="#" class="footer-link">Our carriers</a>
+            <a href="careers.html" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Press</a>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Partnerships</h4>
+            <a href="#" class="footer-link">Alpine Fairview for Agents</a>
+            <a href="#" class="footer-link">Agent Login</a>
+            <a href="#" class="footer-link">Affiliates</a>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Legal</h4>
+            <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Licenses</a>
+          </div>
+
+        </div>
+
+        <div class="container footer-bottom">
+          <p>© 2026 Alpine Fairview Insurance Group. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </section>
+
+    <!-- MULTI-STEP LEAD QUIZ VIEW -->
+    <section class="quiz-view hidden" id="quiz-view">
+      
+      <!-- Quiz Progress Header -->
+      <div class="quiz-header-bar">
+        <div class="container quiz-nav-container">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-fill" style="width: 5.5%;"></div>
+          </div>
+          <button class="back-btn" id="quiz-back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-content-wrapper">
+        <div class="quiz-container">
+          
+          <!-- STEP 1: GOALS -->
+          <div class="quiz-step-panel" id="step-1">
+            <h2 class="quiz-heading">Let’s get started! What are your goals for life insurance?</h2>
+            <p class="quiz-subheading">Select all that apply.</p>
+
+            <div class="card-option-grid">
+              
+              <div class="option-card" data-group="goals" data-value="Protect my loved ones">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <span class="card-label">Protect my loved ones</span>
+              </div>
+
+              <div class="option-card" data-group="goals" data-value="Leave an inheritance">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M6 12h.01M18 12h.01"></path>
+                  </svg>
+                </div>
+                <span class="card-label">Leave an inheritance</span>
+              </div>
+
+              <div class="option-card" data-group="goals" data-value="Cover my funeral expenses">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M12 8v8M8 12h8"></path>
+                  </svg>
+                </div>
+                <span class="card-label">Cover my funeral expenses</span>
+              </div>
+
+              <div class="option-card" data-group="goals" data-value="I’m not sure">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"></path>
+                  </svg>
+                </div>
+                <span class="card-label">I’m not sure</span>
+              </div>
+
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-gray btn-block quiz-next-btn" id="next-step-1" disabled>
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: DEPENDENTS (Screenshot 3) -->
+          <div class="quiz-step-panel hidden" id="step-2">
+            <h2 class="quiz-heading">Who depends on you financially?</h2>
+            <p class="quiz-subheading">This helps us customize your plan. Select all that apply.</p>
+
+            <div class="card-option-grid">
+              
+              <div class="option-card" data-group="dependents" data-value="Spouse or partner">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <path d="M20 8v6M17 11h6"></path>
+                  </svg>
+                </div>
+                <span class="card-label">Spouse or partner</span>
+              </div>
+
+              <div class="option-card" data-group="dependents" data-value="Children">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="3"></circle>
+                  </svg>
+                </div>
+                <span class="card-label">Children</span>
+              </div>
+
+              <div class="option-card" data-group="dependents" data-value="Parent">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2"></path>
+                  </svg>
+                </div>
+                <span class="card-label">Parent</span>
+              </div>
+
+              <div class="option-card" data-group="dependents" data-value="Other">
+                <div class="card-check-circle"></div>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </div>
+                <span class="card-label">Other</span>
+              </div>
+
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-gray btn-block quiz-next-btn" id="next-step-2" disabled>
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: CHILDREN COUNT -->
+          <div class="quiz-step-panel hidden" id="step-3">
+            <h2 class="quiz-heading">How many children do you have under 18?</h2>
+
+            <div class="list-option-stack">
+              <div class="list-option-item" data-group="children-count" data-value="None">None</div>
+              <div class="list-option-item" data-group="children-count" data-value="1">1</div>
+              <div class="list-option-item" data-group="children-count" data-value="2">2</div>
+              <div class="list-option-item" data-group="children-count" data-value="3">3</div>
+              <div class="list-option-item" data-group="children-count" data-value="4+">4+</div>
+            </div>
+          </div>
+
+          <!-- STEP 4: TRIGGERS (Updated Exact Choices) -->
+          <div class="quiz-step-panel hidden" id="step-4">
+            <h2 class="quiz-heading">What prompted you to start looking for life insurance?</h2>
+
+            <div class="list-option-stack">
+              <div class="list-option-item" data-group="trigger" data-value="Protecting my family from funeral & burial costs">Protecting my family from funeral & burial costs</div>
+              <div class="list-option-item" data-group="trigger" data-value="Leaving a financial legacy for my children/grandchildren">Leaving a financial legacy for my children/grandchildren</div>
+              <div class="list-option-item" data-group="trigger" data-value="Planning for retirement">Planning for retirement</div>
+              <div class="list-option-item" data-group="trigger" data-value="Just being proactive">Just being proactive</div>
+            </div>
+          </div>
+
+          <!-- STEP 5: DECISION FACTORS (Screenshot 5) -->
+          <div class="quiz-step-panel hidden" id="step-5">
+            <h2 class="quiz-heading">Are there any other factors influencing your decision?</h2>
+
+            <div class="list-option-stack">
+              <div class="list-option-item" data-group="factor" data-value="Losing employer coverage">Losing employer coverage</div>
+              <div class="list-option-item" data-group="factor" data-value="Current policy is ending">Current policy is ending</div>
+              <div class="list-option-item" data-group="factor" data-value="Health scare">Health scare</div>
+              <div class="list-option-item" data-group="factor" data-value="Death of a loved one">Death of a loved one</div>
+              <div class="list-option-item" data-group="factor" data-value="None of the above">None of the above</div>
+            </div>
+          </div>
+
+          <!-- STEP 6: TRANSITION INTERSTITIAL -->
+          <div class="quiz-step-panel hidden text-center" id="step-6">
+            <div class="interstitial-badge">✓ Needs Analysis Complete</div>
+            <h2 class="quiz-heading font-serif">Thanks! We’ll get you your final rate in minutes.</h2>
+            
+            <div class="how-it-works-box">
+              <h3 class="hiw-title">How it works</h3>
+              <div class="hiw-timeline">
+                
+                <div class="hiw-step active-done">
+                  <div class="hiw-num">✓</div>
+                  <div class="hiw-text">
+                    <strong>1. Tell us about your needs</strong>
+                  </div>
+                </div>
+
+                <div class="hiw-step current">
+                  <div class="hiw-num">2</div>
+                  <div class="hiw-text">
+                    <strong>2. Add your basic details</strong>
+                  </div>
+                </div>
+
+                <div class="hiw-step">
+                  <div class="hiw-num">3</div>
+                  <div class="hiw-text">
+                    <strong>3. Provide health info and get your final rate</strong>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-6">
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 7: COVERAGE TIMING -->
+          <div class="quiz-step-panel hidden" id="step-7">
+            <h2 class="quiz-heading">When would you like to be covered by life insurance?</h2>
+
+            <div class="list-option-stack">
+              <div class="list-option-item" data-group="timing" data-value="As soon as possible">As soon as possible</div>
+              <div class="list-option-item" data-group="timing" data-value="Within the next month">Within the next month</div>
+              <div class="list-option-item" data-group="timing" data-value="Within 1-3 months">Within 1-3 months</div>
+              <div class="list-option-item" data-group="timing" data-value="Just exploring options">Just exploring options</div>
+            </div>
+          </div>
+
+          <!-- STEP 8: SEX AT BIRTH -->
+          <div class="quiz-step-panel hidden" id="step-8">
+            <h2 class="quiz-heading">Provide your sex at birth</h2>
+            <p class="quiz-subheading">Life insurance rates are based on biological sex at birth.</p>
+
+            <div class="gender-cards-grid">
+              <div class="gender-card" data-group="gender" data-value="Female">
+                <div class="gender-icon">👩</div>
+                <span class="gender-label">Female</span>
+              </div>
+              <div class="gender-card" data-group="gender" data-value="Male">
+                <div class="gender-icon">👨</div>
+                <span class="gender-label">Male</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 9: BIRTHDATE -->
+          <div class="quiz-step-panel hidden" id="step-9">
+            <h2 class="quiz-heading">What’s your birthdate?</h2>
+            <p class="quiz-subheading">Your age helps us determine your baseline rate tier.</p>
+
+            <div class="birthdate-inputs">
+              <div class="field-group">
+                <label for="dob-month">Month</label>
+                <input type="number" id="dob-month" placeholder="MM" min="1" max="12" class="ethos-input" />
+              </div>
+              <div class="field-group">
+                <label for="dob-day">Day</label>
+                <input type="number" id="dob-day" placeholder="DD" min="1" max="31" class="ethos-input" />
+              </div>
+              <div class="field-group flex-2">
+                <label for="dob-year">Year</label>
+                <input type="number" id="dob-year" placeholder="YYYY" min="1930" max="2008" class="ethos-input" />
+              </div>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-9" disabled>
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 10: COUNTRY OF BIRTH -->
+          <div class="quiz-step-panel hidden" id="step-10">
+            <h2 class="quiz-heading">What country were you born in?</h2>
+
+            <div class="form-select-wrapper">
+              <select id="country-of-birth" class="ethos-select">
+                <option value="United States" selected>United States</option>
+                <option value="Canada">Canada</option>
+                <option value="Mexico">Mexico</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Other">Other Country</option>
+              </select>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-10">
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 11: STATE OF BIRTH -->
+          <div class="quiz-step-panel hidden" id="step-11">
+            <h2 class="quiz-heading">What state were you born in?</h2>
+
+            <div class="form-select-wrapper">
+              <select id="state-of-birth" class="ethos-select">
+                <option value="" disabled selected>Select a state...</option>
+                <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="MI">Michigan</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="OH">Ohio</option><option value="PA">Pennsylvania</option><option value="TX">Texas</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="OTHER">Outside US / Other</option>
+              </select>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-11" disabled>
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 12: CITIZENSHIP -->
+          <div class="quiz-step-panel hidden" id="step-12">
+            <h2 class="quiz-heading">Are you a citizen or permanent resident of the USA?</h2>
+
+            <div class="list-option-stack">
+              <div class="list-option-item" data-group="citizenship" data-value="Yes">Yes, I am a US citizen or Green Card holder</div>
+              <div class="list-option-item" data-group="citizenship" data-value="No">No</div>
+            </div>
+          </div>
+
+          <!-- STEP 13: DESIRED COVERAGE AMOUNT SLIDER ($5k - $50k) -->
+          <div class="quiz-step-panel hidden" id="step-13">
+            <h2 class="quiz-heading">Select your desired coverage amount</h2>
+            <p class="quiz-subheading">Choose how much whole life benefit you would like for your family.</p>
+
+            <div class="coverage-slider-box">
+              <div class="slider-display-row">
+                <span class="slider-display-label">Desired Coverage:</span>
+                <span class="slider-display-val" id="quiz-coverage-val">$25,000</span>
+              </div>
+              <input type="range" id="quiz-coverage-slider" min="5000" max="50000" step="1000" value="25000" class="ethos-range-slider" />
+              <div class="slider-ticks-row">
+                <span>$5,000</span>
+                <span>$25,000</span>
+                <span>$50,000</span>
+              </div>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-13">
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 14: PERSONALIZED COVERAGE NEEDS SUMMARY -->
+          <div class="quiz-step-panel hidden" id="step-14">
+            <h2 class="quiz-heading font-serif">Your personalized coverage needs</h2>
+            <p class="quiz-subheading text-left">
+              Your Alpine Fairview whole life insurance policy will help cover your financial obligations and give you peace of mind.
+            </p>
+
+            <div class="coverage-breakdown-card">
+              
+              <div class="breakdown-section">
+                <span class="breakdown-tag">PROTECTION FOR</span>
+                <h3 class="breakdown-title" id="protection-target-label">Spouse or partner & Family</h3>
+                <p class="breakdown-desc">
+                  If you were to pass away, your beneficiaries will receive a guaranteed cash benefit that can help cover the following things:
+                </p>
+              </div>
+
+              <div class="breakdown-feature-list">
+                
+                <div class="feature-item">
+                  <div class="feature-icon-box">🏠</div>
+                  <div class="feature-content">
+                    <h4 class="feature-title">Living expenses</h4>
+                    <p class="feature-text">
+                      Covering everyday costs like groceries and bills helps ensure your family’s daily needs are met.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feature-icon-box">🔒</div>
+                  <div class="feature-content">
+                    <h4 class="feature-title">Locked-in rate protection</h4>
+                    <p class="feature-text">
+                      Your monthly premium is locked in for life and guaranteed to never increase as you age.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feature-icon-box">🕊️</div>
+                  <div class="feature-content">
+                    <h4 class="feature-title">Burial costs</h4>
+                    <p class="feature-text">
+                      Funeral costs in the U.S. range from $7,000 to $12,000+.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-14">
+                See final rate
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 15: NAME -->
+          <div class="quiz-step-panel hidden" id="step-15">
+            <h2 class="quiz-heading">What's your name?</h2>
+
+            <div class="name-inputs-row">
+              <div class="field-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="First Name" class="ethos-input" />
+              </div>
+              <div class="field-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Last Name" class="ethos-input" />
+              </div>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-15" disabled>
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 16: EMAIL -->
+          <div class="quiz-step-panel hidden" id="step-16">
+            <h2 class="quiz-heading">What's your email?</h2>
+            <p class="quiz-subheading">We’ll send a secure copy of your custom rate summary here.</p>
+
+            <div class="email-input-group">
+              <input type="email" id="email-input" placeholder="name@example.com" class="ethos-input input-lg" />
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-16" disabled>
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 17: MOBILE PHONE -->
+          <div class="quiz-step-panel hidden" id="step-17">
+            <h2 class="quiz-heading">What's your mobile phone number?</h2>
+            <p class="quiz-subheading">Needed for instant SMS rate verification and policy confirmation.</p>
+
+            <div class="phone-input-group">
+              <input type="tel" id="phone-input" placeholder="(555) 000-0000" class="ethos-input input-lg" />
+            </div>
+
+            <p class="disclaimer-text">
+              By clicking "Get My Final Rate", you consent to receive automated security codes and quote updates from Alpine Fairview Insurance.
+            </p>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-17" disabled>
+                Get My Final Rate
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 18: INSTANT CUSTOM RATE RESULT CARD WITH INTERACTIVE SLIDER -->
+          <div class="quiz-step-panel hidden text-center" id="step-18">
+            <div class="success-badge-circle">✓</div>
+            <h2 class="quiz-heading font-serif">Your Whole Life Rate Quote is Ready!</h2>
+            <p class="quiz-subheading">Adjust the coverage scale below to see instant estimated rates for your age:</p>
+
+            <div class="final-quote-card">
+              
+              <!-- Interactive Scale Slider on Quote Card -->
+              <div class="final-card-slider-box">
+                <div class="slider-display-row">
+                  <span class="slider-display-label">Coverage Amount:</span>
+                  <span class="slider-display-val" id="final-coverage-val">$25,000</span>
+                </div>
+                <input type="range" id="final-coverage-slider" min="5000" max="50000" step="1000" value="25000" class="ethos-range-slider" />
+                <div class="slider-ticks-row">
+                  <span>$5,000</span>
+                  <span>$25,000</span>
+                  <span>$50,000</span>
+                </div>
+              </div>
+
+              <div class="quote-header">
+                <span class="plan-type">A+ RATED GUARANTEED WHOLE LIFE COVERAGE</span>
+                <span class="coverage-amt" id="final-coverage-amt">$25,000 Final Benefit</span>
+              </div>
+              <div class="quote-price-body">
+                <span class="price-val" id="final-price-val">$24.50</span>
+                <span class="price-period">/ month</span>
+              </div>
+              <p class="rate-benchmark-note" id="final-rate-benchmark-note">
+                Estimated rate based on your age and details.
+              </p>
+
+              <ul class="quote-bullets">
+                <li><span class="check">✓</span> Locked-in Rate That Never Increases with Age</li>
+                <li><span class="check">✓</span> 100% Online Instant Approval — No Medical Exam required</li>
+                <li><span class="check">✓</span> Guaranteed rate & benefits that never decrease</li>
+              </ul>
+              
+              <button class="btn btn-mint-solid btn-block btn-lg" id="finish-lead-btn">
+                Complete Application Now
+              </button>
+            </div>
+
+            <p class="call-agent-note">
+              Questions? Speak directly to an Alpine Fairview Advisor at <a href="tel:7738000116" class="footer-link-inline"><strong>773-800-0116</strong></a> or <a href="mailto:andres@alpinefairview.com" class="footer-link-inline"><strong>andres@alpinefairview.com</strong></a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
