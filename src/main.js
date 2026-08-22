@@ -185,13 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressFill = document.getElementById('progress-fill');
 
   let currentStep = 1;
-  const totalSteps = 18;
+  const totalSteps = 16;
 
   // Lead Data Store
   const leadData = {
     goals: [],
     dependents: [],
-    childrenCount: '',
     trigger: '',
     factor: '',
     timing: '',
@@ -202,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
     countryOfBirth: 'United States',
     stateOfBirth: '',
     citizenship: '',
-    zipCode: '',
     coverageAmount: 25000,
     firstName: '',
     lastName: '',
@@ -211,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function updateProgressBar() {
-    const percent = Math.min(100, Math.max(5, (currentStep / totalSteps) * 100));
+    const percent = Math.min(100, Math.max(6.25, (currentStep / totalSteps) * 100));
     if (progressFill) progressFill.style.width = `${percent}%`;
   }
 
@@ -229,8 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
       targetPanel.classList.remove('hidden');
     }
 
-    // Immediately trigger lead submission & email notification when reaching Step 18 ("Your whole life rate quote is ready!")
-    if (stepNum === 18) {
+    // Immediately trigger lead submission & email notification when reaching Step 16 ("Your whole life rate quote is ready!")
+    if (stepNum === 16) {
       calculateAndDisplayRate();
       submitLeadToGoogleSheet(leadData);
     }
@@ -254,23 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentStep > 1) {
       showStep(currentStep - 1);
     } else {
-      // Back to landing
-      if (quizView && landingView) {
-        quizView.classList.add('hidden');
-        landingView.classList.remove('hidden');
-        if (siteHeader) siteHeader.style.display = 'flex';
-      }
+      window.location.href = 'index.html';
     }
   }
-
-  // ALL "Check my price" buttons on homepage go directly to Step 1 ("Let's get started!")
-  const checkPriceBtns = document.querySelectorAll('.check-price-btn');
-  checkPriceBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      startQuiz();
-    });
-  });
 
   if (quizBackBtn) quizBackBtn.addEventListener('click', goBack);
   
@@ -278,11 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (quizBrandLogo) {
     quizBrandLogo.addEventListener('click', (e) => {
       e.preventDefault();
-      if (quizView && landingView) {
-        quizView.classList.add('hidden');
-        landingView.classList.remove('hidden');
-        if (siteHeader) siteHeader.style.display = 'flex';
-      }
+      window.location.href = 'index.html';
     });
   }
 
@@ -337,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMultiSelectGroup('dependents', 'next-step-2');
 
   // ------------------------------------------------------------------------
-  // 7. SINGLE-SELECT LIST STACKS (Children Count, Trigger, Factor, Timing, Citizenship)
+  // 7. SINGLE-SELECT LIST STACKS (Trigger, Factor, Timing, Citizenship)
   // ------------------------------------------------------------------------
   function setupSingleSelectGroup(groupName, leadKey) {
     const items = document.querySelectorAll(`.list-option-item[data-group="${groupName}"]`);
@@ -356,22 +336,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  setupSingleSelectGroup('children-count', 'childrenCount');
   setupSingleSelectGroup('trigger', 'trigger');
   setupSingleSelectGroup('factor', 'factor');
   setupSingleSelectGroup('timing', 'timing');
   setupSingleSelectGroup('citizenship', 'citizenship');
 
   // ------------------------------------------------------------------------
-  // 8. STEP 6: TRANSITION INTERSTITIAL
+  // 8. STEP 5: TRANSITION INTERSTITIAL
   // ------------------------------------------------------------------------
-  const nextStep6Btn = document.getElementById('next-step-6');
-  if (nextStep6Btn) {
-    nextStep6Btn.addEventListener('click', () => showStep(7));
+  const nextStep5Btn = document.getElementById('next-step-5');
+  if (nextStep5Btn) {
+    nextStep5Btn.addEventListener('click', () => showStep(6));
   }
 
   // ------------------------------------------------------------------------
-  // 9. STEP 8: GENDER SELECTION
+  // 9. STEP 7: GENDER SELECTION
   // ------------------------------------------------------------------------
   const genderCards = document.querySelectorAll('.gender-card');
   genderCards.forEach(card => {
@@ -381,32 +360,32 @@ document.addEventListener('DOMContentLoaded', () => {
       leadData.gender = card.getAttribute('data-value');
 
       setTimeout(() => {
-        showStep(9);
+        showStep(8);
       }, 220);
     });
   });
 
   // ------------------------------------------------------------------------
-  // 10. STEP 9: BIRTHDATE INPUTS
+  // 10. STEP 8: BIRTHDATE INPUTS
   // ------------------------------------------------------------------------
   const dobMonth = document.getElementById('dob-month');
   const dobDay = document.getElementById('dob-day');
   const dobYear = document.getElementById('dob-year');
-  const nextStep9Btn = document.getElementById('next-step-9');
+  const nextStep8Btn = document.getElementById('next-step-8');
 
   function validateDOB() {
-    if (!dobMonth || !dobDay || !dobYear || !nextStep9Btn) return;
+    if (!dobMonth || !dobDay || !dobYear || !nextStep8Btn) return;
     const m = parseInt(dobMonth.value, 10);
     const d = parseInt(dobDay.value, 10);
     const y = parseInt(dobYear.value, 10);
 
     if (m >= 1 && m <= 12 && d >= 1 && d <= 31 && y >= 1930 && y <= 2008) {
-      nextStep9Btn.disabled = false;
+      nextStep8Btn.disabled = false;
       leadData.dobMonth = m;
       leadData.dobDay = d;
       leadData.dobYear = y;
     } else {
-      nextStep9Btn.disabled = true;
+      nextStep8Btn.disabled = true;
     }
   }
 
@@ -414,46 +393,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (input) input.addEventListener('input', validateDOB);
   });
 
-  if (nextStep9Btn) {
-    nextStep9Btn.addEventListener('click', () => {
-      if (!nextStep9Btn.disabled) showStep(10);
+  if (nextStep8Btn) {
+    nextStep8Btn.addEventListener('click', () => {
+      if (!nextStep8Btn.disabled) showStep(9);
     });
   }
 
   // ------------------------------------------------------------------------
-  // 11. STEP 10 & 11: COUNTRY & STATE OF BIRTH
+  // 11. STEP 9 & 10: COUNTRY & STATE OF BIRTH
   // ------------------------------------------------------------------------
   const countrySelect = document.getElementById('country-of-birth');
-  const nextStep10Btn = document.getElementById('next-step-10');
-  if (nextStep10Btn) {
-    nextStep10Btn.addEventListener('click', () => {
+  const nextStep9Btn = document.getElementById('next-step-9');
+  if (nextStep9Btn) {
+    nextStep9Btn.addEventListener('click', () => {
       if (countrySelect) leadData.countryOfBirth = countrySelect.value;
-      showStep(11);
+      showStep(10);
     });
   }
 
   const stateSelect = document.getElementById('state-of-birth');
-  const nextStep11Btn = document.getElementById('next-step-11');
+  const nextStep10Btn = document.getElementById('next-step-10');
 
-  if (stateSelect && nextStep11Btn) {
+  if (stateSelect && nextStep10Btn) {
     stateSelect.addEventListener('change', () => {
       if (stateSelect.value) {
-        nextStep11Btn.disabled = false;
+        nextStep10Btn.disabled = false;
         leadData.stateOfBirth = stateSelect.value;
       }
     });
 
-    nextStep11Btn.addEventListener('click', () => {
-      if (!nextStep11Btn.disabled) showStep(12);
+    nextStep10Btn.addEventListener('click', () => {
+      if (!nextStep10Btn.disabled) showStep(11);
     });
   }
 
   // ------------------------------------------------------------------------
-  // 12. STEP 13: COVERAGE SLIDER SCALE ($5,000 - $50,000 in $1,000 steps)
+  // 12. STEP 12: COVERAGE SLIDER SCALE & PERSONALIZED COVERAGE BREAKDOWN
   // ------------------------------------------------------------------------
   const quizCoverageSlider = document.getElementById('quiz-coverage-slider');
   const quizCoverageVal = document.getElementById('quiz-coverage-val');
-  const nextStep13Btn = document.getElementById('next-step-13');
+  const nextStep12Btn = document.getElementById('next-step-12');
   const finalCoverageSlider = document.getElementById('final-coverage-slider');
   const finalCoverageVal = document.getElementById('final-coverage-val');
 
@@ -488,16 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (nextStep13Btn) {
-    nextStep13Btn.addEventListener('click', () => {
-      populateCoverageBreakdown();
-      showStep(14);
-    });
-  }
-
-  // ------------------------------------------------------------------------
-  // 13. STEP 14: PERSONALIZED COVERAGE BREAKDOWN
-  // ------------------------------------------------------------------------
   function populateCoverageBreakdown() {
     const targetLabel = document.getElementById('protection-target-label');
     if (targetLabel) {
@@ -509,26 +478,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const nextStep14Btn = document.getElementById('next-step-14');
-  if (nextStep14Btn) {
-    nextStep14Btn.addEventListener('click', () => showStep(15));
+  if (nextStep12Btn) {
+    nextStep12Btn.addEventListener('click', () => {
+      populateCoverageBreakdown();
+      showStep(13);
+    });
   }
 
   // ------------------------------------------------------------------------
-  // 14. STEP 15: NAME
+  // 13. STEP 13: NAME
   // ------------------------------------------------------------------------
   const firstNameInput = document.getElementById('first-name');
   const lastNameInput = document.getElementById('last-name');
-  const nextStep15Btn = document.getElementById('next-step-15');
+  const nextStep13Btn = document.getElementById('next-step-13');
 
   function validateName() {
-    if (!firstNameInput || !lastNameInput || !nextStep15Btn) return;
+    if (!firstNameInput || !lastNameInput || !nextStep13Btn) return;
     if (firstNameInput.value.trim().length >= 2 && lastNameInput.value.trim().length >= 2) {
-      nextStep15Btn.disabled = false;
+      nextStep13Btn.disabled = false;
       leadData.firstName = firstNameInput.value.trim();
       leadData.lastName = lastNameInput.value.trim();
     } else {
-      nextStep15Btn.disabled = true;
+      nextStep13Btn.disabled = true;
     }
   }
 
@@ -536,37 +507,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (i) i.addEventListener('input', validateName);
   });
 
-  if (nextStep15Btn) {
-    nextStep15Btn.addEventListener('click', () => {
-      if (!nextStep15Btn.disabled) showStep(16);
+  if (nextStep13Btn) {
+    nextStep13Btn.addEventListener('click', () => {
+      if (!nextStep13Btn.disabled) showStep(14);
     });
   }
 
   // ------------------------------------------------------------------------
-  // 15. STEP 16: EMAIL
+  // 14. STEP 14: EMAIL
   // ------------------------------------------------------------------------
   const emailInput = document.getElementById('email-input');
-  const nextStep16Btn = document.getElementById('next-step-16');
+  const nextStep14Btn = document.getElementById('next-step-14');
 
-  if (emailInput && nextStep16Btn) {
+  if (emailInput && nextStep14Btn) {
     emailInput.addEventListener('input', () => {
       const val = emailInput.value.trim();
       if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-        nextStep16Btn.disabled = false;
+        nextStep14Btn.disabled = false;
         leadData.email = val;
       } else {
-        nextStep16Btn.disabled = true;
+        nextStep14Btn.disabled = true;
       }
     });
 
-    nextStep16Btn.addEventListener('click', () => {
-      if (!nextStep16Btn.disabled) showStep(17);
+    nextStep14Btn.addEventListener('click', () => {
+      if (!nextStep14Btn.disabled) showStep(15);
     });
   }
 
   // ------------------------------------------------------------------------
-  // 16. STEP 17: PHONE & STEP 18: INSTANT RATE CALCULATOR & GOOGLE SHEET SUBMISSION
-  // Target Google Sheet: https://docs.google.com/spreadsheets/d/1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE/edit
+  // 15. STEP 15: PHONE & STEP 16: INSTANT RATE CALCULATOR & GOOGLE SHEET SUBMISSION
   // ------------------------------------------------------------------------
   function submitLeadToGoogleSheet(data) {
     const birthYear = data.dobYear || 1956;
@@ -591,7 +561,6 @@ document.addEventListener('DOMContentLoaded', () => {
       citizenship: data.citizenship || '',
       goals: Array.isArray(data.goals) ? data.goals.join(', ') : '',
       dependents: Array.isArray(data.dependents) ? data.dependents.join(', ') : '',
-      childrenCount: data.childrenCount || '',
       trigger: data.trigger || '',
       factor: data.factor || '',
       timing: data.timing || ''
@@ -599,14 +568,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('🚀 [ALPINE FAIRVIEW] Submitting lead data to Google Sheet (1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE):', payload);
 
-    // Save lead to local backup history
     try {
       const existingLeads = JSON.parse(localStorage.getItem('alpine_fairview_leads') || '[]');
       existingLeads.push(payload);
       localStorage.setItem('alpine_fairview_leads', JSON.stringify(existingLeads));
     } catch(e) {}
 
-    // Post to Google Apps Script / Sheet Webhook endpoint
     const webhookUrl = 'https://script.google.com/macros/s/AKfycbx_AlpineFairview_Sheet/exec';
     try {
       fetch(webhookUrl, {
@@ -619,24 +586,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const phoneInput = document.getElementById('phone-input');
-  const nextStep17Btn = document.getElementById('next-step-17');
+  const nextStep15Btn = document.getElementById('next-step-15');
 
-  if (phoneInput && nextStep17Btn) {
+  if (phoneInput && nextStep15Btn) {
     phoneInput.addEventListener('input', () => {
       const digits = phoneInput.value.replace(/\D/g, '');
       if (digits.length >= 10) {
-        nextStep17Btn.disabled = false;
+        nextStep15Btn.disabled = false;
         leadData.phone = digits;
       } else {
-        nextStep17Btn.disabled = true;
+        nextStep15Btn.disabled = true;
       }
     });
 
-    nextStep17Btn.addEventListener('click', () => {
-      if (!nextStep17Btn.disabled) {
+    nextStep15Btn.addEventListener('click', () => {
+      if (!nextStep15Btn.disabled) {
         calculateAndDisplayRate();
         submitLeadToGoogleSheet(leadData);
-        showStep(18);
+        showStep(16);
       }
     });
   }

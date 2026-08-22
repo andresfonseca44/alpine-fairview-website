@@ -78,14 +78,14 @@
         </a>
 
         <!-- Get a Quote Option (Triggers Quote Process) -->
-        <button class="contact-opt-card check-price-btn" id="contact-get-quote-btn">
+        <a href="quote.html" class="contact-opt-card check-price-btn" id="contact-get-quote-btn">
           <div class="contact-opt-icon">⚡</div>
           <div class="contact-opt-text text-left">
             <span class="contact-opt-title">Get a Quote</span>
             <span class="contact-opt-desc">Calculate instant rates & start your application</span>
           </div>
           <span class="contact-opt-arrow">→</span>
-        </button>
+        </a>
 
       </div>
     </div>
@@ -122,9 +122,9 @@
 
           <!-- Primary CTA Button -->
           <div class="hero-cta-wrapper">
-            <button class="btn btn-mint check-price-btn" id="start-quiz-btn">
+            <a href="quote.html" class="btn btn-mint check-price-btn" id="start-quiz-btn">
               Check my price
-            </button>
+            </a>
           </div>
 
           <!-- Trust Badges -->
@@ -212,9 +212,9 @@
           </div>
 
           <div class="props-cta-row">
-            <button class="btn btn-mint check-price-btn">
+            <a href="quote.html" class="btn btn-mint check-price-btn">
               Check my price
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -407,9 +407,9 @@
             </div>
 
             <div class="showcase-cta">
-              <button class="btn btn-mint check-price-btn">
+              <a href="quote.html" class="btn btn-mint check-price-btn">
                 Check my price
-              </button>
+              </a>
             </div>
           </div>
 
@@ -466,9 +466,9 @@
           </div>
 
           <div class="table-cta-row">
-            <button class="btn btn-mint check-price-btn">
+            <a href="quote.html" class="btn btn-mint check-price-btn">
               Check my price
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -638,9 +638,9 @@
             <p class="lock-price-subtext">
               The cost of life insurance can go up 8-10% every year. With Alpine Fairview, getting covered only takes 10 minutes.
             </p>
-            <button class="btn btn-mint check-price-btn">
+            <a href="quote.html" class="btn btn-mint check-price-btn">
               Check my price
-            </button>
+            </a>
           </div>
 
           <div class="lock-price-right">
@@ -697,535 +697,6 @@
 
     </section>
 
-    <!-- MULTI-STEP LEAD QUIZ VIEW -->
-    <section class="quiz-view hidden" id="quiz-view">
-      
-      <!-- Quiz Progress Header (Matching User Screenshot Layout) -->
-      <div class="quiz-header-bar">
-        <div class="container quiz-nav-container">
-          <div class="quiz-nav-top-row">
-            <div class="quiz-top-left">
-              <button class="back-btn" id="quiz-back-btn" aria-label="Back">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-              </button>
-              <a href="index.html" class="quiz-brand-logo">
-                <span class="brand-text-logo">ALPINE FAIRVIEW</span>
-              </a>
-            </div>
-            <div class="quiz-help-info">
-              <span class="help-label">NEED HELP?</span>
-              <a href="tel:7738000116" class="help-phone">(773) 800-0116</a>
-            </div>
-          </div>
-          <div class="progress-bar-track">
-            <div class="progress-bar-fill" id="progress-fill" style="width: 5.5%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quiz-content-wrapper">
-        <div class="quiz-container">
-          
-          <!-- STEP 1: GOALS -->
-          <div class="quiz-step-panel" id="step-1">
-            <h2 class="quiz-heading">Let’s get started! What are your goals for life insurance?</h2>
-            <p class="quiz-subheading">Select all that apply.</p>
-
-            <div class="card-option-grid">
-              
-              <div class="option-card" data-group="goals" data-value="Protect my loved ones">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">Protect my loved ones</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-              <div class="option-card" data-group="goals" data-value="Leave an inheritance">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-                      <circle cx="12" cy="12" r="3"></circle>
-                      <path d="M6 12h.01M18 12h.01"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">Leave an inheritance</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-              <div class="option-card" data-group="goals" data-value="Cover my funeral expenses">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                      <path d="M12 8v8M8 12h8"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">Cover my funeral expenses</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-              <div class="option-card" data-group="goals" data-value="I’m not sure">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">I’m not sure</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-gray btn-block quiz-next-btn" id="next-step-1" disabled>
-                Next
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 2: DEPENDENTS (Screenshot 3) -->
-          <div class="quiz-step-panel hidden" id="step-2">
-            <h2 class="quiz-heading">Who depends on you financially?</h2>
-            <p class="quiz-subheading">This helps us customize your plan. Select all that apply.</p>
-
-            <div class="card-option-grid">
-              
-              <div class="option-card" data-group="dependents" data-value="Spouse or partner">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <path d="M20 8v6M17 11h6"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">Spouse or partner</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-              <div class="option-card" data-group="dependents" data-value="Children">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="3"></circle>
-                    </svg>
-                  </div>
-                  <span class="card-label">Children</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-              <div class="option-card" data-group="dependents" data-value="Parent">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <circle cx="12" cy="7" r="4"></circle>
-                      <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">Parent</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-              <div class="option-card" data-group="dependents" data-value="Other">
-                <div class="option-card-left">
-                  <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                  </div>
-                  <span class="card-label">Other</span>
-                </div>
-                <div class="card-check-circle"></div>
-              </div>
-
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-gray btn-block quiz-next-btn" id="next-step-2" disabled>
-                Next
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 3: CHILDREN COUNT -->
-          <div class="quiz-step-panel hidden" id="step-3">
-            <h2 class="quiz-heading">How many children do you have under 18?</h2>
-
-            <div class="list-option-stack">
-              <div class="list-option-item" data-group="children-count" data-value="None">None</div>
-              <div class="list-option-item" data-group="children-count" data-value="1">1</div>
-              <div class="list-option-item" data-group="children-count" data-value="2">2</div>
-              <div class="list-option-item" data-group="children-count" data-value="3">3</div>
-              <div class="list-option-item" data-group="children-count" data-value="4+">4+</div>
-            </div>
-          </div>
-
-          <!-- STEP 4: TRIGGERS (Updated Exact Choices) -->
-          <div class="quiz-step-panel hidden" id="step-4">
-            <h2 class="quiz-heading">What prompted you to start looking for life insurance?</h2>
-
-            <div class="list-option-stack">
-              <div class="list-option-item" data-group="trigger" data-value="Protecting my family from funeral & burial costs">Protecting my family from funeral & burial costs</div>
-              <div class="list-option-item" data-group="trigger" data-value="Leaving a financial legacy for my children/grandchildren">Leaving a financial legacy for my children/grandchildren</div>
-              <div class="list-option-item" data-group="trigger" data-value="Planning for retirement">Planning for retirement</div>
-              <div class="list-option-item" data-group="trigger" data-value="Just being proactive">Just being proactive</div>
-            </div>
-          </div>
-
-          <!-- STEP 5: DECISION FACTORS (Screenshot 5) -->
-          <div class="quiz-step-panel hidden" id="step-5">
-            <h2 class="quiz-heading">Are there any other factors influencing your decision?</h2>
-
-            <div class="list-option-stack">
-              <div class="list-option-item" data-group="factor" data-value="Losing employer coverage">Losing employer coverage</div>
-              <div class="list-option-item" data-group="factor" data-value="Current policy is ending">Current policy is ending</div>
-              <div class="list-option-item" data-group="factor" data-value="Health scare">Health scare</div>
-              <div class="list-option-item" data-group="factor" data-value="Death of a loved one">Death of a loved one</div>
-              <div class="list-option-item" data-group="factor" data-value="None of the above">None of the above</div>
-            </div>
-          </div>
-
-          <!-- STEP 6: TRANSITION INTERSTITIAL -->
-          <div class="quiz-step-panel hidden text-center" id="step-6">
-            <div class="interstitial-badge">✓ Needs Analysis Complete</div>
-            <h2 class="quiz-heading font-serif">Thanks! We’ll get you your final rate in minutes.</h2>
-            
-            <div class="how-it-works-box">
-              <h3 class="hiw-title">How it works</h3>
-              <div class="hiw-timeline">
-                
-                <div class="hiw-step active-done">
-                  <div class="hiw-num">✓</div>
-                  <div class="hiw-text">
-                    <strong>1. Tell us about your needs</strong>
-                  </div>
-                </div>
-
-                <div class="hiw-step current">
-                  <div class="hiw-num">2</div>
-                  <div class="hiw-text">
-                    <strong>2. Add your basic details</strong>
-                  </div>
-                </div>
-
-                <div class="hiw-step">
-                  <div class="hiw-num">3</div>
-                  <div class="hiw-text">
-                    <strong>3. Provide health info and get your final rate</strong>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-6">
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 7: COVERAGE TIMING -->
-          <div class="quiz-step-panel hidden" id="step-7">
-            <h2 class="quiz-heading">When would you like to be covered by life insurance?</h2>
-
-            <div class="list-option-stack">
-              <div class="list-option-item" data-group="timing" data-value="As soon as possible">As soon as possible</div>
-              <div class="list-option-item" data-group="timing" data-value="Within the next month">Within the next month</div>
-              <div class="list-option-item" data-group="timing" data-value="Within 1-3 months">Within 1-3 months</div>
-              <div class="list-option-item" data-group="timing" data-value="Just exploring options">Just exploring options</div>
-            </div>
-          </div>
-
-          <!-- STEP 8: SEX AT BIRTH -->
-          <div class="quiz-step-panel hidden" id="step-8">
-            <h2 class="quiz-heading">Provide your sex at birth</h2>
-            <p class="quiz-subheading">Life insurance rates are based on biological sex at birth.</p>
-
-            <div class="gender-cards-grid">
-              <div class="gender-card" data-group="gender" data-value="Female">
-                <div class="gender-icon">👩</div>
-                <span class="gender-label">Female</span>
-              </div>
-              <div class="gender-card" data-group="gender" data-value="Male">
-                <div class="gender-icon">👨</div>
-                <span class="gender-label">Male</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 9: BIRTHDATE -->
-          <div class="quiz-step-panel hidden" id="step-9">
-            <h2 class="quiz-heading">What’s your birthdate?</h2>
-            <p class="quiz-subheading">Your age helps us determine your baseline rate tier.</p>
-
-            <div class="birthdate-inputs">
-              <div class="field-group">
-                <label for="dob-month">Month</label>
-                <input type="number" id="dob-month" placeholder="MM" min="1" max="12" class="ethos-input" />
-              </div>
-              <div class="field-group">
-                <label for="dob-day">Day</label>
-                <input type="number" id="dob-day" placeholder="DD" min="1" max="31" class="ethos-input" />
-              </div>
-              <div class="field-group flex-2">
-                <label for="dob-year">Year</label>
-                <input type="number" id="dob-year" placeholder="YYYY" min="1930" max="2008" class="ethos-input" />
-              </div>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-9" disabled>
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 10: COUNTRY OF BIRTH -->
-          <div class="quiz-step-panel hidden" id="step-10">
-            <h2 class="quiz-heading">What country were you born in?</h2>
-
-            <div class="form-select-wrapper">
-              <select id="country-of-birth" class="ethos-select">
-                <option value="United States" selected>United States</option>
-                <option value="Canada">Canada</option>
-                <option value="Mexico">Mexico</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Other">Other Country</option>
-              </select>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-10">
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 11: STATE OF BIRTH -->
-          <div class="quiz-step-panel hidden" id="step-11">
-            <h2 class="quiz-heading">What state were you born in?</h2>
-
-            <div class="form-select-wrapper">
-              <select id="state-of-birth" class="ethos-select">
-                <option value="" disabled selected>Select a state...</option>
-                <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="MI">Michigan</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="OH">Ohio</option><option value="PA">Pennsylvania</option><option value="TX">Texas</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="OTHER">Outside US / Other</option>
-              </select>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-11" disabled>
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 12: CITIZENSHIP -->
-          <div class="quiz-step-panel hidden" id="step-12">
-            <h2 class="quiz-heading">Are you a citizen or permanent resident of the USA?</h2>
-
-            <div class="list-option-stack">
-              <div class="list-option-item" data-group="citizenship" data-value="Yes">Yes, I am a US citizen or Green Card holder</div>
-              <div class="list-option-item" data-group="citizenship" data-value="No">No</div>
-            </div>
-          </div>
-
-          <!-- STEP 13: DESIRED COVERAGE AMOUNT SLIDER ($5k - $50k) -->
-          <div class="quiz-step-panel hidden" id="step-13">
-            <h2 class="quiz-heading">Select your desired coverage amount</h2>
-            <p class="quiz-subheading">Choose how much whole life benefit you would like for your family.</p>
-
-            <div class="coverage-slider-box">
-              <div class="slider-display-row">
-                <span class="slider-display-label">Desired Coverage:</span>
-                <span class="slider-display-val" id="quiz-coverage-val">$25,000</span>
-              </div>
-              <input type="range" id="quiz-coverage-slider" min="5000" max="50000" step="1000" value="25000" class="ethos-range-slider" />
-              <div class="slider-ticks-row">
-                <span>$5,000</span>
-                <span>$25,000</span>
-                <span>$50,000</span>
-              </div>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-13">
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 14: PERSONALIZED COVERAGE NEEDS SUMMARY -->
-          <div class="quiz-step-panel hidden" id="step-14">
-            <h2 class="quiz-heading font-serif">Your personalized coverage needs</h2>
-            <p class="quiz-subheading text-left">
-              Your Alpine Fairview whole life insurance policy will help cover your financial obligations and give you peace of mind.
-            </p>
-
-            <div class="coverage-breakdown-card">
-              
-              <div class="breakdown-section">
-                <span class="breakdown-tag">PROTECTION FOR</span>
-                <h3 class="breakdown-title" id="protection-target-label">Spouse or partner & Family</h3>
-                <p class="breakdown-desc">
-                  If you were to pass away, your beneficiaries will receive a guaranteed cash benefit that can help cover the following things:
-                </p>
-              </div>
-
-              <div class="breakdown-feature-list">
-                
-                <div class="feature-item">
-                  <div class="feature-icon-box">🏠</div>
-                  <div class="feature-content">
-                    <h4 class="feature-title">Living expenses</h4>
-                    <p class="feature-text">
-                      Covering everyday costs like groceries and bills helps ensure your family’s daily needs are met.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon-box">🔒</div>
-                  <div class="feature-content">
-                    <h4 class="feature-title">Locked-in rate protection</h4>
-                    <p class="feature-text">
-                      Your monthly premium is locked in for life and guaranteed to never increase as you age.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon-box">🕊️</div>
-                  <div class="feature-content">
-                    <h4 class="feature-title">Burial costs</h4>
-                    <p class="feature-text">
-                      Funeral costs in the U.S. range from $7,000 to $12,000+.
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-14">
-                See final rate
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 15: NAME -->
-          <div class="quiz-step-panel hidden" id="step-15">
-            <h2 class="quiz-heading">What's your name?</h2>
-
-            <div class="name-inputs-row">
-              <div class="field-group">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" placeholder="First Name" class="ethos-input" />
-              </div>
-              <div class="field-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" placeholder="Last Name" class="ethos-input" />
-              </div>
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-15" disabled>
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 16: EMAIL -->
-          <div class="quiz-step-panel hidden" id="step-16">
-            <h2 class="quiz-heading">What's your email?</h2>
-            <p class="quiz-subheading">We’ll send a secure copy of your custom rate summary here.</p>
-
-            <div class="email-input-group">
-              <input type="email" id="email-input" placeholder="name@example.com" class="ethos-input input-lg" />
-            </div>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-16" disabled>
-                Continue
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 17: MOBILE PHONE -->
-          <div class="quiz-step-panel hidden" id="step-17">
-            <h2 class="quiz-heading">What's your mobile phone number?</h2>
-            <p class="quiz-subheading">Needed for instant SMS rate verification and policy confirmation.</p>
-
-            <div class="phone-input-group">
-              <input type="tel" id="phone-input" placeholder="(555) 000-0000" class="ethos-input input-lg" />
-            </div>
-
-            <p class="disclaimer-text">
-              By clicking "Get My Final Rate", you consent to receive automated security codes and quote updates from Alpine Fairview Insurance.
-            </p>
-
-            <div class="quiz-footer-actions">
-              <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-17" disabled>
-                Get My Final Rate
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 18: INSTANT CUSTOM RATE RESULT CARD WITH INTERACTIVE SLIDER -->
-          <div class="quiz-step-panel hidden text-center" id="step-18">
-            <div class="success-badge-circle">✓</div>
-            <h2 class="quiz-heading font-serif">Your Whole Life Rate Quote is Ready!</h2>
-            <p class="quiz-subheading">Adjust the coverage scale below to see instant estimated rates for your age:</p>
-
-            <div class="final-quote-card">
-              
-              <!-- Interactive Scale Slider on Quote Card -->
-              <div class="final-card-slider-box">
-                <div class="slider-display-row">
-                  <span class="slider-display-label">Coverage Amount:</span>
-                  <span class="slider-display-val" id="final-coverage-val">$25,000</span>
-                </div>
-                <input type="range" id="final-coverage-slider" min="5000" max="50000" step="1000" value="25000" class="ethos-range-slider" />
-                <div class="slider-ticks-row">
-                  <span>$5,000</span>
-                  <span>$25,000</span>
-                  <span>$50,000</span>
-                </div>
-              </div>
-
-              <div class="quote-header">
-                <span class="plan-type">A+ RATED GUARANTEED WHOLE LIFE COVERAGE</span>
-                <span class="coverage-amt" id="final-coverage-amt">$25,000 Final Benefit</span>
-              </div>
-              <div class="quote-price-body">
-                <span class="price-val" id="final-price-val">$24.50</span>
-                <span class="price-period">/ month</span>
-              </div>
-              <p class="rate-benchmark-note" id="final-rate-benchmark-note">
-                Estimated rate based on your age and details.
-              </p>
-
-              <ul class="quote-bullets">
-                <li><span class="check">✓</span> Locked-in Rate That Never Increases with Age</li>
                 <li><span class="check">✓</span> 100% Online Instant Approval — No Medical Exam required</li>
                 <li><span class="check">✓</span> Guaranteed rate & benefits that never decrease</li>
               </ul>
