@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Application Submitted | Alpine Fairview</title>
+  
+  <meta name="description" content="Thank you for submitting your whole life insurance application with Alpine Fairview. Your assigned specialist Andres Fonseca will reach out shortly." />
+
+  <!-- Google Fonts: Alice (Serif logo), Instrument Serif (Headlines), Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/style.css" />
+
+  <style>
+    /* THANK YOU PAGE SPECIFIC STYLES */
+    .thank-you-page {
+      background-color: #F8FAF9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .thank-you-header {
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-icy-blue);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .thank-you-header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .thank-you-main {
+      flex: 1;
+      padding: 40px 16px 60px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thank-you-card-wrapper {
+      max-width: 620px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .success-icon-badge {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #E8FAED;
+      border: 3px solid var(--color-mint-green);
+      color: #0B3C2A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 8px 24px rgba(46, 229, 157, 0.25);
+      animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .success-icon-badge svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .thank-you-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--color-near-black);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .thank-you-subtitle {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      margin-bottom: 32px;
+      line-height: 1.45;
+    }
+
+    /* CONFIRMED COVERAGE BOX */
+    .confirmed-coverage-box {
+      background-color: var(--color-white);
+      border: 2px solid var(--color-slate-teal);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+    }
+
+    .coverage-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--color-icy-blue);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .coverage-box-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-slate-teal);
+    }
+
+    .status-pill {
+      background-color: #E8FAED;
+      color: #0B3C2A;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 50px;
+      border: 1px solid #A8F0C6;
+    }
+
+    .confirmed-amount-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .confirmed-amount-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-near-black);
+    }
+
+    .confirmed-amount-val {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--color-slate-teal);
+    }
+
+    .coverage-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background-color: #F4F7F8;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .detail-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+    }
+
+    .detail-val {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--color-near-black);
+    }
+
+    /* SPECIALIST PROFILE CARD */
+    .specialist-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-card-border);
+      border-radius: 20px;
+      padding: 30px 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .profile-img-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--color-mint-green);
+      box-shadow: 0 8px 24px rgba(95, 123, 130, 0.25);
+      margin: 0 auto 16px auto;
+      display: block;
+    }
+
+    .specialist-name {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--color-near-black);
+      margin-bottom: 4px;
+    }
+
+    .specialist-role {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-slate-teal);
+      margin-bottom: 16px;
+    }
+
+    .specialist-message-quote {
+      background-color: #F4F7F8;
+      border-left: 4px solid var(--color-slate-teal);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 0.98rem;
+      color: var(--color-near-black);
+      line-height: 1.5;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    /* DIRECT CONTACT BUTTONS */
+    .contact-cta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-call-direct {
+      background-color: var(--color-mint-green);
+      color: var(--color-mint-text);
+      font-size: 1.08rem;
+      font-weight: 800;
+      padding: 18px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(46, 229, 157, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-call-direct:hover {
+      background-color: var(--color-mint-green-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-email-direct {
+      background-color: #F4F7F8;
+      color: var(--color-near-black);
+      border: 1.5px solid var(--color-card-border);
+      font-size: 0.98rem;
+      font-weight: 700;
+      padding: 14px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-email-direct:hover {
+      background-color: var(--color-icy-blue);
+      border-color: var(--color-slate-teal);
+    }
+
+    .home-link-row {
+      margin-top: 24px;
+    }
+
+    .back-home-link {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-slate-teal);
+      text-decoration: none;
+    }
+
+    .back-home-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .thank-you-title {
+        font-size: 2rem;
+      }
+
+      .confirmed-amount-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .coverage-details-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .specialist-card {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body class="thank-you-page">
+
+  <!-- HEADER -->
+  <header class="thank-you-header">
+    <div class="container thank-you-header-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+      <a href="tel:7738000116" class="nav-contact-btn">
+        📞 (773) 800-0116
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="thank-you-main">
+    <div class="thank-you-card-wrapper">
+      
+      <!-- SUCCESS BADGE -->
+      <div class="success-icon-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h1 class="thank-you-title">Application Submitted!</h1>
+      <p class="thank-you-subtitle" id="client-sub-greeting">
+        Thank you! Your whole life insurance application has been received and confirmed.
+      </p>
+
+      <!-- CONFIRMED COVERAGE BOX -->
+      <div class="confirmed-coverage-box">
+        <div class="coverage-box-header">
+          <span class="coverage-box-tag">Approved Coverage Request</span>
+          <span class="status-pill">✓ Pre-Approved</span>
+        </div>
+
+        <div class="confirmed-amount-row">
+          <span class="confirmed-amount-label">Guaranteed Whole Life Benefit</span>
+          <span class="confirmed-amount-val" id="confirmed-coverage-display">$25,000</span>
+        </div>
+
+        <div class="coverage-details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Policy Type</span>
+            <span class="detail-val">Guaranteed Whole Life</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Estimated Monthly Rate</span>
+            <span class="detail-val" id="confirmed-rate-display">$44.00 / mo</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Medical Exam</span>
+            <span class="detail-val">Zero Required</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Rate Guarantee</span>
+            <span class="detail-val">Locked For Life</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASSIGNED SPECIALIST PROFILE CARD -->
+      <div class="specialist-card">
+        <!-- CIRCULAR PICTURE OF ANDRES FONSECA -->
+        <img src="andres-fonseca.jpg" alt="Andres Fonseca - Life Insurance Specialist" class="profile-img-circle" />
+
+        <h2 class="specialist-name">Andres Fonseca</h2>
+        <p class="specialist-role">Licensed Life Insurance Specialist • Alpine Fairview</p>
+
+        <div class="specialist-message-quote">
+          <p id="specialist-quote-text">
+            "Hello! Your application for <strong>$25,000</strong> in Whole Life protection has been successfully received. As your assigned life insurance specialist, I will reach out to you shortly to finalize your approved coverage and answer any questions."
+          </p>
+        </div>
+
+        <!-- DIRECT CONTACT BUTTONS -->
+        <div class="contact-cta-stack">
+          <a href="tel:7738000116" class="btn-call-direct">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Andres Directly: (773) 800-0116
+          </a>
+          <a href="mailto:andres@alpinefairview.com" class="btn-email-direct">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Andres Fonseca
+          </a>
+        </div>
+
+      </div>
+
+      <div class="home-link-row">
+        <a href="index.html" class="back-home-link">← Return to Alpine Fairview Homepage</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // DYNAMIC URL PARAMETER POPULATION
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const coverage = params.get('coverage') || '25000';
+      const name = params.get('name') || '';
+      const rate = params.get('rate') || '$44.00 / mo';
+
+      const formattedCoverage = '$' + parseInt(coverage, 10).toLocaleString();
+
+      const covDisplay = document.getElementById('confirmed-coverage-display');
+      const rateDisplay = document.getElementById('confirmed-rate-display');
+      const quoteText = document.getElementById('specialist-quote-text');
+      const greeting = document.getElementById('client-sub-greeting');
+
+      if (covDisplay) covDisplay.textContent = formattedCoverage;
+      if (rateDisplay) rateDisplay.textContent = rate;
+
+      if (name && greeting) {
+        greeting.textContent = `Thank you, ${name}! Your whole life insurance application has been received and confirmed.`;
+      }
+
+      if (quoteText) {
+        quoteText.innerHTML = `"Hello${name ? ' ' + name : ''}! Your application for <strong>${formattedCoverage}</strong> in Whole Life protection has been successfully received. As your assigned life insurance specialist, I will reach out to you shortly to finalize your approved coverage and answer any questions."`;
+      }
+    });
+  </script>
+</body>
+</html>

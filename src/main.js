@@ -706,7 +706,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const finishLeadBtn = document.getElementById('finish-lead-btn');
   if (finishLeadBtn) {
     finishLeadBtn.addEventListener('click', () => {
-      alert(`Thank you, ${leadData.firstName || 'Valued Client'}! Your application for ${formatCurrency(leadData.coverageAmount)} Alpine Fairview Whole Life coverage has been submitted successfully.`);
+      const coverage = leadData.coverageAmount || 25000;
+      const firstName = leadData.firstName || '';
+      const finalPrice = document.getElementById('final-price-val') ? document.getElementById('final-price-val').textContent : '$44.00 / mo';
+      
+      const queryParams = new URLSearchParams({
+        coverage: coverage,
+        name: firstName,
+        rate: finalPrice
+      }).toString();
+
+      window.location.href = `thank-you.html?${queryParams}`;
     });
   }
 
