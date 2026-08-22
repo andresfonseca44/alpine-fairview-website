@@ -1366,10 +1366,16 @@ body {
   flex-direction: column;
 }
 
-.quiz-header-bar {
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-icy-blue);
+/* DARK SLATE QUIZ & THANK YOU HEADER BAR */
+.quiz-header-bar,
+.thank-you-header {
+  background-color: var(--color-slate-teal);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 12px 0 8px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 .quiz-nav-container {
@@ -1390,6 +1396,19 @@ body {
   gap: 12px;
 }
 
+.quiz-brand-logo,
+.thank-you-header .brand-logo {
+  text-decoration: none;
+}
+
+.quiz-brand-logo .brand-text-logo,
+.thank-you-header .brand-text-logo {
+  color: #FFFFFF !important;
+  font-family: var(--font-logo);
+  font-size: 1.22rem;
+  letter-spacing: 0.14em;
+}
+
 .quiz-help-info {
   display: flex;
   flex-direction: column;
@@ -1400,32 +1419,33 @@ body {
 .help-label {
   font-size: 0.68rem;
   font-weight: 800;
-  color: var(--color-text-muted);
+  color: var(--color-mint-green) !important;
   letter-spacing: 0.08em;
 }
 
 .help-phone {
   font-size: 0.88rem;
   font-weight: 800;
-  color: var(--color-slate-teal);
+  color: #FFFFFF !important;
   text-decoration: none;
 }
 
 .help-phone:hover {
   text-decoration: underline;
+  color: var(--color-mint-green) !important;
 }
 
 .progress-bar-track {
   width: 100%;
   height: 6px;
-  background-color: var(--color-icy-blue);
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background-color: var(--color-slate-teal);
+  background-color: var(--color-mint-green) !important;
   transition: width 0.3s ease;
   border-radius: 10px;
 }
@@ -1437,7 +1457,7 @@ body {
   background: transparent;
   border: none;
   font-family: var(--font-sans);
-  color: var(--color-near-black);
+  color: #FFFFFF !important;
   cursor: pointer;
   padding: 4px;
 }
@@ -1445,6 +1465,7 @@ body {
 .back-btn svg {
   width: 20px;
   height: 20px;
+  stroke: #FFFFFF !important;
 }
 
 .quiz-content-wrapper {

@@ -233,10 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  const siteHeader = document.querySelector('.ethos-header');
+
   function startQuiz() {
     if (landingView && quizView) {
       landingView.classList.add('hidden');
       quizView.classList.remove('hidden');
+      if (siteHeader) siteHeader.style.display = 'none';
       showStep(1);
     }
   }
@@ -249,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (quizView && landingView) {
         quizView.classList.add('hidden');
         landingView.classList.remove('hidden');
+        if (siteHeader) siteHeader.style.display = 'flex';
       }
     }
   }
@@ -263,6 +267,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (quizBackBtn) quizBackBtn.addEventListener('click', goBack);
+  
+  const quizBrandLogo = document.querySelector('.quiz-brand-logo');
+  if (quizBrandLogo) {
+    quizBrandLogo.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (quizView && landingView) {
+        quizView.classList.add('hidden');
+        landingView.classList.remove('hidden');
+        if (siteHeader) siteHeader.style.display = 'flex';
+      }
+    });
+  }
+
   if (headerBrandLogo) {
     headerBrandLogo.addEventListener('click', (e) => {
       e.preventDefault();
