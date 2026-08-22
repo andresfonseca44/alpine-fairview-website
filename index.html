@@ -699,16 +699,26 @@
     <!-- MULTI-STEP LEAD QUIZ VIEW -->
     <section class="quiz-view hidden" id="quiz-view">
       
-      <!-- Quiz Progress Header -->
+      <!-- Quiz Progress Header (Matching User Screenshot Layout) -->
       <div class="quiz-header-bar">
         <div class="container quiz-nav-container">
+          <div class="quiz-nav-top-row">
+            <div class="quiz-top-left">
+              <button class="back-btn" id="quiz-back-btn" aria-label="Back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <a href="index.html" class="quiz-brand-logo">
+                <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+              </a>
+            </div>
+            <div class="quiz-help-info">
+              <span class="help-label">NEED HELP?</span>
+              <a href="tel:7738000116" class="help-phone">(773) 800-0116</a>
+            </div>
+          </div>
           <div class="progress-bar-track">
             <div class="progress-bar-fill" id="progress-fill" style="width: 5.5%;"></div>
           </div>
-          <button class="back-btn" id="quiz-back-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Back
-          </button>
         </div>
       </div>
 
@@ -723,50 +733,58 @@
             <div class="card-option-grid">
               
               <div class="option-card" data-group="goals" data-value="Protect my loved ones">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">Protect my loved ones</span>
                 </div>
-                <span class="card-label">Protect my loved ones</span>
+                <div class="card-check-circle"></div>
               </div>
 
               <div class="option-card" data-group="goals" data-value="Leave an inheritance">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M6 12h.01M18 12h.01"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M6 12h.01M18 12h.01"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">Leave an inheritance</span>
                 </div>
-                <span class="card-label">Leave an inheritance</span>
+                <div class="card-check-circle"></div>
               </div>
 
               <div class="option-card" data-group="goals" data-value="Cover my funeral expenses">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    <path d="M12 8v8M8 12h8"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      <path d="M12 8v8M8 12h8"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">Cover my funeral expenses</span>
                 </div>
-                <span class="card-label">Cover my funeral expenses</span>
+                <div class="card-check-circle"></div>
               </div>
 
               <div class="option-card" data-group="goals" data-value="I’m not sure">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">I’m not sure</span>
                 </div>
-                <span class="card-label">I’m not sure</span>
+                <div class="card-check-circle"></div>
               </div>
 
             </div>
@@ -786,47 +804,55 @@
             <div class="card-option-grid">
               
               <div class="option-card" data-group="dependents" data-value="Spouse or partner">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="8.5" cy="7" r="4"></circle>
-                    <path d="M20 8v6M17 11h6"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="8.5" cy="7" r="4"></circle>
+                      <path d="M20 8v6M17 11h6"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">Spouse or partner</span>
                 </div>
-                <span class="card-label">Spouse or partner</span>
+                <div class="card-check-circle"></div>
               </div>
 
               <div class="option-card" data-group="dependents" data-value="Children">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="3"></circle>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="3"></circle>
+                    </svg>
+                  </div>
+                  <span class="card-label">Children</span>
                 </div>
-                <span class="card-label">Children</span>
+                <div class="card-check-circle"></div>
               </div>
 
               <div class="option-card" data-group="dependents" data-value="Parent">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <circle cx="12" cy="7" r="4"></circle>
-                    <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <circle cx="12" cy="7" r="4"></circle>
+                      <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">Parent</span>
                 </div>
-                <span class="card-label">Parent</span>
+                <div class="card-check-circle"></div>
               </div>
 
               <div class="option-card" data-group="dependents" data-value="Other">
-                <div class="card-check-circle"></div>
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.7">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
+                <div class="option-card-left">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5F7B82" stroke-width="1.8">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </div>
+                  <span class="card-label">Other</span>
                 </div>
-                <span class="card-label">Other</span>
+                <div class="card-check-circle"></div>
               </div>
 
             </div>
