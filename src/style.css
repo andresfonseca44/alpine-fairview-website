@@ -383,22 +383,31 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(8px);
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 0.85rem;
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.95rem;
   color: var(--color-white);
   margin-bottom: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  max-width: 95%;
-  flex-wrap: wrap;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 100%;
   justify-content: center;
+}
+
+.desktop-stats-text {
+  display: inline-block;
+}
+
+.mobile-stats-text {
+  display: none;
 }
 
 .score-badge {
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .policy-stats-banner .stars {
@@ -2129,9 +2138,24 @@ body {
   }
 
   .policy-stats-banner {
-    flex-direction: column;
-    gap: 6px;
-    padding: 8px 16px;
+    flex-direction: row !important;
+    gap: 6px !important;
+    padding: 0 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .policy-stats-banner .desktop-stats-text,
+  .policy-stats-banner .score-badge,
+  .policy-stats-banner .stars {
+    display: none !important;
+  }
+
+  .policy-stats-banner .mobile-stats-text {
+    display: inline-block !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: var(--color-white) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
   }
 
   .trust-badges {
