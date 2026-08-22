@@ -292,24 +292,113 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+      .thank-you-header {
+        padding: 10px 0;
+      }
+      
+      .thank-you-main {
+        padding: 16px 12px 32px 12px;
+      }
+
+      .success-icon-badge {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 8px;
+      }
+
+      .success-icon-badge svg {
+        width: 24px;
+        height: 24px;
+      }
+
       .thank-you-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+      }
+
+      .thank-you-subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 14px;
+      }
+
+      .confirmed-coverage-box {
+        padding: 14px 14px;
+        margin-bottom: 14px;
+        border-radius: 14px;
+      }
+
+      .coverage-box-header {
+        padding-bottom: 8px;
+        margin-bottom: 10px;
       }
 
       .confirmed-amount-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      .confirmed-amount-label {
+        font-size: 0.85rem;
+      }
+
+      .confirmed-amount-val {
+        font-size: 1.5rem;
       }
 
       .coverage-details-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        padding: 10px 12px;
+      }
+
+      .detail-label {
+        font-size: 0.68rem;
+      }
+
+      .detail-val {
+        font-size: 0.82rem;
       }
 
       .specialist-card {
-        padding: 24px 16px;
+        padding: 18px 14px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+      }
+
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-width: 3px;
+        margin-bottom: 8px;
+      }
+
+      .specialist-name {
+        font-size: 1.35rem;
+        margin-bottom: 2px;
+      }
+
+      .specialist-role {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+      }
+
+      .specialist-message-quote {
+        padding: 12px 14px;
+        font-size: 0.88rem;
+        margin-bottom: 16px;
+      }
+
+      .btn-call-direct {
+        padding: 14px 18px;
+        font-size: 0.95rem;
+      }
+
+      .btn-email-direct {
+        padding: 12px 18px;
+        font-size: 0.88rem;
       }
     }
   </style>
@@ -352,14 +441,14 @@
         </div>
 
         <div class="confirmed-amount-row">
-          <span class="confirmed-amount-label">Guaranteed Whole Life Benefit</span>
+          <span class="confirmed-amount-label">Whole Life Benefit</span>
           <span class="confirmed-amount-val" id="confirmed-coverage-display">$25,000</span>
         </div>
 
         <div class="coverage-details-grid">
           <div class="detail-item">
             <span class="detail-label">Policy Type</span>
-            <span class="detail-val">Guaranteed Whole Life</span>
+            <span class="detail-val">Whole Life</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Estimated Monthly Rate</span>
@@ -367,7 +456,7 @@
           </div>
           <div class="detail-item">
             <span class="detail-label">Medical Exam</span>
-            <span class="detail-val">Zero Required</span>
+            <span class="detail-val">Not Required</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Rate Guarantee</span>

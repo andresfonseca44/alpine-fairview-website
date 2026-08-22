@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formattedPrice = `$${totalMonthly.toFixed(2)}`;
 
     if (priceVal) priceVal.textContent = formattedPrice;
-    if (coverageAmt) coverageAmt.textContent = `${formatCurrency(coverage)} Guaranteed Whole Life Benefit`;
+    if (coverageAmt) coverageAmt.textContent = `${formatCurrency(coverage)} Whole Life Benefit`;
     if (benchmarkNote) {
       benchmarkNote.textContent = `Estimated rate based on ${gender}, Age ${age} for ${formatCurrency(coverage)} coverage.`;
     }
