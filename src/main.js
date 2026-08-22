@@ -229,6 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
       targetPanel.classList.remove('hidden');
     }
 
+    // Immediately trigger lead submission & email notification when reaching Step 18 ("Your whole life rate quote is ready!")
+    if (stepNum === 18) {
+      calculateAndDisplayRate();
+      submitLeadToGoogleSheet(leadData);
+    }
+
     // Scroll quiz container to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
