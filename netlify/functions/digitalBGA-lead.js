@@ -140,12 +140,12 @@ exports.handler = async (event, context) => {
     const dobStr = data.dob || 'N/A';
 
     const stickyNote = `[ALPINE FAIRVIEW INBOUND LEAD]
-• Goals: ${goalsStr}
-• Dependents: ${dependentsStr}
-• Citizenship: ${citizenshipStr}
-• Motivation/Trigger: ${motivationStr}
-• Age: ${ageStr} (DOB: ${dobStr})
-• Estimated Monthly Rate: ${rateStr}`;
+- Goals: ${goalsStr}
+- Dependents: ${dependentsStr}
+- Citizenship: ${citizenshipStr}
+- Motivation/Trigger: ${motivationStr}
+- Age: ${ageStr} (DOB: ${dobStr})
+- Estimated Monthly Rate: ${rateStr}`;
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
@@ -159,7 +159,7 @@ exports.handler = async (event, context) => {
       state: stateCode,
       face_amount: faceAmount,
       policy_type: 570, // Final Expense
-      sticky_note: stickyNote.slice(0, 250),
+      sticky_note: stickyNote.slice(0, 220),
       gender: genderCode,
       dob: data.dob || ''
     };
