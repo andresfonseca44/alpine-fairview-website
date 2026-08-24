@@ -148,6 +148,7 @@ exports.handler = async (event, context) => {
 • Estimated Monthly Rate: ${rateStr}`;
 
     // Payload formatted for DigitalBGA CRM API
+    const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
     const digitalBgaPayload = {
       api_user: api_user,
       api_key: api_key,
@@ -158,8 +159,8 @@ exports.handler = async (event, context) => {
       state: stateCode,
       face_amount: faceAmount,
       policy_type: 570, // Final Expense
-      sticky_note: stickyNote,
-      gender: data.gender || 'Male',
+      sticky_note: stickyNote.slice(0, 250),
+      gender: genderCode,
       dob: data.dob || ''
     };
 
