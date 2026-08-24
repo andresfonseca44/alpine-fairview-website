@@ -29,9 +29,8 @@ const STATE_CODE_MAP = {
   "MASSACHUSETTS": 22, "MA": 22,
   "MICHIGAN": 23, "MI": 23,
   "MINNESOTA": 24, "MN": 24,
-  "MISSISSIPPI": 25, "MS": 25,
-  "MISSOURI": 26, "MO": 26,
-  "MONTANA": 27, "MT": 27,
+  "MISSISSIPPI": 26, "MS": 26,
+  "MISSOURI": 25, "MO": 25,  "MONTANA": 27, "MT": 27,
   "NEBRASKA": 28, "NE": 28,
   "NEVADA": 29, "NV": 29,
   "NEW HAMPSHIRE": 30, "NH": 30,
@@ -166,12 +165,19 @@ exports.handler = async (event, context) => {
 
     console.log('🚀 Posting lead to DigitalBGA CRM API:', digitalBgaPayload);
 
+    const formBody = new URLSearchParams();
+    Object.entries(digitalBgaPayload).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        formBody.append(key, value);
+      }
+    });
+
     const apiResponse = await fetch('https://api.crm.digitalseniorbenefits.com/inbound-lead/', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: JSON.stringify(digitalBgaPayload)
+      body: formBody.toString()
     });
 
     const responseText = await apiResponse.text();
