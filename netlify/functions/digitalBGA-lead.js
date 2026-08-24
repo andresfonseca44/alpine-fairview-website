@@ -182,6 +182,8 @@ exports.handler = async (event, context) => {
       responseData = { message: responseText };
     }
 
+    console.log(`📥 DigitalBGA CRM Response [${apiResponse.status}]:`, responseData);
+
     if (apiResponse.ok || responseText.includes('success')) {
       return {
         statusCode: 200,
