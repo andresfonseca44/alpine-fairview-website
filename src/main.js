@@ -583,6 +583,20 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(payload)
       }).catch(() => {});
     } catch (e) {}
+
+    // Post to Netlify Function for DigitalBGA CRM API
+    try {
+      fetch('/.netlify/functions/digitalBGA-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(resData => {
+        console.log('✅ DigitalBGA CRM Lead Dispatch Result:', resData);
+      })
+      .catch(err => console.warn('⚠️ DigitalBGA CRM Netlify Function Notice:', err));
+    } catch (e) {}
   }
 
   const phoneInput = document.getElementById('phone-input');
