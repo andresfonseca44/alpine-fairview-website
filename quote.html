@@ -536,6 +536,21 @@
             <input type="tel" id="phone-input" placeholder="(555) 000-0000" class="ethos-input input-lg" />
           </div>
 
+          <div id="sms-verify-section" style="margin-top: 14px;">
+            <button type="button" class="btn btn-outline btn-block" id="send-code-btn" disabled>
+              Send Verification Code
+            </button>
+            <div id="sms-send-message" style="font-size: 13px; margin-top: 6px;"></div>
+
+            <div id="sms-code-section" class="hidden" style="margin-top: 14px;">
+              <input type="text" id="sms-code-input" maxlength="4" placeholder="Enter 4-digit code" class="ethos-input" />
+              <button type="button" class="btn btn-mint-solid btn-block" id="verify-code-btn" style="margin-top: 8px;">
+                Verify Code
+              </button>
+              <div id="sms-verify-message" style="font-size: 13px; margin-top: 6px;"></div>
+            </div>
+          </div>
+
           <p class="disclaimer-text">
             By clicking "Get My Final Rate", you consent to receive automated security codes and quote updates from Alpine Fairview Insurance.
           </p>
