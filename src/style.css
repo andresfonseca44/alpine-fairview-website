@@ -1446,9 +1446,11 @@ body {
 }
 
 .progress-bar-track {
-  width: 100%;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.25);
+  width: 70%;
+  max-width: 400px;
+  margin: 0 auto 10px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -2416,6 +2418,11 @@ body {
 }
 
 @media (max-width: 480px) {
+  .progress-bar-track {
+    width: 85%;
+    max-width: none;
+  }
+
   .container {
     width: 92%;
     padding-left: 12px;
