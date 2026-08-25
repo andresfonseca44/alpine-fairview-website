@@ -138,8 +138,9 @@ exports.handler = async (event, context) => {
     const rateStr = data.estimatedMonthlyRate || data.rate || 'N/A';
     const ageStr = data.age || 'N/A';
     const dobStr = data.dob || 'N/A';
+    const smsVerified = data.smsVerified === true || data.smsVerified === 'true';
 
-    const stickyNote = `[AF LEAD] - Goal: ${goalsStr} - Dependents: ${dependentsStr} - Motivation: ${motivationStr} - Age: ${ageStr} (DOB: ${dobStr})`;
+    const stickyNote = `[AF LEAD] - Goal: ${goalsStr} - Dependents: ${dependentsStr} - Motivation: ${motivationStr} - Age: ${ageStr} (DOB: ${dobStr}) - SMS: ${smsVerified ? 'Verified' : 'Not Verified'}`;
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
