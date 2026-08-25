@@ -130,17 +130,14 @@ exports.handler = async (event, context) => {
     let faceAmount = parseInt(data.coverageAmount || data.coverage || data.face_amount || 25000, 10);
     if (isNaN(faceAmount)) faceAmount = 25000;
 
-    // Build sticky note combining goals, dependents, citizenship, and motivation
-    const goalsStr = Array.isArray(data.goals) ? data.goals.join(', ') : (data.goals || 'N/A');
-    const dependentsStr = Array.isArray(data.dependents) ? data.dependents.join(', ') : (data.dependents || 'N/A');
-    const citizenshipStr = data.citizenship || 'N/A';
-    const motivationStr = data.motivation || data.trigger || data.timing || 'N/A';
+    // Build sticky note with age, DOB, smoker status, coverage, and quoted premium
     const rateStr = data.estimatedMonthlyRate || data.rate || 'N/A';
     const ageStr = data.age || 'N/A';
     const dobStr = data.dob || 'N/A';
-    const smsVerified = data.smsVerified === true || data.smsVerified === 'true';
+    const smokerStr = data.nicotineUse || 'N/A';
+    const coverageStr = data.coverageAmount || ('$' + faceAmount.toLocaleString());
 
-    const stickyNote = `[AF LEAD] - Goal: ${goalsStr} - Dependents: ${dependentsStr} - Motivation: ${motivationStr} - Age: ${ageStr} (DOB: ${dobStr}) - SMS: ${smsVerified ? 'Verified' : 'Not Verified'}`;
+    const stickyNote = `[AF LEAD] - Age: ${ageStr} (DOB: ${dobStr}) Smoker: ${smokerStr} Coverage amount: ${coverageStr} Premium: ${rateStr}`;
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
