@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Our Top Life Insurance Carriers | Alpine Fairview</title>
+  <meta name="description" content="Alpine Fairview partners with America’s top A+ rated life insurance carriers—including Mutual of Omaha, Transamerica, AIG (Corebridge), Gerber Life, American-Amicable, Guarantee Trust Life, Royal Neighbors of America, Citizens Life, and Aflac." />
+  
+  <!-- Google Fonts: Alice, Instrument Serif & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="src/style.css" />
+  <style>
+    /* CARRIERS DEDICATED STYLING */
+    .carriers-hero {
+      position: relative;
+      background-color: var(--color-slate-teal);
+      color: var(--color-white);
+      padding: 90px 0 100px 0;
+      text-align: center;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carriers-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      opacity: 0.25;
+    }
+    .carriers-hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(27, 40, 44, 0.75) 0%, rgba(95, 123, 130, 0.92) 100%);
+      z-index: 2;
+    }
+    .carriers-hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .carriers-hero-badge {
+      display: inline-block;
+      color: var(--color-mint-green);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .carriers-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--color-white);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .carriers-hero-sub {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 720px;
+      margin: 0 auto 36px auto;
+      line-height: 1.55;
+    }
+
+    /* CARRIERS STORY SECTION */
+    .carriers-story-section {
+      background-color: var(--color-white);
+      padding: 80px 0;
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .story-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--color-near-black);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .story-body {
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+    }
+
+    /* CARRIERS SHOWCASE GRID */
+    .carriers-showcase-section {
+      background-color: var(--color-offwhite);
+      padding: 90px 0;
+    }
+    .carriers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .carrier-card {
+      background: var(--color-white);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--color-card-border);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .carrier-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-slate-teal);
+    }
+    .carrier-card-top {
+      margin-bottom: 20px;
+    }
+    .carrier-logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .carrier-tag {
+      display: inline-block;
+      background-color: var(--color-icy-blue);
+      color: var(--color-slate-teal);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .carrier-rating-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background-color: #E6F9F0;
+      color: #0B6B43;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #A3E6C5;
+    }
+    .carrier-name {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      color: var(--color-near-black);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .carrier-desc {
+      font-size: 0.96rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .carrier-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .carrier-feature-item {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-near-black);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .carrier-feature-item span {
+      color: var(--color-slate-teal);
+      font-weight: 800;
+    }
+
+    /* FINANCIAL RATINGS SECTION */
+    .ratings-section {
+      background-color: var(--color-white);
+      padding: 90px 0;
+    }
+    .ratings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 50px;
+    }
+    .rating-card {
+      background-color: var(--color-offwhite);
+      border-radius: var(--radius-card);
+      padding: 36px 30px;
+      text-align: center;
+      border: 1px solid var(--color-card-border);
+    }
+    .rating-score {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      color: var(--color-slate-teal);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .rating-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-near-black);
+      margin-bottom: 10px;
+    }
+    .rating-desc {
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .carriers-grid, .ratings-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY SITE HEADER -->
+  <header class="ethos-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+
+      <nav class="header-nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#life-insurance-guide" class="nav-link">Life insurance ▾</a>
+        <a href="carriers.html" class="nav-link active">Our Carriers</a>
+        <a href="index.html#about-us" class="nav-link">About us ▾</a>
+        <a href="index.html#faqs" class="nav-link">Resources ▾</a>
+      </nav>
+
+      <div class="header-right-actions">
+        <a href="quote.html" class="nav-contact-btn">
+          Check My Price
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- CARRIERS HERO SECTION -->
+    <section class="carriers-hero">
+      <img src="senior-couple.jpg" alt="Protected families with top carriers" class="carriers-hero-bg" />
+      <div class="carriers-hero-overlay"></div>
+
+      <div class="container carriers-hero-content">
+        <span class="carriers-hero-badge">TRUSTED A+ RATED CARRIERS</span>
+        <h1 class="carriers-hero-title">We work with the best in the business</h1>
+        <p class="carriers-hero-sub">
+          Alpine Fairview partners with America’s top A-rated life insurance carriers to make whole life, final expense, and burial protection accessible, affordable, and reliable nationwide.
+        </p>
+
+        <div class="hero-cta-wrapper">
+          <a href="quote.html" class="btn btn-mint" style="max-width: 320px; margin: 0 auto;">
+            Check My Price
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARRIERS STORY SECTION -->
+    <section class="carriers-story-section">
+      <div class="container story-grid">
+        <div>
+          <h2 class="story-title">How does Alpine Fairview work with life insurance carriers?</h2>
+        </div>
+        <div>
+          <p class="story-body">
+            As an independent digital life insurance agency, Alpine Fairview works directly with America’s most established life insurance carriers to provide whole life, burial, and final expense policies. Our intelligent digital underwriting engine matches each customer to the carrier offering the best rate and easiest approval for their specific age and health background. While Alpine Fairview streamlines your application online in under 10 minutes with zero medical exams, your policy is issued and backed by industry giants that have paid billions of dollars in claims for over a century.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARRIERS SHOWCASE GRID -->
+    <section class="carriers-showcase-section">
+      <div class="container">
+        <div class="text-center">
+          <span class="guide-badge font-sans">Top Carrier Roster</span>
+          <h2 class="section-title font-serif" style="margin-top: 10px;">Our Industry-Leading Carrier Partners</h2>
+          <p class="section-subtitle" style="max-width: 680px; margin: 12px auto 0 auto;">
+            We compare options across multiple top-rated insurers so you never have to settle for a single carrier's pricing.
+          </p>
+        </div>
+
+        <div class="carriers-grid">
+          
+          <!-- Carrier 1: American-Amicable -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Whole Life & Final Expense</span>
+                <span class="carrier-rating-badge">A.M. Best A (Excellent)</span>
+              </div>
+              <h3 class="carrier-name">American-Amicable Group</h3>
+              <p class="carrier-desc">
+                Founded in 1910, the American-Amicable Group of companies has provided dependable financial security to families for over 110 years. Specializing in simplified issue whole life and final expense protection with instant online approvals.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Instant digital approval (no med exam)</li>
+              <li class="carrier-feature-item"><span>✓</span> Locked-in rates guaranteed for life</li>
+              <li class="carrier-feature-item"><span>✓</span> Over 110+ years of financial strength</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 2: Mutual of Omaha -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Household Name</span>
+                <span class="carrier-rating-badge">A.M. Best A+ (Superior)</span>
+              </div>
+              <h3 class="carrier-name">Mutual of Omaha</h3>
+              <p class="carrier-desc">
+                A household name for over a century, Mutual of Omaha is renowned for insurer financial strength, exceptional customer service, and reliable whole life coverage. Backed by tens of billions in assets to protect your family's future.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> A+ (Superior) financial strength rating</li>
+              <li class="carrier-feature-item"><span>✓</span> Fixed premiums that never increase</li>
+              <li class="carrier-feature-item"><span>✓</span> Accelerated death benefit options</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 3: Gerber Life Insurance -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Guaranteed Issue</span>
+                <span class="carrier-rating-badge">A.M. Best A (Excellent)</span>
+              </div>
+              <h3 class="carrier-name">Gerber Life Insurance</h3>
+              <p class="carrier-desc">
+                Trusted by millions of American families for decades, Gerber Life provides permanent whole life protection with cash value accumulation and guaranteed acceptance for final expense policyholders regardless of medical history.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Guaranteed acceptance option (ages 50-80)</li>
+              <li class="carrier-feature-item"><span>✓</span> Builds tax-deferred cash value</li>
+              <li class="carrier-feature-item"><span>✓</span> Trusted family brand for over 50 years</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 4: Transamerica -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Industry Giant</span>
+                <span class="carrier-rating-badge">A.M. Best A (Excellent)</span>
+              </div>
+              <h3 class="carrier-name">Transamerica</h3>
+              <p class="carrier-desc">
+                With a history spanning over 100 years, Transamerica is one of the most recognized insurance institutions in the nation. Offering competitive whole life rates and flexible final expense coverage options.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Over $100B+ in capital assets</li>
+              <li class="carrier-feature-item"><span>✓</span> Flexible benefit amounts ($5k to $50k+)</li>
+              <li class="carrier-feature-item"><span>✓</span> Rapid online underwriting decision</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 5: Guarantee Trust Life (GTL) -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Simplified Issue</span>
+                <span class="carrier-rating-badge">A.M. Best A- (Excellent)</span>
+              </div>
+              <h3 class="carrier-name">Guarantee Trust Life (GTL)</h3>
+              <p class="carrier-desc">
+                Founded in 1936, Guarantee Trust Life Insurance Company is a family-owned insurer specializing in specialized final expense, burial protection, and instant approval products designed for rapid underwriting.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Family-owned tradition since 1936</li>
+              <li class="carrier-feature-item"><span>✓</span> Specialized final expense products</li>
+              <li class="carrier-feature-item"><span>✓</span> Zero blood draws or doctor exams</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 6: AIG (Corebridge Financial) -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Global Powerhouse</span>
+                <span class="carrier-rating-badge">A.M. Best A (Excellent)</span>
+              </div>
+              <h3 class="carrier-name">AIG / Corebridge Financial</h3>
+              <p class="carrier-desc">
+                Corebridge Financial (formerly AIG Life & Retirement) is a leading provider of permanent whole life and financial protection in the U.S., backed by massive reserves and superior industry solvency ratings.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Backed by Corebridge Financial reserves</li>
+              <li class="carrier-feature-item"><span>✓</span> Guaranteed lifetime death benefit</li>
+              <li class="carrier-feature-item"><span>✓</span> Top-tier financial solvency rating</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 7: Royal Neighbors of America -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Fraternal Leader</span>
+                <span class="carrier-rating-badge">A.M. Best A- (Excellent)</span>
+              </div>
+              <h3 class="carrier-name">Royal Neighbors of America</h3>
+              <p class="carrier-desc">
+                Founded in 1895 as one of the first fraternal benefit societies empowering women and families. Royal Neighbors delivers high-quality whole life protection with member benefits and philanthropic support.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Serving American families since 1895</li>
+              <li class="carrier-feature-item"><span>✓</span> Includes community member perks & grants</li>
+              <li class="carrier-feature-item"><span>✓</span> Guaranteed fixed premium protection</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 8: Citizens Life -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Final Expense</span>
+                <span class="carrier-rating-badge">State Licensed A-Rated</span>
+              </div>
+              <h3 class="carrier-name">Citizens Choice / Citizens Life</h3>
+              <p class="carrier-desc">
+                Specialized in final expense and senior burial protection, Citizens Life offers tailored whole life policies with simplified health questions and immediate coverage options for peace of mind.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> Streamlined senior health questionnaire</li>
+              <li class="carrier-feature-item"><span>✓</span> Immediate day-one coverage options</li>
+              <li class="carrier-feature-item"><span>✓</span> Dedicated final expense focus</li>
+            </ul>
+          </div>
+
+          <!-- Carrier 9: Aflac -->
+          <div class="carrier-card">
+            <div class="carrier-card-top">
+              <div class="carrier-logo-row">
+                <span class="carrier-tag">Iconic Protection</span>
+                <span class="carrier-rating-badge">A.M. Best A+ (Superior)</span>
+              </div>
+              <h3 class="carrier-name">Aflac</h3>
+              <p class="carrier-desc">
+                Famous nationwide for rapid claims processing and rock-solid financial stability. Aflac life products give families supplemental financial confidence and reliable whole life protection when needed most.
+              </p>
+            </div>
+            <ul class="carrier-features-list">
+              <li class="carrier-feature-item"><span>✓</span> A+ (Superior) A.M. Best rating</li>
+              <li class="carrier-feature-item"><span>✓</span> Industry-leading fast claims payout</li>
+              <li class="carrier-feature-item"><span>✓</span> Nationwide reputation for reliability</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINANCIAL STRENGTH RATINGS SECTION -->
+    <section class="ratings-section">
+      <div class="container text-center">
+        <span class="guide-badge font-sans">Solvency & Reliability</span>
+        <h2 class="section-title font-serif" style="margin-top: 10px;">Backed by Superior Financial Ratings</h2>
+        <p class="section-subtitle" style="max-width: 680px; margin: 12px auto 0 auto;">
+          We select carrier partners with top ratings from independent financial rating agencies, so you can trust your claim will be paid smoothly.
+        </p>
+
+        <div class="ratings-grid">
+          
+          <div class="rating-card">
+            <div class="rating-score">A+</div>
+            <h3 class="rating-title">A.M. Best Superior Rating</h3>
+            <p class="rating-desc">
+              Independent evaluation verifying our carrier partners have superior financial strength and capacity to honor long-term policyholder commitments.
+            </p>
+          </div>
+
+          <div class="rating-card">
+            <div class="rating-score">90+</div>
+            <h3 class="rating-title">High Comdex Composite</h3>
+            <p class="rating-desc">
+              Comdex combines all major financial rating agency scores (A.M. Best, S&P, Moody's, Fitch) into a single 0-100 score of carrier excellence.
+            </p>
+          </div>
+
+          <div class="rating-card">
+            <div class="rating-score">AA-</div>
+            <h3 class="rating-title">S&P Global Solvency</h3>
+            <p class="rating-desc">
+              Standard & Poor's rating reflecting very strong capital reserves, low credit risk, and proven claim-paying reliability over decades.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCK IN YOUR BEST PRICE TODAY BANNER -->
+    <div class="lock-price-section container">
+      <div class="lock-price-banner">
+        <div class="lock-price-left">
+          <h2 class="lock-price-title font-serif">Lock in your best carrier rate today</h2>
+          <p class="lock-price-subtext">
+            Life insurance rates increase as you get older. With Alpine Fairview, comparing rates across top A+ carriers only takes 2 minutes.
+          </p>
+          <a href="quote.html" class="btn btn-mint check-price-btn">
+            Check My Price
+          </a>
+        </div>
+
+        <div class="lock-price-right">
+          <img src="senior-couple.jpg" alt="Happy Protected Seniors" class="lock-price-img" />
+        </div>
+      </div>
+    </div>
+
+    <!-- SITE FOOTER -->
+    <footer class="ethos-site-footer">
+      <div class="container footer-grid">
+        
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact Us</h4>
+          <p class="footer-text">Alpine Fairview Insurance</p>
+          <p class="footer-text"><a href="tel:7738000116" class="footer-link-inline">773-800-0116</a></p>
+          <p class="footer-text"><a href="mailto:andres@alpinefairview.com" class="footer-link-inline">andres@alpinefairview.com</a></p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <a href="quote.html" class="footer-link">Our policies</a>
+          <a href="carriers.html" class="footer-link">Our Carriers</a>
+          <a href="index.html#faqs" class="footer-link">FAQs</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <a href="index.html#about-us" class="footer-link">About us</a>
+          <a href="careers.html" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Affiliates</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Legal</h4>
+          <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Licenses</a>
+        </div>
+
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Alpine Fairview Insurance Group. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
