@@ -626,6 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger: data.trigger || '',
       factor: data.factor || '',
       timing: data.timing || '',
+      nicotineUse: data.nicotineUse || '',
       smsVerified: data.smsVerified === true
     };
 
