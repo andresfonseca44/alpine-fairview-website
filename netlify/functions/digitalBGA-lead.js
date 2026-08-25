@@ -139,13 +139,7 @@ exports.handler = async (event, context) => {
     const ageStr = data.age || 'N/A';
     const dobStr = data.dob || 'N/A';
 
-    const stickyNote = `[ALPINE FAIRVIEW INBOUND LEAD]
-- Goals: ${goalsStr}
-- Dependents: ${dependentsStr}
-- Citizenship: ${citizenshipStr}
-- Motivation/Trigger: ${motivationStr}
-- Age: ${ageStr} (DOB: ${dobStr})
-- Estimated Monthly Rate: ${rateStr}`;
+    const stickyNote = `[AF LEAD] - Goal: ${goalsStr} - Dependents: ${dependentsStr} - Motivation: ${motivationStr} - Age: ${ageStr} (DOB: ${dobStr})`;
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
