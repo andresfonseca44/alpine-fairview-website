@@ -252,9 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function goBack() {
     if (currentStep > 1) {
-      // Step 16 (SMS verification) is temporarily removed from the flow
-      const prevStep = currentStep === 17 ? 15 : currentStep - 1;
-      showStep(prevStep);
+      showStep(currentStep - 1);
     } else {
       window.location.href = 'index.html';
     }
@@ -583,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     nextStep15Btn.addEventListener('click', () => {
-      if (!nextStep15Btn.disabled) showStep(17);
+      if (!nextStep15Btn.disabled) showStep(16);
     });
   }
 
