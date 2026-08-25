@@ -130,14 +130,39 @@ exports.handler = async (event, context) => {
     let faceAmount = parseInt(data.coverageAmount || data.coverage || data.face_amount || 25000, 10);
     if (isNaN(faceAmount)) faceAmount = 25000;
 
-    // Build sticky note with age, DOB, smoker status, coverage, and quoted premium
-    const rateStr = data.estimatedMonthlyRate || data.rate || 'N/A';
-    const ageStr = data.age || 'N/A';
-    const dobStr = data.dob || 'N/A';
-    const smokerStr = data.nicotineUse || 'N/A';
-    const coverageStr = data.coverageAmount || ('$' + faceAmount.toLocaleString());
+    // Format sticky note according to spec:
+    // [AF LEAD] - 1/8/1975 Smoker: No, motivation: current policy too $ / end amount: $20,000 $61.48/m
+    const dobStr = data.dob || (data.dobMonth && data.dobDay && data.dobYear ? `${data.dobMonth}/${data.dobDay}/${data.dobYear}` : 'N/A');
 
-    const stickyNote = `[AF LEAD] - Age: ${ageStr} (DOB: ${dobStr}) Smoker: ${smokerStr} Coverage amount: ${coverageStr} Premium: ${rateStr}`;
+    const nicotineVal = String(data.nicotineUse || '').toLowerCase();
+    const smokerStr = nicotineVal.includes('yes') ? 'Yes' : 'No';
+
+    const rawFactor = String(data.factor || data.motivation || data.trigger || '').toLowerCase();
+    let motivationStr = 'other';
+    if (rawFactor.includes('employer') || rawFactor.includes('losing')) {
+      motivationStr = 'Losing coverage';
+    } else if (rawFactor.includes('expensive') || rawFactor.includes('ending') || rawFactor.includes('current policy')) {
+      motivationStr = 'current policy too $ / end';
+    } else if (rawFactor.includes('health') || rawFactor.includes('scare')) {
+      motivationStr = 'health scare';
+    } else if (rawFactor.includes('death') || rawFactor.includes('loved one')) {
+      motivationStr = 'death of loved one';
+    }
+
+    let coverageStr = data.coverageAmount ? String(data.coverageAmount) : ('$' + faceAmount.toLocaleString());
+    if (!coverageStr.startsWith('$')) coverageStr = '$' + coverageStr;
+
+    let rateStr = String(data.estimatedMonthlyRate || data.rate || '').trim();
+    if (!rateStr || rateStr === 'N/A') {
+      rateStr = '';
+    } else {
+      rateStr = rateStr.replace(/\/mo(nthly)?/i, '').trim();
+      if (!rateStr.endsWith('/m')) {
+        rateStr = rateStr + '/m';
+      }
+    }
+
+    const stickyNote = `[AF LEAD] - ${dobStr} Smoker: ${smokerStr}, motivation: ${motivationStr} amount: ${coverageStr}${rateStr ? ' ' + rateStr : ''}`;
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
