@@ -1445,12 +1445,17 @@ body {
   color: var(--color-mint-green) !important;
 }
 
+.quiz-progress-wrapper {
+  padding: 14px 0 0;
+  background-color: var(--color-offwhite);
+}
+
 .progress-bar-track {
   width: 70%;
   max-width: 400px;
   margin: 0 auto 10px;
   height: 8px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #E2E5E4;
   border-radius: 10px;
   overflow: hidden;
 }
