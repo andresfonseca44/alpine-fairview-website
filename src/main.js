@@ -318,10 +318,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setupMultiSelectGroup('goals', 'next-step-1');
-  setupMultiSelectGroup('dependents', 'next-step-2');
 
   // ------------------------------------------------------------------------
-  // 7. SINGLE-SELECT LIST STACKS (Trigger, Factor, Timing, Citizenship)
+  // 7. SINGLE-SELECT LIST STACKS (Trigger, Timing, Citizenship)
   // ------------------------------------------------------------------------
   function setupSingleSelectGroup(groupName, leadKey) {
     const items = document.querySelectorAll(`.list-option-item[data-group="${groupName}"]`);
@@ -341,7 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setupSingleSelectGroup('trigger', 'trigger');
-  setupSingleSelectGroup('factor', 'factor');
   setupSingleSelectGroup('timing', 'timing');
 
   // Citizenship Handler (Enforces US Residency Requirement)
@@ -404,11 +402,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 8. STEP 5: TRANSITION INTERSTITIAL
+  // 8. STEP 3: TRANSITION INTERSTITIAL
   // ------------------------------------------------------------------------
-  const nextStep5Btn = document.getElementById('next-step-5');
-  if (nextStep5Btn) {
-    nextStep5Btn.addEventListener('click', () => showStep(6));
+  const nextStep3Btn = document.getElementById('next-step-3') || document.getElementById('next-step-5');
+  if (nextStep3Btn) {
+    nextStep3Btn.addEventListener('click', () => showStep(6));
   }
 
   // ------------------------------------------------------------------------
