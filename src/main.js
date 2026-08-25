@@ -855,12 +855,21 @@ document.addEventListener('DOMContentLoaded', () => {
   function calculateAndDisplayRate() {
     const priceVal = document.getElementById('final-price-val');
     const coverageAmt = document.getElementById('final-coverage-amt');
-    const benchmarkNote = document.getElementById('final-rate-benchmark-note');
+    const benchmarkNote = document.getElementById('benchmark-note') || document.getElementById('final-rate-benchmark-note');
 
-    // Calculate age
-    const birthYear = leadData.dobYear || 1956;
-    const currentYear = new Date().getFullYear();
-    const age = Math.max(18, Math.min(90, currentYear - birthYear));
+    // Calculate exact age from user's selected DOB
+    const birthYear = leadData.dobYear ? parseInt(leadData.dobYear, 10) : 1956;
+    const birthMonth = leadData.dobMonth ? parseInt(leadData.dobMonth, 10) : 1;
+    const birthDay = leadData.dobDay ? parseInt(leadData.dobDay, 10) : 1;
+
+    const today = new Date();
+    let age = today.getFullYear() - birthYear;
+    const monthDiff = (today.getMonth() + 1) - birthMonth;
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDay)) {
+      age--;
+    }
+    age = Math.max(18, Math.min(95, age));
+
     const gender = leadData.gender || 'Male';
     const coverage = leadData.coverageAmount || 25000;
 
