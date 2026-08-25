@@ -544,8 +544,35 @@
           </div>
         </div>
 
-        <!-- STEP 12: MERGED COVERAGE NEEDS & DESIRED COVERAGE SLIDER (Requirement #2 & #3) -->
+        <!-- STEP 12: NICOTINE USE -->
         <div class="quiz-step-panel hidden" id="step-12">
+          <h2 class="quiz-heading">Do you use nicotine products?</h2>
+          <p class="quiz-subheading">This includes cigarettes, cigars, smokeless tobacco and vaping.</p>
+
+          <div class="list-option-stack">
+            <div class="list-option-item" data-group="nicotine" data-value="No">No</div>
+            <div class="list-option-item" data-group="nicotine" data-value="Yes">Yes</div>
+            <div class="list-option-item" data-group="nicotine" data-value="Not anymore">Not anymore</div>
+          </div>
+
+          <div class="nicotine-followup hidden" id="nicotine-followup-section">
+            <h3 class="quiz-heading" style="font-size: 1.3rem; margin-top: 20px;">Great for you! When did you last use nicotine?</h3>
+            <p class="quiz-subheading">This includes cigarettes, cigars, smokeless tobacco and vaping.</p>
+
+            <div class="form-select-wrapper">
+              <select id="nicotine-last-use" class="ethos-select">
+                <option value="" disabled selected>Select timeframe</option>
+                <option value="within-1-year">Within 1 year</option>
+                <option value="over-1-year">Over 1 year ago</option>
+                <option value="over-2-years">Over 2 years ago</option>
+                <option value="over-4-years">Over 4 years ago</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 13: MERGED COVERAGE NEEDS & DESIRED COVERAGE SLIDER (Requirement #2 & #3) -->
+        <div class="quiz-step-panel hidden" id="step-13">
           <h2 class="quiz-heading font-serif">Your personalized coverage needs</h2>
           <p class="quiz-subheading text-left">
             Your whole life insurance policy will help cover your financial obligations and give you peace of mind.
@@ -611,14 +638,14 @@
           </div>
 
           <div class="quiz-footer-actions">
-            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-12">
+            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-13">
               See final rate
             </button>
           </div>
         </div>
 
-        <!-- STEP 13: NAME -->
-        <div class="quiz-step-panel hidden" id="step-13">
+        <!-- STEP 14: NAME -->
+        <div class="quiz-step-panel hidden" id="step-14">
           <h2 class="quiz-heading">What's your name?</h2>
 
           <div class="name-inputs-row">
@@ -633,14 +660,14 @@
           </div>
 
           <div class="quiz-footer-actions">
-            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-13" disabled>
+            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-14" disabled>
               Continue
             </button>
           </div>
         </div>
 
-        <!-- STEP 14: EMAIL -->
-        <div class="quiz-step-panel hidden" id="step-14">
+        <!-- STEP 15: EMAIL -->
+        <div class="quiz-step-panel hidden" id="step-15">
           <h2 class="quiz-heading">What's your email?</h2>
           <p class="quiz-subheading">We’ll send a secure copy of your custom rate summary here.</p>
 
@@ -649,14 +676,14 @@
           </div>
 
           <div class="quiz-footer-actions">
-            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-14" disabled>
+            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-15" disabled>
               Continue
             </button>
           </div>
         </div>
 
-        <!-- STEP 15: MOBILE PHONE -->
-        <div class="quiz-step-panel hidden" id="step-15">
+        <!-- STEP 16: MOBILE PHONE -->
+        <div class="quiz-step-panel hidden" id="step-16">
           <h2 class="quiz-heading">What's your mobile phone number?</h2>
           <p class="quiz-subheading">Needed for instant SMS rate verification and policy confirmation.</p>
 
@@ -688,14 +715,14 @@
           </p>
 
           <div class="quiz-footer-actions">
-            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-15" disabled>
+            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-16" disabled>
               Get My Final Rate
             </button>
           </div>
         </div>
 
-        <!-- STEP 16: INSTANT RATE QUOTE RESULT CARD -->
-        <div class="quiz-step-panel hidden text-center" id="step-16">
+        <!-- STEP 17: INSTANT RATE QUOTE RESULT CARD -->
+        <div class="quiz-step-panel hidden text-center" id="step-17">
           <div class="success-badge-circle">✓</div>
           <h2 class="quiz-heading font-serif">Your Whole Life Rate Quote is Ready!</h2>
           <p class="quiz-subheading">Adjust the coverage scale below to see instant estimated rates for your age:</p>
