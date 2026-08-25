@@ -662,116 +662,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const verifyCodeBtn = document.getElementById('verify-code-btn');
   const smsVerifyMessage = document.getElementById('sms-verify-message');
 
-  let sentSmsCode = null;
-  let smsCodeExpiration = null;
-  leadData.smsVerified = false;
-
-  if (phoneInput && sendCodeBtn) {
+  if (phoneInput && nextStep16Btn) {
     phoneInput.addEventListener('input', () => {
       const digits = phoneInput.value.replace(/\D/g, '');
       leadData.phone = digits;
-      sendCodeBtn.disabled = digits.length < 10;
-
-      leadData.smsVerified = false;
-      if (nextStep16Btn) nextStep16Btn.disabled = true;
-      if (smsCodeSection) smsCodeSection.classList.add('hidden');
-      if (smsVerifyMessage) smsVerifyMessage.textContent = '';
-    });
-  }
-
-  if (sendCodeBtn) {
-    sendCodeBtn.addEventListener('click', async () => {
-      const digits = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
-      if (digits.length < 10) return;
-
-      sendCodeBtn.disabled = true;
-      if (smsSendMessage) {
-        smsSendMessage.textContent = 'Sending code...';
-        smsSendMessage.style.color = '#5F7B82';
-      }
-
-      try {
-        const response = await fetch('/.netlify/functions/send-sms', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone: digits })
-        });
-        const data = await response.json();
-
-        if (response.ok && data.success) {
-          sentSmsCode = data.code;
-          smsCodeExpiration = Date.now() + (data.expiresIn || 600) * 1000;
-          if (smsSendMessage) {
-            smsSendMessage.textContent = 'Code sent! Check your text messages.';
-            smsSendMessage.style.color = '#2e7d32';
-          }
-          if (smsCodeSection) smsCodeSection.classList.remove('hidden');
-        } else {
-          if (smsSendMessage) {
-            smsSendMessage.textContent = 'Could not send code. Please check the number and try again.';
-            smsSendMessage.style.color = '#c0392b';
-          }
-        }
-      } catch (e) {
-        if (smsSendMessage) {
-          smsSendMessage.textContent = 'Error sending code. Please try again.';
-          smsSendMessage.style.color = '#c0392b';
-        }
-      } finally {
-        sendCodeBtn.disabled = false;
-      }
-    });
-  }
-
-  if (verifyCodeBtn) {
-    verifyCodeBtn.addEventListener('click', async () => {
-      const userCode = smsCodeInput ? smsCodeInput.value.trim() : '';
-
-      if (!userCode || userCode.length !== 4) {
-        if (smsVerifyMessage) {
-          smsVerifyMessage.textContent = 'Enter the 4-digit code from your text.';
-          smsVerifyMessage.style.color = '#c0392b';
-        }
-        return;
-      }
-
-      if (!smsCodeExpiration || Date.now() > smsCodeExpiration) {
-        if (smsVerifyMessage) {
-          smsVerifyMessage.textContent = 'Code expired. Please request a new one.';
-          smsVerifyMessage.style.color = '#c0392b';
-        }
-        return;
-      }
-
-      verifyCodeBtn.disabled = true;
-      try {
-        const response = await fetch('/.netlify/functions/verify-sms', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code: sentSmsCode, userCode })
-        });
-        const data = await response.json();
-
-        if (data.verified) {
-          leadData.smsVerified = true;
-          if (smsVerifyMessage) {
-            smsVerifyMessage.textContent = 'Phone verified!';
-            smsVerifyMessage.style.color = '#2e7d32';
-          }
-          if (nextStep16Btn) nextStep16Btn.disabled = false;
-        } else {
-          if (smsVerifyMessage) {
-            smsVerifyMessage.textContent = 'Invalid code. Please try again.';
-            smsVerifyMessage.style.color = '#c0392b';
-          }
-        }
-      } catch (e) {
-        if (smsVerifyMessage) {
-          smsVerifyMessage.textContent = 'Verification error. Please try again.';
-          smsVerifyMessage.style.color = '#c0392b';
-        }
-      } finally {
-        verifyCodeBtn.disabled = false;
+      if (digits.length >= 10) {
+        nextStep16Btn.disabled = false;
+      } else {
+        nextStep16Btn.disabled = true;
       }
     });
   }
