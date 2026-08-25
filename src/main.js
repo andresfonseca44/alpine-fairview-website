@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressFill = document.getElementById('progress-fill');
 
   let currentStep = 1;
-  const totalSteps = 16;
+  const totalSteps = 17;
 
   // Lead Data Store
   const leadData = {
@@ -201,6 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
     countryOfBirth: 'United States',
     stateOfBirth: '',
     citizenship: '',
+    nicotineUse: '',
+    nicotineLastUse: '',
     coverageAmount: 25000,
     firstName: '',
     lastName: '',
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Immediately trigger lead submission & email notification when reaching Step 16 ("Your whole life rate quote is ready!")
-    if (stepNum === 16) {
+    if (stepNum === 17) {
       calculateAndDisplayRate();
       submitLeadToGoogleSheet(leadData);
     }
@@ -363,6 +365,43 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
+  // 7b. STEP 12: NICOTINE USE
+  // ------------------------------------------------------------------------
+  const nicotineItems = document.querySelectorAll('.list-option-item[data-group="nicotine"]');
+  const nicotineFollowup = document.getElementById('nicotine-followup-section');
+  const nicotineLastUseSelect = document.getElementById('nicotine-last-use');
+
+  nicotineItems.forEach(item => {
+    item.addEventListener('click', () => {
+      nicotineItems.forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      const val = item.getAttribute('data-value');
+      leadData.nicotineUse = val;
+
+      if (val === 'Not anymore') {
+        if (nicotineFollowup) nicotineFollowup.classList.remove('hidden');
+      } else {
+        leadData.nicotineLastUse = '';
+        if (nicotineFollowup) nicotineFollowup.classList.add('hidden');
+        setTimeout(() => {
+          showStep(13);
+        }, 220);
+      }
+    });
+  });
+
+  if (nicotineLastUseSelect) {
+    nicotineLastUseSelect.addEventListener('change', () => {
+      leadData.nicotineLastUse = nicotineLastUseSelect.value;
+      if (nicotineLastUseSelect.value) {
+        setTimeout(() => {
+          showStep(13);
+        }, 220);
+      }
+    });
+  }
+
+  // ------------------------------------------------------------------------
   // 8. STEP 5: TRANSITION INTERSTITIAL
   // ------------------------------------------------------------------------
   const nextStep5Btn = document.getElementById('next-step-5');
@@ -453,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   const quizCoverageSlider = document.getElementById('quiz-coverage-slider');
   const quizCoverageVal = document.getElementById('quiz-coverage-val');
-  const nextStep12Btn = document.getElementById('next-step-12');
+  const nextStep13Btn = document.getElementById('next-step-13');
   const finalCoverageSlider = document.getElementById('final-coverage-slider');
   const finalCoverageVal = document.getElementById('final-coverage-val');
 
@@ -499,10 +538,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (nextStep12Btn) {
-    nextStep12Btn.addEventListener('click', () => {
+  if (nextStep13Btn) {
+    nextStep13Btn.addEventListener('click', () => {
       populateCoverageBreakdown();
-      showStep(13);
+      showStep(14);
     });
   }
 
@@ -511,16 +550,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   const firstNameInput = document.getElementById('first-name');
   const lastNameInput = document.getElementById('last-name');
-  const nextStep13Btn = document.getElementById('next-step-13');
+  const nextStep14Btn = document.getElementById('next-step-14');
 
   function validateName() {
-    if (!firstNameInput || !lastNameInput || !nextStep13Btn) return;
+    if (!firstNameInput || !lastNameInput || !nextStep14Btn) return;
     if (firstNameInput.value.trim().length >= 2 && lastNameInput.value.trim().length >= 2) {
-      nextStep13Btn.disabled = false;
+      nextStep14Btn.disabled = false;
       leadData.firstName = firstNameInput.value.trim();
       leadData.lastName = lastNameInput.value.trim();
     } else {
-      nextStep13Btn.disabled = true;
+      nextStep14Btn.disabled = true;
     }
   }
 
@@ -528,9 +567,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (i) i.addEventListener('input', validateName);
   });
 
-  if (nextStep13Btn) {
-    nextStep13Btn.addEventListener('click', () => {
-      if (!nextStep13Btn.disabled) showStep(14);
+  if (nextStep14Btn) {
+    nextStep14Btn.addEventListener('click', () => {
+      if (!nextStep14Btn.disabled) showStep(15);
     });
   }
 
@@ -538,21 +577,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // 14. STEP 14: EMAIL
   // ------------------------------------------------------------------------
   const emailInput = document.getElementById('email-input');
-  const nextStep14Btn = document.getElementById('next-step-14');
+  const nextStep15Btn = document.getElementById('next-step-15');
 
-  if (emailInput && nextStep14Btn) {
+  if (emailInput && nextStep15Btn) {
     emailInput.addEventListener('input', () => {
       const val = emailInput.value.trim();
       if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-        nextStep14Btn.disabled = false;
+        nextStep15Btn.disabled = false;
         leadData.email = val;
       } else {
-        nextStep14Btn.disabled = true;
+        nextStep15Btn.disabled = true;
       }
     });
 
-    nextStep14Btn.addEventListener('click', () => {
-      if (!nextStep14Btn.disabled) showStep(15);
+    nextStep15Btn.addEventListener('click', () => {
+      if (!nextStep15Btn.disabled) showStep(16);
     });
   }
 
@@ -622,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const phoneInput = document.getElementById('phone-input');
-  const nextStep15Btn = document.getElementById('next-step-15');
+  const nextStep16Btn = document.getElementById('next-step-16');
   const sendCodeBtn = document.getElementById('send-code-btn');
   const smsSendMessage = document.getElementById('sms-send-message');
   const smsCodeSection = document.getElementById('sms-code-section');
@@ -641,7 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sendCodeBtn.disabled = digits.length < 10;
 
       leadData.smsVerified = false;
-      if (nextStep15Btn) nextStep15Btn.disabled = true;
+      if (nextStep16Btn) nextStep16Btn.disabled = true;
       if (smsCodeSection) smsCodeSection.classList.add('hidden');
       if (smsVerifyMessage) smsVerifyMessage.textContent = '';
     });
@@ -726,7 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
             smsVerifyMessage.textContent = 'Phone verified!';
             smsVerifyMessage.style.color = '#2e7d32';
           }
-          if (nextStep15Btn) nextStep15Btn.disabled = false;
+          if (nextStep16Btn) nextStep16Btn.disabled = false;
         } else {
           if (smsVerifyMessage) {
             smsVerifyMessage.textContent = 'Invalid code. Please try again.';
@@ -744,12 +783,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (nextStep15Btn) {
-    nextStep15Btn.addEventListener('click', () => {
-      if (!nextStep15Btn.disabled) {
+  if (nextStep16Btn) {
+    nextStep16Btn.addEventListener('click', () => {
+      if (!nextStep16Btn.disabled) {
         calculateAndDisplayRate();
         submitLeadToGoogleSheet(leadData);
-        showStep(16);
+        showStep(17);
       }
     });
   }
@@ -812,6 +851,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return rateK;
   }
 
+  function getNicotineSurcharge() {
+    // $25/mo surcharge for current nicotine users, or ex-users who quit within the last year.
+    // Quitting over 1/2/4 years ago carries no surcharge (same as never having used nicotine).
+    if (leadData.nicotineUse === 'Yes') return 25;
+    if (leadData.nicotineUse === 'Not anymore' && leadData.nicotineLastUse === 'within-1-year') return 25;
+    return 0;
+  }
+
   function calculateAndDisplayRate() {
     const priceVal = document.getElementById('final-price-val');
     const coverageAmt = document.getElementById('final-coverage-amt');
@@ -829,6 +876,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Subtract $2.50 directly for actual base rate estimation
     totalMonthly = Math.max(5.00, totalMonthly - 2.50);
+
+    // Add nicotine surcharge (if applicable)
+    totalMonthly += getNicotineSurcharge();
 
     const formattedPrice = `$${totalMonthly.toFixed(2)}`;
 
