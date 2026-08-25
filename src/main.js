@@ -339,7 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  setupSingleSelectGroup('trigger', 'trigger');
   setupSingleSelectGroup('timing', 'timing');
 
   // Citizenship Handler (Enforces US Residency Requirement)
@@ -406,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   const nextStep3Btn = document.getElementById('next-step-3') || document.getElementById('next-step-5');
   if (nextStep3Btn) {
-    nextStep3Btn.addEventListener('click', () => showStep(6));
+    nextStep3Btn.addEventListener('click', () => showStep(7));
   }
 
   // ------------------------------------------------------------------------
