@@ -340,11 +340,12 @@ body {
 /* HERO SECTION */
 .ethos-hero-section {
   position: relative;
-  min-height: calc(100vh - 74px);
+  min-height: calc(65vh - 74px);
+  max-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 0 80px 0;
+  padding: 40px 0 44px 0;
   overflow: hidden;
   text-align: center;
 }
