@@ -339,6 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  setupSingleSelectGroup('factor', 'factor');
   setupSingleSelectGroup('timing', 'timing');
 
   // Citizenship Handler (Enforces US Residency Requirement)
@@ -401,11 +402,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 8. STEP 3: TRANSITION INTERSTITIAL
+  // 8. STEP 4: TRANSITION INTERSTITIAL
   // ------------------------------------------------------------------------
-  const nextStep3Btn = document.getElementById('next-step-3') || document.getElementById('next-step-5');
-  if (nextStep3Btn) {
-    nextStep3Btn.addEventListener('click', () => showStep(7));
+  const nextStep4Btn = document.getElementById('next-step-4') || document.getElementById('next-step-3') || document.getElementById('next-step-5');
+  if (nextStep4Btn) {
+    nextStep4Btn.addEventListener('click', () => showStep(7));
   }
 
   // ------------------------------------------------------------------------
