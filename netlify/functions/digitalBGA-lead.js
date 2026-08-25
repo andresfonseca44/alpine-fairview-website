@@ -130,9 +130,26 @@ exports.handler = async (event, context) => {
     let faceAmount = parseInt(data.coverageAmount || data.coverage || data.face_amount || 25000, 10);
     if (isNaN(faceAmount)) faceAmount = 25000;
 
-    // Format sticky note according to spec:
-    // [AF LEAD] - 1/8/1975 Smoker: No, motivation: current policy too $ / end amount: $20,000 $61.48/m
-    const dobStr = data.dob || (data.dobMonth && data.dobDay && data.dobYear ? `${data.dobMonth}/${data.dobDay}/${data.dobYear}` : 'N/A');
+    // Format DOB to MM/DD/YYYY
+    let formattedDob = '';
+    if (data.dobMonth && data.dobDay && data.dobYear) {
+      const m = String(data.dobMonth).padStart(2, '0');
+      const d = String(data.dobDay).padStart(2, '0');
+      const y = String(data.dobYear);
+      formattedDob = `${m}/${d}/${y}`;
+    } else if (data.dob) {
+      const parts = String(data.dob).split('/');
+      if (parts.length === 3) {
+        const m = parts[0].padStart(2, '0');
+        const d = parts[1].padStart(2, '0');
+        const y = parts[2];
+        formattedDob = `${m}/${d}/${y}`;
+      } else {
+        formattedDob = String(data.dob);
+      }
+    }
+
+    const cleanPhone = String(data.phone || '').replace(/\D/g, '').slice(0, 14);
 
     const nicotineVal = String(data.nicotineUse || '').toLowerCase();
     const smokerStr = nicotineVal.includes('yes') ? 'Yes' : 'No';
@@ -162,7 +179,8 @@ exports.handler = async (event, context) => {
       }
     }
 
-    const stickyNote = `[AF LEAD] - ${dobStr} Smoker: ${smokerStr}, motivation: ${motivationStr} amount: ${coverageStr}${rateStr ? ' ' + rateStr : ''}`;
+    // sticky_note excludes DOB & Phone (sent directly in lead fields date_of_birth & phone)
+    const stickyNote = `[AF LEAD] - Smoker: ${smokerStr}, motivation: ${motivationStr} amount: ${coverageStr}${rateStr ? ' ' + rateStr : ''}`;
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
@@ -172,13 +190,14 @@ exports.handler = async (event, context) => {
       first_name: firstName,
       last_name: lastName,
       email: email,
-      phone: (data.phone || '').replace(/\D/g, ''),
+      phone: cleanPhone,
       state: stateCode,
       face_amount: faceAmount,
       policy_type: 570, // Final Expense
       sticky_note: stickyNote.slice(0, 220),
       gender: genderCode,
-      dob: data.dob || ''
+      date_of_birth: formattedDob,
+      dob: formattedDob
     };
 
     console.log('🚀 Posting lead to DigitalBGA CRM API:', digitalBgaPayload);
