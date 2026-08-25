@@ -584,7 +584,8 @@ document.addEventListener('DOMContentLoaded', () => {
       dependents: Array.isArray(data.dependents) ? data.dependents.join(', ') : '',
       trigger: data.trigger || '',
       factor: data.factor || '',
-      timing: data.timing || ''
+      timing: data.timing || '',
+      smsVerified: data.smsVerified === true
     };
 
     console.log('🚀 [ALPINE FAIRVIEW] Submitting lead data to Google Sheet (1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE):', payload);
@@ -622,18 +623,128 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const phoneInput = document.getElementById('phone-input');
   const nextStep15Btn = document.getElementById('next-step-15');
+  const sendCodeBtn = document.getElementById('send-code-btn');
+  const smsSendMessage = document.getElementById('sms-send-message');
+  const smsCodeSection = document.getElementById('sms-code-section');
+  const smsCodeInput = document.getElementById('sms-code-input');
+  const verifyCodeBtn = document.getElementById('verify-code-btn');
+  const smsVerifyMessage = document.getElementById('sms-verify-message');
 
-  if (phoneInput && nextStep15Btn) {
+  let sentSmsCode = null;
+  let smsCodeExpiration = null;
+  leadData.smsVerified = false;
+
+  if (phoneInput && sendCodeBtn) {
     phoneInput.addEventListener('input', () => {
       const digits = phoneInput.value.replace(/\D/g, '');
-      if (digits.length >= 10) {
-        nextStep15Btn.disabled = false;
-        leadData.phone = digits;
-      } else {
-        nextStep15Btn.disabled = true;
+      leadData.phone = digits;
+      sendCodeBtn.disabled = digits.length < 10;
+
+      leadData.smsVerified = false;
+      if (nextStep15Btn) nextStep15Btn.disabled = true;
+      if (smsCodeSection) smsCodeSection.classList.add('hidden');
+      if (smsVerifyMessage) smsVerifyMessage.textContent = '';
+    });
+  }
+
+  if (sendCodeBtn) {
+    sendCodeBtn.addEventListener('click', async () => {
+      const digits = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+      if (digits.length < 10) return;
+
+      sendCodeBtn.disabled = true;
+      if (smsSendMessage) {
+        smsSendMessage.textContent = 'Sending code...';
+        smsSendMessage.style.color = '#5F7B82';
+      }
+
+      try {
+        const response = await fetch('/.netlify/functions/send-sms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: digits })
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          sentSmsCode = data.code;
+          smsCodeExpiration = Date.now() + (data.expiresIn || 600) * 1000;
+          if (smsSendMessage) {
+            smsSendMessage.textContent = 'Code sent! Check your text messages.';
+            smsSendMessage.style.color = '#2e7d32';
+          }
+          if (smsCodeSection) smsCodeSection.classList.remove('hidden');
+        } else {
+          if (smsSendMessage) {
+            smsSendMessage.textContent = 'Could not send code. Please check the number and try again.';
+            smsSendMessage.style.color = '#c0392b';
+          }
+        }
+      } catch (e) {
+        if (smsSendMessage) {
+          smsSendMessage.textContent = 'Error sending code. Please try again.';
+          smsSendMessage.style.color = '#c0392b';
+        }
+      } finally {
+        sendCodeBtn.disabled = false;
       }
     });
+  }
 
+  if (verifyCodeBtn) {
+    verifyCodeBtn.addEventListener('click', async () => {
+      const userCode = smsCodeInput ? smsCodeInput.value.trim() : '';
+
+      if (!userCode || userCode.length !== 4) {
+        if (smsVerifyMessage) {
+          smsVerifyMessage.textContent = 'Enter the 4-digit code from your text.';
+          smsVerifyMessage.style.color = '#c0392b';
+        }
+        return;
+      }
+
+      if (!smsCodeExpiration || Date.now() > smsCodeExpiration) {
+        if (smsVerifyMessage) {
+          smsVerifyMessage.textContent = 'Code expired. Please request a new one.';
+          smsVerifyMessage.style.color = '#c0392b';
+        }
+        return;
+      }
+
+      verifyCodeBtn.disabled = true;
+      try {
+        const response = await fetch('/.netlify/functions/verify-sms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: sentSmsCode, userCode })
+        });
+        const data = await response.json();
+
+        if (data.verified) {
+          leadData.smsVerified = true;
+          if (smsVerifyMessage) {
+            smsVerifyMessage.textContent = 'Phone verified!';
+            smsVerifyMessage.style.color = '#2e7d32';
+          }
+          if (nextStep15Btn) nextStep15Btn.disabled = false;
+        } else {
+          if (smsVerifyMessage) {
+            smsVerifyMessage.textContent = 'Invalid code. Please try again.';
+            smsVerifyMessage.style.color = '#c0392b';
+          }
+        }
+      } catch (e) {
+        if (smsVerifyMessage) {
+          smsVerifyMessage.textContent = 'Verification error. Please try again.';
+          smsVerifyMessage.style.color = '#c0392b';
+        }
+      } finally {
+        verifyCodeBtn.disabled = false;
+      }
+    });
+  }
+
+  if (nextStep15Btn) {
     nextStep15Btn.addEventListener('click', () => {
       if (!nextStep15Btn.disabled) {
         calculateAndDisplayRate();
