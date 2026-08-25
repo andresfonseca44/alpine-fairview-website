@@ -420,10 +420,30 @@ document.addEventListener('DOMContentLoaded', () => {
       leadData.gender = card.getAttribute('data-value');
 
       setTimeout(() => {
-        showStep(8);
+        showStep(6);
       }, 220);
     });
   });
+
+  // ------------------------------------------------------------------------
+  // 9. STEP 6: STATE OF RESIDENCE
+  // ------------------------------------------------------------------------
+  const stateSelect = document.getElementById('state-select') || document.getElementById('state-of-birth');
+  const nextStep6Btn = document.getElementById('next-step-6') || document.getElementById('next-step-10');
+
+  if (stateSelect && nextStep6Btn) {
+    stateSelect.addEventListener('change', () => {
+      if (stateSelect.value) {
+        nextStep6Btn.disabled = false;
+        leadData.state = stateSelect.value;
+        leadData.stateOfBirth = stateSelect.value;
+      }
+    });
+
+    nextStep6Btn.addEventListener('click', () => {
+      if (!nextStep6Btn.disabled) showStep(8);
+    });
+  }
 
   // ------------------------------------------------------------------------
   // 10. STEP 8: BIRTHDATE INPUTS
@@ -455,35 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (nextStep8Btn) {
     nextStep8Btn.addEventListener('click', () => {
-      if (!nextStep8Btn.disabled) showStep(9);
-    });
-  }
-
-  // ------------------------------------------------------------------------
-  // 11. STEP 9 & 10: COUNTRY & STATE OF BIRTH
-  // ------------------------------------------------------------------------
-  const countrySelect = document.getElementById('country-of-birth');
-  const nextStep9Btn = document.getElementById('next-step-9');
-  if (nextStep9Btn) {
-    nextStep9Btn.addEventListener('click', () => {
-      if (countrySelect) leadData.countryOfBirth = countrySelect.value;
-      showStep(10);
-    });
-  }
-
-  const stateSelect = document.getElementById('state-of-birth');
-  const nextStep10Btn = document.getElementById('next-step-10');
-
-  if (stateSelect && nextStep10Btn) {
-    stateSelect.addEventListener('change', () => {
-      if (stateSelect.value) {
-        nextStep10Btn.disabled = false;
-        leadData.stateOfBirth = stateSelect.value;
-      }
-    });
-
-    nextStep10Btn.addEventListener('click', () => {
-      if (!nextStep10Btn.disabled) showStep(11);
+      if (!nextStep8Btn.disabled) showStep(11);
     });
   }
 
