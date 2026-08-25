@@ -1478,6 +1478,43 @@ body {
   stroke: #FFFFFF !important;
 }
 
+/* Ineligible Warning Box (Residency Check) */
+.ineligible-warning-box {
+  margin-top: 24px;
+  background-color: #FFF5F5;
+  border: 2px solid #E53E3E;
+  border-radius: var(--radius-card);
+  padding: 22px 24px;
+  text-align: center;
+  color: #742A2A;
+  box-shadow: 0 4px 14px rgba(229, 62, 62, 0.12);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.ineligible-warning-box .warning-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.ineligible-warning-box .warning-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #9B2C2C;
+  margin-bottom: 8px;
+}
+
+.ineligible-warning-box .warning-text {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #4A5568;
+}
+
+.ineligible-warning-box .warning-subtext {
+  font-size: 0.88rem;
+  color: #718096;
+}
+
 .quiz-content-wrapper {
   flex-grow: 1;
   display: flex;

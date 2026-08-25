@@ -339,7 +339,28 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSingleSelectGroup('trigger', 'trigger');
   setupSingleSelectGroup('factor', 'factor');
   setupSingleSelectGroup('timing', 'timing');
-  setupSingleSelectGroup('citizenship', 'citizenship');
+
+  // Citizenship Handler (Enforces US Residency Requirement)
+  const citizenshipItems = document.querySelectorAll('.list-option-item[data-group="citizenship"]');
+  const citizenshipWarningBox = document.getElementById('citizenship-ineligible-box');
+
+  citizenshipItems.forEach(item => {
+    item.addEventListener('click', () => {
+      citizenshipItems.forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      const val = item.getAttribute('data-value');
+      leadData.citizenship = val;
+
+      if (val === 'No') {
+        if (citizenshipWarningBox) citizenshipWarningBox.classList.remove('hidden');
+      } else {
+        if (citizenshipWarningBox) citizenshipWarningBox.classList.add('hidden');
+        setTimeout(() => {
+          showStep(12);
+        }, 220);
+      }
+    });
+  });
 
   // ------------------------------------------------------------------------
   // 8. STEP 5: TRANSITION INTERSTITIAL
