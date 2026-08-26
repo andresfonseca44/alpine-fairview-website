@@ -2756,3 +2756,103 @@ body {
     padding: 24px 20px;
   }
 }
+
+/* CLEAN CARRIER SHOWCASE ON FINAL QUOTE CARD (STEP 17) */
+.quote-carriers-showcase {
+  background: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  padding: 26px 22px;
+  margin: 24px 0 22px 0;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.qc-showcase-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-near-black);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.qc-showcase-sub {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qc-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 18px;
+}
+
+.qc-logo-item {
+  background: var(--color-offwhite);
+  border: 1px solid rgba(95, 123, 130, 0.15);
+  border-radius: 12px;
+  padding: 10px 14px;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.qc-logo-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-slate-teal);
+  box-shadow: var(--shadow-sm);
+}
+
+.qc-logo-item img {
+  max-height: 36px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.qc-trust-pills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(95, 123, 130, 0.2);
+}
+
+.qc-trust-pill {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-slate-teal);
+  background: var(--color-mint-light);
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 600px) {
+  .qc-logos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .qc-logo-item {
+    height: 48px;
+    padding: 8px 10px;
+  }
+  .qc-showcase-title {
+    font-size: 1.2rem;
+  }
+}
