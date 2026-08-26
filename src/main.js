@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       targetPanel.classList.remove('hidden');
     }
 
-    // Immediately trigger lead submission & email notification when reaching Step 16 ("Your whole life rate quote is ready!")
+    // Immediately trigger lead submission & email notification when reaching Step 17 ("Your whole life rate quote is ready!")
     if (stepNum === 17) {
       calculateAndDisplayRate();
       submitLeadToGoogleSheet(leadData);
@@ -588,7 +588,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   // 15. STEP 15: PHONE & STEP 16: INSTANT RATE CALCULATOR & GOOGLE SHEET SUBMISSION
   // ------------------------------------------------------------------------
+  let isLeadSubmitted = false;
+
   function submitLeadToGoogleSheet(data) {
+    if (isLeadSubmitted) {
+      console.log('⚠️ Lead has already been submitted for this session. Skipping duplicate dispatch.');
+      return;
+    }
+    isLeadSubmitted = true;
+
     const birthYear = data.dobYear || 1956;
     const currentYear = new Date().getFullYear();
     const age = Math.max(18, Math.min(90, currentYear - birthYear));
@@ -675,8 +683,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nextStep16Btn) {
     nextStep16Btn.addEventListener('click', () => {
       if (!nextStep16Btn.disabled) {
-        calculateAndDisplayRate();
-        submitLeadToGoogleSheet(leadData);
         showStep(17);
       }
     });
