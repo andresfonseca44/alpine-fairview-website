@@ -2899,24 +2899,42 @@ body {
 }
 
 /* FUNCTIONING CALL BUTTON STYLING */
-.quiz-header-call-btn {
+.quiz-help-phone-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background-color: var(--color-mint-light);
-  color: var(--color-slate-teal);
-  border: 1px solid rgba(13, 148, 136, 0.3);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  gap: 8px;
+  background-color: #ffffff;
+  border: 1.5px solid #0F766E;
+  border-radius: 24px;
+  padding: 6px 16px;
   text-decoration: none;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.15);
   transition: all 0.2s ease;
 }
 
-.quiz-header-call-btn:hover {
-  background-color: var(--color-slate-teal);
-  color: var(--color-white);
+.quiz-help-phone-btn:hover {
+  background-color: #0F766E;
+  border-color: #0F766E;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3);
+}
+
+.quiz-help-txt {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #475569;
+  letter-spacing: 0.8px;
+}
+
+.quiz-help-num {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0F766E;
+  letter-spacing: 0.3px;
+}
+
+.quiz-help-phone-btn:hover .quiz-help-txt,
+.quiz-help-phone-btn:hover .quiz-help-num {
+  color: #ffffff !important;
 }
 
 .btn-call-now-quote {
