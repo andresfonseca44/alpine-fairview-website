@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/about-us"
+  to = "/index.html#about-us"
+  status = 302
+
+[[redirects]]
+  from = "/about-us/"
+  to = "/index.html#about-us"
+  status = 302
