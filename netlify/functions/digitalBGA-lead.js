@@ -68,6 +68,112 @@ function getNumericStateCode(stateInput) {
   return STATE_CODE_MAP[cleanInput] || null;
 }
 
+// EMAIL NOTIFICATION DISPATCHER FOR ANDRES@ALPINEFAIRVIEW.COM
+async function sendEmailNotification(data) {
+  const recipientEmail = 'andres@alpinefairview.com';
+  const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'New Applicant';
+  const coverage = data.coverageStr || '$25,000';
+  const rate = data.rateStr ? ` (${data.rateStr})` : '';
+  const subject = `🚨 NEW LEAD: ${fullName} - ${coverage}${rate}`;
+
+  const textBody = `
+==================================================
+🚨 NEW ALPINE FAIRVIEW LEAD NOTIFICATION
+==================================================
+
+APPLICANT INFORMATION:
+-----------------------
+• Full Name: ${fullName}
+• Phone: ${data.cleanPhone || data.phone || 'N/A'}
+• Email: ${data.email || 'N/A'}
+• Date of Birth: ${data.formattedDob || data.dob || 'N/A'}
+• Gender: ${data.gender || 'Male'}
+• State of Residence: ${data.rawState || 'N/A'}
+
+COVERAGE QUOTE DETAILS:
+-----------------------
+• Whole Life Benefit: ${coverage}
+• Estimated Premium: ${data.rateStr || 'N/A'}
+
+LEAD INSIGHTS & MOTIVATION:
+---------------------------
+• Motivation / Trigger: ${data.motivationStr || data.factor || 'N/A'}
+• Nicotine / Smoker: ${data.smokerStr || 'No'}
+• Goals: ${data.goals || 'N/A'}
+
+CRM STICKY NOTE:
+----------------
+${data.stickyNote || 'N/A'}
+
+==================================================
+`;
+
+  // 1. Resend API
+  if (process.env.RESEND_API_KEY) {
+    try {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'Alpine Fairview Leads <leads@alpinefairview.com>',
+          to: [recipientEmail],
+          subject: subject,
+          text: textBody
+        })
+      });
+      console.log('📧 [EMAIL DISPATCH] Lead notification sent via Resend to:', recipientEmail);
+      return;
+    } catch (e) {
+      console.warn('⚠️ Resend email notice:', e);
+    }
+  }
+
+  // 2. SendGrid API
+  if (process.env.SENDGRID_API_KEY) {
+    try {
+      await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.SENDGRID_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          personalizations: [{ to: [{ email: recipientEmail }] }],
+          from: { email: 'andres@alpinefairview.com', name: 'Alpine Fairview Lead Alert' },
+          subject: subject,
+          content: [{ type: 'text/plain', value: textBody }]
+        })
+      });
+      console.log('📧 [EMAIL DISPATCH] Lead notification sent via SendGrid to:', recipientEmail);
+      return;
+    } catch (e) {
+      console.warn('⚠️ SendGrid email notice:', e);
+    }
+  }
+
+  // 3. Web3Forms Dispatch Fallback
+  try {
+    const web3FormData = {
+      access_key: process.env.WEB3FORMS_ACCESS_KEY || '52d586ef-a3d8-4fbb-9189-alpinefairview',
+      email: recipientEmail,
+      subject: subject,
+      message: textBody,
+      from_name: 'Alpine Fairview Lead Gen'
+    };
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(web3FormData)
+    });
+    console.log('📧 [EMAIL DISPATCH] Lead notification dispatched via Web3Forms to:', recipientEmail);
+  } catch (e) {
+    console.warn('⚠️ Web3Forms notification notice:', e);
+  }
+}
+
 exports.handler = async (event, context) => {
   // Support CORS
   const headers = {
@@ -181,6 +287,24 @@ exports.handler = async (event, context) => {
 
     // sticky_note excludes DOB & Phone (sent directly in lead fields date_of_birth & phone)
     const stickyNote = `[AF LEAD] - Smoker: ${smokerStr}, motivation: ${motivationStr} amount: ${coverageStr}${rateStr ? ' ' + rateStr : ''}`;
+
+    // Send instant email notification to andres@alpinefairview.com
+    sendEmailNotification({
+      firstName,
+      lastName,
+      email,
+      phone: cleanPhone,
+      cleanPhone,
+      formattedDob,
+      gender: data.gender || 'Male',
+      rawState,
+      coverageStr,
+      rateStr,
+      motivationStr,
+      smokerStr,
+      goals: data.goals,
+      stickyNote
+    }).catch(err => console.warn('Email dispatch notice:', err));
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
