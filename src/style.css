@@ -3592,3 +3592,77 @@ body {
     font-size: 1.8rem;
   }
 }
+
+/* ==========================================================================
+   100% CLEAN WHITE PAGE THEME OVERRIDES FOR POLICY PAGE (.policy-page-body)
+   ========================================================================== */
+
+html:has(.policy-page-body),
+body.policy-page-body,
+body.policy-page-body main {
+  background-color: #FFFFFF !important;
+  color: var(--color-near-black) !important;
+}
+
+/* Header Styling for White Theme */
+body.policy-page-body .ethos-header {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+body.policy-page-body .ethos-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.policy-page-body .ethos-header .brand-text-logo {
+  color: var(--color-near-black) !important;
+}
+
+body.policy-page-body .ethos-header .nav-link {
+  color: #475569 !important;
+}
+
+body.policy-page-body .ethos-header .nav-link:hover,
+body.policy-page-body .ethos-header .nav-link.active {
+  color: var(--color-slate-teal-dark) !important;
+  font-weight: 700;
+}
+
+body.policy-page-body .nav-contact-btn {
+  background-color: var(--color-slate-teal) !important;
+  color: #FFFFFF !important;
+}
+
+body.policy-page-body .nav-contact-btn:hover {
+  background-color: var(--color-slate-teal-dark) !important;
+}
+
+/* Footer Styling for White Theme */
+body.policy-page-body .ethos-site-footer {
+  background-color: #F8FAFC !important;
+  border-top: 1px solid #E2E8F0 !important;
+  color: var(--color-near-black) !important;
+}
+
+body.policy-page-body .ethos-site-footer .footer-col-title {
+  color: var(--color-near-black) !important;
+}
+
+body.policy-page-body .ethos-site-footer .footer-text,
+body.policy-page-body .ethos-site-footer .footer-link,
+body.policy-page-body .ethos-site-footer .footer-link-inline {
+  color: #64748B !important;
+}
+
+body.policy-page-body .ethos-site-footer .footer-link:hover,
+body.policy-page-body .ethos-site-footer .footer-link-inline:hover {
+  color: var(--color-slate-teal-dark) !important;
+}
+
+body.policy-page-body .ethos-site-footer .footer-bottom {
+  border-top: 1px solid #E2E8F0 !important;
+  color: #64748B !important;
+}
