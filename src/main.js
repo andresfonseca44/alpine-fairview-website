@@ -250,6 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Automatic initialization when opening standalone quiz page (e.g. quote.html)
+  if (quizView && !landingView) {
+    if (siteHeader) siteHeader.style.display = 'none';
+    showStep(1);
+  }
+
   function goBack() {
     if (currentStep > 1) {
       showStep(currentStep - 1);
