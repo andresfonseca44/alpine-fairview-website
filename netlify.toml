@@ -1,3 +1,27 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/life/term-life-policies"
+  to = "/whole-life-policies.html"
+  status = 200
+
+[[redirects]]
+  from = "/life/term-life-policies/"
+  to = "/whole-life-policies.html"
+  status = 200
+
+[[redirects]]
+  from = "/life-insurance"
+  to = "/whole-life-policies.html"
+  status = 200
+
+[[redirects]]
+  from = "/life-insurance/"
+  to = "/whole-life-policies.html"
+  status = 200
+
 [[redirects]]
   from = "/about-us"
   to = "/index.html#about-us"

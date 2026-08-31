@@ -3005,3 +3005,580 @@ body {
     white-space: nowrap !important;
   }
 }
+
+/* ==========================================================================
+   ETHOS-STYLE WHOLE LIFE & FINAL EXPENSE POLICY PAGE STYLES
+   ========================================================================== */
+
+/* Hero Section */
+.ethos-policy-hero {
+  background: linear-gradient(180deg, rgba(95, 123, 130, 0.08) 0%, rgba(220, 234, 245, 0.4) 100%);
+  padding: 40px 0 50px;
+  border-bottom: 1px solid var(--color-card-border);
+}
+
+.policy-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.policy-breadcrumbs a {
+  color: var(--color-slate-teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.policy-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.policy-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.policy-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  color: var(--color-slate-teal-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.policy-hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  line-height: 1.15;
+  color: var(--color-near-black);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.policy-hero-sub {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
+}
+
+.ethos-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-mint-green);
+  color: var(--color-mint-text);
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: 16px 32px;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(46, 229, 157, 0.35);
+  border: none;
+  cursor: pointer;
+}
+
+.ethos-cta-btn:hover {
+  background-color: var(--color-mint-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 229, 157, 0.45);
+}
+
+.policy-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.policy-hero-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+.policy-hero-img-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 4px solid var(--color-white);
+}
+
+.policy-hero-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Two-Column Article Layout */
+.policy-article-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  margin-top: 48px;
+  margin-bottom: 60px;
+}
+
+/* Sticky Quick Links Sidebar */
+.policy-sidebar {
+  position: sticky;
+  top: 94px;
+  height: fit-content;
+}
+
+.policy-toc-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.policy-toc-header {
+  background-color: var(--color-slate-teal);
+  color: var(--color-white);
+  padding: 16px 20px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.policy-toc-list {
+  list-style: none;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.policy-toc-item a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  line-height: 1.35;
+}
+
+.policy-toc-item a:hover {
+  background-color: var(--color-offwhite);
+  color: var(--color-slate-teal-dark);
+}
+
+.policy-toc-item.active a {
+  background-color: var(--color-icy-blue);
+  color: var(--color-slate-teal-dark);
+  font-weight: 700;
+}
+
+/* Main Article Content Column */
+.policy-main-content {
+  min-width: 0;
+}
+
+.policy-section {
+  margin-bottom: 52px;
+  scroll-margin-top: 100px;
+}
+
+.policy-section h2 {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  color: var(--color-near-black);
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.policy-section h3 {
+  font-size: 1.3rem;
+  color: var(--color-slate-teal-dark);
+  margin: 28px 0 12px;
+  font-weight: 700;
+}
+
+.policy-section p {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.policy-section ul, .policy-section ol {
+  margin: 16px 0 20px 24px;
+  line-height: 1.7;
+  color: #333333;
+}
+
+.policy-section li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Key Takeaways Box */
+.policy-takeaways-card {
+  background-color: #F2F9F6;
+  border: 1px solid #C4EBD9;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 40px;
+}
+
+.policy-takeaways-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: #0E4733;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.policy-takeaways-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.policy-takeaway-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1C4D3C;
+}
+
+.policy-takeaway-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #2EE59D;
+  color: #0B3C2A;
+  font-weight: 800;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Rate Tables & Comparison Tables */
+.policy-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  margin: 24px 0 28px;
+}
+
+.policy-rate-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background-color: var(--color-white);
+  font-size: 0.95rem;
+}
+
+.policy-rate-table th {
+  background-color: var(--color-slate-teal);
+  color: var(--color-white);
+  padding: 16px 18px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--color-slate-teal-dark);
+}
+
+.policy-rate-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #E8F0F5;
+  color: var(--color-near-black);
+}
+
+.policy-rate-table tr:nth-child(even) td {
+  background-color: #F8FBFD;
+}
+
+.policy-rate-table tr:hover td {
+  background-color: #EEF5F9;
+}
+
+/* Rate Table Inline CTA Card */
+.policy-table-cta-box {
+  background: linear-gradient(135deg, var(--color-slate-teal) 0%, var(--color-slate-teal-dark) 100%);
+  color: var(--color-white);
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.policy-table-cta-text h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-white);
+}
+
+.policy-table-cta-text p {
+  font-size: 0.9rem;
+  color: var(--color-offwhite);
+  margin-bottom: 0 !important;
+}
+
+/* Pros and Cons Grid */
+.policy-pros-cons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 28px 0;
+}
+
+.policy-pro-card, .policy-con-card {
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.policy-pro-card {
+  background-color: #F0FAF5;
+  border: 1px solid #C2EBD6;
+}
+
+.policy-con-card {
+  background-color: #FFF7F5;
+  border: 1px solid #FCDFD7;
+}
+
+.policy-pro-card h4 {
+  color: #125B3E;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.policy-con-card h4 {
+  color: #9C331B;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.policy-pro-card ul, .policy-con-card ul {
+  margin: 0 0 0 16px !important;
+}
+
+/* Myth Busting Grid */
+.policy-myths-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 28px 0;
+}
+
+.policy-myth-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.policy-myth-tag {
+  display: inline-block;
+  background-color: #FFEBEB;
+  color: #C5221F;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.policy-fact-tag {
+  display: inline-block;
+  background-color: #E6F8F0;
+  color: #0F7B4B;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  margin-top: 14px;
+}
+
+.policy-myth-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-near-black);
+  margin-bottom: 8px;
+}
+
+.policy-fact-text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+/* Callouts & Expert Quote Box */
+.policy-callout-box {
+  background-color: #F4F8FA;
+  border-left: 4px solid var(--color-slate-teal);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+
+.policy-expert-quote {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 36px 0;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.policy-expert-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid var(--color-icy-blue);
+}
+
+.policy-quote-body {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-near-black);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.policy-quote-author {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-slate-teal-dark);
+}
+
+/* Bottom Full-Width CTA Banner */
+.policy-final-cta-banner {
+  background: linear-gradient(135deg, var(--color-slate-teal-dark) 0%, #2B3A3E 100%);
+  color: var(--color-white);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  margin: 60px 0 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.policy-final-cta-banner h2 {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.policy-final-cta-banner p {
+  font-size: 1.1rem;
+  color: var(--color-offwhite);
+  max-width: 680px;
+  margin: 0 auto 28px !important;
+}
+
+/* Responsive Media Queries for Policy Page */
+@media (max-width: 1024px) {
+  .policy-article-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .policy-sidebar {
+    display: none;
+  }
+
+  .policy-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .policy-hero-img-wrapper {
+    order: -1;
+  }
+
+  .policy-hero-img {
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .policy-hero-title {
+    font-size: 2.1rem;
+  }
+
+  .policy-takeaways-grid,
+  .policy-pros-cons-grid,
+  .policy-myths-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .policy-table-cta-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .policy-expert-quote {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .policy-final-cta-banner {
+    padding: 36px 20px;
+  }
+
+  .policy-final-cta-banner h2 {
+    font-size: 1.8rem;
+  }
+}
