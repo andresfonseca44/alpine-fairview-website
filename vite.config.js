@@ -17,7 +17,8 @@ export default defineConfig({
         aboutUs: resolve(__dirname, 'about-us.html'),
         privacyPolicy: resolve(__dirname, 'privacy-policy.html'),
         termsOfUse: resolve(__dirname, 'terms-of-use.html'),
-        thankYou: resolve(__dirname, 'thank-you.html')
+        thankYou: resolve(__dirname, 'thank-you.html'),
+        card: resolve(__dirname, 'card.html')
       }
     }
   }

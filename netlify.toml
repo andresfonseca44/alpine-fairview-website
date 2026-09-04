@@ -3,6 +3,16 @@
   command = "npm run build"
 
 [[redirects]]
+  from = "/card"
+  to = "/card.html"
+  status = 200
+
+[[redirects]]
+  from = "/andres"
+  to = "/card.html"
+  status = 200
+
+[[redirects]]
   from = "/life/term-life-policies"
   to = "/whole-life-policies.html"
   status = 200
