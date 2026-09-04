@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /card
+Disallow: /card/
+Disallow: /card.html
+Disallow: /andres
+Disallow: /andres/
