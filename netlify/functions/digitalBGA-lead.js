@@ -277,7 +277,7 @@ exports.handler = async (event, context) => {
     let rawRate = String(data.rateFor10k || data.estimatedMonthlyRate10k || data.estimatedMonthlyRate || data.rate || '').trim();
     let cleanRate = '';
     if (rawRate && rawRate !== 'N/A') {
-      cleanRate = rawRate.replace(/\/mo(nthly)?|\/m/gi, '').trim();
+      cleanRate = rawRate.replace(/\s*\/\s*(mo(nthly)?|m).*/gi, '').trim();
       if (!cleanRate.startsWith('$')) {
         cleanRate = '$' + cleanRate;
       }

@@ -621,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let monthly10k = (10000 / 1000) * rateK10;
     monthly10k = Math.max(5.00, monthly10k - 2.50);
     monthly10k += getNicotineSurcharge();
-    const rateFor10kText = `$${monthly10k.toFixed(2)} / mo`;
+    const rateFor10kText = `$${monthly10k.toFixed(2)}/m`;
 
     const finalRateText = document.getElementById('final-price-val') ? document.getElementById('final-price-val').textContent : rateFor10kText;
 
