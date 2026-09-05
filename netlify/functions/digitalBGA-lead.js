@@ -274,18 +274,18 @@ exports.handler = async (event, context) => {
     let coverageStr = '$10,000';
 
     // Prioritize 10k rate for CRM sticky note
-    let rateStr = String(data.rateFor10k || data.estimatedMonthlyRate10k || data.estimatedMonthlyRate || data.rate || '').trim();
-    if (!rateStr || rateStr === 'N/A') {
-      rateStr = '';
-    } else {
-      rateStr = rateStr.replace(/\/mo(nthly)?/i, '').trim();
-      if (!rateStr.endsWith('/m')) {
-        rateStr = rateStr + '/m';
+    let rawRate = String(data.rateFor10k || data.estimatedMonthlyRate10k || data.estimatedMonthlyRate || data.rate || '').trim();
+    let cleanRate = '';
+    if (rawRate && rawRate !== 'N/A') {
+      cleanRate = rawRate.replace(/\/mo(nthly)?|\/m/gi, '').trim();
+      if (!cleanRate.startsWith('$')) {
+        cleanRate = '$' + cleanRate;
       }
+      cleanRate = cleanRate + '/m';
     }
 
-    // sticky_note excludes DOB & Phone (sent directly in lead fields date_of_birth & phone)
-    const stickyNote = `[AF LEAD] - Smoker: ${smokerStr}, motivation: ${motivationStr} amount: ${coverageStr}${rateStr ? ' ' + rateStr : ''}`;
+    // Exact requested format: [AFlead] - Smoker: No. motivation: Losing coverage. $10,000 $33.16/m
+    const stickyNote = `[AFlead] - Smoker: ${smokerStr}. motivation: ${motivationStr}. ${coverageStr}${cleanRate ? ' ' + cleanRate : ''}`;
 
     // Send instant email notification to andres@alpinefairview.com
     sendEmailNotification({
@@ -298,7 +298,7 @@ exports.handler = async (event, context) => {
       gender: data.gender || 'Male',
       rawState,
       coverageStr,
-      rateStr,
+      rateStr: cleanRate,
       motivationStr,
       smokerStr,
       goals: data.goals,
