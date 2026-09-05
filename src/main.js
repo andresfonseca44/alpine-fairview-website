@@ -799,6 +799,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function downloadAgentVCard() {
+    const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Andres Fonseca - Alpine Fairview
+N:Fonseca;Andres;;;
+ORG:Alpine Fairview Insurance Group
+TITLE:Life & Final Expense Broker Manager
+TEL;TYPE=CELL,VOICE:(773) 800-0116
+TEL;TYPE=WORK,VOICE:(773) 800-0116
+EMAIL;TYPE=INTERNET:andres@alpinefairview.com
+URL:https://alpinefairview.com
+NOTE:NPN: 18441151 | Alpine Fairview Life Insurance Specialist
+END:VCARD`;
+
+    const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Alpine_Fairview_Andres_Fonseca.vcf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const addContactBtn = document.getElementById('add-contact-phone-btn');
+  if (addContactBtn) {
+    addContactBtn.addEventListener('click', downloadAgentVCard);
+  }
+
   const finishLeadBtn = document.getElementById('finish-lead-btn');
   if (finishLeadBtn) {
     finishLeadBtn.addEventListener('click', () => {

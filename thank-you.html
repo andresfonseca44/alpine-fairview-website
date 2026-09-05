@@ -428,14 +428,30 @@
         </svg>
       </div>
 
-      <h1 class="thank-you-title">Application Submitted!</h1>
-      <p class="thank-you-subtitle" id="client-sub-greeting">
-        Thank you! Your whole life insurance application has been received and confirmed.
+      <h1 class="thank-you-title" style="font-size: 2.1rem; color: #0F172A; margin-bottom: 2px;">Application Submitted!</h1>
+      <h2 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-slate-teal); font-weight: 400; margin-bottom: 12px;">Your Whole Life Rate Quote is Ready!</h2>
+      <p class="thank-you-subtitle" id="client-sub-greeting" style="margin-bottom: 24px;">
+        Thank you! Your whole life insurance application has been received and confirmed. Adjust the coverage scale below to view your instant locked-in rate:
       </p>
 
-      <!-- CONFIRMED COVERAGE BOX -->
-      <div class="confirmed-coverage-box">
-        <div class="coverage-box-header">
+      <!-- INTERACTIVE QUOTE CARD & APPROVED COVERAGE BOX -->
+      <div class="confirmed-coverage-box" style="background-color: var(--color-white); border: 2px solid var(--color-slate-teal); border-radius: 20px; padding: 24px; margin-bottom: 28px; box-shadow: var(--shadow-sm); text-align: left;">
+        
+        <!-- Interactive Scale Slider -->
+        <div class="final-card-slider-box" style="margin-bottom: 20px;">
+          <div class="slider-display-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <span class="slider-display-label" style="font-weight: 700; color: #1E293B;">Coverage Amount:</span>
+            <span class="slider-display-val" id="final-coverage-val" style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-slate-teal); font-weight: 600;">$25,000</span>
+          </div>
+          <input type="range" id="final-coverage-slider" min="5000" max="50000" step="1000" value="25000" class="ethos-range-slider" style="width: 100%; accent-color: var(--color-slate-teal);" />
+          <div class="slider-ticks-row" style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748B; margin-top: 4px;">
+            <span>$5,000</span>
+            <span>$25,000</span>
+            <span>$50,000</span>
+          </div>
+        </div>
+
+        <div class="coverage-box-header" style="border-top: 1px solid #E2E8F0; padding-top: 14px; margin-top: 16px;">
           <span class="coverage-box-tag">Approved Coverage Request</span>
           <span class="status-pill">✓ Pre-Approved</span>
         </div>
@@ -452,7 +468,7 @@
           </div>
           <div class="detail-item">
             <span class="detail-label">Estimated Monthly Rate</span>
-            <span class="detail-val" id="confirmed-rate-display">$44.00 / mo</span>
+            <span class="detail-val" id="confirmed-rate-display" style="color: var(--color-slate-teal);">$24.50 / mo</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Medical Exam</span>
@@ -476,24 +492,31 @@
           <span class="rating-score-text" style="font-weight: 800; color: #1E293B; font-size: 0.95rem;">4.9</span>
           <span class="rating-count-text" style="color: #64748B; font-size: 0.88rem;">(1,200+ reviews)</span>
         </div>
-        <p class="specialist-role">Licensed Life Insurance Specialist • Alpine Fairview</p>
+        <p class="specialist-role">Life &amp; Final Expense Broker Manager • NPN: 18441151</p>
 
         <div class="specialist-message-quote">
           <p id="specialist-quote-text">
-            "Hello! Your application for <strong>$25,000</strong> in Whole Life protection has been successfully received. As your assigned life insurance specialist, I will reach out to you shortly to finalize your approved coverage and answer any questions."
+            "Hello! Your application for <strong>$25,000</strong> in Whole Life protection has been successfully received. As your assigned broker manager, I will reach out to you shortly to finalize your approved coverage and answer any questions."
           </p>
         </div>
 
-        <!-- DIRECT CONTACT BUTTONS -->
-        <div class="contact-cta-stack">
+        <!-- DIRECT CONTACT BUTTONS STACK -->
+        <div class="contact-cta-stack" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- CALL BUTTON -->
           <a href="tel:7738000116" class="btn-call-direct">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Call Andres Directly: (773) 800-0116
+            Call An Advisor Now: (773) 800-0116
           </a>
+          <!-- EMAIL BUTTON -->
           <a href="mailto:andres@alpinefairview.com" class="btn-email-direct">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             Email Andres Fonseca
           </a>
+          <!-- ADD OUR CONTACT TO YOUR PHONE (.VCF DOWNLOAD BUTTON) -->
+          <button id="add-contact-thankyou-btn" class="btn-call-direct" style="background-color: #2EE59D; color: #0B3C2A; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(46, 229, 157, 0.35);">
+            <span style="font-size: 1.2rem;">🎴</span>
+            <span>Add Our Contact to Your Phone (.vCard)</span>
+          </button>
         </div>
 
       </div>
@@ -506,12 +529,39 @@
   </main>
 
   <script>
-    // DYNAMIC URL PARAMETER POPULATION
+    // VCARD DOWNLOAD HELPER
+    function downloadAgentVCard() {
+      const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Andres Fonseca - Alpine Fairview
+N:Fonseca;Andres;;;
+ORG:Alpine Fairview Insurance Group
+TITLE:Life & Final Expense Broker Manager
+TEL;TYPE=CELL,VOICE:(773) 800-0116
+TEL;TYPE=WORK,VOICE:(773) 800-0116
+EMAIL;TYPE=INTERNET:andres@alpinefairview.com
+URL:https://alpinefairview.com
+NOTE:NPN: 18441151 | Alpine Fairview Life Insurance Specialist
+END:VCARD`;
+
+      const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Alpine_Fairview_Andres_Fonseca.vcf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      const vcfBtn = document.getElementById('add-contact-thankyou-btn');
+      if (vcfBtn) vcfBtn.addEventListener('click', downloadAgentVCard);
+
       const params = new URLSearchParams(window.location.search);
       const coverage = params.get('coverage') || '25000';
       const name = params.get('name') || '';
-      const rate = params.get('rate') || '$44.00 / mo';
+      const rate = params.get('rate') || '$24.50 / mo';
 
       const formattedCoverage = '$' + parseInt(coverage, 10).toLocaleString();
 
@@ -519,16 +569,34 @@
       const rateDisplay = document.getElementById('confirmed-rate-display');
       const quoteText = document.getElementById('specialist-quote-text');
       const greeting = document.getElementById('client-sub-greeting');
+      const slider = document.getElementById('final-coverage-slider');
+      const sliderValDisplay = document.getElementById('final-coverage-val');
 
       if (covDisplay) covDisplay.textContent = formattedCoverage;
       if (rateDisplay) rateDisplay.textContent = rate;
 
+      if (slider && sliderValDisplay) {
+        slider.value = coverage;
+        sliderValDisplay.textContent = formattedCoverage;
+
+        slider.addEventListener('input', () => {
+          const amt = parseInt(slider.value, 10);
+          const formatted = '$' + amt.toLocaleString();
+          sliderValDisplay.textContent = formatted;
+          if (covDisplay) covDisplay.textContent = formatted;
+          
+          // Calculate rate approximation:
+          const estRate = '$' + (Math.max(12, (amt / 1000) * 0.95 - 2.5)).toFixed(2) + ' / mo';
+          if (rateDisplay) rateDisplay.textContent = estRate;
+        });
+      }
+
       if (name && greeting) {
-        greeting.textContent = `Thank you, ${name}! Your whole life insurance application has been received and confirmed.`;
+        greeting.textContent = `Thank you, ${name}! Your whole life insurance application has been received and confirmed. Adjust the coverage scale below to view your instant locked-in rate:`;
       }
 
       if (quoteText) {
-        quoteText.innerHTML = `"Hello${name ? ' ' + name : ''}! Your application for <strong>${formattedCoverage}</strong> in Whole Life protection has been successfully received. As your assigned life insurance specialist, I will reach out to you shortly to finalize your approved coverage and answer any questions."`;
+        quoteText.innerHTML = `"Hello${name ? ' ' + name : ''}! Your application for <strong>${formattedCoverage}</strong> in Whole Life protection has been successfully received. As your assigned broker manager, I will reach out to you shortly to finalize your approved coverage and answer any questions."`;
       }
     });
   </script>
