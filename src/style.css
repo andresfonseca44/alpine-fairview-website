@@ -3666,3 +3666,64 @@ body.policy-page-body .ethos-site-footer .footer-bottom {
   border-top: 1px solid #E2E8F0 !important;
   color: #64748B !important;
 }
+
+/* ==========================================================================
+   DROPDOWN MENU STYLES FOR HEADER NAVIGATION
+   ========================================================================== */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 290px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  z-index: 1000;
+  margin-top: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-dropdown .dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background-color: #FFFFFF;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #1E293B !important;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.35;
+}
+
+.dropdown-item:hover {
+  background-color: #F1F5F9;
+  color: var(--color-slate-teal-dark, #1A3636) !important;
+  padding-left: 24px;
+}
