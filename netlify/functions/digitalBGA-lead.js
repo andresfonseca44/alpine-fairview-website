@@ -232,9 +232,8 @@ exports.handler = async (event, context) => {
       lastName = parts.slice(1).join(' ') || '';
     }
 
-    // Coverage parsing (5k-50k)
-    let faceAmount = parseInt(data.coverageAmount || data.coverage || data.face_amount || 25000, 10);
-    if (isNaN(faceAmount)) faceAmount = 25000;
+    // Coverage parsing (CRM lead & sticky note structured around $10,000 quote)
+    let faceAmount = 10000;
 
     // Format DOB to MM/DD/YYYY
     let formattedDob = '';
@@ -272,10 +271,10 @@ exports.handler = async (event, context) => {
       motivationStr = 'death of loved one';
     }
 
-    let coverageStr = data.coverageAmount ? String(data.coverageAmount) : ('$' + faceAmount.toLocaleString());
-    if (!coverageStr.startsWith('$')) coverageStr = '$' + coverageStr;
+    let coverageStr = '$10,000';
 
-    let rateStr = String(data.estimatedMonthlyRate || data.rate || '').trim();
+    // Prioritize 10k rate for CRM sticky note
+    let rateStr = String(data.rateFor10k || data.estimatedMonthlyRate10k || data.estimatedMonthlyRate || data.rate || '').trim();
     if (!rateStr || rateStr === 'N/A') {
       rateStr = '';
     } else {
