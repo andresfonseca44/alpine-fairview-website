@@ -574,6 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   const emailInput = document.getElementById('email-input');
   const nextStep15Btn = document.getElementById('next-step-15');
+  const noEmailBtn = document.getElementById('no-email-btn');
 
   if (emailInput && nextStep15Btn) {
     emailInput.addEventListener('input', () => {
@@ -588,6 +589,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextStep15Btn.addEventListener('click', () => {
       if (!nextStep15Btn.disabled) showStep(16);
+    });
+  }
+
+  if (noEmailBtn) {
+    noEmailBtn.addEventListener('click', () => {
+      leadData.email = 'No Email Provided';
+      showStep(16);
     });
   }
 
