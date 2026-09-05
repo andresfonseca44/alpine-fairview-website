@@ -611,10 +611,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     isLeadSubmitted = true;
 
-    const birthYear = data.dobYear || 1956;
+    const birthYear = data.dobYear ? parseInt(data.dobYear, 10) : 1956;
     const currentYear = new Date().getFullYear();
     const age = Math.max(18, Math.min(90, currentYear - birthYear));
-    const finalRateText = document.getElementById('final-price-val') ? document.getElementById('final-price-val').textContent : '';
+    const gender = data.gender || 'Male';
+
+    // Calculate exact $10,000 coverage rate for applicant's age & health profile
+    const rateK10 = getRatePerThousand(age, gender);
+    let monthly10k = (10000 / 1000) * rateK10;
+    monthly10k = Math.max(5.00, monthly10k - 2.50);
+    monthly10k += getNicotineSurcharge();
+    const rateFor10kText = `$${monthly10k.toFixed(2)} / mo`;
+
+    const finalRateText = document.getElementById('final-price-val') ? document.getElementById('final-price-val').textContent : rateFor10kText;
 
     const payload = {
       sheetId: '1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE',
@@ -625,7 +634,9 @@ document.addEventListener('DOMContentLoaded', () => {
       phone: data.phone || '',
       coverageAmount: '$' + (data.coverageAmount || 25000).toLocaleString(),
       estimatedMonthlyRate: finalRateText,
-      gender: data.gender || 'Male',
+      estimatedMonthlyRate10k: rateFor10kText,
+      rateFor10k: rateFor10kText,
+      gender: gender,
       age: age,
       dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
       countryOfBirth: data.countryOfBirth || 'United States',
