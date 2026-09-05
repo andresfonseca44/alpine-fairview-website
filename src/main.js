@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         leadData.nicotineLastUse = '';
         if (nicotineFollowup) nicotineFollowup.classList.add('hidden');
         setTimeout(() => {
-          showStep(13);
+          showStep(14);
         }, 220);
       }
     });
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       leadData.nicotineLastUse = nicotineLastUseSelect.value;
       if (nicotineLastUseSelect.value) {
         setTimeout(() => {
-          showStep(13);
+          showStep(14);
         }, 220);
       }
     });

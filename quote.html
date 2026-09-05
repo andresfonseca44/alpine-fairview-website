@@ -472,78 +472,7 @@
           </div>
         </div>
 
-        <!-- STEP 13: MERGED COVERAGE NEEDS & DESIRED COVERAGE SLIDER (Requirement #2 & #3) -->
-        <div class="quiz-step-panel hidden" id="step-13">
-          <h2 class="quiz-heading font-serif">Your personalized coverage needs</h2>
-          <p class="quiz-subheading text-left">
-            Your whole life insurance policy will help cover your financial obligations and give you peace of mind.
-          </p>
 
-          <!-- Interactive Coverage Amount Slider -->
-          <div class="coverage-slider-box" style="margin-bottom: 20px;">
-            <div class="slider-display-row">
-              <span class="slider-display-label">Desired Coverage Amount:</span>
-              <span class="slider-display-val" id="quiz-coverage-val">$25,000</span>
-            </div>
-            <input type="range" id="quiz-coverage-slider" min="5000" max="50000" step="1000" value="25000" class="ethos-range-slider" />
-            <div class="slider-ticks-row">
-              <span>$5,000</span>
-              <span>$25,000</span>
-              <span>$50,000</span>
-            </div>
-          </div>
-
-          <div class="coverage-breakdown-card">
-            
-            <div class="breakdown-section">
-              <span class="breakdown-tag">PROTECTION FOR</span>
-              <h3 class="breakdown-title" id="protection-target-label">Spouse or partner & Family</h3>
-              <p class="breakdown-desc">
-                Your whole life policy is guaranteed for life with locked-in rates that never increase regardless of age or time. When you pass away, your beneficiaries are guaranteed to receive a tax-free lump-sum cash payout that can help cover the following things:
-              </p>
-            </div>
-
-            <div class="breakdown-feature-list">
-              
-              <div class="feature-item">
-                <div class="feature-icon-box">🏠</div>
-                <div class="feature-content">
-                  <h4 class="feature-title">Living expenses</h4>
-                  <p class="feature-text">
-                    Covering everyday costs like groceries and bills helps ensure your family’s daily needs are met.
-                  </p>
-                </div>
-              </div>
-
-              <div class="feature-item">
-                <div class="feature-icon-box">📜</div>
-                <div class="feature-content">
-                  <h4 class="feature-title">Estate planning</h4>
-                  <p class="feature-text">
-                    An estate plan can cost up to $500 plus additional lawyer fees. Create a will and trust for free with your policy.
-                  </p>
-                </div>
-              </div>
-
-              <div class="feature-item">
-                <div class="feature-icon-box">🕊️</div>
-                <div class="feature-content">
-                  <h4 class="feature-title">Burial costs</h4>
-                  <p class="feature-text">
-                    Funeral costs in the U.S. range from $7,000 to $12,000+.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="quiz-footer-actions">
-            <button class="btn btn-mint-solid btn-block btn-lg" id="next-step-13">
-              See final rate
-            </button>
-          </div>
-        </div>
 
         <!-- STEP 14: NAME -->
         <div class="quiz-step-panel hidden" id="step-14">
@@ -660,6 +589,42 @@
               <div class="detail-item">
                 <span class="detail-label" style="font-size: 0.75rem; font-weight: 700; color: #64748B;">Underwriting</span>
                 <span class="detail-val" style="font-size: 0.9rem; font-weight: 800; color: #0F172A;">In Progress</span>
+              </div>
+            </div>
+
+            <!-- PROTECTION FOR SECTION -->
+            <div class="protection-for-box" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 18px; margin-top: 16px; text-align: left;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-slate-teal);">PROTECTION FOR</span>
+                <span style="font-size: 0.78rem; font-weight: 700; color: #059669;">✓ Tax-Free Cash Payout</span>
+              </div>
+              <h4 id="protection-target-label" style="font-size: 1.05rem; font-weight: 800; color: #0F172A; margin-bottom: 6px;">Spouse, Children &amp; Funeral Expenses</h4>
+              <p style="font-size: 0.85rem; color: #475569; line-height: 1.45; margin-bottom: 12px;">
+                Your whole life policy is guaranteed for life with locked-in rates that never increase. When you pass away, your beneficiaries are guaranteed to receive a tax-free lump-sum cash payout to cover:
+              </p>
+
+              <div class="protection-features-grid" style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                  <span style="font-size: 1.1rem; line-height: 1;">🏠</span>
+                  <div>
+                    <strong style="font-size: 0.85rem; color: #0F172A;">Living Expenses &amp; Bills:</strong>
+                    <span style="font-size: 0.82rem; color: #64748B;"> Everyday household costs, rent, or debts for your family.</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                  <span style="font-size: 1.1rem; line-height: 1;">🕊️</span>
+                  <div>
+                    <strong style="font-size: 0.85rem; color: #0F172A;">Burial &amp; Funeral Costs:</strong>
+                    <span style="font-size: 0.82rem; color: #64748B;"> Covering immediate final expenses ($7,000–$12,000+) so family isn't burdened.</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                  <span style="font-size: 1.1rem; line-height: 1;">📜</span>
+                  <div>
+                    <strong style="font-size: 0.85rem; color: #0F172A;">Legacy &amp; Inheritance:</strong>
+                    <span style="font-size: 0.82rem; color: #64748B;"> Providing a tax-free cash inheritance for your children or grandchildren.</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
