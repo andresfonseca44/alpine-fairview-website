@@ -144,6 +144,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
+  // 3b. MOBILE NAVIGATION DRAWER CONTROLLER
+  // ------------------------------------------------------------------------
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+  const closeMobileNav = document.getElementById('close-mobile-nav');
+
+  if (mobileMenuToggle && mobileNavDrawer) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileNavDrawer.classList.remove('hidden');
+    });
+  }
+
+  if (closeMobileNav && mobileNavDrawer) {
+    closeMobileNav.addEventListener('click', () => {
+      mobileNavDrawer.classList.add('hidden');
+    });
+  }
+
+  if (mobileNavDrawer) {
+    mobileNavDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileNavDrawer) {
+        mobileNavDrawer.classList.add('hidden');
+      }
+    });
+
+    mobileNavDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavDrawer.classList.add('hidden');
+      });
+    });
+  }
+
+  // ------------------------------------------------------------------------
   // 4. EXPANDABLE FAQS ACCORDION CONTROLLER (+ / − Toggle)
   // ------------------------------------------------------------------------
   const faqItems = document.querySelectorAll('.faq-accordion-item');

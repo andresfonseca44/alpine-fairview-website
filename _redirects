@@ -8,5 +8,7 @@
 /life-insurance/            /whole-life-policies.html    200
 /whole-life-policies        /whole-life-policies.html    200
 /whole-life-policies/       /whole-life-policies.html    200
+/no-medical-exam            /no-medical-exam.html        200
+/no-medical-exam/           /no-medical-exam.html        200
 /about-us                   /index.html#about-us          302
 /about-us/                  /index.html#about-us          302

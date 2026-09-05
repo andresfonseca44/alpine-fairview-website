@@ -12,6 +12,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         quote: resolve(__dirname, 'quote.html'),
         wholeLife: resolve(__dirname, 'whole-life-policies.html'),
+        noMedicalExam: resolve(__dirname, 'no-medical-exam.html'),
         careers: resolve(__dirname, 'careers.html'),
         carriers: resolve(__dirname, 'carriers.html'),
         aboutUs: resolve(__dirname, 'about-us.html'),
