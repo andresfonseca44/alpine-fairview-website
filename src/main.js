@@ -109,62 +109,64 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 2600);
 
   // ------------------------------------------------------------------------
-  // 2b. CUSTOMER REVIEWS 11-CARD CAROUSEL CONTROLLER
+  // 2b. CUSTOMER REVIEWS CAROUSEL CONTROLLER (ALL SECTIONS)
   // ------------------------------------------------------------------------
-  const reviewsTrack = document.getElementById('reviews-carousel-track');
-  const reviewsPrevBtn = document.getElementById('carousel-prev-btn');
-  const reviewsNextBtn = document.getElementById('carousel-next-btn');
-  const reviewsDotsContainer = document.getElementById('carousel-dots-container');
+  document.querySelectorAll('.reviews-carousel-section').forEach((section) => {
+    const reviewsTrack = section.querySelector('.reviews-carousel-track');
+    const reviewsPrevBtn = section.querySelector('.prev-btn, #carousel-prev-btn');
+    const reviewsNextBtn = section.querySelector('.next-btn, #carousel-next-btn');
+    const reviewsDotsContainer = section.querySelector('.carousel-dots-container');
 
-  if (reviewsTrack) {
-    const reviewCards = reviewsTrack.querySelectorAll('.review-carousel-card');
-    const totalCards = reviewCards.length;
+    if (reviewsTrack) {
+      const reviewCards = reviewsTrack.querySelectorAll('.review-carousel-card');
+      const totalCards = reviewCards.length;
 
-    // Dynamically render navigation dots for each card
-    if (reviewsDotsContainer && totalCards > 0) {
-      reviewsDotsContainer.innerHTML = '';
-      for (let i = 0; i < totalCards; i++) {
-        const dot = document.createElement('div');
-        dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
-        dot.setAttribute('data-index', i);
-        dot.addEventListener('click', () => {
-          const cardWidth = reviewCards[0].offsetWidth + 24;
-          reviewsTrack.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+      // Dynamically render navigation dots for each card
+      if (reviewsDotsContainer && totalCards > 0) {
+        reviewsDotsContainer.innerHTML = '';
+        for (let i = 0; i < totalCards; i++) {
+          const dot = document.createElement('div');
+          dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+          dot.setAttribute('data-index', i);
+          dot.addEventListener('click', () => {
+            const cardWidth = reviewCards[0].offsetWidth + 24;
+            reviewsTrack.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+          });
+          reviewsDotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateActiveReviewDot() {
+        if (!reviewsDotsContainer || reviewCards.length === 0) return;
+        const cardWidth = reviewCards[0].offsetWidth + 24;
+        const activeIdx = Math.round(reviewsTrack.scrollLeft / cardWidth);
+        const dots = reviewsDotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, idx) => {
+          if (idx === activeIdx) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
         });
-        reviewsDotsContainer.appendChild(dot);
+      }
+
+      reviewsTrack.addEventListener('scroll', updateActiveReviewDot);
+
+      if (reviewsPrevBtn) {
+        reviewsPrevBtn.addEventListener('click', () => {
+          const cardWidth = reviewCards[0].offsetWidth + 24;
+          reviewsTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+      }
+
+      if (reviewsNextBtn) {
+        reviewsNextBtn.addEventListener('click', () => {
+          const cardWidth = reviewCards[0].offsetWidth + 24;
+          reviewsTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
       }
     }
-
-    function updateActiveReviewDot() {
-      if (!reviewsDotsContainer || reviewCards.length === 0) return;
-      const cardWidth = reviewCards[0].offsetWidth + 24;
-      const activeIdx = Math.round(reviewsTrack.scrollLeft / cardWidth);
-      const dots = reviewsDotsContainer.querySelectorAll('.carousel-dot');
-      dots.forEach((dot, idx) => {
-        if (idx === activeIdx) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    }
-
-    reviewsTrack.addEventListener('scroll', updateActiveReviewDot);
-
-    if (reviewsPrevBtn) {
-      reviewsPrevBtn.addEventListener('click', () => {
-        const cardWidth = reviewCards[0].offsetWidth + 24;
-        reviewsTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-      });
-    }
-
-    if (reviewsNextBtn) {
-      reviewsNextBtn.addEventListener('click', () => {
-        const cardWidth = reviewCards[0].offsetWidth + 24;
-        reviewsTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
-      });
-    }
-  }
+  });
 
   // ------------------------------------------------------------------------
   // 3. CONTACT US INTERSTITIAL MODAL CONTROLLER

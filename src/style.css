@@ -2795,8 +2795,6 @@ body {
   width: 100%;
   padding: 8px 0;
   margin-bottom: 18px;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 .qc-logo-ticker-track {
@@ -2805,11 +2803,13 @@ body {
   gap: 14px;
   width: max-content;
   will-change: transform;
-  animation: logoTickerMarquee 24s linear infinite;
+  animation: logoTickerMarquee 22s linear infinite;
 }
 
-.qc-logo-ticker-wrapper:hover .qc-logo-ticker-track {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .qc-logo-ticker-wrapper:hover .qc-logo-ticker-track {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes logoTickerMarquee {
@@ -2863,47 +2863,29 @@ body {
   white-space: nowrap;
 }
 
-.qc-trust-pills {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-top: 14px;
-  border-top: 1px dashed rgba(95, 123, 130, 0.2);
-}
-
-.qc-trust-pill {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--color-slate-teal);
-  background: var(--color-mint-light);
-  padding: 6px 14px;
-  border-radius: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
 @media (max-width: 600px) {
   .qc-showcase-title {
     font-size: 1.2rem;
   }
+  .qc-logo-ticker-track {
+    gap: 8px;
+    animation: logoTickerMarquee 18s linear infinite;
+  }
   .qc-logo-card {
-    height: 48px;
-    min-width: 120px;
-    padding: 6px 12px;
+    height: 44px;
+    min-width: 100px;
+    padding: 6px 10px;
   }
   .qc-logo-card img {
-    max-height: 30px;
-    max-width: 95px;
+    max-height: 28px;
+    max-width: 80px;
   }
-  .qc-trust-pills {
-    gap: 6px;
-    padding-top: 10px;
+  .qc-logo-card.many-more-card {
+    min-width: 105px;
+    padding: 6px 10px;
   }
-  .qc-trust-pill {
-    font-size: 0.75rem;
-    padding: 4px 10px;
+  .many-more-text {
+    font-size: 0.76rem;
   }
 }
 
