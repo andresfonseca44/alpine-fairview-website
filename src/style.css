@@ -2191,8 +2191,7 @@ body {
   }
 
   .policy-stats-banner .desktop-stats-text,
-  .policy-stats-banner .score-badge,
-  .policy-stats-banner .stars {
+  .policy-stats-banner .score-badge {
     display: none !important;
   }
 
@@ -2202,6 +2201,13 @@ body {
     font-weight: 700 !important;
     color: var(--color-white) !important;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .policy-stats-banner .mobile-stats-text .stars,
+  .policy-stats-banner .stars,
+  .stars {
+    display: inline-block !important;
+    color: var(--color-mint-green) !important;
   }
 
   .trust-badges {
