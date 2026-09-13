@@ -323,6 +323,38 @@ body {
   text-overflow: ellipsis;
 }
 
+.contact-opt-card.contact-opt-green,
+#contact-get-quote-btn {
+  background-color: var(--color-mint-green) !important;
+  border-color: var(--color-mint-green) !important;
+  color: var(--color-mint-text) !important;
+  box-shadow: 0 4px 14px rgba(46, 229, 157, 0.4);
+}
+
+.contact-opt-card.contact-opt-green .contact-opt-title,
+#contact-get-quote-btn .contact-opt-title {
+  color: var(--color-mint-text) !important;
+}
+
+.contact-opt-card.contact-opt-green .contact-opt-desc,
+#contact-get-quote-btn .contact-opt-desc {
+  color: rgba(11, 60, 42, 0.85) !important;
+}
+
+.contact-opt-card.contact-opt-green .contact-opt-arrow,
+#contact-get-quote-btn .contact-opt-arrow {
+  color: var(--color-mint-text) !important;
+  font-weight: 800;
+}
+
+.contact-opt-card.contact-opt-green:hover,
+#contact-get-quote-btn:hover {
+  background-color: var(--color-mint-green-hover) !important;
+  border-color: var(--color-mint-green-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(46, 229, 157, 0.55);
+}
+
 .contact-opt-arrow {
   font-size: 1.3rem;
   font-weight: 800;
