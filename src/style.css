@@ -2896,6 +2896,14 @@ body {
     max-height: 30px;
     max-width: 95px;
   }
+  .qc-trust-pills {
+    gap: 6px;
+    padding-top: 10px;
+  }
+  .qc-trust-pill {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
 }
 
 /* FUNCTIONING CALL BUTTON STYLING */
