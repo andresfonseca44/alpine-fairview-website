@@ -103,22 +103,12 @@
       transition: var(--transition);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
     .pillar-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
       border-color: var(--color-slate-teal);
-    }
-    .pillar-icon {
-      font-size: 2.2rem;
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      background-color: var(--color-icy-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .pillar-title {
       font-size: 1.25rem;
@@ -140,12 +130,14 @@
       background-color: var(--color-offwhite);
     }
     .careers-section-teal {
-      background-color: var(--color-slate-teal);
-      color: var(--color-white);
+      background-color: #2E4044;
+      color: #FFFFFF;
     }
-    .careers-section-teal .section-title,
+    .careers-section-teal .section-title {
+      color: #FFFFFF !important;
+    }
     .careers-section-teal .section-subtitle {
-      color: var(--color-white);
+      color: #FFFFFF !important;
     }
     .grid-3 {
       display: grid;
@@ -193,25 +185,6 @@
       line-height: 1.55;
     }
 
-    /* FRESH LEADS HIGHLIGHT BANNER */
-    .leads-highlight-card {
-      background: linear-gradient(135deg, #3C5055 0%, #5F7B82 100%);
-      color: var(--color-white);
-      border-radius: 20px;
-      padding: 44px 36px;
-      margin-top: 36px;
-      box-shadow: var(--shadow-md);
-      text-align: center;
-    }
-    .leads-quote-text {
-      font-family: var(--font-serif);
-      font-size: clamp(1.35rem, 3vw, 1.85rem);
-      line-height: 1.35;
-      color: var(--color-white);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
     /* LIST CHECKLIST STYLES */
     .check-list-grid {
       display: grid;
@@ -254,7 +227,7 @@
       padding: 18px 20px;
       font-family: var(--font-serif);
       font-size: 1.15rem;
-      color: var(--color-white);
+      color: #FFFFFF !important;
       font-style: italic;
     }
 
@@ -424,14 +397,14 @@
         </p>
 
         <div class="careers-hero-cta">
-          <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 340px;">
-            Schedule 1-on-1 Interview
+          <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 360px;">
+            Talk to a Broker Manager
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: WHY TOP AGENTS CHOOSE ALPINE FAIRVIEW (Stats Banner Above Removed as requested) -->
+    <!-- SECTION 1: WHY TOP AGENTS CHOOSE ALPINE FAIRVIEW (No Emojis) -->
     <section class="pillars-section">
       <div class="container text-center">
         <h2 class="section-title font-serif">Why Top Agents Choose Alpine Fairview</h2>
@@ -439,48 +412,42 @@
 
         <div class="pillars-grid">
           
-          <div class="pillar-card">
-            <div class="pillar-icon">📈</div>
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Top Producer Commission Contracts</h3>
             <p class="pillar-desc">
               Maximized producer compensation schedules designed to reward your effort. Earn top-tier commissions with zero hidden reductions or delayed payouts.
             </p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon">🎯</div>
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Exclusive In-House Leads</h3>
             <p class="pillar-desc">
               Stop fighting over old, recycled lead lists. Our proprietary digital marketing platform generates real-time, high-intent Whole Life and Final Expense leads daily.
             </p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon">🔑</div>
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">100% Book Ownership</h3>
             <p class="pillar-desc">
               You build your business, you own your business. From Day 1, your client renewals, book of business, and vested residuals remain 100% yours.
             </p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon">🤝</div>
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Mentorship &amp; Coaching</h3>
             <p class="pillar-desc">
               Work directly with active 6-figure and 7-figure producers. Receive hands-on sales training, phone script coaching, and daily masterminds.
             </p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon">🏆</div>
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">A-Rated Carrier Access</h3>
             <p class="pillar-desc">
               Instant contracting with the nation's premier A+ rated life insurance companies, offering instant-approval whole life, final expense, and term products.
             </p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon">⚡</div>
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Instant Approval Technology</h3>
             <p class="pillar-desc">
               Issue policies in minutes with our 100% online underwriting suite—no blood draws, paramedical exams, or long waiting periods for your clients.
@@ -491,63 +458,54 @@
       </div>
     </section>
 
-    <!-- SECTION 2: COMPENSATION & COMPLETE PRODUCER INFRASTRUCTURE -->
+    <!-- SECTION 2: COMPENSATION & COMPLETE PRODUCER INFRASTRUCTURE (No Emojis) -->
     <section class="careers-section careers-section-gray">
       <div class="container text-center">
         <h2 class="section-title font-serif">Compensation Is Just The Beginning</h2>
         <p class="section-subtitle">High contracts mean little without complete operational support. Here is everything included when you contract with Alpine Fairview:</p>
 
-        <div class="grid-3">
+        <div class="grid-3 text-left">
           <div class="feature-box">
-            <div class="pillar-icon">🛡️</div>
             <h3 class="feature-box-title">Fully Vested From Day One</h3>
             <p class="feature-box-desc">Your policy renewals and residual income belong to you from your very first policy written. Zero vesting wait periods.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">🔓</div>
             <h3 class="feature-box-title">Open Release Policy</h3>
             <p class="feature-box-desc">We earn your partnership every day through value and service, not hostage contracts. You retain full freedom.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">📡</div>
             <h3 class="feature-box-title">Internal Lead Options</h3>
             <p class="feature-box-desc">Access exclusive, real-time inbound and digital lead streams generated continuously by our internal marketing team.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">💻</div>
             <h3 class="feature-box-title">Ready-To-Go CRM System</h3>
             <p class="feature-box-desc">Pre-configured sales engine ready on day one so you can focus 100% of your energy on client conversations.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">🏢</div>
             <h3 class="feature-box-title">Agency Management Platform (AMP)</h3>
             <p class="feature-box-desc">Centralized command center linking your client records, carrier submissions, and active policy data.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">📊</div>
             <h3 class="feature-box-title">Real-Time Reporting &amp; Analytics</h3>
             <p class="feature-box-desc">Track contact rates, quote ratios, sales conversions, and acquisition costs live to optimize your daily efficiency.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">📚</div>
             <h3 class="feature-box-title">Training &amp; Sales Resources</h3>
             <p class="feature-box-desc">Comprehensive sales scripts, objection handlers, carrier cheat sheets, and underwriting decision guides.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">👥</div>
             <h3 class="feature-box-title">Active Agent Community</h3>
             <p class="feature-box-desc">Collaborate daily with top producers across the nation to share winning telesales techniques and strategies.</p>
           </div>
 
           <div class="feature-box">
-            <div class="pillar-icon">👔</div>
             <h3 class="feature-box-title">Dedicated Brokerage Manager</h3>
             <p class="feature-box-desc">Your personal 1-on-1 mentor and active top producer guiding your contracting, tech setup, and call reviews.</p>
           </div>
@@ -555,38 +513,30 @@
       </div>
     </section>
 
-    <!-- SECTION 3: FRESH EXCLUSIVE LEADS ADVANTAGE -->
-    <section class="careers-section">
+    <!-- SECTION 3: FRESH EXCLUSIVE LEADS ADVANTAGE (High Contrast White Text on Dark Background) -->
+    <section class="careers-section" style="background: linear-gradient(135deg, #2D3E42 0%, #3C5055 100%); color: #FFFFFF;">
       <div class="container text-center">
-        <h2 class="section-title font-serif">Start Selling Fresh, Exclusive Leads</h2>
-        <p class="section-subtitle">Spend your workday generating revenue rather than chasing cold leads.</p>
-
-        <div class="leads-highlight-card">
-          <p class="leads-quote-text">
-            “Instead of spending your entire day chasing old, recycled lead lists—or even worse, prospecting friends and family—spend your time doing what actually generates revenue: having quality conversations with high-intent prospects.”
-          </p>
-        </div>
+        <h2 class="section-title font-serif" style="color: #FFFFFF !important;">Start Selling Fresh, Exclusive Leads</h2>
+        <p class="section-subtitle" style="color: #FFFFFF !important; max-width: 860px; margin: 16px auto 36px auto; font-size: 1.15rem; line-height: 1.6;">
+          Spend your workday generating revenue rather than chasing cold leads. Instead of spending your entire day chasing old, recycled lead lists—or even worse, prospecting friends and family—spend your time doing what actually generates revenue: having quality conversations with high-intent prospects.
+        </p>
 
         <div class="grid-4" style="margin-top: 36px;">
-          <div class="feature-box text-center">
-            <div style="font-size: 2rem;">⚡</div>
-            <h4 class="feature-box-title">Direct Digital Stream</h4>
-            <p class="feature-box-desc">Fresh leads delivered straight to your CRM in real time as prospects request quotes.</p>
+          <div class="feature-box text-center" style="background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+            <h4 class="feature-box-title" style="color: var(--color-mint-green) !important;">Direct Digital Stream</h4>
+            <p class="feature-box-desc" style="color: #FFFFFF !important;">Fresh leads delivered straight to your CRM in real time as prospects request quotes.</p>
           </div>
-          <div class="feature-box text-center">
-            <div style="font-size: 2rem;">🚫</div>
-            <h4 class="feature-box-title">Zero Recycled Lists</h4>
-            <p class="feature-box-desc">Never fight 10 other agents for the same tired lead. Every prospect is exclusive.</p>
+          <div class="feature-box text-center" style="background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+            <h4 class="feature-box-title" style="color: var(--color-mint-green) !important;">Zero Recycled Lists</h4>
+            <p class="feature-box-desc" style="color: #FFFFFF !important;">Never fight 10 other agents for the same tired lead. Every prospect is exclusive.</p>
           </div>
-          <div class="feature-box text-center">
-            <div style="font-size: 2rem;">📞</div>
-            <h4 class="feature-box-title">High Contact Ratios</h4>
-            <p class="feature-box-desc">Talk to shoppers while their interest is at peak velocity for maximum closing conversion.</p>
+          <div class="feature-box text-center" style="background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+            <h4 class="feature-box-title" style="color: var(--color-mint-green) !important;">High Contact Ratios</h4>
+            <p class="feature-box-desc" style="color: #FFFFFF !important;">Talk to shoppers while their interest is at peak velocity for maximum closing conversion.</p>
           </div>
-          <div class="feature-box text-center">
-            <div style="font-size: 2rem;">💵</div>
-            <h4 class="feature-box-title">Predictable ROI</h4>
-            <p class="feature-box-desc">Turn lead investment into consistent weekly cash flow with proven conversion benchmarks.</p>
+          <div class="feature-box text-center" style="background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+            <h4 class="feature-box-title" style="color: var(--color-mint-green) !important;">Predictable ROI</h4>
+            <p class="feature-box-desc" style="color: #FFFFFF !important;">Turn lead investment into consistent weekly cash flow with proven conversion benchmarks.</p>
           </div>
         </div>
       </div>
@@ -604,56 +554,50 @@
       </div>
     </section>
 
-    <!-- SECTION 5: INSIDE THE CRM FEATURES -->
+    <!-- SECTION 5: INSIDE THE CRM FEATURES (No Emojis) -->
     <section class="careers-section">
       <div class="container text-center">
         <h2 class="section-title font-serif">Inside The CRM</h2>
         <p class="section-subtitle">Purpose-built tools to maximize your daily dialing efficiency and revenue.</p>
 
-        <div class="grid-3">
+        <div class="grid-3 text-left">
           
-          <div class="feature-box text-left">
-            <div class="pillar-icon">⚡</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">One-Click Quoting</h3>
             <p class="feature-box-desc">
               Generate instant, accurate life insurance quotes using client data already stored in your CRM. No more entering identical information across multiple carrier portals.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">📞</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Built-In Smart Dialer</h3>
             <p class="feature-box-desc">
               Leads flow automatically into your CRM dialer queue. Hit start and automatically connect with your highest-value prospects without manual phone tapping.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">💬</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Automated Follow-Up Workflows</h3>
             <p class="feature-box-desc">
               Prospects who don’t answer automatically receive customizable, multi-touch SMS text and email follow-ups to re-engage interest.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🛡️</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Spam Flag Safeguard &amp; Monitoring</h3>
             <p class="feature-box-desc">
               Receive instant alerts if outbound phone numbers are flagged as spam, with seamless number rotation to ensure high call answer rates.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🏦</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Real-Time Bank Account Verification</h3>
             <p class="feature-box-desc">
               Verify routing and account details live with instant $0.01 micro-deposits, detecting prepaid or low-placement accounts to ensure high policy placement.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">📈</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Actionable Performance Analytics</h3>
             <p class="feature-box-desc">
               Track call volume, contact rate, quote rate, conversion, lead cost, and persistency benchmarks to optimize your daily workflow.
@@ -672,34 +616,30 @@
           Most independent agents have client data scattered across carrier logins, spreadsheets, and emails. AMP consolidates your entire book in one place and actively digs for new sales opportunities.
         </p>
 
-        <div class="grid-2">
+        <div class="grid-2 text-left">
           
-          <div class="feature-box text-left">
-            <div class="pillar-icon">💡</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Cross-Sale Opportunities</h3>
             <p class="feature-box-desc">
               Automatically identify existing policyholders who need additional coverage, spousal protection, or final expense policies for family members.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🔄</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Reinstatement Engine</h3>
             <p class="feature-box-desc">
               Instantly highlight former policyholders who are eligible to bring their coverage back in force and resume active commission streams.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🚨</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Proactive Lapse Prevention</h3>
             <p class="feature-box-desc">
               Receive automated alerts for clients requiring attention before an existing policy cancels. Protect your renewals before they disappear.
             </p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🔎</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Book-of-Business Intelligence</h3>
             <p class="feature-box-desc">
               Uncover actionable revenue data hidden inside your existing client base without spending hours digging through spreadsheets manually.
@@ -710,19 +650,19 @@
       </div>
     </section>
 
-    <!-- SECTION 7: AI-ENABLED AGENCY OPERATING SYSTEM -->
+    <!-- SECTION 7: AI-ENABLED AGENCY OPERATING SYSTEM (High Contrast White Text) -->
     <section class="careers-section careers-section-teal">
       <div class="container text-center">
-        <h2 class="section-title font-serif" style="color: var(--color-white);">AI-Powered Business Intelligence</h2>
-        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+        <h2 class="section-title font-serif" style="color: #FFFFFF !important;">AI-Powered Business Intelligence</h2>
+        <p class="section-subtitle" style="color: #FFFFFF !important;">
           Give Advanced AI Direct Access To Your Business Data. We’ve MCP-Enabled All Our Agency Systems.
         </p>
 
-        <div style="max-width: 800px; margin: 0 auto 36px auto; font-size: 1.05rem; line-height: 1.6; color: rgba(255,255,255,0.95);">
+        <div style="max-width: 800px; margin: 0 auto 36px auto; font-size: 1.05rem; line-height: 1.6; color: #FFFFFF;">
           You are no longer limited to pre-built dashboards or static reports. Connect supported AI tools like Claude or ChatGPT to query your agency performance in natural language.
         </div>
 
-        <h3 class="font-serif" style="font-size: 1.6rem; color: var(--color-mint-green); margin-bottom: 24px;">
+        <h3 class="font-serif" style="font-size: 1.6rem; color: var(--color-mint-green) !important; margin-bottom: 24px;">
           Imagine Asking Your Business:
         </h3>
 
@@ -736,13 +676,13 @@
         </div>
 
         <div style="background: rgba(0,0,0,0.25); border-radius: 16px; padding: 32px 28px; margin-top: 40px; text-align: left; border: 1px solid rgba(255,255,255,0.2);">
-          <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--color-mint-green); margin-bottom: 12px;">
+          <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--color-mint-green) !important; margin-bottom: 12px;">
             Don’t Wait For Us To Build The Dashboard.
           </h4>
-          <p style="font-size: 0.98rem; line-height: 1.6; color: rgba(255,255,255,0.92); margin-bottom: 16px;">
+          <p style="font-size: 0.98rem; line-height: 1.6; color: #FFFFFF !important; margin-bottom: 16px;">
             Want a custom report? Build it instantly. Want an automation tailored to how you run your agency? Create it. Most insurance software only tells you <strong>“What happened?”</strong> Yours will answer: <strong>“Why did it happen? What needs my attention? Where is my next opportunity?”</strong>
           </p>
-          <div style="font-weight: 800; font-size: 1.05rem; color: var(--color-white);">
+          <div style="font-weight: 800; font-size: 1.05rem; color: #FFFFFF !important;">
             An Operating System Designed For Growth.
           </div>
         </div>
@@ -757,7 +697,7 @@
           Putting an incredible lead in front of an unprepared agent wastes opportunity. We teach you a proven telesales process designed for high conversion.
         </p>
 
-        <div class="leads-highlight-card" style="background: var(--color-offwhite); color: var(--color-near-black); border: 2px solid var(--color-slate-teal);">
+        <div style="background: var(--color-offwhite); color: var(--color-near-black); border: 2px solid var(--color-slate-teal); border-radius: 20px; padding: 36px 28px; margin-top: 32px; text-align: center;">
           <div style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-slate-teal); margin-bottom: 8px;">
             Average $1,000+ Annual Premium Per Sale
           </div>
@@ -816,15 +756,15 @@
           </div>
 
           <div style="text-align: center; margin-top: 32px;">
-            <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 340px;">
-              Talk to a Brokerage Manager →
+            <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 360px;">
+              Talk to a Broker Manager →
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 10: ACTIVE AGENT COMMUNITY & COLLABORATION -->
+    <!-- SECTION 10: ACTIVE AGENT COMMUNITY & COLLABORATION (No Emojis, Removed Events & Conferences and Daily Huddles) -->
     <section class="careers-section">
       <div class="container text-center">
         <h2 class="section-title font-serif">Community: Don’t Sell From An Island</h2>
@@ -836,53 +776,35 @@
           “When one agent solves a challenge, the entire community gets better.”
         </div>
 
-        <div class="grid-4">
-          <div class="feature-box text-left">
-            <div class="pillar-icon">☀️</div>
-            <h3 class="feature-box-title">Daily Huddles</h3>
-            <p class="feature-box-desc">Live morning conversations covering sales tactics, lead strategies, carrier updates, and industry insights.</p>
-          </div>
-
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🎧</div>
+        <div class="grid-3 text-left">
+          <div class="feature-box">
             <h3 class="feature-box-title">Live Call Reviews</h3>
             <p class="feature-box-desc">Listen to real phone conversations and break down what worked, what didn't, and how to improve closing rates.</p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">💬</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Agent Community Chat</h3>
             <p class="feature-box-desc">Ask questions live and receive instant guidance from fellow active agents facing the exact same scenarios daily.</p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🎥</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Recorded Training</h3>
             <p class="feature-box-desc">Learn at your own pace with 24/7 access to our extensive sales script and product video library.</p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">📋</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Underwriting Cheat Sheets</h3>
             <p class="feature-box-desc">Instant access to product cheat sheets, medical guides, and carrier criteria right when you need them.</p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">📢</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Weekly Updates</h3>
             <p class="feature-box-desc">Stay ahead with regular briefings on carrier guideline shifts, new tech features, and agency initiatives.</p>
           </div>
 
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🏆</div>
+          <div class="feature-box">
             <h3 class="feature-box-title">Agent Leaderboards</h3>
             <p class="feature-box-desc">Know where you stand against top producers nationwide and stay motivated to hit your financial goals.</p>
-          </div>
-
-          <div class="feature-box text-left">
-            <div class="pillar-icon">🎟️</div>
-            <h3 class="feature-box-title">Events &amp; Conferences</h3>
-            <p class="feature-box-desc">Connect with your peers in-person at agency retreats, workshops, and national team events.</p>
           </div>
         </div>
       </div>
@@ -908,12 +830,13 @@
               </div>
             </div>
             <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint">
-              Schedule Interview →
+              Talk to a Broker Manager →
             </a>
           </div>
 
         </div>
       </div>
+    </div>
     </section>
 
     <!-- LOCK IN YOUR FUTURE BANNER -->
@@ -925,7 +848,7 @@
             Get contracted with Alpine Fairview Agency today and take complete control of your financial future.
           </p>
           <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint">
-            Schedule 1-on-1 Meeting
+            Talk to a Broker Manager
           </a>
         </div>
 
