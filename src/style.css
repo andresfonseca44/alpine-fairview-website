@@ -3750,6 +3750,8 @@ body.policy-page-body .ethos-site-footer .footer-bottom {
 .nav-dropdown {
   position: relative;
   display: inline-block;
+  padding-bottom: 16px;
+  margin-bottom: -16px;
 }
 
 .nav-dropdown .dropdown-menu {
@@ -3764,7 +3766,7 @@ body.policy-page-body .ethos-site-footer .footer-bottom {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
   padding: 8px 0;
   z-index: 1000;
-  margin-top: 12px;
+  margin-top: 2px;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -3781,8 +3783,19 @@ body.policy-page-body .ethos-site-footer .footer-bottom {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  right: -20px;
+  height: 20px;
+  background: transparent;
+}
+
 .nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu {
+.nav-dropdown:focus-within .dropdown-menu,
+.nav-dropdown .dropdown-menu:hover {
   display: block;
 }
 
