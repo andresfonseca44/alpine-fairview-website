@@ -155,14 +155,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (reviewsPrevBtn) {
         reviewsPrevBtn.addEventListener('click', () => {
           const cardWidth = reviewCards[0].offsetWidth + 24;
-          reviewsTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+          const maxScrollLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
+          if (reviewsTrack.scrollLeft <= 15) {
+            reviewsTrack.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+          } else {
+            reviewsTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+          }
         });
       }
 
       if (reviewsNextBtn) {
         reviewsNextBtn.addEventListener('click', () => {
           const cardWidth = reviewCards[0].offsetWidth + 24;
-          reviewsTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          const maxScrollLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
+          if (reviewsTrack.scrollLeft >= maxScrollLeft - 15) {
+            reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            reviewsTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          }
         });
       }
     }

@@ -610,7 +610,7 @@ body {
 .value-props-section {
   background-color: var(--color-offwhite);
   color: var(--color-near-black);
-  padding: 20px 0 70px 0;
+  padding: 20px 0 30px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -666,7 +666,7 @@ body {
 .how-it-works-showcase {
   background-color: var(--color-white);
   color: var(--color-near-black);
-  padding: 70px 0;
+  padding: 40px 0 20px 0;
 }
 
 .showcase-grid {
@@ -2265,8 +2265,12 @@ body {
     text-align: center;
   }
 
-  .about-us-section, .guide-section, .value-props-section, .how-it-works-showcase, .comparison-table-section, .expandable-faqs-section {
-    padding: 60px 0;
+  .about-us-section, .guide-section, .comparison-table-section, .expandable-faqs-section {
+    padding: 40px 0;
+  }
+
+  .how-it-works-showcase, .value-props-section {
+    padding: 24px 0 20px 0;
   }
 
   .takeaways-card {
