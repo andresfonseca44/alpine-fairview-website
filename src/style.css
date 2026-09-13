@@ -412,8 +412,9 @@ body {
   font-size: 0.95rem;
 }
 
-.policy-stats-banner .stars {
-  color: var(--color-mint-green);
+.policy-stats-banner .stars,
+.stars {
+  color: var(--color-mint-green) !important;
   font-size: 1.05rem;
   letter-spacing: 2px;
 }
