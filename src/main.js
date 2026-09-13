@@ -808,6 +808,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let finalSliderAnimFrame = null;
+  let finalSliderTimeout = null;
 
   function animateFinalCoverageSlider() {
     if (!finalCoverageSlider) return;
@@ -816,52 +817,69 @@ document.addEventListener('DOMContentLoaded', () => {
       cancelAnimationFrame(finalSliderAnimFrame);
       finalSliderAnimFrame = null;
     }
-
-    const startVal = 5000;
-    const targetVal = 25000;
-    const durationMs = 2500;
-    const startTime = performance.now();
-
-    let interrupted = false;
-    function stopUserInteraction() {
-      interrupted = true;
-      if (finalSliderAnimFrame) {
-        cancelAnimationFrame(finalSliderAnimFrame);
-        finalSliderAnimFrame = null;
-      }
+    if (finalSliderTimeout) {
+      clearTimeout(finalSliderTimeout);
+      finalSliderTimeout = null;
     }
 
-    finalCoverageSlider.addEventListener('mousedown', stopUserInteraction, { once: true });
-    finalCoverageSlider.addEventListener('touchstart', stopUserInteraction, { once: true });
-    finalCoverageSlider.addEventListener('input', stopUserInteraction, { once: true });
+    // Set initial value to $5,000 immediately when panel opens
+    finalCoverageSlider.value = 5000;
+    leadData.coverageAmount = 5000;
+    if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(5000);
+    updateSliderFill(finalCoverageSlider);
+    calculateAndDisplayRate();
 
-    function tick(currentTime) {
-      if (interrupted) return;
+    // 400ms delay allowing mobile screen transition and scroll-to-top to complete
+    finalSliderTimeout = setTimeout(() => {
+      const startVal = 5000;
+      const targetVal = 25000;
+      const durationMs = 2500;
+      const startTime = performance.now();
 
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / durationMs, 1);
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const currentVal = Math.round((startVal + (targetVal - startVal) * easeProgress) / 1000) * 1000;
+      let interrupted = false;
+      function stopUserInteraction() {
+        interrupted = true;
+        if (finalSliderAnimFrame) {
+          cancelAnimationFrame(finalSliderAnimFrame);
+          finalSliderAnimFrame = null;
+        }
+      }
 
-      finalCoverageSlider.value = currentVal;
-      leadData.coverageAmount = currentVal;
+      // Attach user interaction listeners after a 200ms grace period so previous touch taps are ignored
+      setTimeout(() => {
+        finalCoverageSlider.addEventListener('mousedown', stopUserInteraction, { once: true });
+        finalCoverageSlider.addEventListener('touchstart', stopUserInteraction, { once: true });
+        finalCoverageSlider.addEventListener('input', stopUserInteraction, { once: true });
+      }, 200);
 
-      if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(currentVal);
-      updateSliderFill(finalCoverageSlider);
-      calculateAndDisplayRate();
+      function tick(currentTime) {
+        if (interrupted) return;
 
-      if (progress < 1) {
-        finalSliderAnimFrame = requestAnimationFrame(tick);
-      } else {
-        finalCoverageSlider.value = targetVal;
-        leadData.coverageAmount = targetVal;
-        if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(targetVal);
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentVal = Math.round((startVal + (targetVal - startVal) * easeProgress) / 1000) * 1000;
+
+        finalCoverageSlider.value = currentVal;
+        leadData.coverageAmount = currentVal;
+
+        if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(currentVal);
         updateSliderFill(finalCoverageSlider);
         calculateAndDisplayRate();
-      }
-    }
 
-    finalSliderAnimFrame = requestAnimationFrame(tick);
+        if (progress < 1) {
+          finalSliderAnimFrame = requestAnimationFrame(tick);
+        } else {
+          finalCoverageSlider.value = targetVal;
+          leadData.coverageAmount = targetVal;
+          if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(targetVal);
+          updateSliderFill(finalCoverageSlider);
+          calculateAndDisplayRate();
+        }
+      }
+
+      finalSliderAnimFrame = requestAnimationFrame(tick);
+    }, 400);
   }
 
   if (finalCoverageSlider) {

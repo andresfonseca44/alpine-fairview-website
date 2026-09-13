@@ -876,41 +876,45 @@
           }
         }
 
-        slider.addEventListener('mousedown', stopUser, { once: true });
-        slider.addEventListener('touchstart', stopUser, { once: true });
-        slider.addEventListener('input', stopUser, { once: true });
-
         slider.addEventListener('input', () => {
           stopUser();
           const amt = parseInt(slider.value, 10);
           updateCoverageUI(amt);
         });
 
-        // 2.5-second animated demonstration from $5,000 to $25,000
-        const startVal = 5000;
-        const endVal = targetCoverage;
-        const durationMs = 2500;
-        const startTime = performance.now();
+        // 400ms delay to allow initial page render and scroll on mobile
+        setTimeout(() => {
+          // Attach touch/mouse interrupt listeners after 200ms grace period
+          setTimeout(() => {
+            slider.addEventListener('mousedown', stopUser, { once: true });
+            slider.addEventListener('touchstart', stopUser, { once: true });
+          }, 200);
 
-        function animateStep(currentTime) {
-          if (userInterrupted) return;
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / durationMs, 1);
-          const easeProgress = 1 - Math.pow(1 - progress, 3);
-          const currentVal = Math.round((startVal + (endVal - startVal) * easeProgress) / 1000) * 1000;
+          const startVal = 5000;
+          const endVal = targetCoverage;
+          const durationMs = 2500;
+          const startTime = performance.now();
 
-          slider.value = currentVal;
-          updateCoverageUI(currentVal);
+          function animateStep(currentTime) {
+            if (userInterrupted) return;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / durationMs, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.round((startVal + (endVal - startVal) * easeProgress) / 1000) * 1000;
 
-          if (progress < 1) {
-            animFrame = requestAnimationFrame(animateStep);
-          } else {
-            slider.value = endVal;
-            updateCoverageUI(endVal);
+            slider.value = currentVal;
+            updateCoverageUI(currentVal);
+
+            if (progress < 1) {
+              animFrame = requestAnimationFrame(animateStep);
+            } else {
+              slider.value = endVal;
+              updateCoverageUI(endVal);
+            }
           }
-        }
 
-        animFrame = requestAnimationFrame(animateStep);
+          animFrame = requestAnimationFrame(animateStep);
+        }, 400);
       }
 
       if (name && greeting) {
