@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "1/3: Answer online questions (no med exam)",
     "2/3: Enter basic details & select coverage",
     "3/3: Real-time rate calculation engine",
-    "Instant Approval: Congrats, you’re covered!"
+    "Instant Pre-Approval: Finalize your coverage!"
   ];
 
   const stepProgress = ["33%", "66%", "90%", "100%"];
