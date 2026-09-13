@@ -2247,7 +2247,8 @@ body {
   }
 
   .policy-stats-banner .desktop-stats-text,
-  .policy-stats-banner .score-badge {
+  .policy-stats-banner .score-badge,
+  .policy-stats-banner > .stars {
     display: none !important;
   }
 
@@ -2260,7 +2261,6 @@ body {
   }
 
   .policy-stats-banner .mobile-stats-text .stars,
-  .policy-stats-banner .stars,
   .stars {
     display: inline-block !important;
     color: var(--color-mint-green) !important;
