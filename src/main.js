@@ -326,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (stepNum === 17) {
       calculateAndDisplayRate();
       submitLeadToGoogleSheet(leadData);
+      animateFinalCoverageSlider();
     }
 
     // Scroll quiz container to top
@@ -804,6 +805,63 @@ document.addEventListener('DOMContentLoaded', () => {
         showStep(17);
       }
     });
+  }
+
+  let finalSliderAnimFrame = null;
+
+  function animateFinalCoverageSlider() {
+    if (!finalCoverageSlider) return;
+
+    if (finalSliderAnimFrame) {
+      cancelAnimationFrame(finalSliderAnimFrame);
+      finalSliderAnimFrame = null;
+    }
+
+    const startVal = 5000;
+    const targetVal = 25000;
+    const durationMs = 2500;
+    const startTime = performance.now();
+
+    let interrupted = false;
+    function stopUserInteraction() {
+      interrupted = true;
+      if (finalSliderAnimFrame) {
+        cancelAnimationFrame(finalSliderAnimFrame);
+        finalSliderAnimFrame = null;
+      }
+    }
+
+    finalCoverageSlider.addEventListener('mousedown', stopUserInteraction, { once: true });
+    finalCoverageSlider.addEventListener('touchstart', stopUserInteraction, { once: true });
+    finalCoverageSlider.addEventListener('input', stopUserInteraction, { once: true });
+
+    function tick(currentTime) {
+      if (interrupted) return;
+
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentVal = Math.round((startVal + (targetVal - startVal) * easeProgress) / 1000) * 1000;
+
+      finalCoverageSlider.value = currentVal;
+      leadData.coverageAmount = currentVal;
+
+      if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(currentVal);
+      updateSliderFill(finalCoverageSlider);
+      calculateAndDisplayRate();
+
+      if (progress < 1) {
+        finalSliderAnimFrame = requestAnimationFrame(tick);
+      } else {
+        finalCoverageSlider.value = targetVal;
+        leadData.coverageAmount = targetVal;
+        if (finalCoverageVal) finalCoverageVal.textContent = formatCurrency(targetVal);
+        updateSliderFill(finalCoverageSlider);
+        calculateAndDisplayRate();
+      }
+    }
+
+    finalSliderAnimFrame = requestAnimationFrame(tick);
   }
 
   if (finalCoverageSlider) {
