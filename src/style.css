@@ -2804,7 +2804,8 @@ body {
   align-items: center;
   gap: 14px;
   width: max-content;
-  animation: logoTickerMarquee 26s linear infinite;
+  will-change: transform;
+  animation: logoTickerMarquee 24s linear infinite;
 }
 
 .qc-logo-ticker-wrapper:hover .qc-logo-ticker-track {
@@ -2813,10 +2814,10 @@ body {
 
 @keyframes logoTickerMarquee {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
