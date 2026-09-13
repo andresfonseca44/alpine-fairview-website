@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Does Life Insurance Work? Step-by-Step Guide | Alpine Fairview Group</title>
+  <meta name="description" content="Learn how life insurance works, how policy payouts protect your family, policy types, beneficiary claims, and how to choose the right coverage." />
+  
+  <!-- Google Fonts: Alice, Instrument Serif & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    .guide-hero {
+      background-color: var(--color-slate-teal);
+      color: var(--color-white);
+      padding: 70px 0 60px 0;
+      text-align: center;
+      position: relative;
+    }
+    .guide-hero-badge {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.18);
+      color: var(--color-powder-blue);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+    .guide-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .guide-hero-subtext {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 760px;
+      margin: 0 auto 32px auto;
+      line-height: 1.6;
+    }
+    .guide-body-section {
+      background-color: var(--color-offwhite);
+      padding: 70px 0 100px 0;
+    }
+    .guide-container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .guide-card {
+      background-color: var(--color-white);
+      border-radius: 24px;
+      padding: 48px 44px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-card-border);
+      margin-bottom: 40px;
+    }
+    .guide-card h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      color: var(--color-near-black);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .guide-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--color-slate-teal);
+      margin: 28px 0 12px 0;
+    }
+    .guide-card p {
+      font-size: 1.05rem;
+      color: var(--color-near-black);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .guide-card ul {
+      margin: 16px 0 24px 28px;
+    }
+    .guide-card li {
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+      line-height: 1.65;
+    }
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .step-card {
+      background-color: var(--color-offwhite);
+      border: 1.5px solid var(--color-card-border);
+      border-radius: 16px;
+      padding: 24px 20px;
+    }
+    .step-number {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-mint-green);
+      background-color: var(--color-slate-teal);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--color-near-black);
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+    .policy-type-box {
+      background-color: var(--color-icy-blue);
+      border-left: 4px solid var(--color-slate-teal);
+      padding: 24px;
+      border-radius: 12px;
+      margin: 24px 0;
+    }
+    .policy-type-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-slate-teal);
+      margin-bottom: 8px;
+    }
+    .faq-item-card {
+      background-color: var(--color-offwhite);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      border: 1px solid var(--color-card-border);
+    }
+    .faq-item-question {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-near-black);
+      margin-bottom: 10px;
+    }
+    .faq-item-answer {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+    .cta-banner-card {
+      background-color: var(--color-slate-teal);
+      color: var(--color-white);
+      border-radius: 24px;
+      padding: 48px 36px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .cta-banner-card h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 14px;
+      color: var(--color-white);
+    }
+    .cta-banner-card p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 28px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 768px) {
+      .guide-card {
+        padding: 32px 20px;
+      }
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="ethos-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+
+      <nav class="header-nav-menu">
+        <div class="nav-dropdown">
+          <a href="whole-life-policies.html" class="nav-link dropdown-toggle">Life insurance ▾</a>
+          <div class="dropdown-menu">
+            <a href="whole-life-policies.html" class="dropdown-item">Whole Life &amp; Final Expense Insurance</a>
+            <a href="no-medical-exam.html" class="dropdown-item">No Medical Exam Life Insurance</a>
+          </div>
+        </div>
+        <a href="index.html#about-us" class="nav-link">About us ▾</a>
+        <a href="index.html#faqs" class="nav-link">Resources ▾</a>
+      </nav>
+
+      <div class="header-right-actions">
+        <a href="quote.html" class="nav-contact-btn">
+          Check my price
+        </a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+          ☰ Menu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-overlay hidden" id="mobile-nav-drawer">
+    <div class="mobile-nav-card">
+      <div class="mobile-nav-header">
+        <span class="brand-text-logo" style="color: var(--color-near-black);">ALPINE FAIRVIEW</span>
+        <button class="mobile-nav-close-btn" id="close-mobile-nav" aria-label="Close menu">✕</button>
+      </div>
+
+      <div class="mobile-nav-body">
+        <div class="mobile-nav-group-title">LIFE INSURANCE</div>
+        <a href="whole-life-policies.html" class="mobile-nav-link">
+          <span>Whole Life &amp; Final Expense</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="no-medical-exam.html" class="mobile-nav-link">
+          <span>No Medical Exam Insurance</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-nav-group-title">COMPANY &amp; RESOURCES</div>
+        <a href="index.html#about-us" class="mobile-nav-link">
+          <span>About Us</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="carriers.html" class="mobile-nav-link">
+          <span>Our Carriers</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="careers.html" class="mobile-nav-link">
+          <span>Careers for Agents</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="how-life-insurance-works.html" class="mobile-nav-link">
+          <span>How Life Insurance Works</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-nav-actions" style="margin-top: 24px;">
+          <a href="quote.html" class="btn btn-mint" style="width: 100%; text-align: center; font-weight: 700; font-size: 1rem; display: block; padding: 14px 0; border-radius: 50px;">
+            Check Instant Rates →
+          </a>
+          <a href="tel:7738000116" class="mobile-nav-contact-opt" style="margin-top: 12px;">
+            Call 773-800-0116
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- GUIDE HERO -->
+    <section class="guide-hero">
+      <div class="container">
+        <span class="guide-hero-badge">Insurance Guide</span>
+        <h1 class="guide-hero-title font-serif">How Does Life Insurance Work?</h1>
+        <p class="guide-hero-subtext">
+          A straightforward breakdown of policy mechanics, benefit payouts, coverage options, and how protection secures your family’s financial future.
+        </p>
+        <a href="quote.html" class="btn btn-mint" style="display: inline-block; padding: 14px 32px; font-size: 1.05rem; font-weight: 800; border-radius: 50px;">
+          Calculate Your Rate in 60 Seconds →
+        </a>
+      </div>
+    </section>
+
+    <!-- GUIDE CONTENT SECTION -->
+    <section class="guide-body-section">
+      <div class="container guide-container">
+        
+        <!-- CARD 1: Core Fundamentals -->
+        <div class="guide-card">
+          <h2>1. The Fundamentals: What Is Life Insurance?</h2>
+          <p>
+            At its core, life insurance is a legal financial contract between you (the policyholder) and an insurance provider. In exchange for regular premium payments, the insurer promises to pay a designated lump-sum cash benefit—known as the <strong>death benefit</strong>—to your chosen beneficiaries if you pass away while the policy is active.
+          </p>
+          <p>
+            Unlike general savings accounts or investments that can fluctuate with financial markets, life insurance delivers guaranteed financial certainty. The cash payout is generally received <strong>100% federal income tax-free</strong>, giving your loved ones immediate funds when they need them most.
+          </p>
+        </div>
+
+        <!-- CARD 2: How It Works Step-by-Step -->
+        <div class="guide-card">
+          <h2>2. How Life Insurance Works in 4 Simple Steps</h2>
+          <p>
+            Securing protection for your loved ones does not have to be complicated. Here is how the process works from application to payout:
+          </p>
+
+          <div class="step-grid">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div class="step-title">Choose Coverage &amp; Amount</div>
+              <div class="step-desc">
+                Select your benefit amount (such as $5,000 to $50,000 for final expense needs) based on your funeral preferences, outstanding debts, and family goals.
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div class="step-title">Complete Application</div>
+              <div class="step-desc">
+                Answer basic health and demographic questions online or over the phone. Most final expense and whole life policies require no blood work or medical exams.
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div class="step-title">Pay Monthly Premiums</div>
+              <div class="step-desc">
+                Make predictable, locked-in monthly payments. As long as premiums are paid on time, your coverage remains active and guaranteed for life.
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div class="step-title">Tax-Free Payout to Family</div>
+              <div class="step-desc">
+                Upon a covered claim, your designated beneficiaries receive the full cash benefit tax-free to cover funeral costs, bills, or legacy protection.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Key Types of Policies -->
+        <div class="guide-card">
+          <h2>3. Comparing Life Insurance Policy Types</h2>
+          <p>
+            Understanding the difference between coverage types helps you select the policy that best matches your budget and long-term priorities:
+          </p>
+
+          <div class="policy-type-box">
+            <div class="policy-type-title">Whole Life &amp; Final Expense Insurance (Permanent)</div>
+            <p style="font-size: 0.98rem; margin-bottom: 0; color: var(--color-near-black);">
+              <strong>How it works:</strong> Provides permanent, lifelong coverage that never expires as long as premiums are paid. Rates are locked in for life and will never increase due to age or declining health. Many whole life policies also build guaranteed cash value over time.
+            </p>
+          </div>
+
+          <div class="policy-type-box" style="background-color: var(--color-offwhite); border-left-color: var(--color-powder-blue-hover);">
+            <div class="policy-type-title" style="color: var(--color-near-black);">No Medical Exam Life Insurance</div>
+            <p style="font-size: 0.98rem; margin-bottom: 0; color: var(--color-near-black);">
+              <strong>How it works:</strong> Underwritten using simplified health questionnaires rather than physical exams or doctor visits. Decisions are issued quickly, making it ideal for seniors or adults seeking immediate coverage without medical friction.
+            </p>
+          </div>
+
+          <div class="policy-type-box" style="background-color: #F0F7F4; border-left-color: var(--color-mint-green);">
+            <div class="policy-type-title" style="color: var(--color-mint-text);">Term Life Insurance</div>
+            <p style="font-size: 0.98rem; margin-bottom: 0; color: var(--color-near-black);">
+              <strong>How it works:</strong> Offers financial protection for a fixed period (such as 10, 20, or 30 years). If death occurs during the term, the policy pays out; if the term ends, coverage expires unless renewed.
+            </p>
+          </div>
+        </div>
+
+        <!-- CARD 4: What Payouts Are Used For -->
+        <div class="guide-card">
+          <h2>4. What Can Beneficiaries Use the Payout For?</h2>
+          <p>
+            Your beneficiaries receive the cash payout directly and have total freedom to spend the funds however they need. Common uses include:
+          </p>
+          <ul>
+            <li><strong>Funeral &amp; Burial Expenses:</strong> Covering casket costs, cremation fees, memorial services, and headstones (which average $8,000–$12,000+).</li>
+            <li><strong>Mortgage &amp; Rent Protection:</strong> Ensuring your spouse or family can remain in their home without housing disruption.</li>
+            <li><strong>Debt &amp; Medical Bill Payoff:</strong> Eliminating outstanding credit cards, personal loans, or lingering hospital bills.</li>
+            <li><strong>Living Expenses:</strong> Replacing lost income to pay groceries, utilities, vehicle payments, and daily household needs.</li>
+            <li><strong>Leaving a Financial Legacy:</strong> Gifting cash inheritances or college funds to children and grandchildren.</li>
+          </ul>
+        </div>
+
+        <!-- CARD 5: FAQs -->
+        <div class="guide-card">
+          <h2>5. Frequently Asked Questions</h2>
+
+          <div class="faq-item-card">
+            <div class="faq-item-question">If I have a pre-existing medical condition, will my policy still pay out?</div>
+            <p class="faq-item-answer">
+              <strong>Yes.</strong> As long as your health information was accurately disclosed on your application and your policy is active, life insurance policies cover death from medical illnesses and pre-existing conditions.
+            </p>
+          </div>
+
+          <div class="faq-item-card">
+            <div class="faq-item-question">Are life insurance payouts taxed in the US?</div>
+            <p class="faq-item-answer">
+              <strong>No.</strong> Under current IRS guidelines, death benefit payouts paid directly to named beneficiaries are generally received 100% federal income tax-free.
+            </p>
+          </div>
+
+          <div class="faq-item-card">
+            <div class="faq-item-question">How fast do beneficiaries receive the money after filing a claim?</div>
+            <p class="faq-item-answer">
+              Once beneficiaries submit a completed claim form along with a certified death certificate, insurance carriers typically process and issue the cash payment within a few business days to a couple of weeks.
+            </p>
+          </div>
+
+          <div class="faq-item-card">
+            <div class="faq-item-question">Can my monthly premium rates ever increase as I get older?</div>
+            <p class="faq-item-answer">
+              <strong>Not with Whole Life or Final Expense policies.</strong> Your premium rate is locked in from day one and will never increase due to age, health changes, or inflation for the life of the policy.
+            </p>
+          </div>
+        </div>
+
+        <!-- CALL TO ACTION BANNER -->
+        <div class="cta-banner-card">
+          <h2 class="font-serif">Protect Your Family’s Tomorrow, Today</h2>
+          <p>
+            Get customized whole life rate quotes from A+ rated carriers in under 60 seconds with no health exams required.
+          </p>
+          <a href="quote.html" class="btn btn-mint" style="display: inline-block; padding: 14px 36px; font-size: 1.05rem; font-weight: 800; border-radius: 50px;">
+            Check Instant Rates Now →
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="ethos-site-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-col">
+        <h4 class="footer-col-title">Contact Us</h4>
+        <p class="footer-text">Alpine Fairview Group</p>
+        <p class="footer-text"><a href="tel:7738000116" class="footer-link-inline">773-800-0116</a></p>
+        <p class="footer-text" style="margin-top: 6px;">
+          <a href="mailto:andres@alpinefairview.com" class="footer-email-btn">Email Us</a>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Life Insurance</h4>
+        <a href="whole-life-policies.html" class="footer-link">Whole Life &amp; Final Expense</a>
+        <a href="no-medical-exam.html" class="footer-link">No Medical Exam Life Insurance</a>
+        <a href="whole-life-policies.html" class="footer-link">Our policies</a>
+        <a href="how-life-insurance-works.html" class="footer-link">How Life Insurance Works</a>
+        <a href="index.html#faqs" class="footer-link">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Company</h4>
+        <a href="index.html#about-us" class="footer-link">About us</a>
+        <a href="carriers.html" class="footer-link">Our carriers</a>
+        <a href="careers.html" class="footer-link">Careers</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Partnerships</h4>
+        <a href="careers.html" class="footer-link">Alpine Fairview for Agents</a>
+        <a href="carriers.html" class="footer-link">Affiliates</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Legal</h4>
+        <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Alpine Fairview Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
