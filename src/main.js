@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 2600);
 
   // ------------------------------------------------------------------------
-  // 2b. CUSTOMER REVIEWS CAROUSEL CONTROLLER (ALL SECTIONS)
+  // 2b. CUSTOMER REVIEWS CAROUSEL CONTROLLER (ALL SECTIONS WITH AUTO-SCROLL & OVERTAKE)
   // ------------------------------------------------------------------------
   document.querySelectorAll('.reviews-carousel-section').forEach((section) => {
     const reviewsTrack = section.querySelector('.reviews-carousel-track');
@@ -121,6 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const reviewCards = reviewsTrack.querySelectorAll('.review-carousel-card');
       const totalCards = reviewCards.length;
 
+      function getCardWidth() {
+        if (reviewCards.length === 0) return 340;
+        const cardWidth = reviewCards[0].offsetWidth;
+        const gap = window.innerWidth <= 768 ? 14 : 24;
+        return cardWidth + gap;
+      }
+
       // Dynamically render navigation dots for each card
       if (reviewsDotsContainer && totalCards > 0) {
         reviewsDotsContainer.innerHTML = '';
@@ -129,8 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
           dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
           dot.setAttribute('data-index', i);
           dot.addEventListener('click', () => {
-            const cardWidth = reviewCards[0].offsetWidth + 24;
+            const cardWidth = getCardWidth();
             reviewsTrack.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+            resetAutoScrollTimer();
           });
           reviewsDotsContainer.appendChild(dot);
         }
@@ -138,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function updateActiveReviewDot() {
         if (!reviewsDotsContainer || reviewCards.length === 0) return;
-        const cardWidth = reviewCards[0].offsetWidth + 24;
+        const cardWidth = getCardWidth();
         const activeIdx = Math.round(reviewsTrack.scrollLeft / cardWidth);
         const dots = reviewsDotsContainer.querySelectorAll('.carousel-dot');
         dots.forEach((dot, idx) => {
@@ -150,11 +158,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      reviewsTrack.addEventListener('scroll', updateActiveReviewDot);
+      reviewsTrack.addEventListener('scroll', updateActiveReviewDot, { passive: true });
 
+      // Auto-scroll Timer Engine
+      let autoScrollInterval = null;
+      const AUTO_SCROLL_DELAY = 3500; // 3.5 seconds
+
+      function advanceSlide() {
+        if (reviewCards.length === 0) return;
+        const cardWidth = getCardWidth();
+        const maxScrollLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
+        if (reviewsTrack.scrollLeft >= maxScrollLeft - 15) {
+          reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          reviewsTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
+      }
+
+      function startAutoScrollTimer() {
+        stopAutoScrollTimer();
+        autoScrollInterval = setInterval(advanceSlide, AUTO_SCROLL_DELAY);
+      }
+
+      function stopAutoScrollTimer() {
+        if (autoScrollInterval) {
+          clearInterval(autoScrollInterval);
+          autoScrollInterval = null;
+        }
+      }
+
+      function resetAutoScrollTimer() {
+        stopAutoScrollTimer();
+        startAutoScrollTimer();
+      }
+
+      // Start auto scroll on page load
+      startAutoScrollTimer();
+
+      // Pause on hover (Web / Desktop)
+      section.addEventListener('mouseenter', stopAutoScrollTimer);
+      section.addEventListener('mouseleave', startAutoScrollTimer);
+
+      // Pause on touch (Mobile) and resume after interaction
+      let touchResumeTimeout = null;
+      section.addEventListener('touchstart', () => {
+        stopAutoScrollTimer();
+        if (touchResumeTimeout) clearTimeout(touchResumeTimeout);
+      }, { passive: true });
+
+      section.addEventListener('touchend', () => {
+        if (touchResumeTimeout) clearTimeout(touchResumeTimeout);
+        touchResumeTimeout = setTimeout(startAutoScrollTimer, 4000);
+      }, { passive: true });
+
+      // Overtake / Manual Prev (Back) Button
       if (reviewsPrevBtn) {
-        reviewsPrevBtn.addEventListener('click', () => {
-          const cardWidth = reviewCards[0].offsetWidth + 24;
+        reviewsPrevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          resetAutoScrollTimer();
+          const cardWidth = getCardWidth();
           const maxScrollLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
           if (reviewsTrack.scrollLeft <= 15) {
             reviewsTrack.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
@@ -164,15 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
+      // Overtake / Manual Next (Forth) Button
       if (reviewsNextBtn) {
-        reviewsNextBtn.addEventListener('click', () => {
-          const cardWidth = reviewCards[0].offsetWidth + 24;
-          const maxScrollLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
-          if (reviewsTrack.scrollLeft >= maxScrollLeft - 15) {
-            reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
-          } else {
-            reviewsTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
-          }
+        reviewsNextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          resetAutoScrollTimer();
+          advanceSlide();
         });
       }
     }
