@@ -779,14 +779,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const age = Math.max(18, Math.min(90, currentYear - birthYear));
     const gender = data.gender || 'Male';
 
-    // Calculate exact $10,000 coverage rate for applicant's age & health profile
-    const rateK10 = getRatePerThousand(age, gender);
-    let monthly10k = (10000 / 1000) * rateK10;
-    monthly10k = Math.max(5.00, monthly10k - 2.50);
-    monthly10k += getNicotineSurcharge();
+    const smoker = isApplicantSmoker(data);
+    const monthly10k = calculateQuoteRate(age, gender, 10000, smoker);
     const rateFor10kText = `$${monthly10k.toFixed(2)}/m`;
 
-    const finalRateText = document.getElementById('final-price-val') ? document.getElementById('final-price-val').textContent : rateFor10kText;
+    const selectedCoverage = data.coverageAmount || 10000;
+    const monthlySelected = calculateQuoteRate(age, gender, selectedCoverage, smoker);
+    const finalRateText = `$${monthlySelected.toFixed(2)}`;
 
     const payload = {
       sheetId: '1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE',
@@ -971,50 +970,92 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================================
   // WHOLE LIFE RATE CALCULATION ENGINE
-  // User Benchmark Rates (Male at $10k):
-  // 40yr: $20.78, 50yr: $28.18, 60yr: $41.26, 70yr: $69.48, 80yr: $137.23, 85yr: $190.24
+  // Internal Reference Benchmark Rates:
+  // Male Non-Smoker ($10k): 40yr: $20.78 | 50yr: $28.18 | 60yr: $41.26 | 70yr: $69.48 | 80yr: $137.23 | 85yr: $190.24
+  // 70yr Female Smoker: $10k -> $73.18/mo | $20k -> $141.72/mo
+  // 70yr Male Smoker:   $10k -> $98.31/mo | $20k -> $193.99/mo
   // ========================================================================
-  function getRatePerThousand(age, gender) {
-    let rateK = 2.328;
+  function calculateQuoteRate(age, gender, coverage, isSmoker) {
+    const kUnits = (coverage || 10000) / 1000;
 
+    // Anchor exact user reference benchmarks for Age 70 Smoker
+    if (age === 70 && isSmoker) {
+      if (gender === 'Female') {
+        // $10k -> $73.18 | $20k -> $141.72 (Linear slope: $6.854/k + $4.64 policy fee)
+        return Math.max(5.00, (kUnits * 6.854) + 4.64);
+      } else {
+        // $10k -> $98.31 | $20k -> $193.99 (Linear slope: $9.568/k + $2.63 policy fee)
+        return Math.max(5.00, (kUnits * 9.568) + 2.63);
+      }
+    }
+
+    // General rate calculation for non-smokers and all other ages
+    let baseRateK = 2.328;
     if (age <= 40) {
-      rateK = 2.328 * (1 - (40 - Math.max(18, age)) * 0.012);
+      baseRateK = 2.328 * (1 - (40 - Math.max(18, age)) * 0.012);
     } else if (age <= 50) {
       const t = (age - 40) / 10;
-      rateK = 2.328 + t * (3.068 - 2.328);
+      baseRateK = 2.328 + t * (3.068 - 2.328);
     } else if (age <= 60) {
       const t = (age - 50) / 10;
-      rateK = 3.068 + t * (4.376 - 3.068);
+      baseRateK = 3.068 + t * (4.376 - 3.068);
     } else if (age <= 70) {
       const t = (age - 60) / 10;
-      rateK = 4.376 + t * (7.198 - 4.376);
+      baseRateK = 4.376 + t * (7.198 - 4.376);
     } else if (age <= 75) {
       const t = (age - 70) / 5;
-      rateK = 7.198 + t * (9.7424 - 7.198);
+      baseRateK = 7.198 + t * (9.7424 - 7.198);
     } else if (age <= 80) {
       const t = (age - 75) / 5;
-      rateK = 9.7424 + t * (13.973 - 9.7424);
+      baseRateK = 9.7424 + t * (13.973 - 9.7424);
     } else if (age <= 85) {
       const t = (age - 80) / 5;
-      rateK = 13.973 + t * (19.274 - 13.973);
+      baseRateK = 13.973 + t * (19.274 - 13.973);
     } else {
       const extraYears = age - 85;
-      rateK = 19.274 + extraYears * 1.45;
+      baseRateK = 19.274 + extraYears * 1.45;
     }
 
     if (gender === 'Female') {
-      rateK *= 0.84;
+      baseRateK *= 0.84;
     }
 
+    if (isSmoker) {
+      // Smoker rate multiplier relative to age 70 benchmark
+      const smokerFactor = gender === 'Female' ? 1.1336 : 1.3293;
+      baseRateK *= smokerFactor;
+      const policyFee = gender === 'Female' ? 4.64 : 2.63;
+      return Math.max(5.00, (kUnits * baseRateK) + policyFee);
+    } else {
+      let total = (kUnits * baseRateK) - 2.50;
+      return Math.max(5.00, total);
+    }
+  }
+
+  function getRatePerThousand(age, gender) {
+    let rateK = 2.328;
+    if (age <= 40) rateK = 2.328 * (1 - (40 - Math.max(18, age)) * 0.012);
+    else if (age <= 50) rateK = 2.328 + ((age - 40) / 10) * (3.068 - 2.328);
+    else if (age <= 60) rateK = 3.068 + ((age - 50) / 10) * (4.376 - 3.068);
+    else if (age <= 70) rateK = 4.376 + ((age - 60) / 10) * (7.198 - 4.376);
+    else if (age <= 75) rateK = 7.198 + ((age - 70) / 5) * (9.7424 - 7.198);
+    else if (age <= 80) rateK = 9.7424 + ((age - 75) / 5) * (13.973 - 9.7424);
+    else if (age <= 85) rateK = 13.973 + ((age - 80) / 5) * (19.274 - 13.973);
+    else rateK = 19.274 + (age - 85) * 1.45;
+
+    if (gender === 'Female') rateK *= 0.84;
     return rateK;
   }
 
+  function isApplicantSmoker(dataObj) {
+    const data = dataObj || leadData;
+    if (data.nicotineUse === 'Yes') return true;
+    if (data.nicotineUse === 'Not anymore' && data.nicotineLastUse === 'within-1-year') return true;
+    return false;
+  }
+
   function getNicotineSurcharge() {
-    // $25/mo surcharge for current nicotine users, or ex-users who quit within the last year.
-    // Quitting over 1/2/4 years ago carries no surcharge (same as never having used nicotine).
-    if (leadData.nicotineUse === 'Yes') return 25;
-    if (leadData.nicotineUse === 'Not anymore' && leadData.nicotineLastUse === 'within-1-year') return 25;
-    return 0;
+    return isApplicantSmoker(leadData) ? 25 : 0;
   }
 
   function calculateAndDisplayRate() {
@@ -1036,23 +1077,17 @@ document.addEventListener('DOMContentLoaded', () => {
     age = Math.max(18, Math.min(95, age));
 
     const gender = leadData.gender || 'Male';
-    const coverage = leadData.coverageAmount || 25000;
+    const coverage = leadData.coverageAmount || 10000;
+    const smoker = isApplicantSmoker(leadData);
 
-    const rateK = getRatePerThousand(age, gender);
-    let totalMonthly = (coverage / 1000) * rateK;
-
-    // Subtract $2.50 directly for actual base rate estimation
-    totalMonthly = Math.max(5.00, totalMonthly - 2.50);
-
-    // Add nicotine surcharge (if applicable)
-    totalMonthly += getNicotineSurcharge();
-
+    const totalMonthly = calculateQuoteRate(age, gender, coverage, smoker);
     const formattedPrice = `$${totalMonthly.toFixed(2)}`;
 
     if (priceVal) priceVal.textContent = formattedPrice;
     if (coverageAmt) coverageAmt.textContent = `${formatCurrency(coverage)} Whole Life Benefit`;
     if (benchmarkNote) {
-      benchmarkNote.textContent = `Estimated rate based on ${gender}, Age ${age} for ${formatCurrency(coverage)} coverage.`;
+      const smokerText = smoker ? ' (Smoker/Tobacco Rate)' : '';
+      benchmarkNote.textContent = `Estimated rate based on ${gender}, Age ${age}${smokerText} for ${formatCurrency(coverage)} coverage.`;
     }
   }
 

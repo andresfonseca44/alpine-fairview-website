@@ -845,6 +845,32 @@
       const slider = document.getElementById('final-coverage-slider');
       const sliderValDisplay = document.getElementById('final-coverage-val');
 
+      function calculateQuoteRate(age, gender, coverage, isSmoker) {
+        const kUnits = (coverage || 10000) / 1000;
+        if (age === 70 && isSmoker) {
+          if (gender === 'Female') return Math.max(5.00, (kUnits * 6.854) + 4.64);
+          else return Math.max(5.00, (kUnits * 9.568) + 2.63);
+        }
+        let baseRateK = 2.328;
+        if (age <= 40) baseRateK = 2.328 * (1 - (40 - Math.max(18, age)) * 0.012);
+        else if (age <= 50) baseRateK = 2.328 + ((age - 40) / 10) * (3.068 - 2.328);
+        else if (age <= 60) baseRateK = 3.068 + ((age - 50) / 10) * (4.376 - 3.068);
+        else if (age <= 70) baseRateK = 4.376 + ((age - 60) / 10) * (7.198 - 4.376);
+        else if (age <= 75) baseRateK = 7.198 + ((age - 70) / 5) * (9.7424 - 7.198);
+        else if (age <= 80) baseRateK = 9.7424 + ((age - 75) / 5) * (13.973 - 9.7424);
+        else if (age <= 85) baseRateK = 13.973 + ((age - 80) / 5) * (19.274 - 13.973);
+        else baseRateK = 19.274 + (age - 85) * 1.45;
+
+        if (gender === 'Female') baseRateK *= 0.84;
+        if (isSmoker) {
+          const smokerFactor = gender === 'Female' ? 1.1336 : 1.3293;
+          const policyFee = gender === 'Female' ? 4.64 : 2.63;
+          return Math.max(5.00, (kUnits * baseRateK * smokerFactor) + policyFee);
+        } else {
+          return Math.max(5.00, (kUnits * baseRateK) - 2.50);
+        }
+      }
+
       function updateCoverageUI(amt) {
         const formatted = '$' + amt.toLocaleString();
         if (sliderValDisplay) sliderValDisplay.textContent = formatted;
@@ -857,7 +883,7 @@
           slider.style.background = `linear-gradient(to right, #5F7B82 0%, #5F7B82 ${pct}%, #DCEAF5 ${pct}%, #DCEAF5 100%)`;
         }
 
-        const estRate = '$' + (Math.max(12, (amt / 1000) * 0.95 - 2.5)).toFixed(2) + ' / mo';
+        const estRate = '$' + calculateQuoteRate(70, 'Male', amt, false).toFixed(2) + ' / mo';
         if (rateDisplay) rateDisplay.textContent = estRate;
       }
 
