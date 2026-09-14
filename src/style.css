@@ -1796,8 +1796,8 @@ body {
 }
 
 .card-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -1829,10 +1829,7 @@ body {
 .option-card.selected .card-check-circle {
   border-color: var(--color-slate-teal);
   background-color: var(--color-slate-teal);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-  background-size: 14px;
-  background-position: center;
-  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 3px var(--color-white);
 }
 
 /* STACKED LIST ROWS */
@@ -1970,7 +1967,17 @@ body {
 }
 
 .gender-icon {
-  font-size: 2.2rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.gender-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .gender-label {
