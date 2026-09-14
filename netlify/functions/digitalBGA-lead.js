@@ -284,8 +284,8 @@ exports.handler = async (event, context) => {
       cleanRate = cleanRate + '/m';
     }
 
-    // Exact requested format: [AFlead] - Smoker: No. motivation: Losing coverage. $10,000 $33.16/m
-    const stickyNote = `[AFlead] - Smoker: ${smokerStr}. motivation: ${motivationStr}. ${coverageStr}${cleanRate ? ' ' + cleanRate : ''}`;
+    // Format: [AF] - Smoker: No. motivation: Losing coverage. $10,000 $33.16/m
+    const stickyNote = `[AF] - Smoker: ${smokerStr}. motivation: ${motivationStr}. ${coverageStr}${cleanRate ? ' ' + cleanRate : ''}`;
 
     // Send instant email notification to andres@alpinefairview.com
     sendEmailNotification({
