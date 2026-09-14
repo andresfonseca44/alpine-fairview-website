@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     citizenship: '',
     nicotineUse: '',
     nicotineLastUse: '',
-    coverageAmount: 25000,
+    coverageAmount: 10000,
     firstName: '',
     lastName: '',
     email: '',
@@ -901,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 400ms delay allowing mobile screen transition and scroll-to-top to complete
     finalSliderTimeout = setTimeout(() => {
       const startVal = 5000;
-      const targetVal = 25000;
+      const targetVal = 10000;
       const durationMs = 2500;
       const startTime = performance.now();
 
