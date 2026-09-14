@@ -684,23 +684,24 @@ body {
 }
 
 .prop-icon-graphic {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(220, 234, 245, 0.8) 0%, rgba(169, 203, 227, 0.45) 100%);
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background-color: var(--color-icy-blue);
   border: 1.5px solid var(--color-card-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(95, 123, 130, 0.1);
+  box-shadow: 0 4px 14px rgba(95, 123, 130, 0.12);
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .prop-card:hover .prop-icon-graphic {
-  transform: translateY(-2px) scale(1.05);
-  background: linear-gradient(135deg, rgba(46, 229, 157, 0.2) 0%, rgba(220, 234, 245, 0.9) 100%);
+  transform: translateY(-2px);
+  background-color: #E6FBF3;
   border-color: var(--color-mint-green);
-  box-shadow: 0 6px 16px rgba(46, 229, 157, 0.3);
+  box-shadow: 0 8px 20px rgba(46, 229, 157, 0.35);
 }
 
 .prop-card-title {
