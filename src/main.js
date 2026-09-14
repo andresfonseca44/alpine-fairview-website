@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const d = parseInt(dobDay.value, 10);
     const y = parseInt(dobYear.value, 10);
 
-    if (m >= 1 && m <= 12 && d >= 1 && d <= 31 && y >= 1935 && y <= 2008) {
+    if (m >= 1 && m <= 12 && d >= 1 && d <= 31 && y >= 1940 && y <= 2008) {
       nextStep8Btn.disabled = false;
       leadData.dobMonth = m;
       leadData.dobDay = d;
