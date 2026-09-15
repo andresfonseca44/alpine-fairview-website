@@ -518,18 +518,24 @@ exports.handler = async (event, context) => {
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
+    const tobaccoCode = smokerStr === 'Yes' ? 75 : 70;
+    const fullNameStr = `${firstName} ${lastName}`.trim();
+
     const digitalBgaPayload = {
       api_user: api_user,
       api_key: api_key,
       first_name: firstName,
       last_name: lastName,
+      full_name: fullNameStr,
       email: email,
       phone: cleanPhone,
+      mobile: cleanPhone,
       state: stateCode,
       face_amount: faceAmount,
       policy_type: 570, // Final Expense
       sticky_note: stickyNote.slice(0, 220),
       gender: genderCode,
+      tobacco: tobaccoCode,
       date_of_birth: formattedDob,
       dob: formattedDob
     };
