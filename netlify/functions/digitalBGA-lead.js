@@ -4,8 +4,6 @@
 // Target CRM: https://api.crm.digitalseniorbenefits.com/inbound-lead/
 // ==========================================================================
 
-import { getStore } from '@netlify/blobs';
-
 const STATE_CODE_MAP = {
   "ALABAMA": 1, "AL": 1,
   "ALASKA": 2, "AK": 2,
@@ -161,8 +159,9 @@ let inMemoryJamesLeadCount = 0;
 
 async function getJamesLeadCount() {
   try {
-    if (typeof getStore === 'function') {
-      const store = getStore("lead-routing");
+    const blobs = await import('@netlify/blobs');
+    if (blobs && typeof blobs.getStore === 'function') {
+      const store = blobs.getStore("lead-routing");
       const val = await store.get("james_lead_count");
       if (val !== null && val !== undefined && val !== "") {
         const parsed = parseInt(val, 10);
@@ -179,8 +178,9 @@ async function incrementJamesLeadCount(currentCount) {
   const nextCount = currentCount + 1;
   inMemoryJamesLeadCount = nextCount;
   try {
-    if (typeof getStore === 'function') {
-      const store = getStore("lead-routing");
+    const blobs = await import('@netlify/blobs');
+    if (blobs && typeof blobs.getStore === 'function') {
+      const store = blobs.getStore("lead-routing");
       await store.set("james_lead_count", String(nextCount));
     }
   } catch (err) {
@@ -192,8 +192,9 @@ async function incrementJamesLeadCount(currentCount) {
 async function resetJamesLeadCount() {
   inMemoryJamesLeadCount = 0;
   try {
-    if (typeof getStore === 'function') {
-      const store = getStore("lead-routing");
+    const blobs = await import('@netlify/blobs');
+    if (blobs && typeof blobs.getStore === 'function') {
+      const store = blobs.getStore("lead-routing");
       await store.set("james_lead_count", "0");
     }
   } catch (err) {
@@ -312,7 +313,7 @@ ${data.stickyNote || 'N/A'}
   }
 }
 
-export const handler = async (event, context) => {
+exports.handler = async (event, context) => {
   // Support CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
