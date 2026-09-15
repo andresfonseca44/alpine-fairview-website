@@ -65,6 +65,82 @@ const STATE_CODE_MAP = {
   "PUERTO RICO": 52, "PR": 52
 };
 
+const STATE_2LETTER_MAP = {
+  "ALABAMA": "AL", "AL": "AL",
+  "ALASKA": "AK", "AK": "AK",
+  "ARIZONA": "AZ", "AZ": "AZ",
+  "ARKANSAS": "AR", "AR": "AR",
+  "CALIFORNIA": "CA", "CA": "CA",
+  "COLORADO": "CO", "CO": "CO",
+  "CONNECTICUT": "CT", "CT": "CT",
+  "DELAWARE": "DE", "DE": "DE",
+  "DISTRICT OF COLUMBIA": "DC", "WASHINGTON DC": "DC", "DC": "DC",
+  "FLORIDA": "FL", "FL": "FL",
+  "GEORGIA": "GA", "GA": "GA",
+  "HAWAII": "HI", "HI": "HI",
+  "IDAHO": "ID", "ID": "ID",
+  "ILLINOIS": "IL", "IL": "IL",
+  "INDIANA": "IN", "IN": "IN",
+  "IOWA": "IA", "IA": "IA",
+  "KANSAS": "KS", "KS": "KS",
+  "KENTUCKY": "KY", "KY": "KY",
+  "LOUISIANA": "LA", "LA": "LA",
+  "MAINE": "ME", "ME": "ME",
+  "MARYLAND": "MD", "MD": "MD",
+  "MASSACHUSETTS": "MA", "MA": "MA",
+  "MICHIGAN": "MI", "MI": "MI",
+  "MINNESOTA": "MN", "MN": "MN",
+  "MISSISSIPPI": "MS", "MS": "MS",
+  "MISSOURI": "MO", "MO": "MO",
+  "MONTANA": "MT", "MT": "MT",
+  "NEBRASKA": "NE", "NE": "NE",
+  "NEVADA": "NV", "NV": "NV",
+  "NEW HAMPSHIRE": "NH", "NH": "NH",
+  "NEW JERSEY": "NJ", "NJ": "NJ",
+  "NEW MEXICO": "NM", "NM": "NM",
+  "NEW YORK": "NY", "NY": "NY",
+  "NORTH CAROLINA": "NC", "NC": "NC",
+  "NORTH DAKOTA": "ND", "ND": "ND",
+  "OHIO": "OH", "OH": "OH",
+  "OKLAHOMA": "OK", "OK": "OK",
+  "OREGON": "OR", "OR": "OR",
+  "PENNSYLVANIA": "PA", "PA": "PA",
+  "RHODE ISLAND": "RI", "RI": "RI",
+  "SOUTH CAROLINA": "SC", "SC": "SC",
+  "SOUTH DAKOTA": "SD", "SD": "SD",
+  "TENNESSEE": "TN", "TN": "TN",
+  "TEXAS": "TX", "TX": "TX",
+  "UTAH": "UT", "UT": "UT",
+  "VERMONT": "VT", "VT": "VT",
+  "VIRGINIA": "VA", "VA": "VA",
+  "WASHINGTON": "WA", "WA": "WA",
+  "WEST VIRGINIA": "WV", "WV": "WV",
+  "WISCONSIN": "WI", "WI": "WI",
+  "WYOMING": "WY", "WY": "WY",
+  "PUERTO RICO": "PR", "PR": "PR"
+};
+
+function get2LetterStateCode(stateInput) {
+  if (!stateInput) return "";
+  const clean = String(stateInput).trim().toUpperCase();
+  if (STATE_2LETTER_MAP[clean]) return STATE_2LETTER_MAP[clean];
+  
+  const parenMatch = clean.match(/\(([A-Z]{2})\)/);
+  if (parenMatch && STATE_2LETTER_MAP[parenMatch[1]]) {
+    return STATE_2LETTER_MAP[parenMatch[1]];
+  }
+
+  if (clean.length === 2 && STATE_2LETTER_MAP[clean]) {
+    return clean;
+  }
+
+  for (const [name, code] of Object.entries(STATE_2LETTER_MAP)) {
+    if (clean.includes(name)) return code;
+  }
+
+  return clean.slice(0, 2);
+}
+
 function getNumericStateCode(stateInput) {
   if (!stateInput) return null;
   if (typeof stateInput === 'number') return stateInput;
@@ -121,7 +197,7 @@ async function incrementJamesLeadCount(currentCount) {
 
 // EMAIL NOTIFICATION DISPATCHER
 async function sendEmailNotification(data, assignedAgent) {
-  const recipients = assignedAgent.email === JAMES.email
+  const recipients = assignedAgent.name === JAMES.name
     ? [JAMES.email, ANDRES.email]
     : [ANDRES.email];
 
@@ -278,7 +354,7 @@ exports.handler = async (event, context) => {
     // ----------------------------------------------------------------------
     // LEAD ROUTING ENGINE DECISION
     // ----------------------------------------------------------------------
-    const clean2LetterState = String(rawState).trim().toUpperCase().slice(0, 2);
+    const clean2LetterState = get2LetterStateCode(rawState);
     let assignedAgent = ANDRES;
     let routingReason = '';
 
@@ -286,31 +362,33 @@ exports.handler = async (event, context) => {
 
     if (!isJamesEligible) {
       assignedAgent = ANDRES;
-      routingReason = `state not in list -> Andres`;
+      routingReason = `state "${rawState}" (${clean2LetterState}) not in James eligible list -> Andres`;
     } else {
       const jamesLeadCount = await getJamesLeadCount();
       if (jamesLeadCount < 2) {
         assignedAgent = JAMES;
-        routingReason = `eligible state, counter ${jamesLeadCount}/2 -> James`;
+        routingReason = `eligible state "${rawState}" (${clean2LetterState}), counter ${jamesLeadCount}/2 -> James`;
         await incrementJamesLeadCount(jamesLeadCount);
       } else {
         assignedAgent = ANDRES;
-        routingReason = `eligible state, counter ${jamesLeadCount}/2 >= 2 -> Andres`;
+        routingReason = `eligible state "${rawState}" (${clean2LetterState}), counter ${jamesLeadCount}/2 >= 2 -> Andres`;
       }
     }
 
-    console.log(`🔀 [LEAD ROUTING] Raw State: "${rawState}" (${clean2LetterState}) | Reason: ${routingReason} | Assigned Agent: ${assignedAgent.name}`);
+    console.log(`🔀 [LEAD ROUTING] Raw State: "${rawState}" -> Code: "${clean2LetterState}" | Reason: ${routingReason} | Assigned Agent: ${assignedAgent.name}`);
 
     // Select API Credentials based on Assigned Agent
     let api_user = '';
     let api_key = '';
 
-    if (assignedAgent.email === JAMES.email) {
-      api_user = process.env.JAMES_DIGITALBGA_API_USER || 'qtbekh7r';
-      api_key = process.env.JAMES_DIGITALBGA_API_KEY || '1816bd944ae0eb887272cc7245993568';
+    if (assignedAgent.name === JAMES.name) {
+      const envJamesUser = (process.env.JAMES_DIGITALBGA_API_USER || '').trim();
+      const envJamesKey = (process.env.JAMES_DIGITALBGA_API_KEY || '').trim();
+      api_user = envJamesUser || 'qtbekh7r';
+      api_key = envJamesKey || '1816bd944ae0eb887272cc7245993568';
     } else {
-      api_user = process.env.DIGITALBGA_API_USER || process.env.api_user || '';
-      api_key = process.env.DIGITALBGA_API_KEY || process.env.api_key || '';
+      api_user = (process.env.DIGITALBGA_API_USER || process.env.api_user || '').trim();
+      api_key = (process.env.DIGITALBGA_API_KEY || process.env.api_key || '').trim();
     }
 
     // Name parsing
@@ -412,7 +490,7 @@ exports.handler = async (event, context) => {
       dob: formattedDob
     };
 
-    console.log(`🚀 Posting lead to DigitalBGA CRM API (${assignedAgent.name}):`, digitalBgaPayload);
+    console.log(`🚀 Posting lead to DigitalBGA CRM API (${assignedAgent.name} - api_user: ${api_user}):`, digitalBgaPayload);
 
     const formBody = new URLSearchParams();
     Object.entries(digitalBgaPayload).forEach(([key, value]) => {
