@@ -4,12 +4,7 @@
 // Target CRM: https://api.crm.digitalseniorbenefits.com/inbound-lead/
 // ==========================================================================
 
-let getStore;
-try {
-  getStore = require('@netlify/blobs').getStore;
-} catch (e) {
-  console.warn('⚠️ @netlify/blobs module not available in environment, using fallback counter.');
-}
+import { getStore } from '@netlify/blobs';
 
 const STATE_CODE_MAP = {
   "ALABAMA": 1, "AL": 1,
@@ -162,12 +157,11 @@ const JAMES_ELIGIBLE_STATES = [
   "CO", "NV", "WA", "NE", "AR", "NC", "OK", "WI", "MS", "AL"
 ];
 
-// Persistent Counter via Netlify Blobs (store: "lead-routing", key: "james_lead_count")
 let inMemoryJamesLeadCount = 0;
 
 async function getJamesLeadCount() {
   try {
-    if (getStore) {
+    if (typeof getStore === 'function') {
       const store = getStore("lead-routing");
       const val = await store.get("james_lead_count");
       if (val !== null && val !== undefined && val !== "") {
@@ -185,7 +179,7 @@ async function incrementJamesLeadCount(currentCount) {
   const nextCount = currentCount + 1;
   inMemoryJamesLeadCount = nextCount;
   try {
-    if (getStore) {
+    if (typeof getStore === 'function') {
       const store = getStore("lead-routing");
       await store.set("james_lead_count", String(nextCount));
     }
@@ -193,6 +187,18 @@ async function incrementJamesLeadCount(currentCount) {
     console.warn("⚠️ [LEAD ROUTING] Netlify Blobs write error:", err.message);
   }
   return nextCount;
+}
+
+async function resetJamesLeadCount() {
+  inMemoryJamesLeadCount = 0;
+  try {
+    if (typeof getStore === 'function') {
+      const store = getStore("lead-routing");
+      await store.set("james_lead_count", "0");
+    }
+  } catch (err) {
+    console.warn("⚠️ [LEAD ROUTING] Netlify Blobs reset error:", err.message);
+  }
 }
 
 // EMAIL NOTIFICATION DISPATCHER
@@ -306,12 +312,12 @@ ${data.stickyNote || 'N/A'}
   }
 }
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   // Support CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Content-Type': 'application/json'
   };
 
@@ -319,16 +325,56 @@ exports.handler = async (event, context) => {
     return { statusCode: 200, headers, body: '' };
   }
 
+  // Diagnostic GET Endpoint & Counter Reset
+  if (event.httpMethod === 'GET') {
+    const queryParams = event.queryStringParameters || {};
+    if (queryParams.reset === 'true') {
+      await resetJamesLeadCount();
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ status: 'success', message: 'James lead counter reset to 0', james_lead_count: 0 })
+      };
+    }
+
+    const currentCount = await getJamesLeadCount();
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        status: 'online',
+        james_lead_count: currentCount,
+        james_eligible_states: JAMES_ELIGIBLE_STATES,
+        env_check: {
+          has_james_user: !!(process.env.JAMES_DIGITALBGA_API_USER || '').trim(),
+          has_james_key: !!(process.env.JAMES_DIGITALBGA_API_KEY || '').trim(),
+          has_default_user: !!(process.env.DIGITALBGA_API_USER || process.env.api_user || '').trim(),
+          has_default_key: !!(process.env.DIGITALBGA_API_KEY || process.env.api_key || '').trim(),
+        }
+      })
+    };
+  }
+
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ error: 'Method Not Allowed. Use POST.' })
+      body: JSON.stringify({ error: 'Method Not Allowed. Use POST or GET.' })
     };
   }
 
   try {
     const data = JSON.parse(event.body || '{}');
+
+    // Support Reset via POST
+    if (data.resetCounter === true) {
+      await resetJamesLeadCount();
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ status: 'success', message: 'James lead counter reset to 0', james_lead_count: 0 })
+      };
+    }
 
     // Validate Required Fields
     const email = (data.email || '').trim();
@@ -400,7 +446,6 @@ exports.handler = async (event, context) => {
       lastName = parts.slice(1).join(' ') || '';
     }
 
-    // Coverage parsing (CRM lead & sticky note structured around $10,000 quote)
     let faceAmount = 10000;
 
     // Format DOB to MM/DD/YYYY
@@ -440,7 +485,6 @@ exports.handler = async (event, context) => {
 
     let coverageStr = '$10,000';
 
-    // Prioritize 10k rate for CRM sticky note
     let rawRate = String(data.rateFor10k || data.estimatedMonthlyRate10k || data.estimatedMonthlyRate || data.rate || '').trim();
     let cleanRate = '';
     if (rawRate && rawRate !== 'N/A') {
@@ -451,7 +495,6 @@ exports.handler = async (event, context) => {
       cleanRate = cleanRate + '/m';
     }
 
-    // Format: [AF] - Smoker: No. motivation: Losing coverage. $10,000 $33.16/m
     const stickyNote = `[AF] - Smoker: ${smokerStr}. motivation: ${motivationStr}. ${coverageStr}${cleanRate ? ' ' + cleanRate : ''}`;
 
     // Send instant email notification

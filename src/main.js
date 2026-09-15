@@ -817,6 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
       age: age,
       dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
       countryOfBirth: data.countryOfBirth || 'United States',
+      state: data.state || data.stateOfBirth || '',
       stateOfBirth: data.stateOfBirth || '',
       citizenship: data.citizenship || '',
       goals: Array.isArray(data.goals) ? data.goals.join(', ') : '',
