@@ -856,9 +856,62 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(resData => {
         console.log('✅ DigitalBGA CRM Lead Dispatch Result:', resData);
+        if (resData && resData.agent) {
+          updateAssignedAgentUI(resData.agent);
+        }
       })
       .catch(err => console.warn('⚠️ DigitalBGA CRM Netlify Function Notice:', err));
     } catch (e) {}
+  }
+
+  function formatPhoneNumber(phoneStr) {
+    const digits = String(phoneStr || '').replace(/\D/g, '');
+    if (digits.length === 11 && digits.startsWith('1')) {
+      return `(${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    } else if (digits.length === 10) {
+      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+    return phoneStr;
+  }
+
+  function updateAssignedAgentUI(agent) {
+    if (!agent || !agent.name) return;
+    const formattedPhone = formatPhoneNumber(agent.phone);
+    console.log(`👤 [AGENT UI UPDATE] Dynamically updating page for assigned agent: ${agent.name} (${formattedPhone})`);
+
+    // Update Call Advisor buttons
+    document.querySelectorAll('#final-call-advisor-btn, #bottom-call-advisor-btn, .btn-call-advisor, .bottom-contact-stack a[href^="tel:"], .contact-cta-stack a[href^="tel:"]').forEach(btn => {
+      btn.href = `tel:${agent.phone}`;
+      const textSpan = btn.querySelector('span:last-child') || btn;
+      textSpan.textContent = `Call ${agent.name}: ${formattedPhone}`;
+    });
+
+    // Update Email Advisor buttons
+    document.querySelectorAll('#final-email-advisor-btn, #bottom-email-advisor-btn, .btn-email-advisor, .bottom-contact-stack a[href^="mailto:"], .contact-cta-stack a[href^="mailto:"]').forEach(btn => {
+      btn.href = `mailto:${agent.email}`;
+      const textSpan = btn.querySelector('span:last-child') || btn;
+      textSpan.textContent = `Email ${agent.name}: ${agent.email}`;
+    });
+
+    // Update Specialist Card Name, Role & Message Quote
+    const specName = document.getElementById('final-specialist-name');
+    if (specName) specName.textContent = agent.name;
+
+    const specRole = document.getElementById('final-specialist-role');
+    if (specRole) specRole.textContent = `Senior Licensed State Advisor • Alpine Fairview Group`;
+
+    const specQuote = document.getElementById('final-specialist-quote');
+    if (specQuote) {
+      specQuote.innerHTML = `"Hello! Your application for Whole Life protection has been successfully received. I am reviewing top carrier rates in your state and will reach out to you directly at <strong>${formattedPhone}</strong> to help you finalize your approved rate!"`;
+    }
+
+    // Update top right help call button if present
+    const topHelpPhone = document.querySelector('.quiz-help-phone-btn');
+    if (topHelpPhone) {
+      topHelpPhone.href = `tel:${agent.phone}`;
+      const helpNum = topHelpPhone.querySelector('.quiz-help-num');
+      if (helpNum) helpNum.textContent = formattedPhone;
+    }
   }
 
   const phoneInput = document.getElementById('phone-input');

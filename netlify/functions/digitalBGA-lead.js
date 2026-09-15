@@ -1,8 +1,15 @@
 // ==========================================================================
-// NETLIFY FUNCTION: DigitalBGA CRM Inbound Lead Handler
+// NETLIFY FUNCTION: DigitalBGA CRM Inbound Lead Handler with Lead Routing
 // Endpoint: /.netlify/functions/digitalBGA-lead
 // Target CRM: https://api.crm.digitalseniorbenefits.com/inbound-lead/
 // ==========================================================================
+
+let getStore;
+try {
+  getStore = require('@netlify/blobs').getStore;
+} catch (e) {
+  console.warn('⚠️ @netlify/blobs module not available in environment, using fallback counter.');
+}
 
 const STATE_CODE_MAP = {
   "ALABAMA": 1, "AL": 1,
@@ -30,7 +37,7 @@ const STATE_CODE_MAP = {
   "MICHIGAN": 23, "MI": 23,
   "MINNESOTA": 24, "MN": 24,
   "MISSISSIPPI": 26, "MS": 26,
-  "MISSOURI": 25, "MO": 25,  "MONTANA": 27, "MT": 27,
+  "MISSOURI": 25, "MO": 25, "MONTANA": 27, "MT": 27,
   "NEBRASKA": 28, "NE": 28,
   "NEVADA": 29, "NV": 29,
   "NEW HAMPSHIRE": 30, "NH": 30,
@@ -68,18 +75,67 @@ function getNumericStateCode(stateInput) {
   return STATE_CODE_MAP[cleanInput] || null;
 }
 
-// EMAIL NOTIFICATION DISPATCHER FOR ANDRES@ALPINEFAIRVIEW.COM
-async function sendEmailNotification(data) {
-  const recipientEmail = 'andres@alpinefairview.com';
+// --------------------------------------------------------------------------
+// AGENT CONSTANTS & ROUTING RULES
+// --------------------------------------------------------------------------
+const ANDRES = { name: "Andres Fonseca", phone: "7738000116", email: "andres@alpinefairview.com" };
+const JAMES  = { name: "James Lange",    phone: "13372831516", email: "langeray1@yahoo.com" };
+
+const JAMES_ELIGIBLE_STATES = [
+  "LA", "MI", "TX", "TN", "OH", "PA", "SC", "MO", "AZ", "OR", "IN", "VA",
+  "CO", "NV", "WA", "NE", "AR", "NC", "OK", "WI", "MS", "AL"
+];
+
+// Persistent Counter via Netlify Blobs (store: "lead-routing", key: "james_lead_count")
+let inMemoryJamesLeadCount = 0;
+
+async function getJamesLeadCount() {
+  try {
+    if (getStore) {
+      const store = getStore("lead-routing");
+      const val = await store.get("james_lead_count");
+      if (val !== null && val !== undefined && val !== "") {
+        const parsed = parseInt(val, 10);
+        if (!isNaN(parsed)) return parsed;
+      }
+    }
+  } catch (err) {
+    console.warn("⚠️ [LEAD ROUTING] Netlify Blobs read error (falling back to memory counter):", err.message);
+  }
+  return inMemoryJamesLeadCount;
+}
+
+async function incrementJamesLeadCount(currentCount) {
+  const nextCount = currentCount + 1;
+  inMemoryJamesLeadCount = nextCount;
+  try {
+    if (getStore) {
+      const store = getStore("lead-routing");
+      await store.set("james_lead_count", String(nextCount));
+    }
+  } catch (err) {
+    console.warn("⚠️ [LEAD ROUTING] Netlify Blobs write error:", err.message);
+  }
+  return nextCount;
+}
+
+// EMAIL NOTIFICATION DISPATCHER
+async function sendEmailNotification(data, assignedAgent) {
+  const recipients = assignedAgent.email === JAMES.email
+    ? [JAMES.email, ANDRES.email]
+    : [ANDRES.email];
+
   const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'New Applicant';
   const coverage = data.coverageStr || '$25,000';
   const rate = data.rateStr ? ` (${data.rateStr})` : '';
-  const subject = `🚨 NEW LEAD: ${fullName} - ${coverage}${rate}`;
+  const subject = `🚨 NEW LEAD (${assignedAgent.name}): ${fullName} - ${coverage}${rate}`;
 
   const textBody = `
 ==================================================
 🚨 NEW ALPINE FAIRVIEW LEAD NOTIFICATION
 ==================================================
+
+ROUTED TO: ${assignedAgent.name} (${assignedAgent.email})
 
 APPLICANT INFORMATION:
 -----------------------
@@ -119,12 +175,12 @@ ${data.stickyNote || 'N/A'}
         },
         body: JSON.stringify({
           from: 'Alpine Fairview Leads <leads@alpinefairview.com>',
-          to: [recipientEmail],
+          to: recipients,
           subject: subject,
           text: textBody
         })
       });
-      console.log('📧 [EMAIL DISPATCH] Lead notification sent via Resend to:', recipientEmail);
+      console.log('📧 [EMAIL DISPATCH] Lead notification sent via Resend to:', recipients);
       return;
     } catch (e) {
       console.warn('⚠️ Resend email notice:', e);
@@ -141,13 +197,13 @@ ${data.stickyNote || 'N/A'}
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          personalizations: [{ to: [{ email: recipientEmail }] }],
+          personalizations: [{ to: recipients.map(email => ({ email })) }],
           from: { email: 'andres@alpinefairview.com', name: 'Alpine Fairview Lead Alert' },
           subject: subject,
           content: [{ type: 'text/plain', value: textBody }]
         })
       });
-      console.log('📧 [EMAIL DISPATCH] Lead notification sent via SendGrid to:', recipientEmail);
+      console.log('📧 [EMAIL DISPATCH] Lead notification sent via SendGrid to:', recipients);
       return;
     } catch (e) {
       console.warn('⚠️ SendGrid email notice:', e);
@@ -158,17 +214,17 @@ ${data.stickyNote || 'N/A'}
   try {
     const web3FormData = {
       access_key: process.env.WEB3FORMS_ACCESS_KEY || '52d586ef-a3d8-4fbb-9189-alpinefairview',
-      email: recipientEmail,
+      email: recipients.join(','),
       subject: subject,
       message: textBody,
-      from_name: 'Alpine Fairview Lead Gen'
+      from_name: `Alpine Fairview Lead Gen (${assignedAgent.name})`
     };
     await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(web3FormData)
     });
-    console.log('📧 [EMAIL DISPATCH] Lead notification dispatched via Web3Forms to:', recipientEmail);
+    console.log('📧 [EMAIL DISPATCH] Lead notification dispatched via Web3Forms to:', recipients);
   } catch (e) {
     console.warn('⚠️ Web3Forms notification notice:', e);
   }
@@ -198,10 +254,6 @@ exports.handler = async (event, context) => {
   try {
     const data = JSON.parse(event.body || '{}');
 
-    // Extract Environment Variables for DigitalBGA
-    const api_user = process.env.DIGITALBGA_API_USER || process.env.api_user || '';
-    const api_key = process.env.DIGITALBGA_API_KEY || process.env.api_key || '';
-
     // Validate Required Fields
     const email = (data.email || '').trim();
     const rawState = data.state || data.stateOfBirth || '';
@@ -221,6 +273,44 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({ error: 'Validation Error: valid US state is required.' })
       };
+    }
+
+    // ----------------------------------------------------------------------
+    // LEAD ROUTING ENGINE DECISION
+    // ----------------------------------------------------------------------
+    const clean2LetterState = String(rawState).trim().toUpperCase().slice(0, 2);
+    let assignedAgent = ANDRES;
+    let routingReason = '';
+
+    const isJamesEligible = JAMES_ELIGIBLE_STATES.includes(clean2LetterState);
+
+    if (!isJamesEligible) {
+      assignedAgent = ANDRES;
+      routingReason = `state not in list -> Andres`;
+    } else {
+      const jamesLeadCount = await getJamesLeadCount();
+      if (jamesLeadCount < 2) {
+        assignedAgent = JAMES;
+        routingReason = `eligible state, counter ${jamesLeadCount}/2 -> James`;
+        await incrementJamesLeadCount(jamesLeadCount);
+      } else {
+        assignedAgent = ANDRES;
+        routingReason = `eligible state, counter ${jamesLeadCount}/2 >= 2 -> Andres`;
+      }
+    }
+
+    console.log(`🔀 [LEAD ROUTING] Raw State: "${rawState}" (${clean2LetterState}) | Reason: ${routingReason} | Assigned Agent: ${assignedAgent.name}`);
+
+    // Select API Credentials based on Assigned Agent
+    let api_user = '';
+    let api_key = '';
+
+    if (assignedAgent.email === JAMES.email) {
+      api_user = process.env.JAMES_DIGITALBGA_API_USER || 'qtbekh7r';
+      api_key = process.env.JAMES_DIGITALBGA_API_KEY || '1816bd944ae0eb887272cc7245993568';
+    } else {
+      api_user = process.env.DIGITALBGA_API_USER || process.env.api_user || '';
+      api_key = process.env.DIGITALBGA_API_KEY || process.env.api_key || '';
     }
 
     // Name parsing
@@ -255,7 +345,6 @@ exports.handler = async (event, context) => {
     }
 
     const cleanPhone = String(data.phone || '').replace(/\D/g, '').slice(0, 14);
-
     const nicotineVal = String(data.nicotineUse || '').toLowerCase();
     const smokerStr = nicotineVal.includes('yes') ? 'Yes' : 'No';
 
@@ -287,7 +376,7 @@ exports.handler = async (event, context) => {
     // Format: [AF] - Smoker: No. motivation: Losing coverage. $10,000 $33.16/m
     const stickyNote = `[AF] - Smoker: ${smokerStr}. motivation: ${motivationStr}. ${coverageStr}${cleanRate ? ' ' + cleanRate : ''}`;
 
-    // Send instant email notification to andres@alpinefairview.com
+    // Send instant email notification
     sendEmailNotification({
       firstName,
       lastName,
@@ -303,7 +392,7 @@ exports.handler = async (event, context) => {
       smokerStr,
       goals: data.goals,
       stickyNote
-    }).catch(err => console.warn('Email dispatch notice:', err));
+    }, assignedAgent).catch(err => console.warn('Email dispatch notice:', err));
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
@@ -323,7 +412,7 @@ exports.handler = async (event, context) => {
       dob: formattedDob
     };
 
-    console.log('🚀 Posting lead to DigitalBGA CRM API:', digitalBgaPayload);
+    console.log(`🚀 Posting lead to DigitalBGA CRM API (${assignedAgent.name}):`, digitalBgaPayload);
 
     const formBody = new URLSearchParams();
     Object.entries(digitalBgaPayload).forEach(([key, value]) => {
@@ -357,6 +446,11 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({
           status: 'success',
           message: 'Thanks! We received your information.',
+          agent: {
+            name: assignedAgent.name,
+            phone: assignedAgent.phone,
+            email: assignedAgent.email
+          },
           digitalBgaResponse: responseData
         })
       };
@@ -366,7 +460,12 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({
           status: 'error',
-          error: responseText || 'Failed to submit lead to DigitalBGA CRM.'
+          error: responseText || 'Failed to submit lead to DigitalBGA CRM.',
+          agent: {
+            name: assignedAgent.name,
+            phone: assignedAgent.phone,
+            email: assignedAgent.email
+          }
         })
       };
     }
