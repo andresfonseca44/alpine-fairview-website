@@ -334,8 +334,10 @@ exports.handler = async (event, context) => {
       last_name: lastName,
       full_name: fullNameStr,
       email: email,
-      phone: cleanPhone,
       mobile: cleanPhone,
+      cell_phone: cleanPhone,
+      cellphone: cleanPhone,
+      cell: cleanPhone,
       state: stateCode,
       face_amount: faceAmount,
       policy_type: 570, // Final Expense
