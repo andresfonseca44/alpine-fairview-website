@@ -17,6 +17,21 @@
   status = 200
 
 [[redirects]]
+  from = "/jamesfrank"
+  to = "/jamesfrank.html"
+  status = 200
+
+[[redirects]]
+  from = "/james-frank"
+  to = "/james-frank.html"
+  status = 200
+
+[[redirects]]
+  from = "/JamesFrank"
+  to = "/JamesFrank.html"
+  status = 200
+
+[[redirects]]
   from = "/life/term-life-policies"
   to = "/whole-life-policies.html"
   status = 200
