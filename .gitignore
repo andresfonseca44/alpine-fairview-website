@@ -3,3 +3,6 @@ dist/
 .DS_Store
 *.zip
 swift_cache/
+
+# Local Netlify folder
+.netlify
