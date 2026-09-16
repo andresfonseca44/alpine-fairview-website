@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 1B. HERO BACKGROUND IMAGE ALTERNATING SLIDESHOW (Every 7 seconds)
+  // 1B. HERO BACKGROUND IMAGE ALTERNATING SLIDESHOW (Every 12 seconds)
   // ------------------------------------------------------------------------
   const heroSlides = document.querySelectorAll('.hero-bg-slide');
   let currentHeroSlide = 0;
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heroSlides[currentHeroSlide].classList.remove('active');
       currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
       heroSlides[currentHeroSlide].classList.add('active');
-    }, 7000);
+    }, 12000);
   }
 
   // ------------------------------------------------------------------------
