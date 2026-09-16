@@ -17,18 +17,33 @@
   status = 200
 
 [[redirects]]
+  from = "/jameslange"
+  to = "/jameslange.html"
+  status = 200
+
+[[redirects]]
+  from = "/james-lange"
+  to = "/james-lange.html"
+  status = 200
+
+[[redirects]]
+  from = "/JamesLange"
+  to = "/jameslange.html"
+  status = 200
+
+[[redirects]]
   from = "/jamesfrank"
-  to = "/jamesfrank.html"
+  to = "/jameslange.html"
   status = 200
 
 [[redirects]]
   from = "/james-frank"
-  to = "/james-frank.html"
+  to = "/jameslange.html"
   status = 200
 
 [[redirects]]
   from = "/JamesFrank"
-  to = "/jamesfrank.html"
+  to = "/jameslange.html"
   status = 200
 
 [[redirects]]

@@ -21,8 +21,8 @@ export default defineConfig({
         howLifeInsuranceWorks: resolve(__dirname, 'how-life-insurance-works.html'),
         thankYou: resolve(__dirname, 'thank-you.html'),
         card: resolve(__dirname, 'card.html'),
-        jamesFrank: resolve(__dirname, 'james-frank.html'),
-        jamesfrank: resolve(__dirname, 'jamesfrank.html')
+        jamesLange: resolve(__dirname, 'james-lange.html'),
+        jameslange: resolve(__dirname, 'jameslange.html')
       }
     }
   }
