@@ -1053,13 +1053,14 @@ body {
   background-color: var(--color-white);
   padding: 80px 0;
   border-top: 1px solid rgba(95, 123, 130, 0.12);
+  border-bottom: 1px solid rgba(95, 123, 130, 0.12);
 }
 
 .coverage-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  max-width: 1000px;
+  max-width: 1040px;
   margin: 44px auto 40px auto;
   align-items: stretch;
 }
@@ -1069,7 +1070,7 @@ body {
   background-color: var(--color-white);
   border: 1px solid rgba(95, 123, 130, 0.2);
   border-radius: var(--radius-card);
-  padding: 38px 24px;
+  padding: 42px 28px 38px 28px;
   text-align: center;
   transition: var(--transition);
   display: flex;
@@ -1080,18 +1081,20 @@ body {
 
 .coverage-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(95, 123, 130, 0.12);
+  box-shadow: 0 10px 30px rgba(95, 123, 130, 0.14);
   border-color: var(--color-slate-teal);
 }
 
 .coverage-card-featured {
-  border: 2px solid var(--color-slate-teal);
-  background-color: #F8FAF9;
-  box-shadow: 0 8px 28px rgba(95, 123, 130, 0.14);
+  border: 2px solid var(--color-mint-green);
+  background-color: #F0FDF6;
+  box-shadow: 0 10px 30px rgba(46, 229, 157, 0.18);
 }
 
 .coverage-card-featured:hover {
-  box-shadow: 0 14px 36px rgba(95, 123, 130, 0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(46, 229, 157, 0.3);
+  border-color: var(--color-mint-green-hover);
 }
 
 .coverage-badge {
@@ -1101,17 +1104,18 @@ body {
   transform: translateX(-50%);
   background-color: var(--color-mint-green);
   color: var(--color-mint-text);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 5px 16px;
+  text-transform: uppercase;
+  padding: 5px 18px;
   border-radius: 50px;
   box-shadow: 0 2px 8px rgba(46, 229, 157, 0.35);
   white-space: nowrap;
 }
 
 .coverage-amount {
-  font-size: 2.5rem;
+  font-size: clamp(2.2rem, 3.5vw, 2.7rem);
   font-weight: 800;
   color: var(--color-slate-teal-dark);
   line-height: 1.1;
@@ -1127,9 +1131,9 @@ body {
 }
 
 .coverage-tier-desc {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -1143,9 +1147,9 @@ body {
 }
 
 .coverage-cta-btn {
-  padding: 16px 36px;
+  padding: 16px 38px;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: 50px;
   display: inline-flex;
   align-items: center;
@@ -1154,16 +1158,18 @@ body {
 }
 
 .coverage-privacy-note {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   margin: 0;
+  font-weight: 500;
 }
 
 .coverage-privacy-note .lock-icon {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 900px) {

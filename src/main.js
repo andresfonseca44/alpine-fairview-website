@@ -235,6 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
+  });
+
   // ------------------------------------------------------------------------
   // 2c. EXPANDABLE CARDS CONTROLLER (CAREERS PAGE SECTIONS)
   // ------------------------------------------------------------------------
