@@ -22,8 +22,7 @@ export default defineConfig({
         thankYou: resolve(__dirname, 'thank-you.html'),
         card: resolve(__dirname, 'card.html'),
         jamesFrank: resolve(__dirname, 'james-frank.html'),
-        jamesfrank: resolve(__dirname, 'jamesfrank.html'),
-        JamesFrank: resolve(__dirname, 'JamesFrank.html')
+        jamesfrank: resolve(__dirname, 'jamesfrank.html')
       }
     }
   }
