@@ -17,26 +17,6 @@
   status = 200
 
 [[redirects]]
-  from = "/jameslange"
-  to = "/james-lange.html"
-  status = 200
-
-[[redirects]]
-  from = "/JamesLange"
-  to = "/james-lange.html"
-  status = 200
-
-[[redirects]]
-  from = "/jameslange/"
-  to = "/james-lange.html"
-  status = 200
-
-[[redirects]]
-  from = "/JamesLange/"
-  to = "/james-lange.html"
-  status = 200
-
-[[redirects]]
   from = "/life/term-life-policies"
   to = "/whole-life-policies.html"
   status = 200
