@@ -238,6 +238,124 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
+  // 2b-2. FUNERAL COST CALCULATOR CONTROLLER (ALL 50 STATES)
+  // ------------------------------------------------------------------------
+  const funeralStateSelect = document.getElementById('funeral-state-select');
+  const btnTypeBurial = document.getElementById('btn-type-burial');
+  const btnTypeCremation = document.getElementById('btn-type-cremation');
+  const funeralIntroText = document.getElementById('funeral-intro-text');
+  const funeralPriceRange = document.getElementById('funeral-price-range');
+  const funeralBreakdownTable = document.getElementById('funeral-breakdown-table');
+
+  if (funeralStateSelect && funeralBreakdownTable) {
+    let currentType = 'burial';
+
+    // State cost index multipliers relative to baseline for all 50 US States
+    const STATE_COST_MULTIPLIERS = {
+      "Alabama": 1.00, "Alaska": 1.28, "Arizona": 0.98, "Arkansas": 0.86, "California": 1.24,
+      "Colorado": 1.08, "Connecticut": 1.22, "Delaware": 1.06, "Florida": 0.96, "Georgia": 0.92,
+      "Hawaii": 1.34, "Idaho": 0.94, "Illinois": 1.04, "Indiana": 0.90, "Iowa": 0.89,
+      "Kansas": 0.88, "Kentucky": 0.87, "Louisiana": 0.91, "Maine": 1.10, "Maryland": 1.12,
+      "Massachusetts": 1.26, "Michigan": 0.95, "Minnesota": 1.02, "Mississippi": 0.84, "Missouri": 0.89,
+      "Montana": 0.93, "Nebraska": 0.90, "Nevada": 1.06, "New Hampshire": 1.14, "New Jersey": 1.20,
+      "New Mexico": 0.92, "New York": 1.25, "North Carolina": 0.93, "North Dakota": 0.91, "Ohio": 0.92,
+      "Oklahoma": 0.86, "Oregon": 1.12, "Pennsylvania": 1.05, "Rhode Island": 1.18, "South Carolina": 0.91,
+      "South Dakota": 0.88, "Tennessee": 0.89, "Texas": 0.95, "Utah": 0.93, "Vermont": 1.12,
+      "Virginia": 1.02, "Washington": 1.16, "West Virginia": 0.85, "Wisconsin": 0.96, "Wyoming": 0.92
+    };
+
+    const ALL_STATES = Object.keys(STATE_COST_MULTIPLIERS).sort();
+
+    funeralStateSelect.innerHTML = '';
+    ALL_STATES.forEach(st => {
+      const opt = document.createElement('option');
+      opt.value = st;
+      opt.textContent = st;
+      if (st === 'Alabama') opt.selected = true;
+      funeralStateSelect.appendChild(opt);
+    });
+
+    function formatCurrency(val) {
+      return '$' + Math.round(val).toLocaleString('en-US');
+    }
+
+    function updateFuneralCalc() {
+      const state = funeralStateSelect.value || 'Alabama';
+      const mult = STATE_COST_MULTIPLIERS[state] || 1.0;
+
+      if (currentType === 'burial') {
+        if (btnTypeBurial) btnTypeBurial.classList.add('active');
+        if (btnTypeCremation) btnTypeCremation.classList.remove('active');
+
+        const casket = 2150 * mult;
+        const services = 2050 * mult;
+        const vault = 1400 * mult;
+        const viewing = 2050 * mult;
+
+        const lowRange = Math.round((casket + services + vault + viewing) * 0.88 / 100) * 100;
+        const highRange = Math.round((casket + services + vault + viewing) * 1.18 / 100) * 100;
+
+        if (funeralIntroText) {
+          funeralIntroText.textContent = `In ${state}, a traditional funeral with burial typically costs`;
+        }
+        if (funeralPriceRange) {
+          funeralPriceRange.textContent = `${formatCurrency(lowRange)} – ${formatCurrency(highRange)}`;
+        }
+
+        funeralBreakdownTable.innerHTML = `
+          <div class="funeral-row"><span class="funeral-row-label">Casket</span><span class="funeral-row-val">${formatCurrency(casket)}</span></div>
+          <div class="funeral-row"><span class="funeral-row-label">Funeral home services</span><span class="funeral-row-val">${formatCurrency(services)}</span></div>
+          <div class="funeral-row"><span class="funeral-row-label">Burial vault</span><span class="funeral-row-val">${formatCurrency(vault)}</span></div>
+          <div class="funeral-row"><span class="funeral-row-label">Viewing, transport &amp; other</span><span class="funeral-row-val">${formatCurrency(viewing)}</span></div>
+        `;
+      } else {
+        if (btnTypeCremation) btnTypeCremation.classList.add('active');
+        if (btnTypeBurial) btnTypeBurial.classList.remove('active');
+
+        const fee = 1800 * mult;
+        const services = 2000 * mult;
+        const urn = 400 * mult;
+        const memorial = 1000 * mult;
+
+        const lowRange = Math.round((fee + services + urn + memorial) * 0.83 / 100) * 100;
+        const highRange = Math.round((fee + services + urn + memorial) * 1.17 / 100) * 100;
+
+        if (funeralIntroText) {
+          funeralIntroText.textContent = `In ${state}, cremation with a service typically costs`;
+        }
+        if (funeralPriceRange) {
+          funeralPriceRange.textContent = `${formatCurrency(lowRange)} – ${formatCurrency(highRange)}`;
+        }
+
+        funeralBreakdownTable.innerHTML = `
+          <div class="funeral-row"><span class="funeral-row-label">Cremation fee</span><span class="funeral-row-val">${formatCurrency(fee)}</span></div>
+          <div class="funeral-row"><span class="funeral-row-label">Funeral home services</span><span class="funeral-row-val">${formatCurrency(services)}</span></div>
+          <div class="funeral-row"><span class="funeral-row-label">Urn</span><span class="funeral-row-val">${formatCurrency(urn)}</span></div>
+          <div class="funeral-row"><span class="funeral-row-label">Memorial &amp; other</span><span class="funeral-row-val">${formatCurrency(memorial)}</span></div>
+        `;
+      }
+    }
+
+    funeralStateSelect.addEventListener('change', updateFuneralCalc);
+
+    if (btnTypeBurial) {
+      btnTypeBurial.addEventListener('click', () => {
+        currentType = 'burial';
+        updateFuneralCalc();
+      });
+    }
+
+    if (btnTypeCremation) {
+      btnTypeCremation.addEventListener('click', () => {
+        currentType = 'cremation';
+        updateFuneralCalc();
+      });
+    }
+
+    updateFuneralCalc();
+  }
+
+  // ------------------------------------------------------------------------
   // 2c. EXPANDABLE CARDS CONTROLLER (CAREERS PAGE SECTIONS)
   // ------------------------------------------------------------------------
   document.querySelectorAll('.expand-toggle-btn').forEach((btn) => {

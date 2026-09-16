@@ -793,6 +793,72 @@
         </div>
       </div>
 
+      <!-- FUNERAL COST CALCULATOR SECTION (#funeral-costs) -->
+      <section class="funeral-costs-section" id="funeral-costs">
+        <div class="container text-center">
+          
+          <h2 class="section-title font-serif light-title">What does a funeral cost where you live?</h2>
+          <p class="section-subtitle light-subtitle">Most families are surprised. See the average cost in your state.</p>
+
+          <div class="funeral-calc-card">
+            
+            <!-- CONTROLS ROW: STATE DROPDOWN & BURIAL/CREMATION TOGGLE -->
+            <div class="funeral-controls-grid">
+              
+              <div class="funeral-state-select-wrapper">
+                <select id="funeral-state-select" class="funeral-state-select" aria-label="Select your state">
+                  <!-- 50 States Options populated dynamically by JS -->
+                </select>
+              </div>
+
+              <div class="funeral-type-toggle-group">
+                <button type="button" class="funeral-toggle-btn active" id="btn-type-burial" data-type="burial">
+                  Traditional burial
+                </button>
+                <button type="button" class="funeral-toggle-btn" id="btn-type-cremation" data-type="cremation">
+                  Cremation
+                </button>
+              </div>
+
+            </div>
+
+            <!-- DYNAMIC DISPLAY CONTAINER -->
+            <div class="funeral-display-box">
+              <p class="funeral-calc-intro" id="funeral-intro-text">
+                In Alabama, a traditional funeral with burial typically costs
+              </p>
+              
+              <div class="funeral-price-range" id="funeral-price-range">
+                $6,300 &ndash; $9,000
+              </div>
+
+              <div class="funeral-breakdown-table" id="funeral-breakdown-table">
+                <!-- 4 Rows populated dynamically -->
+              </div>
+            </div>
+
+            <hr class="funeral-divider" />
+
+            <!-- CALLOUT & CTA BUTTON -->
+            <div class="funeral-cta-box">
+              <h3 class="funeral-cta-heading">Would your family have this covered tomorrow?</h3>
+              <a href="quote.html" class="btn btn-mint check-price-btn funeral-cta-btn">
+                See what coverage costs for your age &rarr;
+              </a>
+              <p class="coverage-privacy-note">
+                <span class="lock-icon">🔒</span> Your information is never sold.
+              </p>
+            </div>
+
+          </div>
+
+          <p class="funeral-disclaimer-text">
+            Estimates based on industry averages, including National Funeral Directors Association data. Actual costs vary by provider.
+          </p>
+
+        </div>
+      </section>
+
       <!-- ABOUT US SECTION (Matching Reference Screenshot Layout & Brand Palette) -->
       <section class="about-us-section" id="about-us">
         <div class="container about-us-container">
