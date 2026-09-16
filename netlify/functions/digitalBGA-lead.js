@@ -1,7 +1,8 @@
 // ==========================================================================
-// NETLIFY FUNCTION: DigitalBGA CRM Inbound Lead Handler with Lead Routing
+// NETLIFY FUNCTION: DigitalBGA CRM Inbound Lead Handler
 // Endpoint: /.netlify/functions/digitalBGA-lead
 // Target CRM: https://api.crm.digitalseniorbenefits.com/inbound-lead/
+// Destination: Andres Fonseca's DigitalBGA CRM Account Only
 // ==========================================================================
 
 const STATE_CODE_MAP = {
@@ -58,82 +59,6 @@ const STATE_CODE_MAP = {
   "PUERTO RICO": 52, "PR": 52
 };
 
-const STATE_2LETTER_MAP = {
-  "ALABAMA": "AL", "AL": "AL",
-  "ALASKA": "AK", "AK": "AK",
-  "ARIZONA": "AZ", "AZ": "AZ",
-  "ARKANSAS": "AR", "AR": "AR",
-  "CALIFORNIA": "CA", "CA": "CA",
-  "COLORADO": "CO", "CO": "CO",
-  "CONNECTICUT": "CT", "CT": "CT",
-  "DELAWARE": "DE", "DE": "DE",
-  "DISTRICT OF COLUMBIA": "DC", "WASHINGTON DC": "DC", "DC": "DC",
-  "FLORIDA": "FL", "FL": "FL",
-  "GEORGIA": "GA", "GA": "GA",
-  "HAWAII": "HI", "HI": "HI",
-  "IDAHO": "ID", "ID": "ID",
-  "ILLINOIS": "IL", "IL": "IL",
-  "INDIANA": "IN", "IN": "IN",
-  "IOWA": "IA", "IA": "IA",
-  "KANSAS": "KS", "KS": "KS",
-  "KENTUCKY": "KY", "KY": "KY",
-  "LOUISIANA": "LA", "LA": "LA",
-  "MAINE": "ME", "ME": "ME",
-  "MARYLAND": "MD", "MD": "MD",
-  "MASSACHUSETTS": "MA", "MA": "MA",
-  "MICHIGAN": "MI", "MI": "MI",
-  "MINNESOTA": "MN", "MN": "MN",
-  "MISSISSIPPI": "MS", "MS": "MS",
-  "MISSOURI": "MO", "MO": "MO",
-  "MONTANA": "MT", "MT": "MT",
-  "NEBRASKA": "NE", "NE": "NE",
-  "NEVADA": "NV", "NV": "NV",
-  "NEW HAMPSHIRE": "NH", "NH": "NH",
-  "NEW JERSEY": "NJ", "NJ": "NJ",
-  "NEW MEXICO": "NM", "NM": "NM",
-  "NEW YORK": "NY", "NY": "NY",
-  "NORTH CAROLINA": "NC", "NC": "NC",
-  "NORTH DAKOTA": "ND", "ND": "ND",
-  "OHIO": "OH", "OH": "OH",
-  "OKLAHOMA": "OK", "OK": "OK",
-  "OREGON": "OR", "OR": "OR",
-  "PENNSYLVANIA": "PA", "PA": "PA",
-  "RHODE ISLAND": "RI", "RI": "RI",
-  "SOUTH CAROLINA": "SC", "SC": "SC",
-  "SOUTH DAKOTA": "SD", "SD": "SD",
-  "TENNESSEE": "TN", "TN": "TN",
-  "TEXAS": "TX", "TX": "TX",
-  "UTAH": "UT", "UT": "UT",
-  "VERMONT": "VT", "VT": "VT",
-  "VIRGINIA": "VA", "VA": "VA",
-  "WASHINGTON": "WA", "WA": "WA",
-  "WEST VIRGINIA": "WV", "WV": "WV",
-  "WISCONSIN": "WI", "WI": "WI",
-  "WYOMING": "WY", "WY": "WY",
-  "PUERTO RICO": "PR", "PR": "PR"
-};
-
-function get2LetterStateCode(stateInput) {
-  if (!stateInput) return "";
-  const clean = String(stateInput).trim().toUpperCase();
-  if (STATE_2LETTER_MAP[clean]) return STATE_2LETTER_MAP[clean];
-  
-  const parenMatch = clean.match(/\(([A-Z]{2})\)/);
-  if (parenMatch && STATE_2LETTER_MAP[parenMatch[1]]) {
-    return STATE_2LETTER_MAP[parenMatch[1]];
-  }
-
-  if (clean.length === 2 && STATE_2LETTER_MAP[clean]) {
-    return clean;
-  }
-
-  for (const [name, code] of Object.entries(STATE_2LETTER_MAP)) {
-    if (clean.includes(name)) return code;
-  }
-
-  return clean.slice(0, 2);
-}
-
 function getNumericStateCode(stateInput) {
   if (!stateInput) return null;
   if (typeof stateInput === 'number') return stateInput;
@@ -144,81 +69,26 @@ function getNumericStateCode(stateInput) {
   return STATE_CODE_MAP[cleanInput] || null;
 }
 
-// --------------------------------------------------------------------------
-// AGENT CONSTANTS & ROUTING RULES
-// --------------------------------------------------------------------------
-const ANDRES = { name: "Andres Fonseca", phone: "7738000116", email: "andres@alpinefairview.com" };
-const JAMES  = { name: "James Lange",    phone: "13372831516", email: "langeray1@yahoo.com" };
+const ANDRES = { 
+  name: "Andres Fonseca", 
+  phone: "7738000116", 
+  email: "andres@alpinefairview.com" 
+};
 
-const JAMES_ELIGIBLE_STATES = [
-  "LA", "MI", "TX", "TN", "OH", "PA", "SC", "MO", "AZ", "OR", "IN", "VA",
-  "CO", "NV", "WA", "NE", "AR", "NC", "OK", "WI", "MS", "AL"
-];
-
-let inMemoryJamesLeadCount = 0;
-
-async function getJamesLeadCount() {
-  try {
-    const blobs = await import('@netlify/blobs');
-    if (blobs && typeof blobs.getStore === 'function') {
-      const store = blobs.getStore("lead-routing");
-      const val = await store.get("james_lead_count");
-      if (val !== null && val !== undefined && val !== "") {
-        const parsed = parseInt(val, 10);
-        if (!isNaN(parsed)) return parsed;
-      }
-    }
-  } catch (err) {
-    console.warn("⚠️ [LEAD ROUTING] Netlify Blobs read error (falling back to memory counter):", err.message);
-  }
-  return inMemoryJamesLeadCount;
-}
-
-async function incrementJamesLeadCount(currentCount) {
-  const nextCount = currentCount + 1;
-  inMemoryJamesLeadCount = nextCount;
-  try {
-    const blobs = await import('@netlify/blobs');
-    if (blobs && typeof blobs.getStore === 'function') {
-      const store = blobs.getStore("lead-routing");
-      await store.set("james_lead_count", String(nextCount));
-    }
-  } catch (err) {
-    console.warn("⚠️ [LEAD ROUTING] Netlify Blobs write error:", err.message);
-  }
-  return nextCount;
-}
-
-async function resetJamesLeadCount() {
-  inMemoryJamesLeadCount = 0;
-  try {
-    const blobs = await import('@netlify/blobs');
-    if (blobs && typeof blobs.getStore === 'function') {
-      const store = blobs.getStore("lead-routing");
-      await store.set("james_lead_count", "0");
-    }
-  } catch (err) {
-    console.warn("⚠️ [LEAD ROUTING] Netlify Blobs reset error:", err.message);
-  }
-}
-
-// EMAIL NOTIFICATION DISPATCHER
-async function sendEmailNotification(data, assignedAgent) {
-  const recipients = assignedAgent.name === JAMES.name
-    ? [JAMES.email, ANDRES.email]
-    : [ANDRES.email];
-
+// EMAIL NOTIFICATION DISPATCHER FOR ANDRES FONSECA
+async function sendEmailNotification(data) {
+  const recipients = [ANDRES.email];
   const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'New Applicant';
   const coverage = data.coverageStr || '$25,000';
   const rate = data.rateStr ? ` (${data.rateStr})` : '';
-  const subject = `🚨 NEW LEAD (${assignedAgent.name}): ${fullName} - ${coverage}${rate}`;
+  const subject = `🚨 NEW LEAD (Andres Fonseca): ${fullName} - ${coverage}${rate}`;
 
   const textBody = `
 ==================================================
 🚨 NEW ALPINE FAIRVIEW LEAD NOTIFICATION
 ==================================================
 
-ROUTED TO: ${assignedAgent.name} (${assignedAgent.email})
+DESTINATION: Andres Fonseca (${ANDRES.email})
 
 APPLICANT INFORMATION:
 -----------------------
@@ -300,7 +170,7 @@ ${data.stickyNote || 'N/A'}
       email: recipients.join(','),
       subject: subject,
       message: textBody,
-      from_name: `Alpine Fairview Lead Gen (${assignedAgent.name})`
+      from_name: `Alpine Fairview Lead Gen (Andres Fonseca)`
     };
     await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -326,32 +196,14 @@ exports.handler = async (event, context) => {
     return { statusCode: 200, headers, body: '' };
   }
 
-  // Diagnostic GET Endpoint & Counter Reset
   if (event.httpMethod === 'GET') {
-    const queryParams = event.queryStringParameters || {};
-    if (queryParams.reset === 'true') {
-      await resetJamesLeadCount();
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ status: 'success', message: 'James lead counter reset to 0', james_lead_count: 0 })
-      };
-    }
-
-    const currentCount = await getJamesLeadCount();
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         status: 'online',
-        james_lead_count: currentCount,
-        james_eligible_states: JAMES_ELIGIBLE_STATES,
-        env_check: {
-          has_james_user: !!(process.env.JAMES_DIGITALBGA_API_USER || '').trim(),
-          has_james_key: !!(process.env.JAMES_DIGITALBGA_API_KEY || '').trim(),
-          has_default_user: !!(process.env.DIGITALBGA_API_USER || process.env.api_user || '').trim(),
-          has_default_key: !!(process.env.DIGITALBGA_API_KEY || process.env.api_key || '').trim(),
-        }
+        destination: 'Andres Fonseca CRM Only',
+        agent: ANDRES
       })
     };
   }
@@ -366,16 +218,6 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body || '{}');
-
-    // Support Reset via POST
-    if (data.resetCounter === true) {
-      await resetJamesLeadCount();
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ status: 'success', message: 'James lead counter reset to 0', james_lead_count: 0 })
-      };
-    }
 
     // Validate Required Fields
     const email = (data.email || '').trim();
@@ -398,45 +240,9 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // ----------------------------------------------------------------------
-    // LEAD ROUTING ENGINE DECISION
-    // ----------------------------------------------------------------------
-    const clean2LetterState = get2LetterStateCode(rawState);
-    let assignedAgent = ANDRES;
-    let routingReason = '';
-
-    const isJamesEligible = JAMES_ELIGIBLE_STATES.includes(clean2LetterState);
-
-    if (!isJamesEligible) {
-      assignedAgent = ANDRES;
-      routingReason = `state "${rawState}" (${clean2LetterState}) not in James eligible list -> Andres`;
-    } else {
-      const jamesLeadCount = await getJamesLeadCount();
-      if (jamesLeadCount < 2) {
-        assignedAgent = JAMES;
-        routingReason = `eligible state "${rawState}" (${clean2LetterState}), counter ${jamesLeadCount}/2 -> James`;
-        await incrementJamesLeadCount(jamesLeadCount);
-      } else {
-        assignedAgent = ANDRES;
-        routingReason = `eligible state "${rawState}" (${clean2LetterState}), counter ${jamesLeadCount}/2 >= 2 -> Andres`;
-      }
-    }
-
-    console.log(`🔀 [LEAD ROUTING] Raw State: "${rawState}" -> Code: "${clean2LetterState}" | Reason: ${routingReason} | Assigned Agent: ${assignedAgent.name}`);
-
-    // Select API Credentials based on Assigned Agent
-    let api_user = '';
-    let api_key = '';
-
-    if (assignedAgent.name === JAMES.name) {
-      const envJamesUser = (process.env.JAMES_DIGITALBGA_API_USER || '').trim();
-      const envJamesKey = (process.env.JAMES_DIGITALBGA_API_KEY || '').trim();
-      api_user = envJamesUser || 'qtbekh7r';
-      api_key = envJamesKey || '1816bd944ae0eb887272cc7245993568';
-    } else {
-      api_user = (process.env.DIGITALBGA_API_USER || process.env.api_user || '').trim();
-      api_key = (process.env.DIGITALBGA_API_KEY || process.env.api_key || '').trim();
-    }
+    // Select API Credentials (Andres Fonseca Only)
+    const api_user = (process.env.DIGITALBGA_API_USER || process.env.api_user || 'v0c7tp1q').trim();
+    const api_key = (process.env.DIGITALBGA_API_KEY || process.env.api_key || '8b7851b903ac65e4a9c022db8f092eb8').trim();
 
     // Name parsing
     let firstName = (data.firstName || data.first_name || '').trim();
@@ -498,7 +304,7 @@ exports.handler = async (event, context) => {
 
     const stickyNote = `[AF] - Smoker: ${smokerStr}. motivation: ${motivationStr}. ${coverageStr}${cleanRate ? ' ' + cleanRate : ''}`;
 
-    // Send instant email notification
+    // Send instant email notification to Andres
     sendEmailNotification({
       firstName,
       lastName,
@@ -514,7 +320,7 @@ exports.handler = async (event, context) => {
       smokerStr,
       goals: data.goals,
       stickyNote
-    }, assignedAgent).catch(err => console.warn('Email dispatch notice:', err));
+    }).catch(err => console.warn('Email dispatch notice:', err));
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
@@ -540,7 +346,7 @@ exports.handler = async (event, context) => {
       dob: formattedDob
     };
 
-    console.log(`🚀 Posting lead to DigitalBGA CRM API (${assignedAgent.name} - api_user: ${api_user}):`, digitalBgaPayload);
+    console.log(`🚀 Posting lead to DigitalBGA CRM API (Andres Fonseca - api_user: ${api_user}):`, digitalBgaPayload);
 
     const formBody = new URLSearchParams();
     Object.entries(digitalBgaPayload).forEach(([key, value]) => {
@@ -574,11 +380,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({
           status: 'success',
           message: 'Thanks! We received your information.',
-          agent: {
-            name: assignedAgent.name,
-            phone: assignedAgent.phone,
-            email: assignedAgent.email
-          },
+          agent: ANDRES,
           digitalBgaResponse: responseData
         })
       };
@@ -589,11 +391,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({
           status: 'error',
           error: responseText || 'Failed to submit lead to DigitalBGA CRM.',
-          agent: {
-            name: assignedAgent.name,
-            phone: assignedAgent.phone,
-            email: assignedAgent.email
-          }
+          agent: ANDRES
         })
       };
     }
