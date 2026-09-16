@@ -94,9 +94,14 @@
         </div>
       </article>
 
-      <!-- QUICK ACTION BUTTONS STACK (CALL & EMAIL & TEXT) -->
+      <!-- QUICK ACTION BUTTONS STACK -->
       <div class="p-6 space-y-3.5">
         
+        <!-- SKIP THE LINE HEADING -->
+        <div class="text-center text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
+          Skip the line and call directly
+        </div>
+
         <!-- CALL ADVISOR BUTTON -->
         <a href="tel:3372831516" class="flex items-center justify-between w-full p-4 bg-slate-50 hover:bg-[#5F7B82]/10 border border-slate-200/80 rounded-2xl transition-all group">
           <div class="flex items-center space-x-3.5">
@@ -104,8 +109,7 @@
               📞
             </div>
             <div class="text-left">
-              <div class="text-xs font-medium text-slate-500 uppercase tracking-wider">Call Advisor</div>
-              <div class="text-base font-bold text-slate-900">+1 (337) 283-1516</div>
+              <div class="text-base font-bold text-slate-900">Speak to James</div>
             </div>
           </div>
           <span class="text-xs font-bold text-[#4A6369] bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm group-hover:bg-[#4A6369] group-hover:text-white transition-colors">Call Now →</span>
@@ -118,8 +122,7 @@
               💬
             </div>
             <div class="text-left">
-              <div class="text-xs font-medium text-emerald-800 uppercase tracking-wider">Text Message</div>
-              <div class="text-base font-bold text-emerald-950">Text James: (337) 283-1516</div>
+              <div class="text-base font-bold text-emerald-950">Text James</div>
             </div>
           </div>
           <span class="text-xs font-bold text-[#0B3C2A] bg-white px-3.5 py-2 rounded-xl border border-emerald-200 shadow-sm group-hover:bg-[#2EE59D] transition-colors">Send Text →</span>
@@ -132,18 +135,11 @@
               ✉️
             </div>
             <div class="text-left">
-              <div class="text-xs font-medium text-slate-500 uppercase tracking-wider">Email Advisor</div>
-              <div class="text-sm font-bold text-slate-900 truncate max-w-[200px] sm:max-w-xs">langeray1@yahoo.com</div>
+              <div class="text-base font-bold text-slate-900">Email James</div>
             </div>
           </div>
           <span class="text-xs font-bold text-[#4A6369] bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm group-hover:bg-[#4A6369] group-hover:text-white transition-colors">Send Email →</span>
         </a>
-
-        <!-- SAVE TO CONTACTS BUTTON -->
-        <button id="download-vcf-btn" class="w-full py-4 px-4 bg-[#2EE59D] hover:bg-[#26D08E] text-[#0B3C2A] font-extrabold text-sm rounded-2xl shadow-md transition-all flex items-center justify-center space-x-2 mt-2">
-          <span>🎴</span>
-          <span>Save James Lange to Phone Contacts (.vCard)</span>
-        </button>
 
       </div>
 
@@ -372,30 +368,5 @@
 
   </div>
 
-  <!-- VCARD GENERATOR SCRIPT FOR JAMES LANGE -->
-  <script>
-    document.getElementById('download-vcf-btn').addEventListener('click', function() {
-      const vcardData = `BEGIN:VCARD
-VERSION:3.0
-FN:James Lange
-N:Lange;James;;;
-TITLE:Senior Life & Final Expense Advisor
-TEL;TYPE=CELL,VOICE:(337) 283-1516
-TEL;TYPE=WORK,VOICE:(337) 283-1516
-EMAIL;TYPE=INTERNET:langeray1@yahoo.com
-URL:https://alpinefairview.com/jameslange
-NOTE:Specializing in Whole Life & Final Expense Insurance | Independent Insurance Agent
-END:VCARD`;
-
-      const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'James_Lange_Contact.vcf');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
-  </script>
 </body>
 </html>
