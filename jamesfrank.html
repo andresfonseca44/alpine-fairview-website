@@ -2,247 +2,518 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>James Frank | Alpine Fairview Senior Life Insurance Advisor</title>
-  <meta name="description" content="Official advisor contact page for James Frank - Licensed Senior Life Insurance Advisor at Alpine Fairview Group." />
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
-  
-  <!-- Tailwind CSS -->
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
-  
-  <!-- Google Fonts: Alice, Instrument Serif, Plus Jakarta Sans -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James Frank | Alpine Fairview Group</title>
+  <meta name="description" content="Private contact page for James Frank, licensed life insurance advisor at Alpine Fairview Group." />
+
+  <!-- Unlisted page: kept out of search engines and out of site navigation. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <meta name="theme-color" content="#3C5055" />
+
+  <!-- NOTE: All advisor details below are placeholder/demo data. The phone number
+       uses the 555-01xx range reserved for fictional use. Replace before going live. -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --slate-teal: #5F7B82;
+      --slate-teal-dark: #4A6369;
+      --slate-footer: #3C5055;
+      --mint: #2EE59D;
+      --mint-hover: #26D08E;
+      --mint-text: #0B3C2A;
+      --powder: #A9CBE3;
+      --icy: #DCEAF5;
+      --ink: #1B1B1B;
+      --muted: #556063;
+      --paper: #F4F1EC;
+      --white: #fff;
+      --font-logo: 'Alice', Georgia, serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-card: 0 18px 50px -22px rgba(27, 40, 44, 0.35);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #F8FAFC;
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
     }
-    .font-logo {
-      font-family: 'Alice', Georgia, serif;
+
+    /* ---------- Atmospheric top band ---------- */
+    .band {
+      position: relative;
+      background:
+        radial-gradient(120% 140% at 12% -20%, rgba(169, 203, 227, 0.32) 0%, transparent 60%),
+        linear-gradient(160deg, var(--slate-teal) 0%, var(--slate-footer) 100%);
+      padding: 22px 0 108px;
+      overflow: hidden;
     }
-    .font-serif {
-      font-family: 'Instrument Serif', Georgia, serif;
+    .band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), transparent 78%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), transparent 78%);
+      pointer-events: none;
+    }
+
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+
+    .brandbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brandbar img { height: 34px; width: auto; display: block; }
+    .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .brandmark span {
+      font-family: var(--font-logo);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .chip {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--icy);
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.1);
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* ---------- Hero card (overlaps the band) ---------- */
+    main { position: relative; z-index: 3; margin-top: -84px; padding-bottom: 96px; }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(27, 40, 44, 0.07);
+      border-radius: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero { padding: 28px; display: grid; grid-template-columns: 124px 1fr; gap: 24px; align-items: center; }
+    .portrait { position: relative; width: 124px; height: 124px; }
+    .portrait img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+    .portrait .verified {
+      position: absolute; right: -2px; bottom: 2px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--mint); color: var(--mint-text);
+      border: 3px solid var(--white);
+      display: grid; place-items: center;
+    }
+    .portrait .verified svg { width: 15px; height: 15px; }
+
+    .eyebrow {
+      font-size: 0.66rem; font-weight: 800; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--slate-teal); margin: 0 0 6px;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 7vw, 2.9rem);
+      line-height: 1.02;
+      margin: 0 0 8px;
+      letter-spacing: -0.015em;
+    }
+    .role { margin: 0 0 14px; color: var(--muted); font-size: 0.95rem; font-weight: 500; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+    .facts li {
+      font-size: 0.72rem; font-weight: 600; color: var(--slate-teal-dark);
+      background: var(--icy); border-radius: 999px; padding: 5px 11px;
+    }
+
+    /* ---------- Actions ---------- */
+    .actions { padding: 0 28px 28px; display: grid; gap: 12px; }
+    .actions-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .btn {
+      display: flex; align-items: center; gap: 13px;
+      padding: 15px 17px;
+      border-radius: 15px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), background-color 0.22s var(--ease);
+      text-align: left;
+      width: 100%;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: 3px solid var(--powder); outline-offset: 2px; }
+    .btn svg { width: 19px; height: 19px; flex: 0 0 auto; }
+    .btn > span { min-width: 0; }
+    .btn .label { display: block; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; opacity: 0.72; }
+    .btn .value { display: block; font-size: 0.97rem; font-weight: 700; letter-spacing: -0.01em; }
+
+    .btn-call { background: var(--mint); color: var(--mint-text); box-shadow: 0 12px 26px -14px rgba(46, 229, 157, 0.9); }
+    .btn-call:hover { background: var(--mint-hover); }
+    .btn-email { background: var(--slate-teal-dark); color: #fff; box-shadow: 0 12px 26px -14px rgba(60, 80, 85, 0.8); }
+    .btn-email:hover { background: var(--slate-footer); }
+    .btn-email .value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .btn-ghost { background: #fff; color: var(--slate-teal-dark); border-color: rgba(27, 40, 44, 0.14); }
+    .btn-ghost:hover { background: var(--icy); }
+    .btn-ghost .value { font-weight: 600; font-size: 0.9rem; }
+
+    .actions-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ---------- Section shell ---------- */
+    section.panel { margin-top: 20px; padding: 28px; }
+    .panel-head { margin-bottom: 20px; }
+    .panel-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 5vw, 1.95rem);
+      margin: 6px 0 8px;
+      letter-spacing: -0.012em;
+      line-height: 1.1;
+    }
+    .panel-head p { margin: 0; color: var(--muted); font-size: 0.9rem; max-width: 52ch; }
+
+    /* ---------- Carrier grid ---------- */
+    .carriers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .carrier {
+      border: 1px solid rgba(27, 40, 44, 0.09);
+      border-radius: 14px;
+      padding: 16px 12px 13px;
+      display: flex; flex-direction: column; align-items: center; gap: 11px;
+      background: linear-gradient(180deg, #fff 0%, #FBFAF8 100%);
+      transition: transform 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
+    }
+    .carrier:hover {
+      transform: translateY(-3px);
+      border-color: rgba(95, 123, 130, 0.4);
+      box-shadow: 0 14px 28px -20px rgba(27, 40, 44, 0.5);
+    }
+    .carrier-logo { height: 34px; display: grid; place-items: center; width: 100%; }
+    .carrier-logo img { max-height: 32px; max-width: 100%; object-fit: contain; }
+    .carrier-logo .wordmark {
+      font-family: var(--font-serif);
+      font-size: 1.22rem;
+      color: var(--slate-teal-dark);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      text-align: center;
+    }
+    .carrier-name {
+      font-size: 0.73rem; font-weight: 700; color: var(--ink);
+      text-align: center; line-height: 1.3;
+    }
+    .carrier-tag {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--slate-teal); text-align: center; margin-top: -6px;
+    }
+
+    .carrier-note {
+      margin-top: 16px;
+      border-top: 1px solid rgba(27, 40, 44, 0.08);
+      padding-top: 14px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex; align-items: flex-start; gap: 9px;
+    }
+    .carrier-note svg { width: 15px; height: 15px; flex: 0 0 auto; color: var(--slate-teal); margin-top: 2px; }
+
+    /* ---------- Reviews ---------- */
+    .reviews { display: grid; gap: 12px; }
+    .review {
+      border: 1px solid rgba(27, 40, 44, 0.08);
+      border-left: 3px solid var(--mint);
+      border-radius: 4px 14px 14px 4px;
+      padding: 16px 18px;
+      background: #FBFAF8;
+    }
+    .review blockquote {
+      margin: 0 0 11px;
+      font-family: var(--font-serif);
+      font-size: 1.06rem;
+      line-height: 1.42;
+      color: #232B2D;
+    }
+    .review footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; font-size: 0.74rem; color: var(--muted); font-weight: 600;
+    }
+    .stars { color: #C8901E; letter-spacing: 0.1em; font-size: 0.72rem; }
+
+    /* ---------- Page footer ---------- */
+    .pagefoot {
+      text-align: center; padding: 30px 20px 0;
+      font-size: 0.72rem; color: var(--muted); line-height: 1.7;
+    }
+    .pagefoot a { color: var(--slate-teal-dark); }
+
+    /* ---------- Sticky mobile call/email bar ---------- */
+    .stickybar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      display: none;
+      gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(27, 40, 44, 0.1);
+    }
+    .stickybar a {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px; border-radius: 13px; text-decoration: none;
+      font-size: 0.88rem; font-weight: 800; letter-spacing: 0.01em;
+    }
+    .stickybar svg { width: 17px; height: 17px; }
+    .stickybar .s-call { background: var(--mint); color: var(--mint-text); }
+    .stickybar .s-email { background: var(--slate-teal-dark); color: #fff; }
+
+    @media (max-width: 620px) {
+      .band { padding-bottom: 96px; }
+      main { margin-top: -76px; padding-bottom: 104px; }
+      .hero { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 18px; padding: 26px 20px; }
+      .facts { justify-content: center; }
+      .actions { padding: 0 20px 24px; }
+      .actions-primary, .actions-secondary { grid-template-columns: 1fr; }
+      section.panel { padding: 24px 20px; }
+      .carriers { grid-template-columns: repeat(2, 1fr); }
+      .stickybar { display: flex; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      .btn:hover, .carrier:hover { transform: none; }
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen py-8 px-4 sm:px-6">
+<body>
 
-  <div class="max-w-xl mx-auto space-y-6">
-
-    <!-- DIGITAL AGENT CARD CONTAINER -->
-    <main class="w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200/80">
-      
-      <!-- HEADER BAR / LOGO -->
-      <header class="bg-gradient-to-r from-[#4A6369] to-[#3C5055] px-6 py-5 text-white flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-          <img src="/af-logo.png" alt="AF Monogram Logo" class="h-9 w-auto object-contain" />
-          <span class="font-logo text-base tracking-wider font-bold text-white uppercase">ALPINE FAIRVIEW</span>
-        </div>
-        <span class="text-xs bg-white/15 px-2.5 py-1 rounded-full text-slate-100 font-semibold tracking-wide uppercase">Licensed Advisor</span>
-      </header>
-
-      <!-- PROFILE HERO SECTION -->
-      <div class="px-6 pt-6 pb-6 text-center border-b border-slate-100">
-        
-        <!-- HEADSHOT -->
-        <div class="relative w-32 h-32 mx-auto mb-4">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="James Frank" class="w-full h-full object-cover rounded-full border-4 border-white shadow-lg ring-2 ring-[#5F7B82]/20" />
-          <div class="absolute bottom-1 right-1 bg-[#2EE59D] text-[#0B3C2A] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow ring-2 ring-white" title="Verified Advisor">
-            ✓
-          </div>
-        </div>
-
-        <h1 class="text-2xl font-bold text-slate-900 tracking-tight mb-1">JAMES FRANK</h1>
-        <p class="text-sm font-semibold text-[#4A6369] mb-3">Licensed Senior Life Insurance Advisor</p>
-        
-        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 rounded-full text-xs font-medium text-slate-700">
-          <span>Specializing in Whole Life &amp; Final Expense</span>
-          <span class="text-slate-300">•</span>
-          <span class="text-slate-700 font-semibold">Alpine Fairview Group</span>
-        </div>
-
-      </div>
-
-      <!-- QUICK ACTION BUTTONS STACK (CALL & EMAIL & TEXT) -->
-      <div class="p-6 space-y-3.5">
-        
-        <!-- CALL ADVISOR BUTTON -->
-        <a href="tel:5551234567" class="flex items-center justify-between w-full p-4 bg-slate-50 hover:bg-[#5F7B82]/10 border border-slate-200/80 rounded-2xl transition-all group">
-          <div class="flex items-center space-x-3.5">
-            <div class="w-11 h-11 rounded-xl bg-[#5F7B82] text-white flex items-center justify-center text-xl shadow-sm group-hover:scale-105 transition-transform">
-              📞
-            </div>
-            <div class="text-left">
-              <div class="text-xs font-medium text-slate-500 uppercase tracking-wider">Call Advisor</div>
-              <div class="text-base font-bold text-slate-900">+1 (555) 123-4567</div>
-            </div>
-          </div>
-          <span class="text-xs font-bold text-[#4A6369] bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm group-hover:bg-[#4A6369] group-hover:text-white transition-colors">Call Now →</span>
+  <!-- ============ TOP BAND ============ -->
+  <div class="band">
+    <div class="wrap">
+      <div class="brandbar">
+        <a class="brandmark" href="/">
+          <img src="af-logo.png" alt="Alpine Fairview Group" />
+          <span>Alpine Fairview</span>
         </a>
-
-        <!-- TEXT MESSAGE BUTTON -->
-        <a href="sms:5551234567" class="flex items-center justify-between w-full p-4 bg-emerald-50/60 hover:bg-emerald-100/60 border border-emerald-200/80 rounded-2xl transition-all group">
-          <div class="flex items-center space-x-3.5">
-            <div class="w-11 h-11 rounded-xl bg-[#2EE59D] text-[#0B3C2A] flex items-center justify-center text-xl shadow-sm group-hover:scale-105 transition-transform font-bold">
-              💬
-            </div>
-            <div class="text-left">
-              <div class="text-xs font-medium text-emerald-800 uppercase tracking-wider">Text Message</div>
-              <div class="text-base font-bold text-emerald-950">Text James: (555) 123-4567</div>
-            </div>
-          </div>
-          <span class="text-xs font-bold text-[#0B3C2A] bg-white px-3.5 py-2 rounded-xl border border-emerald-200 shadow-sm group-hover:bg-[#2EE59D] transition-colors">Send Text →</span>
-        </a>
-
-        <!-- EMAIL ADVISOR BUTTON -->
-        <a href="mailto:james.frank@alpinefairview.com" class="flex items-center justify-between w-full p-4 bg-slate-50 hover:bg-[#5F7B82]/10 border border-slate-200/80 rounded-2xl transition-all group">
-          <div class="flex items-center space-x-3.5">
-            <div class="w-11 h-11 rounded-xl bg-[#4A6369] text-white flex items-center justify-center text-xl shadow-sm group-hover:scale-105 transition-transform">
-              ✉️
-            </div>
-            <div class="text-left">
-              <div class="text-xs font-medium text-slate-500 uppercase tracking-wider">Email Advisor</div>
-              <div class="text-sm font-bold text-slate-900 truncate max-w-[200px] sm:max-w-xs">james.frank@alpinefairview.com</div>
-            </div>
-          </div>
-          <span class="text-xs font-bold text-[#4A6369] bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm group-hover:bg-[#4A6369] group-hover:text-white transition-colors">Send Email →</span>
-        </a>
-
-        <!-- SAVE TO CONTACTS BUTTON -->
-        <button id="download-vcf-btn" class="w-full py-4 px-4 bg-[#2EE59D] hover:bg-[#26D08E] text-[#0B3C2A] font-extrabold text-sm rounded-2xl shadow-md transition-all flex items-center justify-center space-x-2 mt-2">
-          <span>🎴</span>
-          <span>Save James Frank to Phone Contacts (.vCard)</span>
-        </button>
-
+        <span class="chip">Licensed Advisor</span>
       </div>
-
-    </main>
-
-    <!-- CARRIER PARTNERS SHOWCASE SECTION -->
-    <section class="bg-white rounded-3xl shadow-lg border border-slate-200/80 p-6 text-center">
-      <div class="inline-block bg-[#5F7B82]/10 text-[#4A6369] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">
-        A-Rated Insurance Carriers
-      </div>
-      <h2 class="text-xl font-bold text-slate-900 mb-1">Top National Carrier Partners</h2>
-      <p class="text-xs text-slate-500 mb-6">James compares rates across top-rated carriers to find your optimal rate.</p>
-
-      <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 items-center opacity-90">
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/mutual_of_omaha_logo.png" alt="Mutual of Omaha" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/aflac_logo.png" alt="Aflac" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/gerber_life_logo.png" alt="Gerber Life" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/american_amicable_logo.png" alt="American-Amicable" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/gtl_logo.png" alt="Guarantee Trust Life" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/royal_neighbors_logo.png" alt="Royal Neighbors of America" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14">
-          <img src="/citizens_life_logo.png" alt="Citizens Life" class="max-h-7 max-w-full object-contain" />
-        </div>
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center h-14 text-xs font-bold text-[#4A6369]">
-          + Transamerica &amp; More
-        </div>
-      </div>
-    </section>
-
-    <!-- CLIENT REVIEWS & TESTIMONIALS SECTION -->
-    <section class="bg-white rounded-3xl shadow-lg border border-slate-200/80 p-6">
-      <div class="text-center mb-6">
-        <div class="inline-block bg-amber-50 text-amber-700 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2 border border-amber-200">
-          ★ Verified Client Feedback
-        </div>
-        <h2 class="text-xl font-bold text-slate-900 mb-1">What Clients Say About Working With James</h2>
-        <p class="text-xs text-slate-500">Real feedback from families James has helped protect.</p>
-      </div>
-
-      <div class="space-y-4">
-        
-        <!-- REVIEW 1 -->
-        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
-          <div class="flex items-center justify-between text-xs">
-            <div class="text-amber-500 font-bold tracking-wider">★★★★★</div>
-            <div class="text-slate-400 font-medium">5.0 / 5 • Verified Client</div>
-          </div>
-          <p class="text-sm text-slate-700 italic">"James Frank was fantastic to work with. He explained my options clearly, found an affordable whole life policy, and made sure my family was completely covered."</p>
-          <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200/60 text-slate-500 font-semibold">
-            <span>Michael R.</span>
-            <span>Ohio</span>
-          </div>
-        </div>
-
-        <!-- REVIEW 2 -->
-        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
-          <div class="flex items-center justify-between text-xs">
-            <div class="text-amber-500 font-bold tracking-wider">★★★★★</div>
-            <div class="text-slate-400 font-medium">5.0 / 5 • Verified Client</div>
-          </div>
-          <p class="text-sm text-slate-700 italic">"Extremely helpful and responsive. James helped me lock in a fixed rate that fits comfortably in my monthly budget."</p>
-          <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200/60 text-slate-500 font-semibold">
-            <span>Sandra L.</span>
-            <span>Florida</span>
-          </div>
-        </div>
-
-        <!-- REVIEW 3 -->
-        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
-          <div class="flex items-center justify-between text-xs">
-            <div class="text-amber-500 font-bold tracking-wider">★★★★★</div>
-            <div class="text-slate-400 font-medium">4.9 / 5 • Verified Client</div>
-          </div>
-          <p class="text-sm text-slate-700 italic">"Fast, easy process with no medical exam required. James made securing final expense coverage simple and worry-free."</p>
-          <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200/60 text-slate-500 font-semibold">
-            <span>David K.</span>
-            <span>Michigan</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="text-center py-4 text-xs text-slate-400 space-y-1">
-      <p>© 2026 Alpine Fairview Group. All rights reserved.</p>
-      <p>Licensed Life Insurance Brokerage • James Frank</p>
-    </footer>
-
+    </div>
   </div>
 
-  <!-- VCARD GENERATOR SCRIPT FOR JAMES FRANK -->
-  <script>
-    document.getElementById('download-vcf-btn').addEventListener('click', function() {
-      const vcardData = `BEGIN:VCARD
-VERSION:3.0
-FN:James Frank
-N:Frank;James;;;
-ORG:Alpine Fairview Group
-TITLE:Licensed Senior Life Insurance Advisor
-TEL;TYPE=CELL,VOICE:(555) 123-4567
-TEL;TYPE=WORK,VOICE:(555) 123-4567
-EMAIL;TYPE=INTERNET:james.frank@alpinefairview.com
-URL:https://alpinefairview.com/jamesfrank
-NOTE:Specializing in Whole Life & Final Expense Insurance | Alpine Fairview Group
-END:VCARD`;
+  <main class="wrap">
 
-      const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
+    <!-- ============ ADVISOR CARD ============ -->
+    <article class="card">
+      <div class="hero">
+        <div class="portrait">
+          <img src="james-frank-headshot.svg" alt="Portrait of James Frank" width="124" height="124" />
+          <span class="verified" title="Verified Alpine Fairview advisor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+        </div>
+
+        <div>
+          <p class="eyebrow">Your advisor</p>
+          <h1>James Frank</h1>
+          <p class="role">Senior Life &amp; Final Expense Advisor, Alpine Fairview Group</p>
+          <ul class="facts">
+            <li>Whole life &amp; final expense</li>
+            <li>No-exam coverage</li>
+            <li>Licensed in 14 states</li>
+            <li>Advising families since 2013</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============ CALL + EMAIL ACTIONS ============ -->
+      <div class="actions">
+        <div class="actions-primary">
+          <a class="btn btn-call" href="tel:+17735550184">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2.1z"/></svg>
+            <span>
+              <span class="label">Call James</span>
+              <span class="value">(773) 555-0184</span>
+            </span>
+          </a>
+
+          <a class="btn btn-email" href="mailto:james.frank@alpinefairview.com?subject=Life%20insurance%20question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2.5 6.5 9.5 6.5 9.5-6.5"/></svg>
+            <span>
+              <span class="label">Email James</span>
+              <span class="value">james.frank@alpinefairview.com</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="actions-secondary">
+          <a class="btn btn-ghost" href="sms:+17735550184">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.5 9.5 0 0 1-2.8-.4L3 21l1.6-4.7A8.3 8.3 0 0 1 3.6 11 8.4 8.4 0 0 1 12 3h.5a8.4 8.4 0 0 1 8.5 8z"/></svg>
+            <span>
+              <span class="label">Text message</span>
+              <span class="value">Send a text</span>
+            </span>
+          </a>
+
+          <button class="btn btn-ghost" id="save-contact" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11z"/><path d="M8 13h6M8 17h4"/><circle cx="17.5" cy="6.5" r="3.5"/></svg>
+            <span>
+              <span class="label">vCard</span>
+              <span class="value">Save to contacts</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ ALL CARRIERS ============ -->
+    <section class="card panel" aria-labelledby="carriers-heading">
+      <div class="panel-head">
+        <p class="eyebrow">Carrier access</p>
+        <h2 id="carriers-heading">Every carrier we place coverage with</h2>
+        <p>James shops your health profile and budget across all nine of Alpine Fairview's contracted carriers, then brings back the one that underwrites you best.</p>
+      </div>
+
+      <div class="carriers">
+        <div class="carrier">
+          <span class="carrier-logo"><img src="american_amicable_logo.png" alt="" /></span>
+          <span class="carrier-name">American-Amicable Group</span>
+          <span class="carrier-tag">Simplified issue</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><img src="mutual_of_omaha_logo.png" alt="" /></span>
+          <span class="carrier-name">Mutual of Omaha</span>
+          <span class="carrier-tag">A+ Superior</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><img src="gerber_life_logo.png" alt="" /></span>
+          <span class="carrier-name">Gerber Life Insurance</span>
+          <span class="carrier-tag">Guaranteed accept.</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><span class="wordmark">Transamerica</span></span>
+          <span class="carrier-name">Transamerica</span>
+          <span class="carrier-tag">$5k&ndash;$50k benefit</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><img src="gtl_logo.png" alt="" /></span>
+          <span class="carrier-name">Guarantee Trust Life</span>
+          <span class="carrier-tag">Final expense</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><span class="wordmark">Corebridge</span></span>
+          <span class="carrier-name">AIG / Corebridge Financial</span>
+          <span class="carrier-tag">Permanent whole life</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><img src="royal_neighbors_logo.png" alt="" /></span>
+          <span class="carrier-name">Royal Neighbors of America</span>
+          <span class="carrier-tag">Fraternal, est. 1895</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><img src="citizens_life_logo.png" alt="" /></span>
+          <span class="carrier-name">Citizens Choice / Citizens Life</span>
+          <span class="carrier-tag">Day-one coverage</span>
+        </div>
+
+        <div class="carrier">
+          <span class="carrier-logo"><img src="aflac_logo.png" alt="" /></span>
+          <span class="carrier-name">Aflac</span>
+          <span class="carrier-tag">Fast claims payout</span>
+        </div>
+      </div>
+
+      <p class="carrier-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Alpine Fairview is an independent brokerage. Carrier availability, benefit amounts and underwriting decisions vary by state, age and health history.</span>
+      </p>
+    </section>
+
+    <!-- ============ CLIENT FEEDBACK ============ -->
+    <section class="card panel" aria-labelledby="reviews-heading">
+      <div class="panel-head">
+        <p class="eyebrow">Client feedback</p>
+        <h2 id="reviews-heading">What families say about working with James</h2>
+        <p>Sample reviews collected after policy placement.</p>
+      </div>
+
+      <div class="reviews">
+        <div class="review">
+          <blockquote>&ldquo;He walked my mother and me through four different quotes on speakerphone and never once pushed the expensive one. We landed at $41.60 a month.&rdquo;</blockquote>
+          <footer><span>Marisol Trevino &mdash; Toledo, OH</span><span class="stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span></footer>
+        </div>
+
+        <div class="review">
+          <blockquote>&ldquo;I was turned down twice before because of my A-fib. James knew which carrier would still take me and had the policy approved in nine days.&rdquo;</blockquote>
+          <footer><span>Dwight Okafor &mdash; Fort Myers, FL</span><span class="stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span></footer>
+        </div>
+
+        <div class="review">
+          <blockquote>&ldquo;No exam, no blood draw, and he still called me back on a Saturday to finish the beneficiary paperwork. That part surprised me.&rdquo;</blockquote>
+          <footer><span>Roberta Vance &mdash; Kalamazoo, MI</span><span class="stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span></footer>
+        </div>
+      </div>
+    </section>
+
+    <p class="pagefoot">
+      &copy; 2026 Alpine Fairview Group &middot; Independent life insurance brokerage<br />
+      <a href="/privacy-policy">Privacy policy</a> &middot; <a href="/terms-of-use">Terms of use</a>
+    </p>
+  </main>
+
+  <!-- ============ STICKY MOBILE CALL / EMAIL ============ -->
+  <nav class="stickybar" aria-label="Contact James Frank">
+    <a class="s-call" href="tel:+17735550184">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2.1z"/></svg>
+      Call
+    </a>
+    <a class="s-email" href="mailto:james.frank@alpinefairview.com?subject=Life%20insurance%20question">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2.5 6.5 9.5 6.5 9.5-6.5"/></svg>
+      Email
+    </a>
+  </nav>
+
+  <script>
+    // Build a vCard on the fly so the advisor's details can be saved to a phone.
+    document.getElementById('save-contact').addEventListener('click', function () {
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:James Frank',
+        'N:Frank;James;;;',
+        'ORG:Alpine Fairview Group',
+        'TITLE:Senior Life & Final Expense Advisor',
+        'TEL;TYPE=WORK,VOICE:+1-773-555-0184',
+        'TEL;TYPE=CELL,VOICE:+1-773-555-0184',
+        'EMAIL;TYPE=INTERNET:james.frank@alpinefairview.com',
+        'URL:https://alpinefairview.com/jamesfrank',
+        'NOTE:Whole life and final expense coverage across nine A-rated carriers.',
+        'END:VCARD'
+      ].join('\r\n');
+
+      const url = URL.createObjectURL(new Blob([vcard], { type: 'text/vcard;charset=utf-8' }));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'James_Frank_Alpine_Fairview.vcf');
+      link.download = 'James-Frank-Alpine-Fairview.vcf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     });
   </script>
 </body>

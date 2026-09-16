@@ -23,12 +23,12 @@
 
 [[redirects]]
   from = "/james-frank"
-  to = "/james-frank.html"
+  to = "/jamesfrank.html"
   status = 200
 
 [[redirects]]
   from = "/JamesFrank"
-  to = "/JamesFrank.html"
+  to = "/jamesfrank.html"
   status = 200
 
 [[redirects]]
@@ -60,3 +60,14 @@
   from = "/about-us/"
   to = "/index.html#about-us"
   status = 302
+
+# Unlisted advisor contact pages: never index, even if a URL leaks.
+[[headers]]
+  for = "/jamesfrank.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+
+[[headers]]
+  for = "/card.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"

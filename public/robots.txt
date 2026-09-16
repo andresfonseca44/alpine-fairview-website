@@ -4,3 +4,8 @@ Disallow: /card/
 Disallow: /card.html
 Disallow: /andres
 Disallow: /andres/
+Disallow: /jamesfrank
+Disallow: /jamesfrank/
+Disallow: /jamesfrank.html
+Disallow: /james-frank
+Disallow: /james-frank/

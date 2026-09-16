@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Placeholder advisor portrait">
+  <title>Placeholder advisor portrait</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5F7B82"/>
+      <stop offset="1" stop-color="#3C5055"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCEAF5"/>
+      <stop offset="1" stop-color="#A9CBE3"/>
+    </linearGradient>
+    <linearGradient id="jacket" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2C3B40"/>
+      <stop offset="1" stop-color="#1B262A"/>
+    </linearGradient>
+    <clipPath id="frame"><circle cx="160" cy="160" r="160"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="320" height="320" fill="url(#bg)"/>
+    <circle cx="160" cy="132" r="118" fill="#ffffff" opacity="0.06"/>
+    <circle cx="160" cy="150" r="86" fill="#ffffff" opacity="0.05"/>
+
+    <!-- shoulders / suit -->
+    <path d="M160 196c58 0 104 34 112 84H48c8-50 54-84 112-84z" fill="url(#jacket)"/>
+    <!-- collar + shirt -->
+    <path d="M132 202l28 44 28-44 18 8-30 70h-32l-30-70z" fill="url(#shirt)"/>
+    <path d="M160 246l12 18-12 46-12-46z" fill="#2EE59D" opacity="0.85"/>
+    <!-- neck -->
+    <path d="M143 168h34v34c0 9-8 16-17 16s-17-7-17-16z" fill="#C9A98C"/>
+    <!-- head -->
+    <path d="M160 64c28 0 48 21 48 50 0 32-21 60-48 60s-48-28-48-60c0-29 20-50 48-50z" fill="#DCBFA2"/>
+    <!-- hair -->
+    <path d="M112 116c-2-34 20-55 48-55s50 21 48 55c-6-6-9-17-11-25-10 10-25 15-37 15-14 0-27-5-36-14-3 8-6 18-12 24z" fill="#4A4038"/>
+  </g>
+
+  <circle cx="160" cy="160" r="158" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4"/>
+</svg>
