@@ -1048,6 +1048,132 @@ body {
   max-width: 300px;
 }
 
+/* COVERAGE AMOUNTS EXPLAINED SECTION */
+.coverage-amounts-section {
+  background-color: var(--color-white);
+  padding: 80px 0;
+  border-top: 1px solid rgba(95, 123, 130, 0.12);
+}
+
+.coverage-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1000px;
+  margin: 44px auto 40px auto;
+  align-items: stretch;
+}
+
+.coverage-card {
+  position: relative;
+  background-color: var(--color-white);
+  border: 1px solid rgba(95, 123, 130, 0.2);
+  border-radius: var(--radius-card);
+  padding: 38px 24px;
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(27, 27, 27, 0.04);
+}
+
+.coverage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(95, 123, 130, 0.12);
+  border-color: var(--color-slate-teal);
+}
+
+.coverage-card-featured {
+  border: 2px solid var(--color-slate-teal);
+  background-color: #F8FAF9;
+  box-shadow: 0 8px 28px rgba(95, 123, 130, 0.14);
+}
+
+.coverage-card-featured:hover {
+  box-shadow: 0 14px 36px rgba(95, 123, 130, 0.18);
+}
+
+.coverage-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-mint-green);
+  color: var(--color-mint-text);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 5px 16px;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(46, 229, 157, 0.35);
+  white-space: nowrap;
+}
+
+.coverage-amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-slate-teal-dark);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  font-family: var(--font-sans);
+}
+
+.coverage-tier-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-near-black);
+  margin-bottom: 10px;
+}
+
+.coverage-tier-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.coverage-cta-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.coverage-cta-btn {
+  padding: 16px 36px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.coverage-privacy-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.coverage-privacy-note .lock-icon {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .coverage-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    gap: 32px;
+  }
+}
+
 /* COMPARISON TABLE */
 .comparison-table-section {
   background-color: var(--color-offwhite);
