@@ -69,26 +69,26 @@ function getNumericStateCode(stateInput) {
   return STATE_CODE_MAP[cleanInput] || null;
 }
 
-const ANDRES = { 
-  name: "Andres Fonseca", 
+const AGENCY = { 
+  name: "Alpine Fairview Group", 
   phone: "7738000116", 
-  email: "andres@alpinefairview.com" 
+  email: "support@alpinefairview.com" 
 };
 
-// EMAIL NOTIFICATION DISPATCHER FOR ANDRES FONSECA
+// EMAIL NOTIFICATION DISPATCHER FOR ALPINE FAIRVIEW GROUP
 async function sendEmailNotification(data) {
-  const recipients = [ANDRES.email];
+  const recipients = [AGENCY.email];
   const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'New Applicant';
   const coverage = data.coverageStr || '$25,000';
   const rate = data.rateStr ? ` (${data.rateStr})` : '';
-  const subject = `🚨 NEW LEAD (Andres Fonseca): ${fullName} - ${coverage}${rate}`;
+  const subject = `🚨 NEW LEAD (Alpine Fairview): ${fullName} - ${coverage}${rate}`;
 
   const textBody = `
 ==================================================
 🚨 NEW ALPINE FAIRVIEW LEAD NOTIFICATION
 ==================================================
 
-DESTINATION: Andres Fonseca (${ANDRES.email})
+DESTINATION: Alpine Fairview Group (${AGENCY.email})
 
 APPLICANT INFORMATION:
 -----------------------
@@ -151,7 +151,7 @@ ${data.stickyNote || 'N/A'}
         },
         body: JSON.stringify({
           personalizations: [{ to: recipients.map(email => ({ email })) }],
-          from: { email: 'andres@alpinefairview.com', name: 'Alpine Fairview Lead Alert' },
+          from: { email: 'support@alpinefairview.com', name: 'Alpine Fairview Lead Alert' },
           subject: subject,
           content: [{ type: 'text/plain', value: textBody }]
         })
@@ -170,7 +170,7 @@ ${data.stickyNote || 'N/A'}
       email: recipients.join(','),
       subject: subject,
       message: textBody,
-      from_name: `Alpine Fairview Lead Gen (Andres Fonseca)`
+      from_name: `Alpine Fairview Lead Gen`
     };
     await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -202,8 +202,8 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         status: 'online',
-        destination: 'Andres Fonseca CRM Only',
-        agent: ANDRES
+        destination: 'Alpine Fairview Group CRM',
+        agent: AGENCY
       })
     };
   }
@@ -218,6 +218,49 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body || '{}');
+
+    // Always trigger email notification first
+    await sendEmailNotification(data);
+
+    // Prepare DigitalBGA CRM payload
+    const digitalBgaPayload = {
+      agency_id: process.env.DIGITALBGA_AGENCY_ID || 'AF_LEADS',
+      first_name: data.firstName || '',
+      last_name: data.lastName || '',
+      phone: data.cleanPhone || data.phone || '',
+      email: data.email || '',
+      dob: data.formattedDob || data.dob || '',
+      gender: data.gender || 'Male',
+      state: data.rawState || '',
+      coverage_amount: data.coverageStr || '$25,000',
+      monthly_rate: data.rateStr || '',
+      notes: `[AF LEAD] Goal: ${data.goals || 'Whole Life'} | Timing: ${data.timing || 'ASAP'} | Coverage: ${data.coverageStr || ''}`
+    };
+
+    console.log('🚀 Dispatching lead to DigitalBGA CRM:', digitalBgaPayload);
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        status: 'success',
+        message: 'Thanks! We received your information.',
+        agent: AGENCY
+      })
+    };
+  } catch (err) {
+    console.error('❌ Netlify Function Error:', err);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        status: 'error',
+        error: err.message || 'Internal Server Error',
+        agent: AGENCY
+      })
+    };
+  }
+};
 
     // Validate Required Fields
     const email = (data.email || '').trim();

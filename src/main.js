@@ -72,6 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
+  // 1B. HERO BACKGROUND IMAGE ALTERNATING SLIDESHOW (Every 7 seconds)
+  // ------------------------------------------------------------------------
+  const heroSlides = document.querySelectorAll('.hero-bg-slide');
+  let currentHeroSlide = 0;
+
+  if (heroSlides.length > 1) {
+    setInterval(() => {
+      heroSlides[currentHeroSlide].classList.remove('active');
+      currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+      heroSlides[currentHeroSlide].classList.add('active');
+    }, 7000);
+  }
+
+  // ------------------------------------------------------------------------
   // 2. IPHONE SCREEN DEMONSTRATION SLIDESHOW (Speed of Approval Demo)
   // ------------------------------------------------------------------------
   let phoneSlideIdx = 1;
@@ -1008,29 +1022,36 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`👤 [AGENT UI UPDATE] Dynamically updating page for assigned agent: ${agent.name} (${formattedPhone})`);
 
     // Update Call Advisor buttons
-    document.querySelectorAll('#final-call-advisor-btn, #bottom-call-advisor-btn, .btn-call-advisor, .bottom-contact-stack a[href^="tel:"], .contact-cta-stack a[href^="tel:"]').forEach(btn => {
+    document.querySelectorAll('#final-call-advisor-btn, #bottom-call-advisor-btn, .btn-call-advisor, .btn-call-direct, .bottom-contact-stack a[href^="tel:"], .contact-cta-stack a[href^="tel:"]').forEach(btn => {
       btn.href = `tel:${agent.phone}`;
       const textSpan = btn.querySelector('span:last-child') || btn;
-      textSpan.textContent = `Call ${agent.name}: ${formattedPhone}`;
+      textSpan.textContent = 'Call an Agent';
     });
 
     // Update Email Advisor buttons
-    document.querySelectorAll('#final-email-advisor-btn, #bottom-email-advisor-btn, .btn-email-advisor, .bottom-contact-stack a[href^="mailto:"], .contact-cta-stack a[href^="mailto:"]').forEach(btn => {
-      btn.href = `mailto:${agent.email}`;
+    document.querySelectorAll('#final-email-advisor-btn, #bottom-email-advisor-btn, .btn-email-advisor, .btn-email-direct, .bottom-contact-stack a[href^="mailto:"], .contact-cta-stack a[href^="mailto:"]').forEach(btn => {
+      btn.href = `mailto:${agent.email || 'support@alpinefairview.com'}`;
       const textSpan = btn.querySelector('span:last-child') || btn;
-      textSpan.textContent = `Email ${agent.name}: ${agent.email}`;
+      textSpan.textContent = 'Email Us';
+    });
+
+    // Update Text Us buttons
+    document.querySelectorAll('#final-sms-advisor-btn, .btn-sms-direct, .bottom-contact-stack a[href^="sms:"], .contact-cta-stack a[href^="sms:"]').forEach(btn => {
+      btn.href = `sms:${agent.phone || '7738000116'}`;
+      const textSpan = btn.querySelector('span:last-child') || btn;
+      textSpan.textContent = 'Text Us a Question';
     });
 
     // Update Specialist Card Name, Role & Message Quote
     const specName = document.getElementById('final-specialist-name');
-    if (specName) specName.textContent = agent.name;
+    if (specName) specName.textContent = 'Alpine Fairview Group';
 
     const specRole = document.getElementById('final-specialist-role');
-    if (specRole) specRole.textContent = `Senior Licensed State Advisor • Alpine Fairview Group`;
+    if (specRole) specRole.textContent = `Licensed State Advisor Team • NPN: 18441151`;
 
     const specQuote = document.getElementById('final-specialist-quote');
     if (specQuote) {
-      specQuote.innerHTML = `"Hello! Your application for Whole Life protection has been successfully received. I am reviewing top carrier rates in your state and will reach out to you directly at <strong>${formattedPhone}</strong> to help you finalize your approved rate!"`;
+      specQuote.innerHTML = `"Hello! Your application for Whole Life protection has been successfully received. A licensed agent in your state will reach out to you shortly to finalize your approved rate and answer any questions."`;
     }
 
     // Update top right help call button if present
@@ -1049,7 +1070,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const smsCodeSection = document.getElementById('sms-code-section');
   const smsCodeInput = document.getElementById('sms-code-input');
   const verifyCodeBtn = document.getElementById('verify-code-btn');
+  const smsVerifyBtn = document.getElementById('sms-verify-btn');
   const smsVerifyMessage = document.getElementById('sms-verify-message');
+  const smsVerifyStatus = document.getElementById('sms-verify-status');
+
+  function downloadAgentVCard() {
+    const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Alpine Fairview Group
+N:Group;Alpine Fairview;;;
+ORG:Alpine Fairview Group
+TITLE:Licensed State Advisor Team
+TEL;TYPE=CELL,VOICE:(773) 800-0116
+TEL;TYPE=WORK,VOICE:(773) 800-0116
+EMAIL;TYPE=INTERNET:support@alpinefairview.com
+URL:https://alpinefairview.com
+NOTE:NPN: 18441151 | Alpine Fairview Life Insurance Specialist Team
+END:VCARD`;
+
+    const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Alpine_Fairview_Group.vcf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
   if (phoneInput && nextStep16Btn) {
     phoneInput.addEventListener('input', () => {
@@ -1296,7 +1343,7 @@ ORG:Alpine Fairview Group
 TITLE:Life & Final Expense Broker Manager
 TEL;TYPE=CELL,VOICE:(773) 800-0116
 TEL;TYPE=WORK,VOICE:(773) 800-0116
-EMAIL;TYPE=INTERNET:andres@alpinefairview.com
+EMAIL;TYPE=INTERNET:support@alpinefairview.com
 URL:https://alpinefairview.com
 NOTE:NPN: 18441151 | Alpine Fairview Life Insurance Specialist
 END:VCARD`;
