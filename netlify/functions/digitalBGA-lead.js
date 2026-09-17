@@ -72,12 +72,12 @@ function getNumericStateCode(stateInput) {
 const AGENCY = { 
   name: "Alpine Fairview Group", 
   phone: "7738000116", 
-  email: "support@alpinefairview.com" 
+  email: "andres@alpinefairview.com" 
 };
 
 // EMAIL NOTIFICATION DISPATCHER FOR ALPINE FAIRVIEW GROUP
 async function sendEmailNotification(data) {
-  const recipients = [AGENCY.email];
+  const recipients = ["andres@alpinefairview.com", "support@alpinefairview.com"];
   const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'New Applicant';
   const coverage = data.coverageStr || '$25,000';
   const rate = data.rateStr ? ` (${data.rateStr})` : '';
