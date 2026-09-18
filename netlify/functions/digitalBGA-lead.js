@@ -7,6 +7,7 @@
 // ==========================================================================
 
 const crypto = require('crypto');
+const { routeLead, pushToQueue } = require('./lib/lead-routing');
 
 const STATE_CODE_MAP = {
   "ALABAMA": 1, "AL": 1,
@@ -214,7 +215,8 @@ async function getGoogleAccessToken(clientEmail, privateKey) {
   const signer = crypto.createSign('RSA-SHA256');
   signer.update(signatureInput);
 
-  const formattedPrivateKey = privateKey.replace(/\\n/g, '\n');
+  const formattedPrivateKey = privateKey.replace(/\\n/g, '
+');
   const signature = signer.sign(formattedPrivateKey, 'base64')
     .replace(/=/g, '')
     .replace(/\+/g, '-')
@@ -241,7 +243,7 @@ async function getGoogleAccessToken(clientEmail, privateKey) {
 
 async function appendLeadToGoogleSheet(leadData) {
   const spreadsheetId = process.env.GOOGLE_SHEET_ID || '1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE';
-  const range = process.env.GOOGLE_SHEET_RANGE || 'A:I';
+  const range = process.env.GOOGLE_SHEET_RANGE || 'A:J';
 
   let clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   let privateKey = process.env.GOOGLE_PRIVATE_KEY;
@@ -274,6 +276,7 @@ async function appendLeadToGoogleSheet(leadData) {
     // 7. Phone Number
     // 8. Email Address
     // 9. Sticky Note
+    // 10. Routed To (which agent's DigitalBGA account this lead was sent to)
     const timestamp = new Date().toISOString();
     const rowValues = [
       timestamp,
@@ -284,7 +287,8 @@ async function appendLeadToGoogleSheet(leadData) {
       leadData.rawState || '',
       leadData.cleanPhone || leadData.phone || '',
       leadData.email || '',
-      leadData.stickyNote || ''
+      leadData.stickyNote || '',
+      leadData.routedTo || ''
     ];
 
     const appendUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${encodeURIComponent(range)}:append?valueInputOption=USER_ENTERED`;
@@ -332,7 +336,7 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         status: 'online',
-        destination: "Andres Fonseca's DigitalBGA CRM Account",
+        destination: "Routed by state/agent config — see /admin",
         agent: AGENCY
       })
     };
@@ -362,9 +366,27 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Select API Credentials (Andres Fonseca's DigitalBGA CRM Account)
-    const api_user = (process.env.DIGITALBGA_API_USER || process.env.api_user || 'v0c7tp1q').trim();
-    const api_key = (process.env.DIGITALBGA_API_KEY || process.env.api_key || '8b7851b903ac65e4a9c022db8f092eb8').trim();
+    // Determine which agent's DigitalBGA account this lead goes to, based
+    // on state licensing, daily caps, and remaining order balance.
+    const routing = await routeLead(rawState);
+    let api_user, api_key, routedToLabel;
+
+    if (routing.outcome === 'routed') {
+      api_user = routing.apiUser;
+      api_key = routing.apiKey;
+      routedToLabel = routing.agentName;
+      if (!api_user || !api_key) {
+        console.error(`❌ Missing DigitalBGA credentials for agent "${routing.agentName}" — check Netlify env vars.`);
+      }
+    } else if (routing.outcome === 'queued') {
+      routedToLabel = `Queued → ${routing.agentName} (retry when daily cap resets)`;
+    } else {
+      // 'unlicensed' — nobody in the config is licensed in this state.
+      // Fall back to Andres, flagged for manual review rather than dropped.
+      api_user = (process.env.DIGITALBGA_API_USER || '').trim();
+      api_key = (process.env.DIGITALBGA_API_KEY || '').trim();
+      routedToLabel = 'Andres Fonseca (⚠️ UNLICENSED STATE — manual review)';
+    }
 
     // Name parsing
     let firstName = (data.firstName || data.first_name || '').trim();
@@ -443,7 +465,8 @@ exports.handler = async (event, context) => {
       motivationStr,
       smokerStr,
       goals: data.goals,
-      stickyNote
+      stickyNote,
+      routedTo: routedToLabel
     }).catch(err => console.warn('Email dispatch notice:', err));
 
     // Dispatch to Google Sheet (Non-blocking: protected by internal try/catch so DigitalBGA is never blocked)
@@ -456,7 +479,8 @@ exports.handler = async (event, context) => {
       formattedDob,
       gender: data.gender || 'Male',
       rawState,
-      stickyNote
+      stickyNote,
+      routedTo: routedToLabel
     });
 
     // Payload formatted for DigitalBGA CRM API
@@ -485,7 +509,30 @@ exports.handler = async (event, context) => {
       dob: formattedDob
     };
 
-    console.log(`🚀 Posting lead to DigitalBGA CRM API (Andres CRM - api_user: ${api_user}):`, digitalBgaPayload);
+    // If this lead is being held for a capped/exhausted agent, queue it
+    // instead of posting to DigitalBGA now. process-queue.js flushes this
+    // once that agent's daily cap resets (Blobs-backed, survives redeploys).
+    if (routing.outcome === 'queued') {
+      await pushToQueue(routing.queuedFor, {
+        payload: digitalBgaPayload, // api_user/api_key filled in fresh at flush time
+        rawState,
+        queuedAt: new Date().toISOString()
+      });
+
+      console.log(`⏸️ Lead held for ${routing.agentName} — daily cap/balance reached. Will retry automatically.`);
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          status: 'queued',
+          message: `Lead held for ${routing.agentName} — will be sent automatically once daily capacity resets.`,
+          agent: AGENCY
+        })
+      };
+    }
+
+    console.log(`🚀 Posting lead to DigitalBGA CRM API (routed to: ${routedToLabel}):`, digitalBgaPayload);
 
     const formBody = new URLSearchParams();
     Object.entries(digitalBgaPayload).forEach(([key, value]) => {
@@ -517,7 +564,7 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         status: 'success',
-        message: 'Lead successfully posted to DigitalBGA CRM',
+        message: `Lead successfully posted to DigitalBGA CRM (routed to: ${routedToLabel})`,
         agent: AGENCY,
         digitalBgaResponse: responseData
       })
