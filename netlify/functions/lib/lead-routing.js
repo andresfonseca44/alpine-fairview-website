@@ -70,7 +70,7 @@ function todayEastern() {
 }
 
 function store() {
-  return getStore({ name: STORE_NAME, consistency: 'strong' });
+  return getStore(STORE_NAME);
 }
 
 async function loadConfig() {
