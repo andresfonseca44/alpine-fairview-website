@@ -58,6 +58,10 @@
   .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
   .stat { font-size: 13px; color: var(--muted); }
   .stat b { color: var(--text); }
+  .history-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  .history-table th, .history-table td { padding: 4px 6px; text-align: center; border-bottom: 1px solid var(--border); }
+  .history-table th:first-child, .history-table td:first-child { text-align: left; white-space: nowrap; }
+  .history-table tfoot td { font-weight: 600; border-top: 2px solid var(--border); border-bottom: none; }
   #status-msg { margin: 12px 0; font-size: 14px; }
   #status-msg.ok { color: #0a7a3d; }
   #status-msg.err { color: #a33; }
@@ -139,6 +143,42 @@
     setTimeout(() => { el.textContent = ''; }, 4000);
   }
 
+  function buildWeekTable(history) {
+    // Groups {date:'YYYY-MM-DD', count} entries into calendar weeks (Sun-Sat).
+    const weeks = {};
+    (history || []).forEach(({ date, count }) => {
+      const d = new Date(date + 'T00:00:00');
+      const dow = d.getDay(); // 0=Sun..6=Sat
+      const weekStart = new Date(d);
+      weekStart.setDate(d.getDate() - dow);
+      const wk = weekStart.toISOString().slice(0, 10);
+      if (!weeks[wk]) weeks[wk] = [0, 0, 0, 0, 0, 0, 0];
+      weeks[wk][dow] = count;
+    });
+    return weeks;
+  }
+
+  function renderHistoryTable(agent) {
+    const weeks = buildWeekTable(agent.history);
+    const weekKeys = Object.keys(weeks).sort().reverse(); // most recent week first
+    if (weekKeys.length === 0) {
+      return '<div class="sub" style="margin-top:8px;">No leads recorded yet.</div>';
+    }
+    const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const fmtWeek = (wk) => new Date(wk + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const rows = weekKeys.map((wk) => {
+      const days = weeks[wk];
+      const total = days.reduce((a, b) => a + b, 0);
+      return `<tr><td>Week of ${fmtWeek(wk)}</td>${days.map(c => `<td>${c}</td>`).join('')}<td><b>${total}</b></td></tr>`;
+    }).join('');
+    return `
+      <table class="history-table">
+        <thead><tr><th>Week</th>${dayLabels.map(d => `<th>${d}</th>`).join('')}<th>Total</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+
   function render(agents) {
     const c = document.getElementById('agents-container');
     c.innerHTML = '';
@@ -175,6 +215,8 @@
           <button onclick="setBalance('${agent.id}')">Set balance</button>
           <button class="secondary" onclick="toggleActive('${agent.id}', ${!agent.active})">${agent.active ? 'Pause agent' : 'Resume agent'}</button>
         </div>
+        <div class="sub" style="margin-top:12px; font-weight:600;">Lead history (by week)</div>
+        ${renderHistoryTable(agent)}
       `;
       c.appendChild(div);
     });
