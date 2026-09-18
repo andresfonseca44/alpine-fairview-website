@@ -13,9 +13,12 @@
 //   action: "createAgent"  { agent: {...} }             add a new agent
 // ==========================================================================
 
+const { connectLambda } = require('@netlify/blobs');
 const { loadConfig, saveConfig, todayEastern, getDailyCount, getQueue } = require('./lib/lead-routing');
 
 exports.handler = async (event) => {
+  connectLambda(event); // required for Netlify Blobs in Lambda-compatibility mode
+
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, x-admin-password',
