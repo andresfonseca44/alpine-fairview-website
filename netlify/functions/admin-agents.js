@@ -14,7 +14,7 @@
 // ==========================================================================
 
 const { connectLambda } = require('@netlify/blobs');
-const { loadConfig, saveConfig, todayEastern, getDailyCount, getDailyHistory, getQueue } = require('./lib/lead-routing');
+const { loadConfig, saveConfig, todayEastern, getDailyCount, getDailyHistory, setDailyCount, getQueue } = require('./lib/lead-routing');
 
 exports.handler = async (event) => {
   connectLambda(event); // required for Netlify Blobs in Lambda-compatibility mode
@@ -85,6 +85,12 @@ exports.handler = async (event) => {
         if (!agent) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Agent not found' }) };
         agent.active = !!body.active;
         break;
+      }
+      case 'setDailyCount': {
+        if (!agent) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Agent not found' }) };
+        const dateKey = body.date || todayEastern();
+        await setDailyCount(agent.id, dateKey, body.count);
+        return { statusCode: 200, headers, body: JSON.stringify({ status: 'ok', agentId: agent.id, date: dateKey, count: Number(body.count) }) };
       }
       case 'setName': {
         if (!agent) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Agent not found' }) };
