@@ -85,6 +85,14 @@ exports.handler = async (event) => {
         agent.active = !!body.active;
         break;
       }
+      case 'setName': {
+        if (!agent) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Agent not found' }) };
+        if (!body.name || !String(body.name).trim()) {
+          return { statusCode: 400, headers, body: JSON.stringify({ error: 'name is required' }) };
+        }
+        agent.name = String(body.name).trim();
+        break;
+      }
       case 'createAgent': {
         const newAgent = body.agent;
         if (!newAgent || !newAgent.id || !newAgent.apiUserEnv || !newAgent.apiKeyEnv) {
