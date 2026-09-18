@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lead Routing Admin — Alpine Fairview</title>
+<style>
+  :root {
+    --slate: #5F7B82;
+    --slate-dark: #4A6369;
+    --mint: #2EE59D;
+    --mint-hover: #26D08E;
+    --offwhite: #F7F7F7;
+    --border: #D5DFE3;
+    --text: #1B1B1B;
+    --muted: #556063;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: var(--offwhite);
+    color: var(--text);
+    margin: 0;
+    padding: 24px;
+  }
+  h1 { color: var(--slate); font-size: 24px; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  #login-panel {
+    max-width: 360px; margin: 80px auto; background: #fff; padding: 32px;
+    border-radius: 12px; border: 1px solid var(--border);
+  }
+  #login-panel input {
+    width: 100%; padding: 10px 12px; font-size: 15px; border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 12px;
+  }
+  button {
+    background: var(--mint); color: #0B3C2A; border: none; padding: 10px 18px;
+    border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px;
+  }
+  button:hover { background: var(--mint-hover); }
+  button.secondary { background: var(--slate); color: #fff; }
+  button.secondary:hover { background: var(--slate-dark); }
+  .card {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 24px; margin-bottom: 16px;
+  }
+  .card h2 { color: var(--slate); font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--offwhite); color: var(--muted); border: 1px solid var(--border); }
+  .badge.default { background: #DCEAF5; color: var(--slate-dark); }
+  .badge.paused { background: #ffe0e0; color: #a33; }
+  .row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 12px; }
+  .field { flex: 1; min-width: 180px; }
+  .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .field input, .field textarea {
+    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;
+  }
+  .field textarea { min-height: 50px; font-family: monospace; }
+  .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .stat { font-size: 13px; color: var(--muted); }
+  .stat b { color: var(--text); }
+  #status-msg { margin: 12px 0; font-size: 14px; }
+  #status-msg.ok { color: #0a7a3d; }
+  #status-msg.err { color: #a33; }
+  #app { display: none; max-width: 900px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div id="login-panel">
+  <h1>Lead Routing Admin</h1>
+  <div class="sub">Alpine Fairview — agent management</div>
+  <input type="password" id="password-input" placeholder="Admin password" />
+  <button onclick="login()">Unlock</button>
+  <div id="login-error" style="color:#a33; font-size:13px; margin-top:8px;"></div>
+</div>
+
+<div id="app">
+  <h1>Lead Routing Admin</h1>
+  <div class="sub">Manage which agent gets which leads, daily caps, and remaining order balances.</div>
+  <div id="status-msg"></div>
+  <div id="agents-container"></div>
+
+  <div class="card">
+    <h2>Add a new agent</h2>
+    <div class="row">
+      <div class="field"><label>Agent ID (short, no spaces)</label><input id="new-id" placeholder="e.g. sarah" /></div>
+      <div class="field"><label>Display name</label><input id="new-name" placeholder="e.g. Sarah Smith" /></div>
+      <div class="field"><label>Daily cap</label><input id="new-cap" type="number" placeholder="e.g. 15" /></div>
+    </div>
+    <div class="row">
+      <div class="field"><label>Order balance (total leads purchased)</label><input id="new-balance" type="number" placeholder="e.g. 100" /></div>
+      <div class="field"><label>Licensed states (comma-separated)</label><input id="new-states" placeholder="e.g. FL, GA, TN" /></div>
+    </div>
+    <div class="row">
+      <div class="field"><label>Netlify env var — API user</label><input id="new-apiuser-env" placeholder="e.g. SARAH_DBGA_API_USER" /></div>
+      <div class="field"><label>Netlify env var — API key</label><input id="new-apikey-env" placeholder="e.g. SARAH_DBGA_API_KEY" /></div>
+    </div>
+    <div class="sub" style="margin:8px 0 0;">Add these two env vars in Netlify before creating the agent here — the site can't set them for you.</div>
+    <div class="actions"><button onclick="createAgent()">Add agent</button></div>
+  </div>
+</div>
+
+<script>
+  let PASSWORD = '';
+  const FN = '/.netlify/functions/admin-agents';
+
+  function login() {
+    PASSWORD = document.getElementById('password-input').value;
+    loadAgents();
+  }
+
+  async function api(method, body) {
+    const res = await fetch(FN, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'x-admin-password': PASSWORD },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (res.status === 401) throw new Error('unauthorized');
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  }
+
+  async function loadAgents() {
+    try {
+      const data = await api('GET');
+      document.getElementById('login-panel').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      render(data.agents);
+    } catch (e) {
+      document.getElementById('login-error').textContent = e.message === 'unauthorized' ? 'Wrong password.' : e.message;
+    }
+  }
+
+  function showStatus(msg, ok) {
+    const el = document.getElementById('status-msg');
+    el.textContent = msg;
+    el.className = ok ? 'ok' : 'err';
+    setTimeout(() => { el.textContent = ''; }, 4000);
+  }
+
+  function render(agents) {
+    const c = document.getElementById('agents-container');
+    c.innerHTML = '';
+    agents.sort((a, b) => a.priority - b.priority).forEach(agent => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      const badges = [
+        agent.isDefault ? '<span class="badge default">Default catch-all</span>' : '',
+        !agent.active ? '<span class="badge paused">Paused</span>' : ''
+      ].join(' ');
+
+      div.innerHTML = `
+        <h2>${agent.name} ${badges}</h2>
+        <div class="row">
+          <div class="stat">Daily cap: <b>${agent.dailyCap == null ? 'Unlimited' : agent.dailyCap}</b></div>
+          <div class="stat">Sent today: <b>${agent.dailyCountToday == null ? '—' : agent.dailyCountToday}</b></div>
+          <div class="stat">Order balance: <b>${agent.balance == null ? 'Unlimited' : agent.balance}</b></div>
+          <div class="stat">Held in queue: <b>${agent.queueLength}</b></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Licensed states (comma-separated)</label>
+            <textarea id="states-${agent.id}">${agent.states.join(', ')}</textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Daily cap (blank = unlimited)</label><input id="cap-${agent.id}" type="number" value="${agent.dailyCap ?? ''}" /></div>
+          <div class="field"><label>Add to order balance</label><input id="addbal-${agent.id}" type="number" placeholder="e.g. 100" /></div>
+          <div class="field"><label>Set order balance directly</label><input id="setbal-${agent.id}" type="number" placeholder="leave blank to skip" /></div>
+        </div>
+        <div class="actions">
+          <button onclick="saveStates('${agent.id}')">Save states</button>
+          <button onclick="saveCap('${agent.id}')">Save daily cap</button>
+          <button onclick="addBalance('${agent.id}')">Add to balance</button>
+          <button onclick="setBalance('${agent.id}')">Set balance</button>
+          <button class="secondary" onclick="toggleActive('${agent.id}', ${!agent.active})">${agent.active ? 'Pause agent' : 'Resume agent'}</button>
+        </div>
+      `;
+      c.appendChild(div);
+    });
+  }
+
+  async function saveStates(id) {
+    const raw = document.getElementById(`states-${id}`).value;
+    const states = raw.split(',').map(s => s.trim()).filter(Boolean);
+    try { await api('POST', { action: 'setStates', agentId: id, states }); showStatus('States updated.', true); loadAgents(); }
+    catch (e) { showStatus(e.message, false); }
+  }
+
+  async function saveCap(id) {
+    const raw = document.getElementById(`cap-${id}`).value;
+    const dailyCap = raw === '' ? null : Number(raw);
+    try { await api('POST', { action: 'setDailyCap', agentId: id, dailyCap }); showStatus('Daily cap updated.', true); loadAgents(); }
+    catch (e) { showStatus(e.message, false); }
+  }
+
+  async function addBalance(id) {
+    const amount = Number(document.getElementById(`addbal-${id}`).value || 0);
+    if (!amount) return;
+    try { await api('POST', { action: 'addBalance', agentId: id, amount }); showStatus(`Added ${amount} to balance.`, true); loadAgents(); }
+    catch (e) { showStatus(e.message, false); }
+  }
+
+  async function setBalance(id) {
+    const raw = document.getElementById(`setbal-${id}`).value;
+    if (raw === '') return;
+    try { await api('POST', { action: 'setBalance', agentId: id, amount: Number(raw) }); showStatus('Balance set.', true); loadAgents(); }
+    catch (e) { showStatus(e.message, false); }
+  }
+
+  async function toggleActive(id, active) {
+    try { await api('POST', { action: 'setActive', agentId: id, active }); showStatus(active ? 'Agent resumed.' : 'Agent paused.', true); loadAgents(); }
+    catch (e) { showStatus(e.message, false); }
+  }
+
+  async function createAgent() {
+    const agent = {
+      id: document.getElementById('new-id').value.trim(),
+      name: document.getElementById('new-name').value.trim(),
+      dailyCap: document.getElementById('new-cap').value ? Number(document.getElementById('new-cap').value) : null,
+      balance: document.getElementById('new-balance').value ? Number(document.getElementById('new-balance').value) : null,
+      states: document.getElementById('new-states').value.split(',').map(s => s.trim()).filter(Boolean),
+      apiUserEnv: document.getElementById('new-apiuser-env').value.trim(),
+      apiKeyEnv: document.getElementById('new-apikey-env').value.trim()
+    };
+    if (!agent.id || !agent.apiUserEnv || !agent.apiKeyEnv) {
+      showStatus('Agent ID and both env var names are required.', false);
+      return;
+    }
+    try { await api('POST', { action: 'createAgent', agent }); showStatus('Agent added.', true); loadAgents(); }
+    catch (e) { showStatus(e.message, false); }
+  }
+
+  // Allow Enter key to submit login
+  document.getElementById('password-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') login();
+  });
+</script>
+</body>
+</html>
