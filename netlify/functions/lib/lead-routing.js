@@ -99,6 +99,11 @@ async function incrementDailyCount(agentId, dateKey) {
   return current + 1;
 }
 
+async function setDailyCount(agentId, dateKey, count) {
+  await store().setJSON(`daily:${agentId}:${dateKey}`, Number(count));
+  return Number(count);
+}
+
 async function decrementBalance(config, agentId) {
   const agent = config.agents.find(a => a.id === agentId);
   if (agent && typeof agent.balance === 'number') {
@@ -204,6 +209,7 @@ module.exports = {
   todayEastern,
   getDailyCount,
   getDailyHistory,
+  setDailyCount,
   getQueue,
   pushToQueue,
   setQueue,
