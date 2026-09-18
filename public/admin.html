@@ -74,7 +74,7 @@
   <h1>Lead Routing Admin</h1>
   <div class="sub">Alpine Fairview — agent management</div>
   <input type="password" id="password-input" placeholder="Admin password" />
-  <button onclick="login()">Unlock</button>
+  <button onclick="login(this)">Unlock</button>
   <div id="login-error" style="color:#a33; font-size:13px; margin-top:8px;"></div>
 </div>
 
@@ -100,7 +100,7 @@
       <div class="field"><label>Netlify env var — API key</label><input id="new-apikey-env" placeholder="e.g. SARAH_DBGA_API_KEY" /></div>
     </div>
     <div class="sub" style="margin:8px 0 0;">Add these two env vars in Netlify before creating the agent here — the site can't set them for you.</div>
-    <div class="actions"><button onclick="createAgent()">Add agent</button></div>
+    <div class="actions"><button onclick="createAgent(this)">Add agent</button></div>
   </div>
 </div>
 
@@ -108,9 +108,29 @@
   let PASSWORD = '';
   const FN = '/.netlify/functions/admin-agents';
 
-  function login() {
-    PASSWORD = document.getElementById('password-input').value;
-    loadAgents();
+  // Disables a button and shows "Saving..." while an action is in flight, so
+  // a click always gives instant visible feedback — clicking again before
+  // the first request finishes (which previously looked like "nothing
+  // happened") is now impossible since the button is disabled meanwhile.
+  async function withBusy(btn, fn) {
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+    try {
+      await fn();
+    } finally {
+      // If loadAgents() rebuilt the card, this button no longer exists in
+      // the DOM — restoring its state here is harmless either way.
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  }
+
+  async function login(btn) {
+    await withBusy(btn, async () => {
+      PASSWORD = document.getElementById('password-input').value;
+      await loadAgents();
+    });
   }
 
   async function api(method, body) {
@@ -209,11 +229,11 @@
           <div class="field"><label>Set order balance directly</label><input id="setbal-${agent.id}" type="number" placeholder="leave blank to skip" /></div>
         </div>
         <div class="actions">
-          <button onclick="saveStates('${agent.id}')">Save states</button>
-          <button onclick="saveCap('${agent.id}')">Save daily cap</button>
-          <button onclick="addBalance('${agent.id}')">Add to balance</button>
-          <button onclick="setBalance('${agent.id}')">Set balance</button>
-          <button class="secondary" onclick="toggleActive('${agent.id}', ${!agent.active})">${agent.active ? 'Pause agent' : 'Resume agent'}</button>
+          <button onclick="saveStates(this, '${agent.id}')">Save states</button>
+          <button onclick="saveCap(this, '${agent.id}')">Save daily cap</button>
+          <button onclick="addBalance(this, '${agent.id}')">Add to balance</button>
+          <button onclick="setBalance(this, '${agent.id}')">Set balance</button>
+          <button class="secondary" onclick="toggleActive(this, '${agent.id}', ${!agent.active})">${agent.active ? 'Pause agent' : 'Resume agent'}</button>
         </div>
         <div class="sub" style="margin-top:12px; font-weight:600;">Lead history (by week)</div>
         ${renderHistoryTable(agent)}
@@ -222,60 +242,82 @@
     });
   }
 
-  async function saveStates(id) {
-    const raw = document.getElementById(`states-${id}`).value;
-    const states = raw.split(',').map(s => s.trim()).filter(Boolean);
-    try { await api('POST', { action: 'setStates', agentId: id, states }); showStatus('States updated.', true); loadAgents(); }
-    catch (e) { showStatus(e.message, false); }
+  async function saveStates(btn, id) {
+    await withBusy(btn, async () => {
+      const raw = document.getElementById(`states-${id}`).value;
+      const states = raw.split(',').map(s => s.trim()).filter(Boolean);
+      try { await api('POST', { action: 'setStates', agentId: id, states }); showStatus('States updated.', true); await loadAgents(); }
+      catch (e) { showStatus(e.message, false); }
+    });
   }
 
-  async function saveCap(id) {
-    const raw = document.getElementById(`cap-${id}`).value;
-    const dailyCap = raw === '' ? null : Number(raw);
-    try { await api('POST', { action: 'setDailyCap', agentId: id, dailyCap }); showStatus('Daily cap updated.', true); loadAgents(); }
-    catch (e) { showStatus(e.message, false); }
+  async function saveCap(btn, id) {
+    await withBusy(btn, async () => {
+      const raw = document.getElementById(`cap-${id}`).value;
+      const dailyCap = raw === '' ? null : Number(raw);
+      try { await api('POST', { action: 'setDailyCap', agentId: id, dailyCap }); showStatus('Daily cap updated.', true); await loadAgents(); }
+      catch (e) { showStatus(e.message, false); }
+    });
   }
 
-  async function addBalance(id) {
-    const amount = Number(document.getElementById(`addbal-${id}`).value || 0);
-    if (!amount) return;
-    try { await api('POST', { action: 'addBalance', agentId: id, amount }); showStatus(`Added ${amount} to balance.`, true); loadAgents(); }
-    catch (e) { showStatus(e.message, false); }
+  async function addBalance(btn, id) {
+    await withBusy(btn, async () => {
+      const amount = Number(document.getElementById(`addbal-${id}`).value || 0);
+      if (!amount) return;
+      try { await api('POST', { action: 'addBalance', agentId: id, amount }); showStatus(`Added ${amount} to balance.`, true); await loadAgents(); }
+      catch (e) { showStatus(e.message, false); }
+    });
   }
 
-  async function setBalance(id) {
-    const raw = document.getElementById(`setbal-${id}`).value;
-    if (raw === '') return;
-    try { await api('POST', { action: 'setBalance', agentId: id, amount: Number(raw) }); showStatus('Balance set.', true); loadAgents(); }
-    catch (e) { showStatus(e.message, false); }
+  async function setBalance(btn, id) {
+    await withBusy(btn, async () => {
+      const raw = document.getElementById(`setbal-${id}`).value;
+      if (raw === '') return;
+      try { await api('POST', { action: 'setBalance', agentId: id, amount: Number(raw) }); showStatus('Balance set.', true); await loadAgents(); }
+      catch (e) { showStatus(e.message, false); }
+    });
   }
 
-  async function toggleActive(id, active) {
-    try { await api('POST', { action: 'setActive', agentId: id, active }); showStatus(active ? 'Agent resumed.' : 'Agent paused.', true); loadAgents(); }
-    catch (e) { showStatus(e.message, false); }
+  async function toggleActive(btn, id, active) {
+    await withBusy(btn, async () => {
+      try { await api('POST', { action: 'setActive', agentId: id, active }); showStatus(active ? 'Agent resumed.' : 'Agent paused.', true); await loadAgents(); }
+      catch (e) { showStatus(e.message, false); }
+    });
   }
 
-  async function createAgent() {
-    const agent = {
-      id: document.getElementById('new-id').value.trim(),
-      name: document.getElementById('new-name').value.trim(),
-      dailyCap: document.getElementById('new-cap').value ? Number(document.getElementById('new-cap').value) : null,
-      balance: document.getElementById('new-balance').value ? Number(document.getElementById('new-balance').value) : null,
-      states: document.getElementById('new-states').value.split(',').map(s => s.trim()).filter(Boolean),
-      apiUserEnv: document.getElementById('new-apiuser-env').value.trim(),
-      apiKeyEnv: document.getElementById('new-apikey-env').value.trim()
-    };
-    if (!agent.id || !agent.apiUserEnv || !agent.apiKeyEnv) {
-      showStatus('Agent ID and both env var names are required.', false);
-      return;
-    }
-    try { await api('POST', { action: 'createAgent', agent }); showStatus('Agent added.', true); loadAgents(); }
-    catch (e) { showStatus(e.message, false); }
+  async function createAgent(btn) {
+    await withBusy(btn, async () => {
+      const agent = {
+        id: document.getElementById('new-id').value.trim(),
+        name: document.getElementById('new-name').value.trim(),
+        dailyCap: document.getElementById('new-cap').value ? Number(document.getElementById('new-cap').value) : null,
+        balance: document.getElementById('new-balance').value ? Number(document.getElementById('new-balance').value) : null,
+        states: document.getElementById('new-states').value.split(',').map(s => s.trim()).filter(Boolean),
+        apiUserEnv: document.getElementById('new-apiuser-env').value.trim(),
+        apiKeyEnv: document.getElementById('new-apikey-env').value.trim()
+      };
+      if (!agent.id || !agent.apiUserEnv || !agent.apiKeyEnv) {
+        showStatus('Agent ID and both env var names are required.', false);
+        return;
+      }
+      try {
+        await api('POST', { action: 'createAgent', agent });
+        showStatus('Agent added.', true);
+        // Clear the form so a leftover Agent ID can't collide on a future submit.
+        ['new-id', 'new-name', 'new-cap', 'new-balance', 'new-states', 'new-apiuser-env', 'new-apikey-env']
+          .forEach(fieldId => { document.getElementById(fieldId).value = ''; });
+        await loadAgents();
+      }
+      catch (e) { showStatus(e.message, false); }
+    });
   }
 
   // Allow Enter key to submit login
   document.getElementById('password-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') login();
+    if (e.key === 'Enter') {
+      const unlockBtn = document.querySelector('#login-panel button');
+      login(unlockBtn);
+    }
   });
 </script>
 </body>
