@@ -7,6 +7,7 @@
 // ==========================================================================
 
 const crypto = require('crypto');
+const { connectLambda } = require('@netlify/blobs');
 const { routeLead, pushToQueue } = require('./lib/lead-routing');
 
 const STATE_CODE_MAP = {
@@ -317,6 +318,8 @@ async function appendLeadToGoogleSheet(leadData) {
 }
 
 exports.handler = async (event, context) => {
+  connectLambda(event); // required for Netlify Blobs in Lambda-compatibility mode
+
   // Support CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
