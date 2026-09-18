@@ -14,7 +14,7 @@
 // ==========================================================================
 
 const { connectLambda } = require('@netlify/blobs');
-const { loadConfig, saveConfig, todayEastern, getDailyCount, getQueue } = require('./lib/lead-routing');
+const { loadConfig, saveConfig, todayEastern, getDailyCount, getDailyHistory, getQueue } = require('./lib/lead-routing');
 
 exports.handler = async (event) => {
   connectLambda(event); // required for Netlify Blobs in Lambda-compatibility mode
@@ -43,9 +43,10 @@ exports.handler = async (event) => {
       const dateKey = todayEastern();
 
       const agentsWithStatus = await Promise.all(config.agents.map(async (agent) => {
-        const dailyCount = agent.isDefault ? null : await getDailyCount(agent.id, dateKey);
+        const dailyCount = await getDailyCount(agent.id, dateKey);
         const queue = agent.isDefault ? [] : await getQueue(agent.id);
-        return { ...agent, dailyCountToday: dailyCount, queueLength: queue.length };
+        const history = await getDailyHistory(agent.id);
+        return { ...agent, dailyCountToday: dailyCount, queueLength: queue.length, history };
       }));
 
       return { statusCode: 200, headers, body: JSON.stringify({ agents: agentsWithStatus, dateKey }) };
