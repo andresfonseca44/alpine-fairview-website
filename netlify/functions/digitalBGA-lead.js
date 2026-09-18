@@ -64,6 +64,19 @@ const STATE_CODE_MAP = {
   "PUERTO RICO": 52, "PR": 52
 };
 
+// Formats a Date as M/D/YY H:MM in Eastern time (e.g. "9/18/26 13:13") for the
+// Google Sheet timestamp column — readable at a glance, consistent with the
+// Eastern-day boundaries used everywhere else in the routing system.
+function formatSheetTimestamp(date) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    month: 'numeric', day: 'numeric', year: '2-digit',
+    hour: 'numeric', minute: '2-digit', hourCycle: 'h23'
+  }).formatToParts(date);
+  const get = (type) => parts.find(p => p.type === type).value;
+  return `${get('month')}/${get('day')}/${get('year')} ${get('hour')}:${get('minute')}`;
+}
+
 function getNumericStateCode(stateInput) {
   if (!stateInput) return null;
   if (typeof stateInput === 'number') return stateInput;
@@ -277,7 +290,7 @@ async function appendLeadToGoogleSheet(leadData) {
     // 8. Email Address
     // 9. Sticky Note
     // 10. Routed To (which agent's DigitalBGA account this lead was sent to)
-    const timestamp = new Date().toISOString();
+    const timestamp = formatSheetTimestamp(new Date());
     const rowValues = [
       timestamp,
       leadData.firstName || '',
