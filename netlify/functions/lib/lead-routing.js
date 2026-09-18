@@ -147,6 +147,7 @@ async function routeLead(rawState) {
 
   for (const agent of candidates) {
     if (agent.isDefault) {
+      await incrementDailyCount(agent.id, dateKey); // for reporting only — default agent has no cap
       const { apiUser, apiKey } = credentialsFor(agent);
       return { outcome: 'routed', agentId: agent.id, agentName: agent.name, apiUser, apiKey };
     }
@@ -170,9 +171,30 @@ async function routeLead(rawState) {
     return { outcome: 'queued', queuedFor: holdCandidate.id, agentName: holdCandidate.name };
   }
 
-  // Nobody is licensed here at all. Should not normally happen if state
-  // lists are kept current — flagged for manual review rather than dropped.
+  // Nobody is licensed here at all — not even the default agent's state
+  // list. Should not normally happen if state lists are kept current.
+  // Fall back to the default agent anyway, flagged for manual review, so
+  // the lead is never silently dropped and still counts in that day's total.
+  const defaultAgent = config.agents.find(a => a.isDefault);
+  if (defaultAgent) {
+    await incrementDailyCount(defaultAgent.id, dateKey);
+    const { apiUser, apiKey } = credentialsFor(defaultAgent);
+    return { outcome: 'unlicensed', agentId: defaultAgent.id, agentName: defaultAgent.name, apiUser, apiKey };
+  }
+
   return { outcome: 'unlicensed' };
+}
+
+async function getDailyHistory(agentId) {
+  const s = store();
+  const { blobs } = await s.list({ prefix: `daily:${agentId}:` });
+  const results = await Promise.all(blobs.map(async (b) => {
+    const date = b.key.split(':')[2]; // daily:<agentId>:<YYYY-MM-DD>
+    const count = await s.get(b.key, { type: 'json' });
+    return { date, count: count || 0 };
+  }));
+  results.sort((a, b) => a.date.localeCompare(b.date));
+  return results;
 }
 
 module.exports = {
@@ -181,6 +203,7 @@ module.exports = {
   getStateAbbrev,
   todayEastern,
   getDailyCount,
+  getDailyHistory,
   getQueue,
   pushToQueue,
   setQueue,
