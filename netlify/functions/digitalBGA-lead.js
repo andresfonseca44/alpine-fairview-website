@@ -1,9 +1,12 @@
 // ==========================================================================
-// NETLIFY FUNCTION: DigitalBGA CRM Inbound Lead Handler
+// NETLIFY FUNCTION: DigitalBGA CRM & Google Sheets Dual Inbound Lead Handler
 // Endpoint: /.netlify/functions/digitalBGA-lead
 // Target CRM: https://api.crm.digitalseniorbenefits.com/inbound-lead/
-// Destination: Andres Fonseca's DigitalBGA CRM Account Only (api_user: v0c7tp1q)
+// Target Sheet: https://docs.google.com/spreadsheets/d/1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE/edit
+// Destination: Andres Fonseca's DigitalBGA CRM Account & Google Sheets
 // ==========================================================================
+
+const crypto = require('crypto');
 
 const STATE_CODE_MAP = {
   "ALABAMA": 1, "AL": 1,
@@ -183,6 +186,133 @@ ${data.stickyNote || 'N/A'}
   }
 }
 
+// ==========================================================================
+// GOOGLE SHEETS API V4 INTEGRATION (Zero-dependency Service Account JWT)
+// ==========================================================================
+async function getGoogleAccessToken(clientEmail, privateKey) {
+  const header = { alg: 'RS256', typ: 'JWT' };
+  const now = Math.floor(Date.now() / 1000);
+  const claimSet = {
+    iss: clientEmail,
+    scope: 'https://www.googleapis.com/auth/spreadsheets',
+    aud: 'https://oauth2.googleapis.com/token',
+    exp: now + 3600,
+    iat: now
+  };
+
+  const base64UrlEncode = (str) =>
+    Buffer.from(str)
+      .toString('base64')
+      .replace(/=/g, '')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+
+  const encodedHeader = base64UrlEncode(JSON.stringify(header));
+  const encodedClaimSet = base64UrlEncode(JSON.stringify(claimSet));
+  const signatureInput = `${encodedHeader}.${encodedClaimSet}`;
+
+  const signer = crypto.createSign('RSA-SHA256');
+  signer.update(signatureInput);
+
+  const formattedPrivateKey = privateKey.replace(/\\n/g, '\n');
+  const signature = signer.sign(formattedPrivateKey, 'base64')
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
+
+  const jwt = `${signatureInput}.${signature}`;
+
+  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+      assertion: jwt
+    }).toString()
+  });
+
+  const tokenData = await tokenRes.json();
+  if (!tokenRes.ok || !tokenData.access_token) {
+    throw new Error(`Google OAuth Token Error [${tokenRes.status}]: ${JSON.stringify(tokenData)}`);
+  }
+
+  return tokenData.access_token;
+}
+
+async function appendLeadToGoogleSheet(leadData) {
+  const spreadsheetId = process.env.GOOGLE_SHEET_ID || '1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE';
+  const range = process.env.GOOGLE_SHEET_RANGE || 'Sheet1!A:I';
+
+  let clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+    try {
+      const saJson = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+      clientEmail = saJson.client_email;
+      privateKey = saJson.private_key;
+    } catch (e) {
+      console.warn('⚠️ Could not parse GOOGLE_SERVICE_ACCOUNT_JSON:', e.message);
+    }
+  }
+
+  if (!clientEmail || !privateKey) {
+    console.warn('⚠️ Google Sheets credentials missing (GOOGLE_SERVICE_ACCOUNT_JSON or GOOGLE_SERVICE_ACCOUNT_EMAIL / GOOGLE_PRIVATE_KEY). Skipping Sheet append.');
+    return;
+  }
+
+  try {
+    const accessToken = await getGoogleAccessToken(clientEmail, privateKey);
+
+    // Columns:
+    // 1. Timestamp (date and time the lead was generated)
+    // 2. First Name
+    // 3. Last Name
+    // 4. Date of Birth
+    // 5. Gender
+    // 6. State
+    // 7. Phone Number
+    // 8. Email Address
+    // 9. Sticky Note
+    const timestamp = new Date().toISOString();
+    const rowValues = [
+      timestamp,
+      leadData.firstName || '',
+      leadData.lastName || '',
+      leadData.formattedDob || leadData.dob || '',
+      leadData.gender || 'Male',
+      leadData.rawState || '',
+      leadData.cleanPhone || leadData.phone || '',
+      leadData.email || '',
+      leadData.stickyNote || ''
+    ];
+
+    const appendUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${encodeURIComponent(range)}:append?valueInputOption=USER_ENTERED`;
+
+    const sheetsRes = await fetch(appendUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        majorDimension: 'ROWS',
+        values: [rowValues]
+      })
+    });
+
+    const sheetsData = await sheetsRes.json();
+    if (!sheetsRes.ok) {
+      throw new Error(`Google Sheets API Error [${sheetsRes.status}]: ${JSON.stringify(sheetsData)}`);
+    }
+
+    console.log('📊 [GOOGLE SHEETS DISPATCH] Row successfully appended to Google Sheet:', sheetsData.updates || sheetsData);
+  } catch (err) {
+    // Non-blocking error handling: log error but DO NOT block or fail DigitalBGA submission
+    console.error('❌ [GOOGLE SHEETS DISPATCH ERROR] Failed to append lead to Google Sheet:', err.message || err);
+  }
+}
+
 exports.handler = async (event, context) => {
   // Support CORS
   const headers = {
@@ -315,6 +445,19 @@ exports.handler = async (event, context) => {
       goals: data.goals,
       stickyNote
     }).catch(err => console.warn('Email dispatch notice:', err));
+
+    // Dispatch to Google Sheet (Non-blocking: protected by internal try/catch so DigitalBGA is never blocked)
+    await appendLeadToGoogleSheet({
+      firstName,
+      lastName,
+      email,
+      cleanPhone,
+      phone: cleanPhone,
+      formattedDob,
+      gender: data.gender || 'Male',
+      rawState,
+      stickyNote
+    });
 
     // Payload formatted for DigitalBGA CRM API
     const genderCode = /^F/i.test(String(data.gender || 'Male').trim()) ? 30 : 35;
