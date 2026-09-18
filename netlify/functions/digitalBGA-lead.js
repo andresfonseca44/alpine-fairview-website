@@ -241,7 +241,7 @@ async function getGoogleAccessToken(clientEmail, privateKey) {
 
 async function appendLeadToGoogleSheet(leadData) {
   const spreadsheetId = process.env.GOOGLE_SHEET_ID || '1d3L_vrC8q47jVJnZZpkJ-XdYlMNBdVs4le8PV_DfKBE';
-  const range = process.env.GOOGLE_SHEET_RANGE || 'Sheet1!A:I';
+  const range = process.env.GOOGLE_SHEET_RANGE || 'A:I';
 
   let clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   let privateKey = process.env.GOOGLE_PRIVATE_KEY;
