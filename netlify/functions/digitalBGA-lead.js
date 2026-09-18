@@ -85,34 +85,34 @@ async function sendEmailNotification(data) {
   const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'New Applicant';
   const coverage = data.coverageStr || '$25,000';
   const rate = data.rateStr ? ` (${data.rateStr})` : '';
-  const subject = `🚨 NEW LEAD (Alpine Fairview): ${fullName} - ${coverage}${rate}`;
+  const subject = `ð¨ NEW LEAD (Alpine Fairview): ${fullName} - ${coverage}${rate}`;
 
   const textBody = `
 ==================================================
-🚨 NEW ALPINE FAIRVIEW LEAD NOTIFICATION
+ð¨ NEW ALPINE FAIRVIEW LEAD NOTIFICATION
 ==================================================
 
 DESTINATION: Andres Fonseca / Alpine Fairview Group (${AGENCY.email})
 
 APPLICANT INFORMATION:
 -----------------------
-• Full Name: ${fullName}
-• Phone: ${data.cleanPhone || data.phone || 'N/A'}
-• Email: ${data.email || 'N/A'}
-• Date of Birth: ${data.formattedDob || data.dob || 'N/A'}
-• Gender: ${data.gender || 'Male'}
-• State of Residence: ${data.rawState || 'N/A'}
+â¢ Full Name: ${fullName}
+â¢ Phone: ${data.cleanPhone || data.phone || 'N/A'}
+â¢ Email: ${data.email || 'N/A'}
+â¢ Date of Birth: ${data.formattedDob || data.dob || 'N/A'}
+â¢ Gender: ${data.gender || 'Male'}
+â¢ State of Residence: ${data.rawState || 'N/A'}
 
 COVERAGE QUOTE DETAILS:
 -----------------------
-• Whole Life Benefit: ${coverage}
-• Estimated Premium: ${data.rateStr || 'N/A'}
+â¢ Whole Life Benefit: ${coverage}
+â¢ Estimated Premium: ${data.rateStr || 'N/A'}
 
 LEAD INSIGHTS & MOTIVATION:
 ---------------------------
-• Motivation / Trigger: ${data.motivationStr || data.factor || 'N/A'}
-• Nicotine / Smoker: ${data.smokerStr || 'No'}
-• Goals: ${data.goals || 'N/A'}
+â¢ Motivation / Trigger: ${data.motivationStr || data.factor || 'N/A'}
+â¢ Nicotine / Smoker: ${data.smokerStr || 'No'}
+â¢ Goals: ${data.goals || 'N/A'}
 
 CRM STICKY NOTE:
 ----------------
@@ -137,10 +137,10 @@ ${data.stickyNote || 'N/A'}
           text: textBody
         })
       });
-      console.log('📧 [EMAIL DISPATCH] Lead notification sent via Resend to:', recipients);
+      console.log('ð§ [EMAIL DISPATCH] Lead notification sent via Resend to:', recipients);
       return;
     } catch (e) {
-      console.warn('⚠️ Resend email notice:', e);
+      console.warn('â ï¸ Resend email notice:', e);
     }
   }
 
@@ -160,10 +160,10 @@ ${data.stickyNote || 'N/A'}
           content: [{ type: 'text/plain', value: textBody }]
         })
       });
-      console.log('📧 [EMAIL DISPATCH] Lead notification sent via SendGrid to:', recipients);
+      console.log('ð§ [EMAIL DISPATCH] Lead notification sent via SendGrid to:', recipients);
       return;
     } catch (e) {
-      console.warn('⚠️ SendGrid email notice:', e);
+      console.warn('â ï¸ SendGrid email notice:', e);
     }
   }
 
@@ -181,9 +181,9 @@ ${data.stickyNote || 'N/A'}
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(web3FormData)
     });
-    console.log('📧 [EMAIL DISPATCH] Lead notification dispatched via Web3Forms to:', recipients);
+    console.log('ð§ [EMAIL DISPATCH] Lead notification dispatched via Web3Forms to:', recipients);
   } catch (e) {
-    console.warn('⚠️ Web3Forms notification notice:', e);
+    console.warn('â ï¸ Web3Forms notification notice:', e);
   }
 }
 
@@ -215,8 +215,7 @@ async function getGoogleAccessToken(clientEmail, privateKey) {
   const signer = crypto.createSign('RSA-SHA256');
   signer.update(signatureInput);
 
-  const formattedPrivateKey = privateKey.replace(/\\n/g, '
-');
+  const formattedPrivateKey = privateKey.replace(/\\n/g, '\n');
   const signature = signer.sign(formattedPrivateKey, 'base64')
     .replace(/=/g, '')
     .replace(/\+/g, '-')
@@ -254,12 +253,12 @@ async function appendLeadToGoogleSheet(leadData) {
       clientEmail = saJson.client_email;
       privateKey = saJson.private_key;
     } catch (e) {
-      console.warn('⚠️ Could not parse GOOGLE_SERVICE_ACCOUNT_JSON:', e.message);
+      console.warn('â ï¸ Could not parse GOOGLE_SERVICE_ACCOUNT_JSON:', e.message);
     }
   }
 
   if (!clientEmail || !privateKey) {
-    console.warn('⚠️ Google Sheets credentials missing (GOOGLE_SERVICE_ACCOUNT_JSON or GOOGLE_SERVICE_ACCOUNT_EMAIL / GOOGLE_PRIVATE_KEY). Skipping Sheet append.');
+    console.warn('â ï¸ Google Sheets credentials missing (GOOGLE_SERVICE_ACCOUNT_JSON or GOOGLE_SERVICE_ACCOUNT_EMAIL / GOOGLE_PRIVATE_KEY). Skipping Sheet append.');
     return;
   }
 
@@ -310,10 +309,10 @@ async function appendLeadToGoogleSheet(leadData) {
       throw new Error(`Google Sheets API Error [${sheetsRes.status}]: ${JSON.stringify(sheetsData)}`);
     }
 
-    console.log('📊 [GOOGLE SHEETS DISPATCH] Row successfully appended to Google Sheet:', sheetsData.updates || sheetsData);
+    console.log('ð [GOOGLE SHEETS DISPATCH] Row successfully appended to Google Sheet:', sheetsData.updates || sheetsData);
   } catch (err) {
     // Non-blocking error handling: log error but DO NOT block or fail DigitalBGA submission
-    console.error('❌ [GOOGLE SHEETS DISPATCH ERROR] Failed to append lead to Google Sheet:', err.message || err);
+    console.error('â [GOOGLE SHEETS DISPATCH ERROR] Failed to append lead to Google Sheet:', err.message || err);
   }
 }
 
@@ -336,7 +335,7 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         status: 'online',
-        destination: "Routed by state/agent config — see /admin",
+        destination: "Routed by state/agent config â see /admin",
         agent: AGENCY
       })
     };
@@ -376,16 +375,16 @@ exports.handler = async (event, context) => {
       api_key = routing.apiKey;
       routedToLabel = routing.agentName;
       if (!api_user || !api_key) {
-        console.error(`❌ Missing DigitalBGA credentials for agent "${routing.agentName}" — check Netlify env vars.`);
+        console.error(`â Missing DigitalBGA credentials for agent "${routing.agentName}" â check Netlify env vars.`);
       }
     } else if (routing.outcome === 'queued') {
-      routedToLabel = `Queued → ${routing.agentName} (retry when daily cap resets)`;
+      routedToLabel = `Queued â ${routing.agentName} (retry when daily cap resets)`;
     } else {
-      // 'unlicensed' — nobody in the config is licensed in this state.
+      // 'unlicensed' â nobody in the config is licensed in this state.
       // Fall back to Andres, flagged for manual review rather than dropped.
       api_user = (process.env.DIGITALBGA_API_USER || '').trim();
       api_key = (process.env.DIGITALBGA_API_KEY || '').trim();
-      routedToLabel = 'Andres Fonseca (⚠️ UNLICENSED STATE — manual review)';
+      routedToLabel = 'Andres Fonseca (â ï¸ UNLICENSED STATE â manual review)';
     }
 
     // Name parsing
@@ -519,20 +518,20 @@ exports.handler = async (event, context) => {
         queuedAt: new Date().toISOString()
       });
 
-      console.log(`⏸️ Lead held for ${routing.agentName} — daily cap/balance reached. Will retry automatically.`);
+      console.log(`â¸ï¸ Lead held for ${routing.agentName} â daily cap/balance reached. Will retry automatically.`);
 
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify({
           status: 'queued',
-          message: `Lead held for ${routing.agentName} — will be sent automatically once daily capacity resets.`,
+          message: `Lead held for ${routing.agentName} â will be sent automatically once daily capacity resets.`,
           agent: AGENCY
         })
       };
     }
 
-    console.log(`🚀 Posting lead to DigitalBGA CRM API (routed to: ${routedToLabel}):`, digitalBgaPayload);
+    console.log(`ð Posting lead to DigitalBGA CRM API (routed to: ${routedToLabel}):`, digitalBgaPayload);
 
     const formBody = new URLSearchParams();
     Object.entries(digitalBgaPayload).forEach(([key, value]) => {
@@ -557,7 +556,7 @@ exports.handler = async (event, context) => {
       responseData = { message: responseText };
     }
 
-    console.log(`📥 DigitalBGA CRM Response [${apiResponse.status}]:`, responseData);
+    console.log(`ð¥ DigitalBGA CRM Response [${apiResponse.status}]:`, responseData);
 
     return {
       statusCode: 200,
@@ -571,7 +570,7 @@ exports.handler = async (event, context) => {
     };
 
   } catch (err) {
-    console.error('❌ Netlify Function Error:', err);
+    console.error('â Netlify Function Error:', err);
     return {
       statusCode: 500,
       headers,
