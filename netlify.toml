@@ -6,6 +6,9 @@
 [functions]
   node_bundler = "esbuild"
 
+[functions."process-queue"]
+  schedule = "5 9 * * *"
+
 [[redirects]]
   from = "/card"
   to = "/card.html"
@@ -75,3 +78,4 @@
   from = "/about-us/"
   to = "/index.html#about-us"
   status = 302
+
