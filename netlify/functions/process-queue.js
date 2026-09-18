@@ -26,7 +26,7 @@ const {
 const { getStore } = require('@netlify/blobs');
 
 async function bumpDailyCount(agentId, dateKey) {
-  const s = getStore({ name: 'lead-routing', consistency: 'strong' });
+  const s = getStore('lead-routing');
   const key = `daily:${agentId}:${dateKey}`;
   const current = (await s.get(key, { type: 'json' })) || 0;
   await s.setJSON(key, current + 1);
