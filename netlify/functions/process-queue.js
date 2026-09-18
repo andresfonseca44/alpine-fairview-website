@@ -9,6 +9,7 @@
 //   https://alpinefairview.com/.netlify/functions/process-queue
 // ==========================================================================
 
+const { connectLambda } = require('@netlify/blobs');
 const {
   loadConfig,
   saveConfig,
@@ -52,7 +53,8 @@ async function postToDigitalBGA(payload) {
   return { status: apiResponse.status, responseData };
 }
 
-exports.handler = async () => {
+exports.handler = async (event) => {
+  if (event) connectLambda(event); // required for Netlify Blobs in Lambda-compatibility mode
   const headers = { 'Content-Type': 'application/json' };
   const results = [];
 
