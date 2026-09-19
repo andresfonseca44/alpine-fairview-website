@@ -51,8 +51,10 @@
     .lead-btn { display: flex; align-items: center; justify-content: center; text-align: center; background: var(--color-mint-green); color: var(--color-mint-text); font-family: var(--font-sans); font-weight: 800; font-size: 1rem; text-decoration: none; padding: 15px 24px; border-radius: 50px; min-height: 52px; box-shadow: 0 8px 24px #2ee59d66; transition: var(--transition); }
     .lead-btn:hover { background: var(--color-mint-green-hover); transform: translateY(-2px); }
 
-    .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; padding-top: 18px; }
     .lead-card.featured { border: 2px solid var(--color-mint-green); position: relative; }
+    .lead-grid .lead-card.featured { margin-top: -18px; box-shadow: 0 18px 40px rgba(27, 40, 44, .2); }
+    .packs-desc-mobile { display: none; }
     .lead-badge { position: absolute; top: -13px; left: 28px; background: var(--color-mint-green); color: var(--color-mint-text); font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 50px; }
     .leads-note { text-align: center; color: var(--color-text-muted); font-size: .9rem; margin-top: 28px; }
     .leads-note a { color: var(--color-slate-teal-dark); font-weight: 700; }
@@ -117,13 +119,80 @@
     .leads-cta > .container > p.cta-contact { margin: 28px auto 0; max-width: none; color: var(--color-icy-blue); font-size: .98rem; }
     .cta-contact a { color: var(--color-white); font-weight: 700; white-space: nowrap; }
 
+
+    /* ---- Income potential ---- */
+    .roi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .roi-card { background: var(--color-offwhite); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); padding: 26px 22px; text-align: left; }
+    .roi-stat { font-family: var(--font-serif); font-size: 2.3rem; line-height: 1.05; color: var(--color-slate-teal-dark); margin-bottom: 10px; }
+    .roi-card h3 { font-size: 1rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 6px; }
+    .roi-card p { color: var(--color-text-muted); font-size: .92rem; line-height: 1.55; }
+    .spouse-callout { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 20px; background: linear-gradient(160deg, var(--color-slate-teal-dark) 0%, var(--color-slate-footer) 100%); color: var(--color-white); border: 2px solid var(--color-mint-green); border-radius: var(--radius-card); padding: 28px 30px; text-align: left; }
+    .spouse-callout h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+    .spouse-callout p { color: var(--color-icy-blue); font-size: .98rem; line-height: 1.6; max-width: 640px; }
+    .spouse-stat { font-family: var(--font-serif); font-size: 3.4rem; line-height: 1; color: var(--color-mint-green); flex-shrink: 0; }
+    .matrix-title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.6rem, 3.5vw, 2.1rem); text-align: center; color: var(--color-near-black); margin: 52px 0 8px; }
+    .matrix-sub { text-align: center; color: var(--color-text-muted); font-size: .95rem; line-height: 1.6; max-width: 720px; margin: 0 auto 22px; }
+    .matrix-wrap { max-width: 760px; margin: 0 auto; background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); box-shadow: var(--shadow-md); overflow: hidden; }
+    .matrix-table { width: 100%; border-collapse: collapse; }
+    .matrix-table thead th { background: var(--color-slate-footer); color: var(--color-white); padding: 14px 12px; font-size: .85rem; font-weight: 800; text-align: right; vertical-align: bottom; }
+    .matrix-table thead th:first-child { text-align: left; padding-left: 20px; }
+    .matrix-table thead th small { display: block; font-size: .7rem; font-weight: 600; color: var(--color-powder-blue); margin-top: 2px; }
+    .matrix-table tbody th { text-align: left; padding: 15px 12px 15px 20px; font-weight: 800; color: var(--color-near-black); }
+    .matrix-table tbody td { text-align: right; padding: 15px 14px; font-weight: 700; color: var(--color-slate-teal-dark); font-variant-numeric: tabular-nums; }
+    .matrix-table tbody tr { border-top: 1px solid var(--color-card-border); }
+    .matrix-table tbody tr:nth-child(even) { background: var(--color-offwhite); }
+    .calc-disclaimer { max-width: 860px; margin: 24px auto 0; text-align: center; color: var(--color-text-muted); font-size: .84rem; line-height: 1.6; }
+
+    /* ---- Calculator ---- */
+    .calc-layout { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
+    .calc-card { background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; text-align: left; }
+    .calc-card-head { background: var(--color-slate-footer); color: var(--color-white); font-weight: 800; padding: 16px 20px; }
+    .calc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--color-card-border); }
+    .calc-row:nth-of-type(odd) { background: var(--color-offwhite); }
+    .calc-row label { font-weight: 700; font-size: .92rem; color: var(--color-near-black); line-height: 1.3; }
+    .calc-row label small { display: block; font-weight: 500; font-size: .74rem; color: var(--color-text-muted); margin-top: 2px; }
+    .calc-field { display: flex; align-items: stretch; width: 122px; flex-shrink: 0; border: 1px solid var(--color-disabled); border-radius: 6px; overflow: hidden; background: var(--color-white); }
+    .calc-field:focus-within { border-color: var(--color-mint-green); box-shadow: 0 0 0 3px rgba(46, 229, 157, .3); }
+    .calc-field input { width: 100%; min-width: 0; border: none; outline: none; padding: 9px 10px; font-family: var(--font-sans); font-size: .95rem; font-weight: 600; color: var(--color-near-black); background: transparent; -moz-appearance: textfield; }
+    .calc-field input::-webkit-outer-spin-button, .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .calc-field .adorn { display: flex; align-items: center; padding: 0 10px; background: var(--color-offwhite); color: var(--color-text-muted); font-weight: 700; font-size: .85rem; }
+    .calc-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 14px; background: var(--color-offwhite); }
+    .calc-chip { font-family: var(--font-sans); font-size: .76rem; font-weight: 700; color: var(--color-slate-teal-dark); background: var(--color-white); border: 1px solid var(--color-slate-teal); border-radius: 50px; padding: 6px 12px; cursor: pointer; }
+    .calc-chip:hover { background: var(--color-icy-blue); }
+    .calc-actions { display: grid; gap: 10px; padding: 18px 20px 20px; border-top: 1px solid var(--color-card-border); }
+    button.lead-btn { border: none; cursor: pointer; width: 100%; }
+    button.lead-btn.calc-btn-outline { background: var(--color-white); color: var(--color-slate-teal-dark); border: 2px solid var(--color-slate-teal); box-shadow: none; }
+    button.lead-btn.calc-btn-outline:hover { background: var(--color-icy-blue); }
+    .calc-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    .calc-table thead th { background: var(--color-slate-footer); color: var(--color-white); text-align: right; font-weight: 800; padding: 16px; }
+    .calc-table tbody tr { border-top: 1px solid var(--color-card-border); }
+    .calc-table tbody tr:nth-child(even) { background: var(--color-offwhite); }
+    .calc-table tbody th { text-align: left; font-weight: 700; color: var(--color-near-black); padding: 15px 16px; }
+    .calc-table tbody th small { display: block; font-weight: 500; font-size: .76rem; color: var(--color-text-muted); margin-top: 4px; line-height: 1.4; max-width: 300px; }
+    .calc-table tbody td { text-align: right; padding: 15px 16px; font-variant-numeric: tabular-nums; color: var(--color-near-black); white-space: nowrap; }
+    .calc-table tbody tr.hl { background: var(--color-mint-green); border-top-color: var(--color-mint-green); }
+    .calc-table tbody tr.hl th, .calc-table tbody tr.hl td { color: var(--color-mint-text); font-weight: 800; }
+    .calc-table tbody tr.hl th small { color: var(--color-mint-text); opacity: .8; }
+    .calc-foot { padding: 16px 20px; font-size: .84rem; color: var(--color-text-muted); border-top: 1px solid var(--color-card-border); line-height: 1.55; }
+    .calc-foot strong { color: var(--color-near-black); }
+
     @media (max-width: 1000px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 900px) { .lead-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
     @media (max-width: 600px) { .steps-grid { grid-template-columns: 1fr; } .leads-hero { padding: 64px 0 52px; min-height: 380px; } .leads-section { padding: 52px 0; } .lead-card { padding: 28px 22px; } }
     @media (max-width: 900px) {
       .standards-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
     }
     @media (max-width: 700px) {
+      .lead-grid { gap: 8px; padding-top: 14px; }
+      .lead-grid .lead-card { padding: 22px 6px 14px; text-align: center; align-items: center; border-radius: 14px; }
+      .lead-grid .lead-card.featured { margin-top: -14px; padding-top: 30px; padding-bottom: 20px; }
+      .lead-grid .lead-card h3 { font-size: .9rem; margin-bottom: 2px; }
+      .lead-grid .lead-price { font-size: 2.1rem; margin: 4px 0 12px; }
+      .lead-grid .lead-price small { display: block; font-size: .72rem; margin-top: 2px; }
+      .lead-grid .lead-card > p { display: none; }
+      .lead-grid .lead-btn { width: 100%; font-size: .72rem; padding: 10px 4px; min-height: 56px; line-height: 1.2; box-shadow: none; }
+      .lead-badge { left: 50%; transform: translateX(-50%); top: -11px; font-size: .58rem; padding: 4px 9px; white-space: nowrap; }
+      .packs-desc-mobile { display: block; color: var(--color-text-muted); font-size: .92rem; line-height: 1.65; text-align: left; margin-top: 22px; }
+      .packs-desc-mobile strong { color: var(--color-near-black); }
       .fit-grid { grid-template-columns: 1fr; }
       .cost-table thead { display: none; }
       .cost-table, .cost-table tbody, .cost-table tr, .cost-table td { display: block; width: 100%; }
@@ -136,6 +205,27 @@
       .sample-field:nth-child(2) { border-top: 1px solid var(--color-card-border); }
       .leads-cta { padding: 60px 0; }
       .cta-buttons .lead-btn { width: 100%; min-width: 0; }
+    }
+    @media (max-width: 1000px) {
+      .roi-grid { grid-template-columns: repeat(2, 1fr); }
+      .calc-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .spouse-callout { flex-direction: column; align-items: flex-start; padding: 24px 22px; }
+      .spouse-stat { font-size: 2.6rem; }
+      .matrix-table thead th, .matrix-table tbody td { padding-left: 6px; padding-right: 8px; font-size: .8rem; }
+      .matrix-table tbody th { padding-left: 14px; }
+      .matrix-table thead th:first-child { padding-left: 14px; }
+      .calc-table { font-size: .8rem; }
+      .calc-table thead th { padding: 12px 8px; }
+      .calc-table tbody th { padding: 11px 8px 11px 12px; }
+      .calc-table tbody td { padding: 11px 8px; }
+      .calc-table tbody th small { font-size: .68rem; max-width: 140px; }
+      .calc-row { padding: 12px 14px; }
+      .calc-chips { padding: 0 14px 14px; }
+    }
+    @media (max-width: 520px) {
+      .roi-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -322,6 +412,8 @@
           </div>
         </div>
 
+        <p class="packs-desc-mobile"><strong>100% Exclusive Leads</strong> come complete with data points such as name, phone, date of birth, coverage interest, etc. You choose your daily lead volume, we handle everything else. No ramp-up, no testing, no hassle. Leads are delivered to you immediately when generated.</p>
+
         <p class="leads-note">Questions about lead volume? Call <a href="tel:7738000116">773-800-0116</a> or email <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a>.</p>
       </div>
     </section>
@@ -330,7 +422,7 @@
       <div class="container">
         <div class="leads-section-head">
           <h2>What your first month costs</h2>
-          <p>Our minimum is 10 leads per day, so a 4-week month is about 200 leads. Here is what that costs with each pack size.</p>
+          <p>Our minimum is 10 leads per day, and most veteran agents receive 20 leads per day. At the minimum, a 4-week month is about 200 leads. Here is what that costs with each pack size.</p>
         </div>
         <div class="cost-table-wrap">
           <table class="cost-table">
@@ -374,6 +466,131 @@
           <p class="cost-note">Membership is billed monthly. Lead packs are one-time purchases. The 50-lead pack works as a one-week trial.</p>
           <p class="cost-note cost-note-rate">Close rates generally range from 4% to 10% and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- INCOME POTENTIAL -->
+    <section class="leads-section alt" id="income-potential">
+      <div class="container">
+        <div class="leads-section-head">
+          <h2>Income potential</h2>
+          <p>Most final expense sales are about $800&ndash;$1,200 in annual premium with a 75&ndash;85% placement rate. Here is how that can add up at different close rates and lead volumes.</p>
+        </div>
+
+        <div class="roi-grid">
+          <div class="roi-card">
+            <div class="roi-stat">$800&ndash;$1,200</div>
+            <h3>Annual premium</h3>
+            <p>Typical annual premium on most final expense sales.</p>
+          </div>
+          <div class="roi-card">
+            <div class="roi-stat">75&ndash;85%</div>
+            <h3>Placement rate</h3>
+            <p>The share of sold policies that are placed and paid.</p>
+          </div>
+          <div class="roi-card">
+            <div class="roi-stat">100%</div>
+            <h3>Level commission</h3>
+            <p>Our agents earn a minimum of 100% commission on all level coverage, with 9-month advances.</p>
+          </div>
+          <div class="roi-card">
+            <div class="roi-stat">~70%</div>
+            <h3>Graded &amp; GI policies</h3>
+            <p>Graded and guaranteed issue policies pay about 70% instead of 100%.</p>
+          </div>
+        </div>
+
+        <div class="spouse-callout">
+          <div>
+            <h3>Spouse sales: essentially free leads</h3>
+            <p>A spouse sale is a second policy from the same lead, so there is no extra lead cost. The calculator below assumes 10% of your closed sales include a spouse sale. You can change it.</p>
+          </div>
+          <div class="spouse-stat">10%</div>
+        </div>
+
+        <h3 class="matrix-title">Estimated monthly net profit</h3>
+        <p class="matrix-sub" id="matrix-sub">Net profit after lead costs and membership on a 9-month advance, at different close rates and lead volumes.</p>
+        <div class="matrix-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th scope="col">Close rate</th>
+                <th scope="col">10 leads/day<small>minimum</small></th>
+                <th scope="col">15 leads/day</th>
+                <th scope="col">20 leads/day<small>most veterans</small></th>
+              </tr>
+            </thead>
+            <tbody id="matrix-body"></tbody>
+          </table>
+        </div>
+        <p class="calc-disclaimer" id="matrix-assump"></p>
+      </div>
+    </section>
+
+    <!-- INCOME CALCULATOR -->
+    <section class="leads-section" id="income-calculator">
+      <div class="container">
+        <div class="leads-section-head">
+          <h2>Income calculator</h2>
+          <p>Enter your cost per lead, close rate and daily volume to estimate your income on a 9-month advance.</p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-card">
+            <div class="calc-card-head">Inputs</div>
+
+            <div class="calc-row"><label for="in-cpl">Cost per lead<small>$13&ndash;$15 by pack</small></label>
+              <div class="calc-field"><span class="adorn">$</span><input id="in-cpl" type="number" inputmode="decimal" min="0" step="0.5" value="14"></div></div>
+
+            <div class="calc-row"><label for="in-lpd">Leads / day<small>10 minimum</small></label>
+              <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="10" step="1" value="10"></div></div>
+            <div class="calc-chips">
+              <button type="button" class="calc-chip" data-lpd="10">10 / day (minimum)</button>
+              <button type="button" class="calc-chip" data-lpd="20">20 / day (most veterans)</button>
+            </div>
+
+            <div class="calc-row"><label for="in-close">Close rate<small>Generally 4&ndash;10%</small></label>
+              <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="6"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-spouse">Spouse sale rate<small>Free leads, about 10%</small></label>
+              <div class="calc-field"><input id="in-spouse" type="number" inputmode="decimal" min="0" max="100" step="1" value="10"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-premium">Avg annual premium<small>$800&ndash;$1,200 typical</small></label>
+              <div class="calc-field"><span class="adorn">$</span><input id="in-premium" type="number" inputmode="numeric" min="0" step="50" value="1000"></div></div>
+
+            <div class="calc-row"><label for="in-place">Placement rate<small>75&ndash;85% typical</small></label>
+              <div class="calc-field"><input id="in-place" type="number" inputmode="decimal" min="0" max="100" step="1" value="80"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-gi">Graded / GI share of sales<small>Your policy mix</small></label>
+              <div class="calc-field"><input id="in-gi" type="number" inputmode="decimal" min="0" max="100" step="5" value="20"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-comm">Level commission<small>100% minimum</small></label>
+              <div class="calc-field"><input id="in-comm" type="number" inputmode="decimal" min="0" max="200" step="1" value="100"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-gicomm">Graded / GI commission<small>About 70%</small></label>
+              <div class="calc-field"><input id="in-gicomm" type="number" inputmode="decimal" min="0" max="200" step="1" value="70"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-adv">Advance<small>9 months = 75% upfront</small></label>
+              <div class="calc-field"><input id="in-adv" type="number" inputmode="numeric" min="0" max="12" step="1" value="9"><span class="adorn">mo</span></div></div>
+
+            <div class="calc-actions">
+              <button type="button" class="lead-btn" id="calc-go">Calculate</button>
+              <button type="button" class="lead-btn calc-btn-outline" id="calc-reset">Reset defaults</button>
+            </div>
+          </div>
+
+          <div class="calc-card">
+            <table class="calc-table">
+              <thead>
+                <tr><th scope="col"></th><th scope="col">Daily</th><th scope="col">Monthly</th><th scope="col">Annual</th></tr>
+              </thead>
+              <tbody id="calc-body"></tbody>
+            </table>
+            <div class="calc-foot" id="calc-foot"></div>
+          </div>
+        </div>
+
+        <p class="calc-disclaimer">For illustration only. This is not a guarantee or promise of income. Your results depend on your close rate, premium, placement rate, policy mix, carrier rules and effort. Advanced commissions can be charged back if a policy lapses within the carrier's chargeback period. Figures assume 22 selling days per month and exclude taxes and other business expenses.</p>
       </div>
     </section>
 
@@ -527,7 +744,7 @@
               <span class="faq-plus">+</span>
             </div>
             <div class="faq-accordion-body hidden">
-              <p>You choose your daily lead volume, with a minimum of 10 leads per day, and we handle everything else. Let us know the volume you want during onboarding, or contact <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a> with any questions.</p>
+              <p>You choose your daily lead volume, with a minimum of 10 leads per day, and we handle everything else. Most veteran agents receive 20 leads per day. Let us know the volume you want during onboarding, or contact <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a> with any questions.</p>
             </div>
           </div>
 
@@ -669,6 +886,112 @@
           }
         });
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      var body = $('calc-body');
+      if (!body) return;
+
+      var DAYS = 22, MEMBERSHIP = 199;
+      var DEFAULTS = { cpl: 14, lpd: 10, close: 6, spouse: 10, premium: 1000, place: 80, gi: 20, comm: 100, gicomm: 70, adv: 9 };
+      var LIMITS = { cpl: [0, 1000], lpd: [10, 500], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200], gicomm: [0, 200], adv: [0, 12] };
+      var keys = Object.keys(DEFAULTS);
+
+      function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
+      function read() {
+        var v = {};
+        keys.forEach(function (k) {
+          var n = parseFloat($('in-' + k).value);
+          v[k] = clamp(k, isNaN(n) ? DEFAULTS[k] : n);
+        });
+        return v;
+      }
+      function blended(v) { return ((100 - v.gi) * v.comm + v.gi * v.gicomm) / 100; }
+
+      // One selling day of results for a given close rate and daily lead volume.
+      function day(v, closeRate, lpd) {
+        var unique = lpd * closeRate / 100;
+        var spouse = unique * v.spouse / 100;
+        var sales = unique + spouse;
+        var sold = sales * v.premium;
+        var inForce = sold * v.place / 100;
+        var gross = inForce * blended(v) / 100;
+        var advance = gross * v.adv / 12;
+        var leadCost = lpd * v.cpl;
+        var member = MEMBERSHIP / DAYS;
+        return { leadCost: leadCost, member: member, leads: lpd, unique: unique, spouse: spouse, sales: sales, sold: sold,
+                 inForce: inForce, gross: gross, totalNet: gross - leadCost - member, advance: advance,
+                 net: advance - leadCost - member, receivable: gross - advance };
+      }
+
+      function usd(n) { var r = Math.round(n); return (r < 0 ? '-' : '') + '$' + Math.abs(r).toLocaleString('en-US'); }
+      function fmt(kind, n) {
+        if (kind === 'usd') return usd(n);
+        if (kind === 'int') return Math.round(n).toLocaleString('en-US');
+        return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      var ROWS = [
+        ['leadCost', 'Lead costs', '', 'usd'],
+        ['member', 'Membership', '$199 per month', 'usd'],
+        ['leads', 'Total leads', '', 'int'],
+        ['unique', 'Unique issued sales', '', 'dec'],
+        ['spouse', 'Spouse sales', 'Extra sales from the same leads, no added lead cost.', 'dec'],
+        ['sales', 'Total sales made', '', 'dec'],
+        ['sold', 'Total premium sold', '', 'usd'],
+        ['inForce', 'Total premium in force', 'After your placement rate.', 'usd'],
+        ['gross', 'Gross commissions', 'Blended level and graded/GI commission.', 'usd'],
+        ['totalNet', 'Total net', 'Gross commissions &minus; lead costs &minus; membership (before advances).', 'usd'],
+        ['advance', 'Advance received', '', 'usd'],
+        ['net', 'Net profit (after lead costs)', 'Advance received &minus; lead costs &minus; membership.', 'usd', 'hl'],
+        ['receivable', 'As-earned first-year commissions receivable', 'Gross &minus; advance. Paid as premiums are collected, so do not spend it before it is earned.', 'usd']
+      ];
+
+      function render() {
+        var v = read();
+        var d = day(v, v.close, v.lpd);
+        body.innerHTML = ROWS.map(function (r) {
+          var val = d[r[0]];
+          var note = r[0] === 'advance'
+            ? 'Gross commissions &times; ' + v.adv + '/12 (' + v.adv + '-month advance).'
+            : r[2];
+          return '<tr' + (r[4] ? ' class="' + r[4] + '"' : '') + '><th scope="row">' + r[1] +
+            (note ? '<small>' + note + '</small>' : '') + '</th>' +
+            '<td>' + fmt(r[3], val) + '</td>' +
+            '<td>' + fmt(r[3], val * DAYS) + '</td>' +
+            '<td>' + fmt(r[3], val * DAYS * 12) + '</td></tr>';
+        }).join('');
+
+        var b = blended(v);
+        $('calc-foot').innerHTML = '<strong>Blended commission: ' + (Math.round(b * 10) / 10) + '%</strong> (' +
+          (100 - v.gi) + '% level at ' + v.comm + '% and ' + v.gi + '% graded/GI at ' + v.gicomm + '%).';
+
+        var CLOSES = [4, 6, 8, 10], VOLUMES = [10, 15, 20];
+        $('matrix-body').innerHTML = CLOSES.map(function (c) {
+          return '<tr><th scope="row">' + c + '%</th>' + VOLUMES.map(function (l) {
+            return '<td>' + usd(day(v, c, l).net * DAYS) + '</td>';
+          }).join('') + '</tr>';
+        }).join('');
+        $('matrix-sub').textContent = 'Net profit after lead costs and membership on a ' + v.adv + '-month advance, at different close rates and lead volumes.';
+        $('matrix-assump').textContent = 'For illustration only, not a guarantee of income. Uses the calculator settings below: ' + usd(v.cpl) +
+          ' per lead, ' + usd(v.premium) + ' average annual premium, ' + v.place + '% placement, ' + (Math.round(b * 10) / 10) +
+          '% blended commission, ' + v.spouse + '% spouse sales and 22 selling days per month. Change the inputs below and this table updates.';
+      }
+
+      function write(k, n) { $('in-' + k).value = n; }
+      keys.forEach(function (k) {
+        var el = $('in-' + k);
+        el.addEventListener('input', render);
+        el.addEventListener('change', function () { write(k, read()[k]); render(); });
+      });
+      $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
+      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); render(); });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-lpd]'), function (btn) {
+        btn.addEventListener('click', function () { write('lpd', btn.getAttribute('data-lpd')); render(); });
+      });
+      render();
     })();
   </script>
 </body>
