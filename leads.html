@@ -12,9 +12,12 @@
   <link rel="stylesheet" href="/src/style.css" />
 
   <style>
-    .leads-hero { background: var(--color-slate-teal); color: var(--color-white); text-align: center; padding: 84px 0 72px; }
+    .leads-hero { position: relative; background: var(--color-slate-teal); color: var(--color-white); text-align: center; padding: 84px 0 72px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 440px; }
+    .leads-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; }
+    .leads-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(27, 40, 44, 0.75) 0%, rgba(95, 123, 130, 0.9) 100%); z-index: 2; }
+    .leads-hero-content { position: relative; z-index: 3; }
     .leads-eyebrow { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 50px; padding: 6px 16px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 20px; }
-    .leads-hero h1 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; max-width: 860px; margin: 0 auto 16px; }
+    .leads-hero h1 { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; max-width: 860px; margin: 0 auto 16px; }
     .leads-hero p { font-size: 1.1rem; line-height: 1.6; max-width: 640px; margin: 0 auto; color: var(--color-icy-blue); }
 
     .leads-section { background: var(--color-offwhite); padding: 72px 0; }
@@ -31,6 +34,12 @@
     .lead-card p { color: var(--color-text-muted); line-height: 1.65; font-size: .98rem; margin: 14px 0 24px; flex: 1; }
     .lead-card p strong { color: var(--color-near-black); }
 
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .step-card { background: var(--color-offwhite); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); padding: 28px 22px; text-align: left; }
+    .step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--color-mint-green); color: var(--color-mint-text); font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .step-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 8px; line-height: 1.3; }
+    .step-card p { color: var(--color-text-muted); font-size: .95rem; line-height: 1.6; }
+
     .membership-card { max-width: 720px; margin: 0 auto; border: 2px solid var(--color-mint-green); }
     .membership-card .lead-price { font-size: 3.6rem; }
 
@@ -43,8 +52,9 @@
     .leads-note { text-align: center; color: var(--color-text-muted); font-size: .9rem; margin-top: 28px; }
     .leads-note a { color: var(--color-slate-teal-dark); font-weight: 700; }
 
+    @media (max-width: 1000px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 900px) { .lead-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
-    @media (max-width: 600px) { .leads-hero { padding: 64px 0 52px; } .leads-section { padding: 52px 0; } .lead-card { padding: 28px 22px; } }
+    @media (max-width: 600px) { .steps-grid { grid-template-columns: 1fr; } .leads-hero { padding: 64px 0 52px; min-height: 380px; } .leads-section { padding: 52px 0; } .lead-card { padding: 28px 22px; } }
   </style>
 </head>
 <body>
@@ -141,10 +151,44 @@
 
   <main>
     <section class="leads-hero">
-      <div class="container">
+      <img src="matterhorn.jpg" alt="Iconic Matterhorn Alpine Mountain Peak" class="leads-hero-bg" />
+      <div class="leads-hero-overlay"></div>
+      <div class="container leads-hero-content">
         <span class="leads-eyebrow">Alpine Fairview Leads</span>
         <h1>Exclusive, real-time final expense leads for independent agents.</h1>
         <p>Choose a monthly membership or buy leads in bulk. Fixed pricing from $13 to $15 per lead.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="leads-section alt" id="how-it-works">
+      <div class="container">
+        <div class="leads-section-head">
+          <h2>How it works</h2>
+          <p>Four simple steps from sign-up to your first lead.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3>Get your membership</h3>
+            <p>Join for $199/month to plug into our Meta video and ad campaigns.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3>Unlock leads and choose a lead pack</h3>
+            <p>Pick 50, 100 or 200 exclusive leads at $15, $14 or $13 per lead.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3>Complete the agent onboarding form</h3>
+            <p>Tell us about you and your business so we can set up your lead delivery.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <h3>Start receiving leads within 48 hours</h3>
+            <p>Leads are delivered to you immediately when they are generated.</p>
+          </div>
+        </div>
       </div>
     </section>
 
