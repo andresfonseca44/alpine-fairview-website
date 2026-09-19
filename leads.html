@@ -59,13 +59,14 @@
 
 
     /* ---- Cost breakdown ---- */
-    .cost-table-wrap { max-width: 900px; margin: 0 auto; }
+    .cost-table-wrap { max-width: 1000px; margin: 0 auto; }
     .cost-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); box-shadow: var(--shadow-md); overflow: hidden; }
-    .cost-table th { background: var(--color-slate-teal-dark); color: var(--color-white); font-size: .82rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 16px 18px; text-align: left; }
-    .cost-table td { padding: 18px; font-size: 1rem; color: var(--color-near-black); border-top: 1px solid var(--color-card-border); }
+    .cost-table th { background: var(--color-slate-teal-dark); color: var(--color-white); font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 16px 14px; text-align: left; vertical-align: bottom; }
+    .cost-table td { padding: 18px 14px; font-size: 1rem; color: var(--color-near-black); border-top: 1px solid var(--color-card-border); }
     .cost-table tbody tr:first-child td { border-top: none; }
     .cost-table td.pack { font-weight: 800; }
     .cost-table td.total { font-weight: 800; }
+    .cost-table small { display: block; font-size: .8rem; font-weight: 600; color: var(--color-text-muted); margin-top: 2px; white-space: nowrap; }
     .cost-table td.eff { color: var(--color-slate-teal-dark); font-weight: 700; white-space: nowrap; }
     .cost-note { text-align: center; color: var(--color-text-muted); font-size: .95rem; margin-top: 20px; }
     .cost-note.cost-note-rate { margin-top: 8px; }
@@ -79,6 +80,7 @@
     .sample-field { padding: 18px 22px; border-top: 1px solid var(--color-card-border); }
     .sample-field:nth-child(odd) { border-right: 1px solid var(--color-card-border); }
     .sample-field:nth-child(-n+2) { border-top: none; }
+    .sample-field.wide { grid-column: 1 / -1; border-right: none; }
     .sample-field dt { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 4px; }
     .sample-field dd { margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--color-near-black); }
 
@@ -328,45 +330,49 @@
       <div class="container">
         <div class="leads-section-head">
           <h2>What your first month costs</h2>
-          <p>Your membership plus the lead pack you choose, and what that works out to per lead.</p>
+          <p>Our minimum is 10 leads per day, so a 4-week month is about 200 leads. Here is what that costs with each pack size.</p>
         </div>
         <div class="cost-table-wrap">
           <table class="cost-table">
             <thead>
               <tr>
                 <th scope="col">Lead pack</th>
+                <th scope="col">Lasts about (at 10 leads/day)</th>
+                <th scope="col">Lead cost for the month</th>
                 <th scope="col">Membership</th>
-                <th scope="col">Lead pack price</th>
-                <th scope="col">First-month total</th>
-                <th scope="col">Effective cost per lead</th>
+                <th scope="col">Monthly total</th>
+                <th scope="col">Cost per lead</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="pack" data-label="Lead pack">50 leads</td>
+                <td data-label="Lasts about">1 week</td>
+                <td data-label="Lead cost for the month"><span>$3,000<small>4 packs &times; $750</small></span></td>
                 <td data-label="Membership">$199</td>
-                <td data-label="Lead pack price">$750</td>
-                <td class="total" data-label="First-month total">$949</td>
-                <td class="eff" data-label="Effective cost per lead">about $19 / lead</td>
+                <td class="total" data-label="Monthly total">$3,199</td>
+                <td class="eff" data-label="Cost per lead">about $16 / lead</td>
               </tr>
               <tr>
                 <td class="pack" data-label="Lead pack">100 leads</td>
+                <td data-label="Lasts about">2 weeks</td>
+                <td data-label="Lead cost for the month"><span>$2,800<small>2 packs &times; $1,400</small></span></td>
                 <td data-label="Membership">$199</td>
-                <td data-label="Lead pack price">$1,400</td>
-                <td class="total" data-label="First-month total">$1,599</td>
-                <td class="eff" data-label="Effective cost per lead">about $16 / lead</td>
+                <td class="total" data-label="Monthly total">$2,999</td>
+                <td class="eff" data-label="Cost per lead">about $15 / lead</td>
               </tr>
               <tr>
                 <td class="pack" data-label="Lead pack">200 leads</td>
+                <td data-label="Lasts about">4 weeks</td>
+                <td data-label="Lead cost for the month"><span>$2,600<small>1 pack &times; $2,600</small></span></td>
                 <td data-label="Membership">$199</td>
-                <td data-label="Lead pack price">$2,600</td>
-                <td class="total" data-label="First-month total">$2,799</td>
-                <td class="eff" data-label="Effective cost per lead">about $14 / lead</td>
+                <td class="total" data-label="Monthly total">$2,799</td>
+                <td class="eff" data-label="Cost per lead">about $14 / lead</td>
               </tr>
             </tbody>
           </table>
-          <p class="cost-note">Membership is billed monthly. Lead packs are one-time purchases.</p>
-          <p class="cost-note cost-note-rate">Close rates generally range from 4% to 9% and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
+          <p class="cost-note">Membership is billed monthly. Lead packs are one-time purchases. The 50-lead pack works as a one-week trial.</p>
+          <p class="cost-note cost-note-rate">Close rates generally range from 4% to 10% and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
         </div>
       </div>
     </section>
@@ -386,10 +392,15 @@
           <dl>
             <div class="sample-field"><dt>Name</dt><dd>Jane Sample</dd></div>
             <div class="sample-field"><dt>Phone</dt><dd>(555) 010-0142</dd></div>
+            <div class="sample-field"><dt>Email</dt><dd>jane.sample@example.com</dd></div>
             <div class="sample-field"><dt>Date of birth</dt><dd>03/14/1958</dd></div>
-            <div class="sample-field"><dt>Coverage interest</dt><dd>Final expense</dd></div>
             <div class="sample-field"><dt>State</dt><dd>OH</dd></div>
+            <div class="sample-field"><dt>Smoker</dt><dd>No</dd></div>
+            <div class="sample-field"><dt>Coverage interest</dt><dd>Final expense</dd></div>
+            <div class="sample-field"><dt>Pre-approved amount</dt><dd>$10,000</dd></div>
+            <div class="sample-field"><dt>Sample price</dt><dd>$64 / month</dd></div>
             <div class="sample-field"><dt>Timestamp</dt><dd>Sep 19, 2026 &middot; 2:14 PM ET</dd></div>
+            <div class="sample-field wide"><dt>Motivation</dt><dd>Losing term coverage</dd></div>
           </dl>
         </div>
       </div>
@@ -486,7 +497,7 @@
               <span class="faq-plus">+</span>
             </div>
             <div class="faq-accordion-body hidden">
-              <p>Close rates generally range from 4% to 9% and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
+              <p>Close rates generally range from 4% to 10% and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
             </div>
           </div>
 
@@ -516,7 +527,7 @@
               <span class="faq-plus">+</span>
             </div>
             <div class="faq-accordion-body hidden">
-              <p>You choose your daily lead volume and we handle everything else. Let us know the volume you want during onboarding, or contact <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a> with any questions.</p>
+              <p>You choose your daily lead volume, with a minimum of 10 leads per day, and we handle everything else. Let us know the volume you want during onboarding, or contact <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a> with any questions.</p>
             </div>
           </div>
 
