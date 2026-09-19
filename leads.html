@@ -68,6 +68,7 @@
     .cost-table td.total { font-weight: 800; }
     .cost-table td.eff { color: var(--color-slate-teal-dark); font-weight: 700; white-space: nowrap; }
     .cost-note { text-align: center; color: var(--color-text-muted); font-size: .95rem; margin-top: 20px; }
+    .cost-note.cost-note-rate { margin-top: 8px; }
 
     /* ---- Sample lead ---- */
     .sample-lead { max-width: 560px; margin: 0 auto; background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); box-shadow: var(--shadow-md); overflow: hidden; text-align: left; }
@@ -88,8 +89,6 @@
     .standard-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 8px; }
     .standard-card p { color: var(--color-text-muted); font-size: .95rem; line-height: 1.6; }
 
-    /* ---- Visible to-do markers (remove before publishing) ---- */
-    .todo-flag { display: inline-block; background: #FFF3B0; color: #5A4300; border: 2px dashed #C99700; border-radius: 8px; padding: 4px 10px; font-weight: 800; font-size: .88rem; line-height: 1.4; margin-top: 8px; }
 
     /* ---- Who this is for ---- */
     .fit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
@@ -367,6 +366,7 @@
             </tbody>
           </table>
           <p class="cost-note">Membership is billed monthly. Lead packs are one-time purchases.</p>
+          <p class="cost-note cost-note-rate">Close rates generally range from 4% to 9% and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
         </div>
       </div>
     </section>
@@ -416,8 +416,7 @@
           <div class="standard-card">
             <div class="standard-check">&#10003;</div>
             <h3>Replacement for invalid leads</h3>
-            <p>Invalid leads are eligible for replacement.</p>
-            <span class="todo-flag">[REPLACEMENT POLICY TERMS &ndash; TO BE FILLED IN BY ANDRES]</span>
+            <p>All lead sales are final. However, we will replace leads that are test leads or have blatantly fake contact numbers on your following order.</p>
           </div>
         </div>
       </div>
@@ -497,7 +496,7 @@
               <span class="faq-plus">+</span>
             </div>
             <div class="faq-accordion-body hidden">
-              <p><span class="todo-flag">[PLACEHOLDER &ndash; fill in]</span></p>
+              <p>Leads are available in all states.</p>
             </div>
           </div>
 
@@ -548,7 +547,6 @@
             </div>
             <div class="faq-accordion-body hidden">
               <p>Contact <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a> or call <a href="tel:7738000116">773-800-0116</a> and we will take care of your request.</p>
-              <p><span class="todo-flag">[CONFIRM PAUSE / CANCEL PROCESS WITH ANDRES]</span></p>
             </div>
           </div>
 
@@ -558,8 +556,7 @@
               <span class="faq-plus">+</span>
             </div>
             <div class="faq-accordion-body hidden">
-              <p>Leads opt in through our ad forms with consent language.</p>
-              <p><span class="todo-flag">[CONFIRM WORDING WITH ANDRES]</span></p>
+              <p>Leads opt in through our ad forms with consent language. Our consent language reads: <em>By clicking "Get My Final Rate", you consent to receive rate quote details and policy updates from Alpine Fairview Group at the phone number provided. Message frequency varies. Message and data rates may apply.</em></p>
             </div>
           </div>
 
