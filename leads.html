@@ -149,13 +149,14 @@
     .calc-card-head { background: var(--color-slate-footer); color: var(--color-white); font-weight: 800; padding: 16px 20px; }
     .calc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--color-card-border); }
     .calc-row:nth-of-type(odd) { background: var(--color-offwhite); }
-    .calc-row label { font-weight: 700; font-size: .92rem; color: var(--color-near-black); line-height: 1.3; }
-    .calc-row label small { display: block; font-weight: 500; font-size: .74rem; color: var(--color-text-muted); margin-top: 2px; }
+    .calc-row label, .calc-row .calc-label { font-weight: 700; font-size: .92rem; color: var(--color-near-black); line-height: 1.3; }
+    .calc-row .calc-label small, .calc-row label small { display: block; font-weight: 500; font-size: .74rem; color: var(--color-text-muted); margin-top: 2px; }
     .calc-field { display: flex; align-items: stretch; width: 122px; flex-shrink: 0; border: 1px solid var(--color-disabled); border-radius: 6px; overflow: hidden; background: var(--color-white); }
     .calc-field:focus-within { border-color: var(--color-mint-green); box-shadow: 0 0 0 3px rgba(46, 229, 157, .3); }
     .calc-field input { width: 100%; min-width: 0; border: none; outline: none; padding: 9px 10px; font-family: var(--font-sans); font-size: .95rem; font-weight: 600; color: var(--color-near-black); background: transparent; -moz-appearance: textfield; }
     .calc-field input::-webkit-outer-spin-button, .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     .calc-field .adorn { display: flex; align-items: center; padding: 0 10px; background: var(--color-offwhite); color: var(--color-text-muted); font-weight: 700; font-size: .85rem; }
+    .calc-fixed { width: 122px; flex-shrink: 0; text-align: right; font-weight: 800; font-size: .95rem; color: var(--color-slate-teal-dark); padding: 9px 4px; }
     .calc-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 14px; background: var(--color-offwhite); }
     .calc-chip { font-family: var(--font-sans); font-size: .76rem; font-weight: 700; color: var(--color-slate-teal-dark); background: var(--color-white); border: 1px solid var(--color-slate-teal); border-radius: 50px; padding: 6px 12px; cursor: pointer; }
     .calc-chip:hover { background: var(--color-icy-blue); }
@@ -503,9 +504,9 @@
         <div class="spouse-callout">
           <div>
             <h3>Spouse sales: essentially free leads</h3>
-            <p>A spouse sale is a second policy from the same lead, so there is no extra lead cost. The calculator below assumes 10% of your closed sales include a spouse sale. You can change it.</p>
+            <p>A spouse sale is a second policy from the same lead, so there is no extra lead cost. The calculator below assumes 15% of your closed sales include a spouse sale. You can change it.</p>
           </div>
-          <div class="spouse-stat">10%</div>
+          <div class="spouse-stat">15%</div>
         </div>
 
         <h3 class="matrix-title">Estimated monthly net profit</h3>
@@ -552,8 +553,8 @@
             <div class="calc-row"><label for="in-close">Close rate<small>Generally 4&ndash;10%</small></label>
               <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="6"><span class="adorn">%</span></div></div>
 
-            <div class="calc-row"><label for="in-spouse">Spouse sale rate<small>Free leads, about 10%</small></label>
-              <div class="calc-field"><input id="in-spouse" type="number" inputmode="decimal" min="0" max="100" step="1" value="10"><span class="adorn">%</span></div></div>
+            <div class="calc-row"><label for="in-spouse">Spouse sale rate<small>Free leads, about 15%</small></label>
+              <div class="calc-field"><input id="in-spouse" type="number" inputmode="decimal" min="0" max="100" step="1" value="15"><span class="adorn">%</span></div></div>
 
             <div class="calc-row"><label for="in-premium">Avg annual premium<small>$800&ndash;$1,200 typical</small></label>
               <div class="calc-field"><span class="adorn">$</span><input id="in-premium" type="number" inputmode="numeric" min="0" step="50" value="1000"></div></div>
@@ -561,17 +562,17 @@
             <div class="calc-row"><label for="in-place">Placement rate<small>75&ndash;85% typical</small></label>
               <div class="calc-field"><input id="in-place" type="number" inputmode="decimal" min="0" max="100" step="1" value="80"><span class="adorn">%</span></div></div>
 
-            <div class="calc-row"><label for="in-gi">Graded / GI share of sales<small>Your policy mix</small></label>
-              <div class="calc-field"><input id="in-gi" type="number" inputmode="decimal" min="0" max="100" step="5" value="20"><span class="adorn">%</span></div></div>
+            <div class="calc-row"><label for="in-gi">Graded / GI share of sales<small>10&ndash;20% typical</small></label>
+              <div class="calc-field"><input id="in-gi" type="number" inputmode="decimal" min="0" max="100" step="5" value="15"><span class="adorn">%</span></div></div>
 
             <div class="calc-row"><label for="in-comm">Level commission<small>100% minimum</small></label>
               <div class="calc-field"><input id="in-comm" type="number" inputmode="decimal" min="0" max="200" step="1" value="100"><span class="adorn">%</span></div></div>
 
-            <div class="calc-row"><label for="in-gicomm">Graded / GI commission<small>About 70%</small></label>
-              <div class="calc-field"><input id="in-gicomm" type="number" inputmode="decimal" min="0" max="200" step="1" value="70"><span class="adorn">%</span></div></div>
+            <div class="calc-row calc-row-fixed"><span class="calc-label">Graded / GI commission<small>Fixed, about 70% vs 100% level</small></span>
+              <div class="calc-fixed">70%</div></div>
 
-            <div class="calc-row"><label for="in-adv">Advance<small>9 months = 75% upfront</small></label>
-              <div class="calc-field"><input id="in-adv" type="number" inputmode="numeric" min="0" max="12" step="1" value="9"><span class="adorn">mo</span></div></div>
+            <div class="calc-row calc-row-fixed"><span class="calc-label">Advance<small>Fixed, 9 months = 75% upfront</small></span>
+              <div class="calc-fixed">9 months</div></div>
 
             <div class="calc-actions">
               <button type="button" class="lead-btn" id="calc-go">Calculate</button>
@@ -895,8 +896,9 @@
       if (!body) return;
 
       var DAYS = 22, MEMBERSHIP = 199;
-      var DEFAULTS = { cpl: 14, lpd: 10, close: 6, spouse: 10, premium: 1000, place: 80, gi: 20, comm: 100, gicomm: 70, adv: 9 };
-      var LIMITS = { cpl: [0, 1000], lpd: [10, 500], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200], gicomm: [0, 200], adv: [0, 12] };
+      var DEFAULTS = { cpl: 14, lpd: 10, close: 6, spouse: 15, premium: 1000, place: 80, gi: 15, comm: 100 };
+      var FIXED = { gicomm: 70, adv: 9 };  // graded/GI commission % and advance months are not adjustable
+      var LIMITS = { cpl: [0, 1000], lpd: [10, 500], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
       var keys = Object.keys(DEFAULTS);
 
       function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
@@ -906,6 +908,8 @@
           var n = parseFloat($('in-' + k).value);
           v[k] = clamp(k, isNaN(n) ? DEFAULTS[k] : n);
         });
+        v.gicomm = FIXED.gicomm;
+        v.adv = FIXED.adv;
         return v;
       }
       function blended(v) { return ((100 - v.gi) * v.comm + v.gi * v.gicomm) / 100; }
