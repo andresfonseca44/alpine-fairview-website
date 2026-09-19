@@ -3,55 +3,263 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alpine Fairview Leads Checkout</title>
-  <meta http-equiv="refresh" content="0; url=https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04" />
-  <script>
-    window.location.href = "https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04";
-  </script>
+  <title>Exclusive Final Expense Leads for Agents | Alpine Fairview</title>
+  <meta name="description" content="Exclusive, real-time final expense leads for independent agents. $199/month membership with Meta video and ad campaigns, or buy leads at $13–$15 each." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      background-color: #0f172a;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-    }
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 4px solid rgba(255, 255, 255, 0.2);
-      border-top-color: #10b981;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 24px;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    p {
-      color: #94a3b8;
-      font-size: 16px;
-    }
-    a {
-      color: #10b981;
-      text-decoration: underline;
-    }
+    .leads-hero { background: var(--color-slate-teal); color: var(--color-white); text-align: center; padding: 84px 0 72px; }
+    .leads-eyebrow { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 50px; padding: 6px 16px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 20px; }
+    .leads-hero h1 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; max-width: 860px; margin: 0 auto 16px; }
+    .leads-hero p { font-size: 1.1rem; line-height: 1.6; max-width: 640px; margin: 0 auto; color: var(--color-icy-blue); }
+
+    .leads-section { background: var(--color-offwhite); padding: 72px 0; }
+    .leads-section.alt { background: var(--color-white); }
+    .leads-section-head { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+    .leads-section-head h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--color-near-black); margin-bottom: 10px; }
+    .leads-section-head p { color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.6; }
+
+    .lead-card { background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); box-shadow: var(--shadow-md); padding: 32px 28px; display: flex; flex-direction: column; text-align: left; }
+    .leads-section.alt .lead-card { background: var(--color-offwhite); }
+    .lead-card h3 { font-size: 1.15rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 6px; }
+    .lead-price { font-family: var(--font-serif); font-size: 3rem; line-height: 1; color: var(--color-slate-teal-dark); margin: 8px 0 4px; }
+    .lead-price small { font-family: var(--font-sans); font-size: .95rem; font-weight: 600; color: var(--color-text-muted); }
+    .lead-card p { color: var(--color-text-muted); line-height: 1.65; font-size: .98rem; margin: 14px 0 24px; flex: 1; }
+    .lead-card p strong { color: var(--color-near-black); }
+
+    .membership-card { max-width: 720px; margin: 0 auto; border: 2px solid var(--color-mint-green); }
+    .membership-card .lead-price { font-size: 3.6rem; }
+
+    .lead-btn { display: flex; align-items: center; justify-content: center; text-align: center; background: var(--color-mint-green); color: var(--color-mint-text); font-family: var(--font-sans); font-weight: 800; font-size: 1rem; text-decoration: none; padding: 15px 24px; border-radius: 50px; min-height: 52px; box-shadow: 0 8px 24px #2ee59d66; transition: var(--transition); }
+    .lead-btn:hover { background: var(--color-mint-green-hover); transform: translateY(-2px); }
+
+    .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .lead-card.featured { border: 2px solid var(--color-mint-green); position: relative; }
+    .lead-badge { position: absolute; top: -13px; left: 28px; background: var(--color-mint-green); color: var(--color-mint-text); font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 50px; }
+    .leads-note { text-align: center; color: var(--color-text-muted); font-size: .9rem; margin-top: 28px; }
+    .leads-note a { color: var(--color-slate-teal-dark); font-weight: 700; }
+
+    @media (max-width: 900px) { .lead-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
+    @media (max-width: 600px) { .leads-hero { padding: 64px 0 52px; } .leads-section { padding: 52px 0; } .lead-card { padding: 28px 22px; } }
   </style>
 </head>
 <body>
-  <div class="spinner"></div>
-  <h1>Redirecting to Alpine Fairview Leads Checkout...</h1>
-  <p>If you are not redirected automatically, <a href="https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04">click here to proceed to checkout</a>.</p>
+
+  <!-- SITE HEADER -->
+  <header class="ethos-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+
+      <nav class="header-nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-dropdown">
+          <a href="whole-life-policies.html" class="nav-link dropdown-toggle">Life insurance ▾</a>
+          <div class="dropdown-menu">
+            <a href="whole-life-policies.html" class="dropdown-item">Whole Life &amp; Final Expense Insurance</a>
+            <a href="no-medical-exam.html" class="dropdown-item">No Medical Exam Life Insurance</a>
+            <a href="how-life-insurance-works.html" class="dropdown-item">How Life Insurance Works</a>
+          </div>
+        </div>
+        <a href="carriers.html" class="nav-link">Our Carriers</a>
+        <a href="careers.html" class="nav-link">Careers</a>
+        <div class="nav-dropdown">
+          <a href="how-life-insurance-works.html" class="nav-link dropdown-toggle">Resources ▾</a>
+          <div class="dropdown-menu">
+            <a href="how-life-insurance-works.html" class="dropdown-item">How Life Insurance Works</a>
+            <a href="index.html#funeral-costs" class="dropdown-item">What does a funeral cost?</a>
+            <a href="index.html#faqs" class="dropdown-item">FAQs &amp; Guides</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-right-actions">
+        <button class="nav-contact-btn" id="nav-contact-btn">
+          Contact Us
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+          ☰ Menu
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-overlay hidden" id="mobile-nav-drawer">
+    <div class="mobile-nav-card">
+      <div class="mobile-nav-header">
+        <span class="brand-text-logo" style="color: var(--color-near-black);">ALPINE FAIRVIEW</span>
+        <button class="mobile-nav-close-btn" id="close-mobile-nav" aria-label="Close menu">✕</button>
+      </div>
+
+      <div class="mobile-nav-body">
+        <div class="mobile-nav-group-title">LIFE INSURANCE</div>
+        <a href="whole-life-policies.html" class="mobile-nav-link">
+          <span>Whole Life &amp; Final Expense</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="no-medical-exam.html" class="mobile-nav-link">
+          <span>No Medical Exam Insurance</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-nav-group-title">COMPANY &amp; RESOURCES</div>
+        <a href="about-us.html" class="mobile-nav-link">
+          <span>About Us</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="carriers.html" class="mobile-nav-link">
+          <span>Our Carriers</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="careers.html" class="mobile-nav-link">
+          <span>Careers for Agents</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="index.html#faqs" class="mobile-nav-link">
+          <span>FAQs &amp; Resources</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-nav-actions" style="margin-top: 24px;">
+          <a href="quote.html" class="btn btn-mint" style="width: 100%; text-align: center; font-weight: 700; font-size: 1rem; display: block; padding: 14px 0; border-radius: 50px;">
+            Check Instant Rates →
+          </a>
+          <a href="tel:7738000116" class="mobile-nav-contact-opt" style="margin-top: 12px;">
+            📞 Call 773-800-0116
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="leads-hero">
+      <div class="container">
+        <span class="leads-eyebrow">Alpine Fairview Leads</span>
+        <h1>Exclusive, real-time final expense leads for independent agents.</h1>
+        <p>Choose a monthly membership or buy leads in bulk. Fixed pricing from $13 to $15 per lead.</p>
+      </div>
+    </section>
+
+    <!-- MONTHLY MEMBERSHIP -->
+    <section class="leads-section" id="membership">
+      <div class="container">
+        <div class="leads-section-head">
+          <h2>Monthly membership</h2>
+          <p>Everything you need to keep a steady flow of final expense leads coming in.</p>
+        </div>
+        <div class="lead-card membership-card">
+          <h3>Alpine Fairview Leads Membership</h3>
+          <div class="lead-price">$199 <small>/ month</small></div>
+          <p>Plug into a Meta video and ad campaign delivering hundreds of exclusive, real-time final expense leads, designed for independent agents looking to convert high-quality leads into final expense clients. Fixed $13&ndash;$15 per lead, depending on purchase size.</p>
+          <a class="lead-btn" href="https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04" target="_blank" rel="noopener noreferrer">Join for $199/month</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD PACKAGES -->
+    <section class="leads-section alt" id="purchase-leads">
+      <div class="container">
+        <div class="leads-section-head">
+          <h2>Purchase leads</h2>
+          <p>The more you buy, the less you pay per lead.</p>
+        </div>
+
+        <div class="lead-grid">
+          <div class="lead-card">
+            <h3>50 Leads</h3>
+            <div class="lead-price">$15 <small>/ lead</small></div>
+            <p><strong>(50) 100% Exclusive Leads</strong> come complete with data points such as name, phone, date of birth, coverage interest, etc. You choose your daily lead volume, we handle everything else. No ramp-up, no testing, no hassle. Leads are delivered to you immediately when generated. $15 per lead.</p>
+            <a class="lead-btn" data-pack="50" href="https://buy.stripe.com/8x228qfmo6jBcM0cf277O05" target="_blank" rel="noopener noreferrer">Buy 50 Leads</a>
+          </div>
+
+          <div class="lead-card">
+            <h3>100 Leads</h3>
+            <div class="lead-price">$14 <small>/ lead</small></div>
+            <p><strong>(100) 100% Exclusive Leads</strong> come complete with data points such as name, phone, date of birth, coverage interest, etc. You choose your daily lead volume, we handle everything else. No ramp-up, no testing, no hassle. Leads are delivered to you immediately when generated. $14 per lead.</p>
+            <a class="lead-btn" data-pack="100" href="https://buy.stripe.com/14AdR81vyazR3bq0wk77O07" target="_blank" rel="noopener noreferrer">Buy 100 Leads</a>
+          </div>
+
+          <div class="lead-card">
+            <h3>200 Leads</h3>
+            <div class="lead-price">$13 <small>/ lead</small></div>
+            <p><strong>(200) 100% Exclusive Leads</strong> come complete with data points such as name, phone, date of birth, coverage interest, etc. You choose your daily lead volume, we handle everything else. No ramp-up, no testing, no hassle. Leads are delivered to you immediately when generated. $13 per lead.</p>
+            <a class="lead-btn" data-pack="200" href="https://buy.stripe.com/dRm00i3DG37pfYc92Q77O08" target="_blank" rel="noopener noreferrer">Buy 200 Leads</a>
+          </div>
+        </div>
+
+        <p class="leads-note">Questions about lead volume? Call <a href="tel:7738000116">773-800-0116</a> or email <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="ethos-site-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-col">
+        <h4 class="footer-col-title">Contact Us</h4>
+        <p class="footer-text">Alpine Fairview Group</p>
+        <p class="footer-text"><a href="tel:7738000116" class="footer-link-inline">773-800-0116</a></p>
+        <p class="footer-text" style="margin-top: 6px;">
+          <a href="mailto:support@alpinefairview.com" class="footer-email-btn">Email Us</a>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Life Insurance</h4>
+        <a href="whole-life-policies.html" class="footer-link">Whole Life &amp; Final Expense</a>
+        <a href="no-medical-exam.html" class="footer-link">No Medical Exam Life Insurance</a>
+        <a href="how-life-insurance-works.html" class="footer-link">How Life Insurance Works</a>
+        <a href="whole-life-policies.html" class="footer-link">Our policies</a>
+        <a href="index.html#faqs" class="footer-link">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Company</h4>
+        <a href="index.html#about-us" class="footer-link">About us</a>
+        <a href="carriers.html" class="footer-link">Our carriers</a>
+        <a href="careers.html" class="footer-link">Careers</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Partnerships</h4>
+        <a href="careers.html" class="footer-link">Alpine Fairview for Agents</a>
+        <a href="carriers.html" class="footer-link">Affiliates</a>
+        <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="footer-link">Agent Contracting</a>
+        <a href="leads.html" class="footer-link">Leads</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Legal</h4>
+        <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Alpine Fairview Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var drawer = document.getElementById('mobile-nav-drawer');
+      var open = document.getElementById('mobile-menu-toggle');
+      var close = document.getElementById('close-mobile-nav');
+      var contact = document.getElementById('nav-contact-btn');
+      if (open && drawer) open.addEventListener('click', function () { drawer.classList.remove('hidden'); });
+      if (close && drawer) close.addEventListener('click', function () { drawer.classList.add('hidden'); });
+      if (contact) contact.addEventListener('click', function () { window.location.href = 'mailto:support@alpinefairview.com'; });
+    })();
+  </script>
 </body>
 </html>

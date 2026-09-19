@@ -20,6 +20,7 @@ export default defineConfig({
         termsOfUse: resolve(__dirname, 'terms-of-use.html'),
         howLifeInsuranceWorks: resolve(__dirname, 'how-life-insurance-works.html'),
         thankYou: resolve(__dirname, 'thank-you.html'),
+        leads: resolve(__dirname, 'leads.html'),
         card: resolve(__dirname, 'card.html'),
         jamesLange: resolve(__dirname, 'james-lange.html'),
         jameslange: resolve(__dirname, 'jameslange.html')
