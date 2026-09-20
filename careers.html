@@ -349,8 +349,8 @@
     }
 
     @media (max-width: 900px) {
-      .pillars-grid, .grid-3, .grid-2, .grid-4, .check-list-grid {
-        grid-template-columns: 1fr;
+      .pillars-grid, .grid-3, .grid-4, .check-list-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
       .role-card {
         flex-direction: column;
@@ -358,8 +358,73 @@
         gap: 20px;
         padding: 28px 24px;
       }
-      .careers-section {
-        padding: 50px 0;
+      .careers-section, .pillars-section, .roles-section {
+        padding: 56px 0;
+      }
+    }
+
+    /* ---- Mobile: fewer screens of scrolling (side-by-side cards, tighter spacing) ---- */
+    @media (max-width: 600px) {
+      .careers-hero {
+        padding: 52px 0 40px 0;
+        min-height: 320px;
+      }
+      .careers-hero-badge {
+        margin-bottom: 14px;
+      }
+      .careers-hero-title {
+        font-size: 2rem;
+        margin-bottom: 14px;
+      }
+      .careers-hero-sub {
+        font-size: 0.98rem;
+        margin-bottom: 24px;
+      }
+      .careers-section, .pillars-section, .roles-section {
+        padding: 40px 0;
+      }
+      .pillars-grid, .grid-3, .grid-4, .check-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .grid-2 {
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .pillar-card, .feature-box {
+        padding: 18px 16px;
+        gap: 8px;
+      }
+      .pillar-title, .feature-box-title {
+        font-size: 1rem;
+      }
+      .pillar-desc, .feature-box-desc {
+        font-size: 0.88rem;
+      }
+      .expand-toggle-btn {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+      }
+      .check-item {
+        padding: 12px 14px;
+        font-size: 0.86rem;
+        gap: 10px;
+      }
+      .check-bullet {
+        width: 22px;
+        height: 22px;
+        font-size: 0.78rem;
+      }
+      .ai-question-card {
+        font-size: 0.92rem;
+        padding: 14px 16px;
+      }
+      .role-card {
+        padding: 22px 18px;
+      }
+      .role-title {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -1050,5 +1115,6 @@
     </div>
   </footer>
 
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
