@@ -530,11 +530,9 @@ document.addEventListener('DOMContentLoaded', () => {
       targetPanel.classList.remove('hidden');
     }
 
-    // Immediately trigger lead submission & email notification when reaching Step 17 ("Your whole life rate quote is ready!")
+    // Step 17 is a short hand-off: send the lead, then open the thank-you page (no rates are shown).
     if (stepNum === 17) {
-      calculateAndDisplayRate();
-      submitLeadToGoogleSheet(leadData);
-      animateFinalCoverageSlider();
+      finishQuiz();
     }
 
     // Scroll quiz container to top
@@ -909,7 +907,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function submitLeadToGoogleSheet(data) {
     if (isLeadSubmitted) {
       console.log('⚠️ Lead has already been submitted for this session. Skipping duplicate dispatch.');
-      return;
+      return Promise.resolve();
     }
     isLeadSubmitted = true;
 
@@ -961,20 +959,26 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('alpine_fairview_leads', JSON.stringify(existingLeads));
     } catch(e) {}
 
+    // keepalive lets each request finish even if the page changes right after; the returned promise
+    // settles when both requests are done (they never reject), so callers can wait for them.
+    const pending = [];
+
     const webhookUrl = 'https://script.google.com/macros/s/AKfycbx_AlpineFairview_Sheet/exec';
     try {
-      fetch(webhookUrl, {
+      pending.push(fetch(webhookUrl, {
         method: 'POST',
         mode: 'no-cors',
+        keepalive: true,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).catch(() => {});
+      }).catch(() => {}));
     } catch (e) {}
 
     // Post to Netlify Function for DigitalBGA CRM API
     try {
-      fetch('/.netlify/functions/digitalBGA-lead', {
+      pending.push(fetch('/.netlify/functions/digitalBGA-lead', {
         method: 'POST',
+        keepalive: true,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
@@ -985,8 +989,33 @@ document.addEventListener('DOMContentLoaded', () => {
           updateAssignedAgentUI(resData.agent);
         }
       })
-      .catch(err => console.warn('⚠️ DigitalBGA CRM Netlify Function Notice:', err));
+      .catch(err => console.warn('⚠️ DigitalBGA CRM Netlify Function Notice:', err)));
     } catch (e) {}
+
+    return Promise.all(pending);
+  }
+
+  // Send the lead, then open the thank-you page. Waits up to 6 seconds for the lead requests to finish so
+  // the page change can't cut them off (they also use keepalive as a second safeguard).
+  let isFinishing = false;
+  function finishQuiz() {
+    if (isFinishing) return;
+    isFinishing = true;
+
+    const params = new URLSearchParams({
+      coverage: leadData.coverageAmount || 25000,
+      name: leadData.firstName || ''
+    }).toString();
+    const target = `thank-you.html?${params}`;
+
+    const fallbackLink = document.getElementById('step-17-fallback');
+    if (fallbackLink) fallbackLink.href = target;
+
+    const go = () => { window.location.href = target; };
+    Promise.race([
+      submitLeadToGoogleSheet(leadData),
+      new Promise(resolve => setTimeout(resolve, 6000))
+    ]).then(go, go);
   }
 
   function formatPhoneNumber(phoneStr) {
@@ -1346,19 +1375,5 @@ END:VCARD`;
     addContactBtn.addEventListener('click', downloadAgentVCard);
   }
 
-  const finishLeadBtn = document.getElementById('finish-lead-btn');
-  if (finishLeadBtn) {
-    finishLeadBtn.addEventListener('click', () => {
-      const coverage = leadData.coverageAmount || 25000;
-      const firstName = leadData.firstName || '';
-
-      const queryParams = new URLSearchParams({
-        coverage: coverage,
-        name: firstName
-      }).toString();
-
-      window.location.href = `thank-you.html?${queryParams}`;
-    });
-  }
 
 });

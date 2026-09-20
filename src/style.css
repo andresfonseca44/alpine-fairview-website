@@ -4700,3 +4700,22 @@ body.policy-page-body .mobile-menu-btn {
   #landing-view .terms-grid { gap: 10px; }
   #landing-view .term-card-item { padding: 12px 14px; }
 }
+
+/* Quiz step 17 hand-off: simple spinner while the lead is sent */
+.quiz-saving-spinner {
+  width: 52px;
+  height: 52px;
+  margin: 24px auto 20px auto;
+  border: 5px solid var(--color-icy-blue);
+  border-top-color: var(--color-slate-teal);
+  border-radius: 50%;
+  animation: quizSavingSpin 0.9s linear infinite;
+}
+
+@keyframes quizSavingSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-saving-spinner { animation-duration: 3s; }
+}
