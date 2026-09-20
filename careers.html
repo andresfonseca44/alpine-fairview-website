@@ -91,43 +91,6 @@
       font-size: 1.08rem !important;
     }
 
-    /* WHY JOIN US PILLARS */
-    .pillars-section {
-      background-color: var(--color-white);
-      padding: 90px 0;
-    }
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 48px;
-    }
-    .pillar-card {
-      background-color: var(--color-offwhite);
-      border-radius: var(--radius-card);
-      padding: 36px 28px;
-      border: 1.5px solid var(--color-card-border);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .pillar-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--color-slate-teal);
-    }
-    .pillar-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--color-near-black);
-    }
-    .pillar-desc {
-      font-size: 0.95rem;
-      color: var(--color-text-muted);
-      line-height: 1.55;
-    }
-
     /* GENERAL SECTION CONTAINER & CARD STYLES */
     .careers-section {
       padding: 80px 0;
@@ -296,7 +259,7 @@
     }
 
     @media (max-width: 900px) {
-      .pillars-grid, .grid-3, .grid-4, .check-list-grid {
+      .grid-3, .grid-4, .check-list-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .role-card {
@@ -305,7 +268,7 @@
         gap: 20px;
         padding: 28px 24px;
       }
-      .careers-section, .pillars-section, .roles-section {
+      .careers-section, .roles-section {
         padding: 56px 0;
       }
     }
@@ -327,10 +290,10 @@
         font-size: 0.98rem;
         margin-bottom: 24px;
       }
-      .careers-section, .pillars-section, .roles-section {
+      .careers-section, .roles-section {
         padding: 40px 0;
       }
-      .pillars-grid, .grid-3, .grid-4, .check-list-grid {
+      .grid-3, .grid-4, .check-list-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
         margin-top: 28px;
@@ -339,14 +302,14 @@
         gap: 12px;
         margin-top: 28px;
       }
-      .pillar-card, .feature-box {
+      .feature-box {
         padding: 18px 16px;
         gap: 8px;
       }
-      .pillar-title, .feature-box-title {
+      .feature-box-title {
         font-size: 1rem;
       }
-      .pillar-desc, .feature-box-desc {
+      .feature-box-desc {
         font-size: 0.88rem;
       }
       .check-item {
@@ -370,8 +333,8 @@
         font-size: 1.2rem;
       }
 
-      /* Compensation, CRM Features & Next Steps: horizontal swipeable rows */
-      .compensation-grid, .crm-features-grid, .next-steps-grid {
+      /* CRM Features & Next Steps: horizontal swipeable rows */
+      .crm-features-grid, .next-steps-grid {
         display: flex;
         grid-template-columns: none;
         max-width: none;
@@ -383,10 +346,10 @@
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
-      .compensation-grid::-webkit-scrollbar, .crm-features-grid::-webkit-scrollbar, .next-steps-grid::-webkit-scrollbar {
+      .crm-features-grid::-webkit-scrollbar, .next-steps-grid::-webkit-scrollbar {
         display: none;
       }
-      .compensation-grid .feature-box, .crm-features-grid .feature-box, .next-steps-grid .feature-box {
+      .crm-features-grid .feature-box, .next-steps-grid .feature-box {
         flex: 0 0 78%;
         scroll-snap-align: start;
       }
@@ -513,70 +476,27 @@
       </div>
     </section>
 
-    <!-- SECTION 1: WHY TOP AGENTS CHOOSE ALPINE FAIRVIEW (No Emojis) -->
-    <section class="pillars-section">
+    <!-- SECTION 1: WHY TOP AGENTS CHOOSE ALPINE FAIRVIEW (Merged with former Compensation section — deduplicated) -->
+    <section class="careers-section">
       <div class="container text-center">
         <h2 class="section-title font-serif">Why Top Agents Choose Alpine Fairview</h2>
-        <p class="section-subtitle">Everything you need to build a high-income, sustainable insurance career.</p>
+        <p class="section-subtitle">Everything you need to build a high-income, sustainable insurance career — full compensation, exclusive leads, and complete operational support, all in one place.</p>
 
-        <div class="pillars-grid">
-          
-          <div class="pillar-card text-left">
-            <h3 class="pillar-title">Top Producer Commission Contracts</h3>
-            <p class="pillar-desc">
-              Maximized producer compensation schedules designed to reward your effort. Earn top-tier commissions with zero hidden reductions or delayed payouts.
-            </p>
-          </div>
+        <div class="grid-3 text-left">
 
-          <div class="pillar-card text-left">
-            <h3 class="pillar-title">Exclusive In-House Leads</h3>
-            <p class="pillar-desc">
-              Stop fighting over old, recycled lead lists. Our proprietary digital marketing platform generates real-time, high-intent Whole Life and Final Expense leads daily.
-            </p>
-          </div>
-
-          <div class="pillar-card text-left">
-            <h3 class="pillar-title">100% Book Ownership</h3>
-            <p class="pillar-desc">
-              You build your business, you own your business. From Day 1, your client renewals, book of business, and vested residuals remain 100% yours.
-            </p>
-          </div>
-
-          <div class="pillar-card text-left">
-            <h3 class="pillar-title">Mentorship &amp; Coaching</h3>
-            <p class="pillar-desc">
-              Work directly with active 6-figure and 7-figure producers. Receive hands-on sales training, phone script coaching, and daily masterminds.
-            </p>
-          </div>
-
-          <div class="pillar-card text-left">
-            <h3 class="pillar-title">A-Rated Carrier Access</h3>
-            <p class="pillar-desc">
-              Instant contracting with the nation's premier A+ rated life insurance companies, offering instant-approval whole life, final expense, and term products.
-            </p>
-          </div>
-
-          <div class="pillar-card text-left">
-            <h3 class="pillar-title">Instant Approval Technology</h3>
-            <p class="pillar-desc">
-              Issue policies in minutes with our 100% online underwriting suite—no blood draws, paramedical exams, or long waiting periods for your clients.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: COMPENSATION & COMPLETE PRODUCER INFRASTRUCTURE (No Emojis) -->
-    <section class="careers-section careers-section-gray">
-      <div class="container text-center">
-        <h2 class="section-title font-serif">Compensation Is Just The Beginning</h2>
-        <p class="section-subtitle">High contracts mean little without complete operational support. Here is everything included when you contract with Alpine Fairview:</p>
-
-        <div class="grid-3 text-left compensation-grid">
           <div class="feature-box">
-            <h3 class="feature-box-title">Fully Vested From Day One</h3>
-            <p class="feature-box-desc">Your policy renewals and residual income belong to you from your very first policy written. Zero vesting wait periods.</p>
+            <h3 class="feature-box-title">Top Producer Commission Contracts</h3>
+            <p class="feature-box-desc">Maximized producer compensation schedules designed to reward your effort. Earn top-tier commissions with zero hidden reductions or delayed payouts.</p>
+          </div>
+
+          <div class="feature-box">
+            <h3 class="feature-box-title">Exclusive, Real-Time In-House Leads</h3>
+            <p class="feature-box-desc">Stop fighting over old, recycled lead lists. Our proprietary digital marketing platform delivers exclusive, real-time inbound and digital lead streams generated continuously by our internal marketing team.</p>
+          </div>
+
+          <div class="feature-box">
+            <h3 class="feature-box-title">Fully Vested, 100% Book Ownership</h3>
+            <p class="feature-box-desc">You build your business, you own your business. From Day 1, your client renewals, book of business, and vested residuals remain 100% yours — zero vesting wait periods.</p>
           </div>
 
           <div class="feature-box">
@@ -585,18 +505,23 @@
           </div>
 
           <div class="feature-box">
-            <h3 class="feature-box-title">Internal Lead Options</h3>
-            <p class="feature-box-desc">Access exclusive, real-time inbound and digital lead streams generated continuously by our internal marketing team.</p>
+            <h3 class="feature-box-title">1-on-1 Mentorship &amp; Coaching</h3>
+            <p class="feature-box-desc">Work directly with active 6-figure and 7-figure producers. Your personal Brokerage Manager guides your contracting, tech setup, and call reviews.</p>
           </div>
 
           <div class="feature-box">
-            <h3 class="feature-box-title">Ready-To-Go CRM System</h3>
-            <p class="feature-box-desc">Pre-configured sales engine ready on day one so you can focus 100% of your energy on client conversations.</p>
+            <h3 class="feature-box-title">A-Rated Carrier Access</h3>
+            <p class="feature-box-desc">Instant contracting with the nation's premier A+ rated life insurance companies, offering instant-approval whole life, final expense, and term products.</p>
           </div>
 
           <div class="feature-box">
-            <h3 class="feature-box-title">Agency Management Platform (AMP)</h3>
-            <p class="feature-box-desc">Centralized command center linking your client records, carrier submissions, and active policy data.</p>
+            <h3 class="feature-box-title">Instant Approval Technology</h3>
+            <p class="feature-box-desc">Issue policies in minutes with our 100% online underwriting suite—no blood draws, paramedical exams, or long waiting periods for your clients.</p>
+          </div>
+
+          <div class="feature-box">
+            <h3 class="feature-box-title">Ready-To-Go CRM &amp; Agency Management Platform</h3>
+            <p class="feature-box-desc">Pre-configured sales engine and centralized command center linking your client records, carrier submissions, and active policy data — ready on day one.</p>
           </div>
 
           <div class="feature-box">
@@ -614,12 +539,7 @@
             <p class="feature-box-desc">Collaborate daily with top producers across the nation to share winning telesales techniques and strategies.</p>
           </div>
 
-          <div class="feature-box">
-            <h3 class="feature-box-title">Dedicated Brokerage Manager</h3>
-            <p class="feature-box-desc">Your personal 1-on-1 mentor and active top producer guiding your contracting, tech setup, and call reviews.</p>
-          </div>
         </div>
-        <p class="swipe-hint">Swipe to see all &rarr;</p>
       </div>
     </section>
 
@@ -648,18 +568,6 @@
             <h4 class="feature-box-title" style="color: var(--color-mint-green) !important;">Predictable ROI</h4>
             <p class="feature-box-desc" style="color: #FFFFFF !important;">Turn lead investment into consistent weekly cash flow with proven conversion benchmarks.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: ONE CONNECTED TECHNOLOGY PLATFORM -->
-    <section class="careers-section careers-section-gray">
-      <div class="container text-center">
-        <h2 class="section-title font-serif">Technology For Your Entire Insurance Business</h2>
-        <p class="section-subtitle">One Connected Operating Platform Built Specifically For Life Insurance Telesales</p>
-
-        <div style="max-width: 820px; margin: 24px auto 0 auto; line-height: 1.7; font-size: 1.1rem; color: var(--color-near-black);">
-          Our CRM is engineered around the way independent agents actually sell, manage, and scale their agency. From the initial outbound call to application submission, lapse prevention, and household cross-selling—your entire business stays seamlessly connected in one place.
         </div>
       </div>
     </section>
@@ -789,42 +697,6 @@
           <div style="font-weight: 800; font-size: 1.05rem; color: #FFFFFF !important;">
             An Operating System Designed For Growth.
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 8: TELESALES TRAINING & EXECUTION -->
-    <section class="careers-section">
-      <div class="container text-center">
-        <h2 class="section-title font-serif">Training: Great Leads Require A Mastered Sales Process</h2>
-        <p class="section-subtitle">
-          Putting an incredible lead in front of an unprepared agent wastes opportunity. We teach you a proven telesales process designed for high conversion.
-        </p>
-
-        <div style="background: var(--color-offwhite); color: var(--color-near-black); border: 2px solid var(--color-slate-teal); border-radius: 20px; padding: 36px 28px; margin-top: 32px; text-align: center;">
-          <div style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-slate-teal); margin-bottom: 8px;">
-            Average $1,000+ Annual Premium Per Sale
-          </div>
-          <p style="font-size: 1rem; color: var(--color-text-muted); max-width: 760px; margin: 0 auto; line-height: 1.55;">
-            Our Final Expense &amp; Whole Life sales methodology focuses heavily on deep discovery, client education, and connecting coverage directly to family protection. Training continues long after onboarding.
-          </p>
-        </div>
-
-        <h3 class="font-serif text-center" style="font-size: 1.8rem; margin: 40px 0 20px 0; color: var(--color-near-black);">
-          10 Core Sales Skills You Will Master:
-        </h3>
-
-        <div class="check-list-grid">
-          <div class="check-item"><span class="check-bullet">✓</span> Conduct deep, meaningful discovery conversations</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Ask high-impact probing questions that uncover motivation</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Build high emotional value before presenting policy price</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Create genuine urgency without high-pressure tactics</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Address objections before they become roadblocks</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Perform thorough, value-adding policy reviews</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Maximize policy placement and 12-month persistency</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Uncover secondary sales opportunities within households</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Generate natural client introductions and referrals</div>
-          <div class="check-item"><span class="check-bullet">✓</span> Command phone conversations with calm authority and confidence</div>
         </div>
       </div>
     </section>
