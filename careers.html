@@ -291,6 +291,10 @@
       border-radius: 50px;
     }
 
+    .swipe-hint {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .pillars-grid, .grid-3, .grid-4, .check-list-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -364,6 +368,34 @@
       }
       .role-title {
         font-size: 1.2rem;
+      }
+
+      /* Compensation & Next Steps: horizontal swipeable rows */
+      .compensation-grid, .next-steps-grid {
+        display: flex;
+        grid-template-columns: none;
+        max-width: none;
+        margin: 28px -5vw 0;
+        padding: 4px 5vw 12px;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .compensation-grid::-webkit-scrollbar, .next-steps-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .compensation-grid .feature-box, .next-steps-grid .feature-box {
+        flex: 0 0 78%;
+        scroll-snap-align: start;
+      }
+      .swipe-hint {
+        display: block;
+        text-align: center;
+        font-size: 0.78rem;
+        color: var(--color-text-muted);
+        margin-top: 2px;
       }
     }
   </style>
@@ -541,7 +573,7 @@
         <h2 class="section-title font-serif">Compensation Is Just The Beginning</h2>
         <p class="section-subtitle">High contracts mean little without complete operational support. Here is everything included when you contract with Alpine Fairview:</p>
 
-        <div class="grid-3 text-left">
+        <div class="grid-3 text-left compensation-grid">
           <div class="feature-box">
             <h3 class="feature-box-title">Fully Vested From Day One</h3>
             <p class="feature-box-desc">Your policy renewals and residual income belong to you from your very first policy written. Zero vesting wait periods.</p>
@@ -587,6 +619,7 @@
             <p class="feature-box-desc">Your personal 1-on-1 mentor and active top producer guiding your contracting, tech setup, and call reviews.</p>
           </div>
         </div>
+        <p class="swipe-hint">Swipe to see all &rarr;</p>
       </div>
     </section>
 
@@ -886,7 +919,7 @@
         <h2 class="section-title font-serif">So, What Happens Next?</h2>
         <p class="section-subtitle">A Transparent, 4-Step Process To Launch And Scale Your Business</p>
 
-        <div class="grid-4 text-left" style="margin-top: 40px;">
+        <div class="grid-4 text-left next-steps-grid" style="margin-top: 40px;">
           
           <div class="feature-box" style="position: relative;">
             <div style="width: 36px; height: 36px; border-radius: 50%; background-color: var(--color-slate-teal); color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 8px;">1</div>
@@ -922,6 +955,7 @@
           </div>
 
         </div>
+        <p class="swipe-hint">Swipe to see all &rarr;</p>
 
         <div style="text-align: center; margin-top: 40px;">
           <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 360px;">
