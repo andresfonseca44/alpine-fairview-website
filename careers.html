@@ -291,63 +291,6 @@
       border-radius: 50px;
     }
 
-    /* EXPANDABLE CARDS STYLING FOR CAREERS SECTIONS */
-    .expand-toggle-btn {
-      background: #F1F5F9;
-      border: 1px solid #CBD5E1;
-      color: var(--color-slate-teal);
-      font-weight: 700;
-      font-size: 0.88rem;
-      font-family: var(--font-sans);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 50px;
-      margin-top: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .expand-toggle-btn:hover {
-      background: var(--color-slate-teal);
-      color: #FFFFFF;
-      border-color: var(--color-slate-teal);
-    }
-
-    .expand-toggle-btn .toggle-icon {
-      font-size: 1rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .expandable-content {
-      display: none;
-      margin-top: 12px;
-      animation: fadeInExpand 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .expandable-card.is-expanded .expandable-content {
-      display: block;
-    }
-
-    .expandable-card.is-expanded .expand-toggle-btn {
-      background: var(--color-slate-teal);
-      color: #FFFFFF;
-      border-color: var(--color-slate-teal);
-    }
-
-    @keyframes fadeInExpand {
-      from {
-        opacity: 0;
-        transform: translateY(-4px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @media (max-width: 900px) {
       .pillars-grid, .grid-3, .grid-4, .check-list-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -401,10 +344,6 @@
       }
       .pillar-desc, .feature-box-desc {
         font-size: 0.88rem;
-      }
-      .expand-toggle-btn {
-        font-size: 0.8rem;
-        padding: 6px 12px;
       }
       .check-item {
         padding: 12px 14px;
@@ -550,62 +489,44 @@
 
         <div class="pillars-grid">
           
-          <div class="pillar-card text-left expandable-card">
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Top Producer Commission Contracts</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="pillar-desc expandable-content">
+            <p class="pillar-desc">
               Maximized producer compensation schedules designed to reward your effort. Earn top-tier commissions with zero hidden reductions or delayed payouts.
             </p>
           </div>
 
-          <div class="pillar-card text-left expandable-card">
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Exclusive In-House Leads</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="pillar-desc expandable-content">
+            <p class="pillar-desc">
               Stop fighting over old, recycled lead lists. Our proprietary digital marketing platform generates real-time, high-intent Whole Life and Final Expense leads daily.
             </p>
           </div>
 
-          <div class="pillar-card text-left expandable-card">
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">100% Book Ownership</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="pillar-desc expandable-content">
+            <p class="pillar-desc">
               You build your business, you own your business. From Day 1, your client renewals, book of business, and vested residuals remain 100% yours.
             </p>
           </div>
 
-          <div class="pillar-card text-left expandable-card">
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Mentorship &amp; Coaching</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="pillar-desc expandable-content">
+            <p class="pillar-desc">
               Work directly with active 6-figure and 7-figure producers. Receive hands-on sales training, phone script coaching, and daily masterminds.
             </p>
           </div>
 
-          <div class="pillar-card text-left expandable-card">
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">A-Rated Carrier Access</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="pillar-desc expandable-content">
+            <p class="pillar-desc">
               Instant contracting with the nation's premier A+ rated life insurance companies, offering instant-approval whole life, final expense, and term products.
             </p>
           </div>
 
-          <div class="pillar-card text-left expandable-card">
+          <div class="pillar-card text-left">
             <h3 class="pillar-title">Instant Approval Technology</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="pillar-desc expandable-content">
+            <p class="pillar-desc">
               Issue policies in minutes with our 100% online underwriting suite—no blood draws, paramedical exams, or long waiting periods for your clients.
             </p>
           </div>
@@ -718,52 +639,37 @@
 
         <div class="grid-3 text-left">
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Built-In Smart Dialer</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">
+            <p class="feature-box-desc">
               Leads flow automatically into your CRM dialer queue. Hit start and automatically connect with your highest-value prospects without manual phone tapping.
             </p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Automated Follow-Up Workflows</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">
+            <p class="feature-box-desc">
               Prospects who don’t answer automatically receive customizable, multi-touch SMS text and email follow-ups to re-engage interest.
             </p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Spam Flag Safeguard &amp; Monitoring</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">
+            <p class="feature-box-desc">
               Receive instant alerts if outbound phone numbers are flagged as spam, with seamless number rotation to ensure high call answer rates.
             </p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Real-Time Bank Account Verification</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">
+            <p class="feature-box-desc">
               Verify routing and account details live with instant $0.01 micro-deposits, detecting prepaid or low-placement accounts to ensure high policy placement.
             </p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Actionable Performance Analytics</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">
+            <p class="feature-box-desc">
               Track call volume, contact rate, quote rate, conversion, lead cost, and persistency benchmarks to optimize your daily workflow.
             </p>
           </div>
@@ -941,52 +847,34 @@
         </div>
 
         <div class="grid-3 text-left">
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Live Call Reviews</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">Listen to real phone conversations and break down what worked, what didn't, and how to improve closing rates.</p>
+            <p class="feature-box-desc">Listen to real phone conversations and break down what worked, what didn't, and how to improve closing rates.</p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Agent Community Chat</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">Ask questions live and receive instant guidance from fellow active agents facing the exact same scenarios daily.</p>
+            <p class="feature-box-desc">Ask questions live and receive instant guidance from fellow active agents facing the exact same scenarios daily.</p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Recorded Training</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">Learn at your own pace with 24/7 access to our extensive sales script and product video library.</p>
+            <p class="feature-box-desc">Learn at your own pace with 24/7 access to our extensive sales script and product video library.</p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Underwriting Cheat Sheets</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">Instant access to product cheat sheets, medical guides, and carrier criteria right when you need them.</p>
+            <p class="feature-box-desc">Instant access to product cheat sheets, medical guides, and carrier criteria right when you need them.</p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Weekly Updates</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">Stay ahead with regular briefings on carrier guideline shifts, new tech features, and agency initiatives.</p>
+            <p class="feature-box-desc">Stay ahead with regular briefings on carrier guideline shifts, new tech features, and agency initiatives.</p>
           </div>
 
-          <div class="feature-box expandable-card">
+          <div class="feature-box">
             <h3 class="feature-box-title">Agent Leaderboards</h3>
-            <button class="expand-toggle-btn" aria-expanded="false">
-              <span class="btn-label">Expand</span> <span class="toggle-icon">+</span>
-            </button>
-            <p class="feature-box-desc expandable-content">Know where you stand against top producers nationwide and stay motivated to hit your financial goals.</p>
+            <p class="feature-box-desc">Know where you stand against top producers nationwide and stay motivated to hit your financial goals.</p>
           </div>
         </div>
       </div>

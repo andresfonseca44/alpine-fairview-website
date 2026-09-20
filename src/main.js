@@ -377,23 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 2c. EXPANDABLE CARDS CONTROLLER (CAREERS PAGE SECTIONS)
-  // ------------------------------------------------------------------------
-  document.querySelectorAll('.expand-toggle-btn').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const card = btn.closest('.expandable-card, .pillar-card, .feature-box');
-      if (!card) return;
-      const isExpanded = card.classList.toggle('is-expanded');
-      btn.setAttribute('aria-expanded', isExpanded);
-      const labelSpan = btn.querySelector('.btn-label');
-      const iconSpan = btn.querySelector('.toggle-icon');
-      if (labelSpan) labelSpan.textContent = isExpanded ? 'Collapse' : 'Expand';
-      if (iconSpan) iconSpan.textContent = isExpanded ? '−' : '+';
-    });
-  });
-
-  // ------------------------------------------------------------------------
   // 3. CONTACT US INTERSTITIAL MODAL CONTROLLER
   // ------------------------------------------------------------------------
   const navContactBtn = document.getElementById('nav-contact-btn');
