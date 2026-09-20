@@ -370,8 +370,8 @@
         font-size: 1.2rem;
       }
 
-      /* Compensation & Next Steps: horizontal swipeable rows */
-      .compensation-grid, .next-steps-grid {
+      /* Compensation, CRM Features & Next Steps: horizontal swipeable rows */
+      .compensation-grid, .crm-features-grid, .next-steps-grid {
         display: flex;
         grid-template-columns: none;
         max-width: none;
@@ -383,10 +383,10 @@
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
-      .compensation-grid::-webkit-scrollbar, .next-steps-grid::-webkit-scrollbar {
+      .compensation-grid::-webkit-scrollbar, .crm-features-grid::-webkit-scrollbar, .next-steps-grid::-webkit-scrollbar {
         display: none;
       }
-      .compensation-grid .feature-box, .next-steps-grid .feature-box {
+      .compensation-grid .feature-box, .crm-features-grid .feature-box, .next-steps-grid .feature-box {
         flex: 0 0 78%;
         scroll-snap-align: start;
       }
@@ -670,7 +670,7 @@
         <h2 class="section-title font-serif">Inside The CRM</h2>
         <p class="section-subtitle">Purpose-built tools to maximize your daily dialing efficiency and revenue.</p>
 
-        <div class="grid-3 text-left">
+        <div class="grid-3 text-left crm-features-grid">
 
           <div class="feature-box">
             <h3 class="feature-box-title">Built-In Smart Dialer</h3>
@@ -708,6 +708,7 @@
           </div>
 
         </div>
+        <p class="swipe-hint">Swipe to see all &rarr;</p>
       </div>
     </section>
 
