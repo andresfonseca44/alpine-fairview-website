@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Application Submitted | Alpine Fairview</title>
-  
-  <meta name="description" content="Thank you for submitting your whole life insurance application with Alpine Fairview. Your assigned specialist Andres Fonseca will reach out shortly." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | Alpine Fairview</title>
+
+  <meta name="description" content="We received your answers. Learn how much coverage most families actually need and what it can do for the people you love." />
 
   <!-- Google Fonts: Alice (Serif logo), Instrument Serif (Headlines), Plus Jakarta Sans (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="src/style.css" />
 
   <style>
-    /* THANK YOU PAGE SPECIFIC STYLES */
+    /* THANK YOU / EDUCATIONAL RESULTS PAGE */
     .thank-you-page {
       background-color: #F8FAF9;
       min-height: 100vh;
@@ -38,197 +38,167 @@
       justify-content: space-between;
     }
 
+    /* The site-wide styles make the logo white and hide the phone button on phones
+       (built for the home page's dark header). Fix both for this white header. */
+    .thank-you-header .brand-text-logo { color: var(--color-slate-teal-dark) !important; text-shadow: none !important; }
+    .thank-you-header .nav-contact-btn { display: inline-flex !important; align-items: center; min-height: 44px; text-decoration: none; }
+
     .thank-you-main {
       flex: 1;
-      padding: 40px 16px 60px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 32px 16px 56px 16px;
     }
 
-    .thank-you-card-wrapper {
-      max-width: 620px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .ty-wrap { max-width: 1040px; margin: 0 auto; }
+    .ty-narrow { max-width: 620px; margin: 0 auto; }
 
-    .success-icon-badge {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
+    /* ---- Intro ---- */
+    .ty-hero { text-align: center; max-width: 720px; margin: 0 auto 44px auto; }
+    .ty-check {
+      width: 68px; height: 68px; border-radius: 50%;
       background-color: #E8FAED;
-      border: 3px solid var(--color-mint-green);
-      color: #0B3C2A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px auto;
-      box-shadow: 0 8px 24px rgba(46, 229, 157, 0.25);
-      animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px auto;
     }
-
-    .success-icon-badge svg {
-      width: 36px;
-      height: 36px;
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0.6); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
     .thank-you-title {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-size: clamp(2.1rem, 7vw, 3rem);
       font-weight: 400;
       color: var(--color-near-black);
       line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .thank-you-subtitle {
+      font-size: 1.15rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    /* ---- Section headings ---- */
+    .ty-section { margin: 0 auto 52px auto; }
+    .ty-h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 6vw, 2.5rem);
+      font-weight: 400;
+      color: var(--color-near-black);
+      line-height: 1.2;
+      text-align: center;
       margin-bottom: 10px;
     }
-
-    .thank-you-subtitle {
-      font-size: 1.05rem;
+    .ty-lead {
+      text-align: center;
       color: var(--color-text-muted);
-      margin-bottom: 32px;
-      line-height: 1.45;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto 28px auto;
     }
 
-    /* CONFIRMED COVERAGE BOX */
-    .confirmed-coverage-box {
-      background-color: var(--color-white);
-      border: 2px solid var(--color-slate-teal);
-      border-radius: 20px;
-      padding: 24px 20px;
-      margin-bottom: 28px;
-      box-shadow: var(--shadow-sm);
-      text-align: left;
-    }
-
-    .coverage-box-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--color-icy-blue);
-      padding-bottom: 14px;
-      margin-bottom: 16px;
-    }
-
-    .coverage-box-tag {
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-slate-teal);
-    }
-
-    .status-pill {
-      background-color: #E8FAED;
-      color: #0B3C2A;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 4px 12px;
-      border-radius: 50px;
-      border: 1px solid #A8F0C6;
-    }
-
-    .confirmed-amount-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .confirmed-amount-label {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--color-near-black);
-    }
-
-    .confirmed-amount-val {
-      font-family: var(--font-serif);
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: var(--color-slate-teal);
-    }
-
-    .coverage-details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      background-color: #F4F7F8;
-      border-radius: 12px;
-      padding: 14px 16px;
-    }
-
-    .detail-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .detail-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--color-text-muted);
-    }
-
-    .detail-val {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--color-near-black);
-    }
-
-    /* SPECIALIST PROFILE CARD */
-    .specialist-card {
+    /* ---- Coverage cards ---- */
+    .ty-cards { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .ty-card {
       background-color: var(--color-white);
       border: 1px solid var(--color-card-border);
       border-radius: 20px;
-      padding: 30px 24px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-md);
-      text-align: center;
-    }
-
-    .profile-img-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--color-mint-green);
-      box-shadow: 0 8px 24px rgba(95, 123, 130, 0.25);
-      margin: 0 auto 16px auto;
-      display: block;
-    }
-
-    .specialist-name {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: var(--color-near-black);
-      margin-bottom: 4px;
-    }
-
-    .specialist-role {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--color-slate-teal);
-      margin-bottom: 16px;
-    }
-
-    .specialist-message-quote {
-      background-color: #F4F7F8;
-      border-left: 4px solid var(--color-slate-teal);
-      border-radius: 12px;
-      padding: 16px 18px;
-      font-size: 0.98rem;
-      color: var(--color-near-black);
-      line-height: 1.5;
+      padding: 26px 22px;
       text-align: left;
-      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
+    .ty-card-top { display: flex; align-items: center; gap: 14px; }
+    .ty-icon {
+      width: 56px; height: 56px; border-radius: 16px; flex-shrink: 0;
+      background-color: var(--color-icy-blue);
+      border: 1.5px solid var(--color-card-border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ty-card-tag { font-size: 1.25rem; font-weight: 800; color: var(--color-near-black); line-height: 1.2; }
+    .ty-card-range {
+      font-family: var(--font-serif);
+      font-size: 2.3rem;
+      line-height: 1.1;
+      color: var(--color-slate-teal-dark);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-card-border);
+    }
+    .ty-label {
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--color-slate-teal); margin-bottom: 8px;
+    }
+    .ty-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .ty-list li { position: relative; padding-left: 30px; font-size: 1.1rem; line-height: 1.55; color: var(--color-near-black); }
+    .ty-list li::before {
+      content: "\2713"; position: absolute; left: 0; top: 2px;
+      width: 21px; height: 21px; border-radius: 50%;
+      background-color: var(--color-mint-green); color: var(--color-mint-text);
+      font-size: 0.72rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ty-card p { font-size: 1.1rem; line-height: 1.6; color: var(--color-text-muted); }
 
-    /* DIRECT CONTACT BUTTONS */
+    .ty-note {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin: 22px auto 0 auto; max-width: 820px;
+      background-color: #F0FDF6;
+      border: 2px solid var(--color-mint-green);
+      border-radius: 18px;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 1.05rem; line-height: 1.6; color: var(--color-near-black);
+    }
+    .ty-note svg { flex-shrink: 0; margin-top: 2px; }
+
+    /* ---- Product highlights ---- */
+    .ty-highlights { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .ty-highlight {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-card-border);
+      border-radius: 20px;
+      padding: 22px 20px;
+      display: grid; grid-template-columns: 56px 1fr; column-gap: 14px; row-gap: 12px; align-items: center; align-content: start;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+    }
+    .ty-highlight > div:not(.ty-icon) { display: contents; }
+    .ty-highlight .ty-icon { grid-column: 1; grid-row: 1; }
+    .ty-highlight h3 { grid-column: 2; grid-row: 1; margin: 0; }
+    .ty-highlight p { grid-column: 1 / -1; margin: 0; }
+    .ty-highlight h3 { font-size: 1.25rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 6px; line-height: 1.3; }
+    .ty-highlight p { font-size: 1.1rem; line-height: 1.6; color: var(--color-text-muted); }
+        .ty-highlight .ty-family { color: var(--color-near-black); }
+    .ty-highlight .ty-family strong { color: var(--color-slate-teal-dark); }
+
+    /* ---- Call to action ---- */
+    .ty-cta {
+      background: linear-gradient(160deg, var(--color-slate-teal-dark) 0%, var(--color-slate-footer) 100%);
+      color: var(--color-white);
+      border: 2px solid var(--color-mint-green);
+      border-radius: 22px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(27, 40, 44, 0.22);
+    }
+    .ty-cta-eyebrow { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-mint-green); margin-bottom: 8px; }
+    .ty-cta h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.7rem, 5.5vw, 2.2rem); line-height: 1.2; margin-bottom: 10px; color: var(--color-white); }
+    .ty-cta p { font-size: 1.05rem; line-height: 1.6; color: var(--color-icy-blue); max-width: 520px; margin: 0 auto 20px auto; }
+    .ty-call-btn { width: 100%; max-width: 420px; min-height: 68px; padding: 12px 24px; gap: 14px; }
+    .ty-call-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+    .ty-call-text strong { font-size: 1.35rem; font-weight: 800; }
+    .ty-call-text small { font-size: 1.02rem; font-weight: 700; opacity: 0.9; }
+
+    /* ---- Kept sections card (same look they had before) ---- */
+    .ty-kept-card {
+      background-color: var(--color-white);
+      border: 2px solid var(--color-slate-teal);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+    }
+    .ty-kept-card .ty-cta { margin-top: 28px; }
+
+    /* ---- Contact buttons (unchanged) ---- */
     .contact-cta-stack {
       display: flex;
       flex-direction: column;
@@ -277,129 +247,33 @@
       border-color: var(--color-slate-teal);
     }
 
-    .home-link-row {
-      margin-top: 24px;
+    /* ---- Disclaimer + back link ---- */
+    .ty-disclaimer {
+      max-width: 720px; margin: 30px auto 0 auto; text-align: center;
+      font-size: 0.82rem; line-height: 1.6; color: #64748B;
     }
+    .home-link-row { margin-top: 20px; text-align: center; }
+    .back-home-link { font-size: 0.95rem; font-weight: 700; color: var(--color-slate-teal); text-decoration: none; }
+    .back-home-link:hover { text-decoration: underline; }
 
-    .back-home-link {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--color-slate-teal);
-      text-decoration: none;
-    }
-
-    .back-home-link:hover {
-      text-decoration: underline;
+    /* ---- Larger screens ---- */
+    @media (min-width: 820px) {
+      .thank-you-main { padding: 48px 24px 72px 24px; }
+      .ty-cards { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .ty-highlights { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .ty-highlight:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 520px; margin: 0 auto; }
+      .ty-cta { padding: 38px 32px; }
     }
 
     @media (max-width: 768px) {
-      .thank-you-header {
-        padding: 10px 0;
-      }
-      
-      .thank-you-main {
-        padding: 16px 12px 32px 12px;
-      }
+      .thank-you-header { padding: 10px 0; }
+      .thank-you-header .brand-text-logo { font-size: 1.1rem; letter-spacing: 0.05em; }
+      .thank-you-header .nav-contact-btn { padding: 10px 14px; font-size: 0.88rem; }
+      .ty-kept-card { padding: 16px; }
+    }
 
-      .success-icon-badge {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 8px;
-      }
-
-      .success-icon-badge svg {
-        width: 24px;
-        height: 24px;
-      }
-
-      .thank-you-title {
-        font-size: 1.5rem;
-        margin-bottom: 4px;
-      }
-
-      .thank-you-subtitle {
-        font-size: 0.88rem;
-        margin-bottom: 14px;
-      }
-
-      .confirmed-coverage-box {
-        padding: 14px 14px;
-        margin-bottom: 14px;
-        border-radius: 14px;
-      }
-
-      .coverage-box-header {
-        padding-bottom: 8px;
-        margin-bottom: 10px;
-      }
-
-      .confirmed-amount-row {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 8px;
-      }
-
-      .confirmed-amount-label {
-        font-size: 0.85rem;
-      }
-
-      .confirmed-amount-val {
-        font-size: 1.5rem;
-      }
-
-      .coverage-details-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-        padding: 10px 12px;
-      }
-
-      .detail-label {
-        font-size: 0.68rem;
-      }
-
-      .detail-val {
-        font-size: 0.82rem;
-      }
-
-      .specialist-card {
-        padding: 18px 14px;
-        border-radius: 16px;
-        margin-bottom: 20px;
-      }
-
-      .profile-img-circle {
-        width: 80px;
-        height: 80px;
-        border-width: 3px;
-        margin-bottom: 8px;
-      }
-
-      .specialist-name {
-        font-size: 1.35rem;
-        margin-bottom: 2px;
-      }
-
-      .specialist-role {
-        font-size: 0.8rem;
-        margin-bottom: 12px;
-      }
-
-      .specialist-message-quote {
-        padding: 12px 14px;
-        font-size: 0.88rem;
-        margin-bottom: 16px;
-      }
-
-      .btn-call-direct {
-        padding: 14px 18px;
-        font-size: 0.95rem;
-      }
-
-      .btn-email-direct {
-        padding: 12px 18px;
-        font-size: 0.88rem;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      .btn-call-direct, .btn-email-direct { transition: none; }
     }
   </style>
 </head>
@@ -419,238 +293,186 @@
 
   <!-- MAIN CONTENT -->
   <main class="thank-you-main">
-    <div class="thank-you-card-wrapper">
-      
-      <!-- SUCCESS BADGE -->
-      </div>
-      <h1 class="thank-you-title" style="font-size: 2.2rem; color: #0F172A; margin-bottom: 12px;">Your Whole Life Rate Quote is Ready!</h1>
-      <p class="thank-you-subtitle" id="client-sub-greeting" style="margin-bottom: 24px;">
-        Thank you! Your whole life insurance application has been received and confirmed. Adjust the coverage scale below to view your instant locked-in rate:
-      </p>
+    <div class="ty-wrap">
 
-      <!-- INTERACTIVE QUOTE CARD & APPROVED COVERAGE BOX -->
-      <div class="confirmed-coverage-box" style="background-color: var(--color-white); border: 2px solid var(--color-slate-teal); border-radius: 20px; padding: 24px; margin-bottom: 28px; box-shadow: var(--shadow-sm); text-align: left;">
-        
-        <!-- Interactive Scale Slider -->
-        <div class="final-card-slider-box" style="margin-bottom: 20px;">
-          <div class="slider-display-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-            <span class="slider-display-label" style="font-weight: 700; color: #1E293B;">Choose your coverage amount:</span>
-            <span class="slider-display-val" id="final-coverage-val" style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-slate-teal); font-weight: 600;">$10,000</span>
-          </div>
-          <input type="range" id="final-coverage-slider" min="5000" max="50000" step="1000" value="10000" class="ethos-range-slider" style="width: 100%; accent-color: var(--color-slate-teal);" />
-          <div class="slider-ticks-row" style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748B; margin-top: 4px;">
-            <span>$5,000</span>
-            <span>$25,000</span>
-            <span>$50,000</span>
-          </div>
+      <!-- 1. HEADLINE + INTRO -->
+      <section class="ty-hero">
+        <div class="ty-check" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </div>
+        <h1 class="thank-you-title" id="ty-title">Thank you. We&rsquo;ve received your answers.</h1>
+        <p class="thank-you-subtitle">
+          An Alpine Fairview agent will call you with your personalized quote. Until then, this page explains how much coverage most families actually need and what that coverage can do for the people you love.
+        </p>
+      </section>
 
-        <div class="coverage-box-header" style="border-top: 1px solid #E2E8F0; padding-top: 14px; margin-top: 16px;">
-          <span class="coverage-box-tag">Approved Coverage Request</span>
-          <span class="status-pill">✓ Pre-Approved</span>
-        </div>
+      <!-- 2. HOW MUCH COVERAGE DO YOU ACTUALLY NEED? -->
+      <section class="ty-section" id="coverage-guide" aria-labelledby="coverage-h2">
+        <h2 class="ty-h2" id="coverage-h2">How much coverage do you actually need?</h2>
+        <p class="ty-lead">Most families fall into one of three groups. Find the one that sounds like you.</p>
 
-        <div class="confirmed-amount-row">
-          <span class="confirmed-amount-label">Whole Life Benefit</span>
-          <span class="confirmed-amount-val" id="confirmed-coverage-display">$10,000</span>
-        </div>
+        <div class="ty-cards">
 
-        <div class="coverage-details-grid">
-          <div class="detail-item">
-            <span class="detail-label">Policy Type</span>
-            <span class="detail-val">Whole Life</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Estimated Monthly Rate</span>
-            <span class="detail-val" id="confirmed-rate-display" style="color: var(--color-slate-teal);">$24.50 / mo</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Medical Exam</span>
-            <span class="detail-val">Not Required</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Rate Guarantee</span>
-            <span class="detail-val">Locked For Life</span>
-          </div>
-        </div>
-
-        <!-- PROTECTION FOR SECTION -->
-        <div class="protection-for-box" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 18px; margin-top: 16px; text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-            <span style="font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-slate-teal);">PROTECTION FOR</span>
-            <span style="font-size: 0.78rem; font-weight: 700; color: #059669;">✓ Tax-Free Cash Payout</span>
-          </div>
-          <h4 id="protection-target-label" style="font-size: 1.05rem; font-weight: 800; color: #0F172A; margin-bottom: 6px;">Beneficiaries &amp; Funeral Expenses</h4>
-          <p style="font-size: 0.85rem; color: #475569; line-height: 1.45; margin-bottom: 12px;">
-            Your whole life policy is guaranteed for life with locked-in rates that never increase. When you pass away, your beneficiaries are guaranteed to receive a tax-free lump-sum cash payout to cover:
-          </p>
-
-          <div class="protection-features-grid" style="display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; align-items: flex-start; gap: 10px;">
-              <span style="font-size: 1.1rem; line-height: 1;">🏠</span>
-              <div>
-                <strong style="font-size: 0.85rem; color: #0F172A;">Living Expenses &amp; Bills:</strong>
-                <span style="font-size: 0.82rem; color: #64748B;"> Everyday household costs, rent, or debts for your family.</span>
+          <!-- Cremation -->
+          <article class="ty-card">
+            <div class="ty-card-top">
+              <div class="ty-icon" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9h14"/><path d="M19 9v5c-5 2.5-8 6.5-8 11.5C11 33 16 39 24 39s13-6 13-13.5c0-5-3-9-8-11.5V9"/><path d="M19 27c1.5 2 3.2 3 5 3s3.5-1 5-3" stroke="#2EE59D"/></svg>
               </div>
+              <div class="ty-card-tag">Cremation</div>
             </div>
-            <div style="display: flex; align-items: flex-start; gap: 10px;">
-              <span style="font-size: 1.1rem; line-height: 1;">🕊️</span>
-              <div>
-                <strong style="font-size: 0.85rem; color: #0F172A;">Burial &amp; Funeral Costs:</strong>
-                <span style="font-size: 0.82rem; color: #64748B;"> Covering immediate final expenses ($7,000–$15,000+) so family isn't burdened.</span>
-              </div>
+            <div class="ty-card-range">$5,000 to $8,000</div>
+            <div>
+              <div class="ty-label">What it typically covers</div>
+              <ul class="ty-list">
+                <li>The cremation and the funeral home&rsquo;s basic services</li>
+                <li>Transportation and paperwork, like death certificates</li>
+                <li>An urn and a simple memorial or gathering</li>
+              </ul>
             </div>
-            <div style="display: flex; align-items: flex-start; gap: 10px;">
-              <span style="font-size: 1.1rem; line-height: 1;">📜</span>
-              <div>
-                <strong style="font-size: 0.85rem; color: #0F172A;">Legacy &amp; Inheritance:</strong>
-                <span style="font-size: 0.82rem; color: #64748B;"> Providing a tax-free cash inheritance for your designated beneficiaries.</span>
-              </div>
+            <div>
+              <div class="ty-label">Why this range fits</div>
+              <p>Cremation usually costs less than a traditional burial. This range is often enough to cover the essentials without buying more coverage than you need.</p>
             </div>
-          </div>
+          </article>
+
+          <!-- Burial -->
+          <article class="ty-card">
+            <div class="ty-card-top">
+              <div class="ty-icon" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 41V21a11 11 0 0 1 22 0v20z"/><path d="M8 41h32"/><path d="M24 17v11M19.5 22h9" stroke="#2EE59D"/></svg>
+              </div>
+              <div class="ty-card-tag">Burial</div>
+            </div>
+            <div class="ty-card-range">$10,000 to $20,000</div>
+            <div>
+              <div class="ty-label">Why it costs more</div>
+              <ul class="ty-list">
+                <li>A casket, burial plot and vault</li>
+                <li>A headstone or grave marker</li>
+                <li>Opening and closing the grave</li>
+                <li>A funeral or graveside service, flowers and transportation</li>
+              </ul>
+            </div>
+            <div>
+              <div class="ty-label">Why we recommend this range</div>
+              <p>Burial has more separate costs, and they add up quickly. This range helps your family cover a full service without having to scramble for the money.</p>
+            </div>
+          </article>
+
+          <!-- Leaving money to family -->
+          <article class="ty-card">
+            <div class="ty-card-top">
+              <div class="ty-icon" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 23L24 8l17 15"/><path d="M11 20v20h26V20"/><path d="M24 34.5c-5-3.2-7.5-5.6-7.5-8.6a4 4 0 0 1 7.5-1.9 4 4 0 0 1 7.5 1.9c0 3-2.5 5.4-7.5 8.6z" stroke="#2EE59D"/></svg>
+              </div>
+              <div class="ty-card-tag">Leaving money to family</div>
+            </div>
+            <div class="ty-card-range">$25,000 to $50,000</div>
+            <div>
+              <div class="ty-label">What this level can do</div>
+              <ul class="ty-list">
+                <li>Replace lost income for a period of time</li>
+                <li>Pay off debts or a mortgage</li>
+                <li>Cover final expenses</li>
+                <li>Leave a gift or legacy for children or grandchildren</li>
+              </ul>
+            </div>
+            <div>
+              <div class="ty-label">Who it&rsquo;s for</div>
+              <p>Choose this level if others depend on you financially, or if you would like to leave something behind.</p>
+            </div>
+          </article>
+
         </div>
 
-        <!-- ACTION BUTTONS STACK (RIGHT BEFORE ALPINE FAIRVIEW SECTION) -->
-        <div class="contact-cta-stack" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px; margin-bottom: 20px;">
-          <div style="font-size: 0.82rem; font-weight: 800; color: var(--color-slate-teal); text-transform: uppercase; letter-spacing: 0.06em; text-align: center; margin-bottom: -4px;">
-            Skip the line and call directly
-          </div>
-          <!-- CALL AN AGENT BUTTON -->
-          <a href="tel:7738000116" class="btn-call-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 800; padding: 16px; border-radius: 50px; text-decoration: none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>Call an Agent</span>
-          </a>
-
-          <!-- TEXT US A QUESTION BUTTON -->
-          <a href="sms:7738000116" class="btn-sms-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; padding: 14px; border-radius: 50px; text-decoration: none; background: #E8FAED; color: #0B3C2A; border: 1.5px solid #A7F3D0;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Text Us a Question</span>
-          </a>
-
-          <!-- EMAIL US BUTTON -->
-          <a href="mailto:support@alpinefairview.com" class="btn-email-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; padding: 14px; border-radius: 50px; text-decoration: none; background: #F1F5F9; color: #0F172A; border: 1.5px solid #CBD5E1;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>Email Us</span>
-          </a>
+        <div class="ty-note" role="note">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div><strong>Keep in mind:</strong> higher coverage amounts mean higher monthly costs. The goal isn&rsquo;t the biggest number. It&rsquo;s the amount that fits your family&rsquo;s real need.</div>
         </div>
+      </section>
 
-        <!-- GENERIC LICENSED AGENT / AGENCY PROFILE CARD (ALPINE FAIRVIEW SECTION) -->
-        <div class="specialist-card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; padding: 24px; margin-bottom: 24px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-          <h3 class="specialist-name" style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-slate-teal); margin-bottom: 4px;">Alpine Fairview Group</h3>
-          <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
-            <span style="color: #FFB800; font-size: 1.1rem;">★★★★★</span>
-            <span style="font-weight: 800; color: #0F172A; font-size: 0.9rem;">4.9</span>
-            <span style="color: #64748B; font-size: 0.85rem;">(1,200+ reviews)</span>
-          </div>
-          <p class="specialist-role" style="font-size: 0.85rem; font-weight: 700; color: var(--color-slate-teal); margin-bottom: 14px;">Licensed State Advisor Team • NPN: 18441151</p>
+      <!-- 3. PRODUCT HIGHLIGHTS -->
+      <section class="ty-section" id="product-highlights" aria-labelledby="highlights-h2">
+        <h2 class="ty-h2" id="highlights-h2">Product highlights</h2>
+        <p class="ty-lead">Here is what these policies offer, in plain language, and what each one means for your family.</p>
 
-          <div class="specialist-message-quote" style="background-color: #F8FAFC; border-left: 4px solid var(--color-slate-teal); border-radius: 12px; padding: 14px 16px; font-size: 0.92rem; color: #1E293B; line-height: 1.5; text-align: left; margin-bottom: 0;">
-            <p id="specialist-quote-text">
-              "Hello! Your application for Whole Life protection has been successfully received. A licensed agent in your state will reach out to you shortly to finalize your approved rate and answer any questions."
-            </p>
-          </div>
-        </div>
+        <div class="ty-highlights">
 
-        <!-- CARRIER SHOWCASE SECTION (MOVED TO AFTER ALPINE FAIRVIEW SECTION) -->
-        <div class="quote-carriers-showcase" style="margin-top: 16px; border-top: 1px solid #E2E8F0; padding-top: 20px; margin-bottom: 24px;">
-          <h3 class="qc-showcase-title">We Compare Top A+ Rated Carriers</h3>
-          <p class="qc-showcase-sub">
-            As an independent agency, Alpine Fairview Group compares rates side-by-side across America's leading top-rated whole life insurers to guarantee you get the lowest price possible.
-          </p>
-
-          <!-- HORIZONTAL AUTO-MOVING LOGO TICKER -->
-          <div class="qc-logo-ticker-wrapper">
-            <div class="qc-logo-ticker-track">
-              <!-- SET 1 -->
-              <div class="qc-logo-card" title="Mutual of Omaha">
-                <img src="mutual_of_omaha_logo.png" alt="Mutual of Omaha" />
-              </div>
-              <div class="qc-logo-card" title="American-Amicable Group">
-                <img src="american_amicable_logo.png" alt="American-Amicable Group" />
-              </div>
-              <div class="qc-logo-card" title="Gerber Life Insurance">
-                <img src="gerber_life_logo.png" alt="Gerber Life Insurance" />
-              </div>
-              <div class="qc-logo-card" title="Guarantee Trust Life (GTL)">
-                <img src="gtl_logo.png" alt="Guarantee Trust Life (GTL)" />
-              </div>
-              <div class="qc-logo-card" title="Royal Neighbors of America">
-                <img src="royal_neighbors_logo.png" alt="Royal Neighbors of America" />
-              </div>
-              <div class="qc-logo-card" title="Citizens Life / CICA Life">
-                <img src="citizens_life_logo.png" alt="Citizens Life" />
-              </div>
-              <div class="qc-logo-card" title="Aflac">
-                <img src="aflac_logo.png" alt="Aflac" />
-              </div>
-              <div class="qc-logo-card" title="Transamerica">
-                <svg viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height: 28px;">
-                  <path d="M12 4L22 32H16L13.8 25.5H6.2L4 32H0L10 4H12Z" fill="#D32F2F"/>
-                  <text x="28" y="24" fill="#0A2540" font-family="Arial, sans-serif" font-weight="900" font-size="13" letter-spacing="0.5">TRANSAMERICA</text>
-                </svg>
-              </div>
-              <div class="qc-logo-card many-more-card" title="And Many More Top Insurers">
-                <span class="many-more-text">✨ &amp; Many More!</span>
-              </div>
-
-              <!-- SET 2 (DUPLICATE FOR SEAMLESS LOOP) -->
-              <div class="qc-logo-card" title="Mutual of Omaha">
-                <img src="mutual_of_omaha_logo.png" alt="Mutual of Omaha" />
-              </div>
-              <div class="qc-logo-card" title="American-Amicable Group">
-                <img src="american_amicable_logo.png" alt="American-Amicable Group" />
-              </div>
-              <div class="qc-logo-card" title="Gerber Life Insurance">
-                <img src="gerber_life_logo.png" alt="Gerber Life Insurance" />
-              </div>
-              <div class="qc-logo-card" title="Guarantee Trust Life (GTL)">
-                <img src="gtl_logo.png" alt="Guarantee Trust Life (GTL)" />
-              </div>
-              <div class="qc-logo-card" title="Royal Neighbors of America">
-                <img src="royal_neighbors_logo.png" alt="Royal Neighbors of America" />
-              </div>
-              <div class="qc-logo-card" title="Citizens Life / CICA Life">
-                <img src="citizens_life_logo.png" alt="Citizens Life" />
-              </div>
-              <div class="qc-logo-card" title="Aflac">
-                <img src="aflac_logo.png" alt="Aflac" />
-              </div>
-              <div class="qc-logo-card" title="Transamerica">
-                <svg viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height: 28px;">
-                  <path d="M12 4L22 32H16L13.8 25.5H6.2L4 32H0L10 4H12Z" fill="#D32F2F"/>
-                  <text x="28" y="24" fill="#0A2540" font-family="Arial, sans-serif" font-weight="900" font-size="13" letter-spacing="0.5">TRANSAMERICA</text>
-                </svg>
-              </div>
-              <div class="qc-logo-card many-more-card" title="And Many More Top Insurers">
-                <span class="many-more-text">✨ &amp; Many More!</span>
-              </div>
+          <div class="ty-highlight">
+            <div class="ty-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="14" rx="12" ry="5"/><path d="M12 14v9c0 2.8 5.4 5 12 5s12-2.2 12-5v-9"/><path d="M12 23v9c0 2.8 5.4 5 12 5s12-2.2 12-5v-9" stroke="#2EE59D"/></svg>
+            </div>
+            <div>
+              <h3>Cash value</h3>
+              <p>Part of your policy builds up savings over time. Depending on your policy, you may be able to borrow against it while you&rsquo;re living. Any loan you don&rsquo;t repay lowers what your family receives.</p>
+              <p class="ty-family"><strong>For your family:</strong> an extra source of money that is yours while you&rsquo;re alive.</p>
             </div>
           </div>
-        </div>
 
-        <!-- BOTTOM ACTION BUTTONS STACK -->
-        <div class="contact-cta-stack bottom-contact-stack" style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px; margin-bottom: 28px;">
-          <div style="font-size: 0.82rem; font-weight: 800; color: var(--color-slate-teal); text-transform: uppercase; letter-spacing: 0.06em; text-align: center; margin-bottom: -4px;">
-            Skip the line and call directly
+          <div class="ty-highlight">
+            <div class="ty-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 40C11 31 6 25 6 18.5A9.5 9.5 0 0 1 24 14a9.5 9.5 0 0 1 18 4.5C42 25 37 31 24 40z"/><path d="M13 24h6l3-6 4 11 3-5h6" stroke="#2EE59D"/></svg>
+            </div>
+            <div>
+              <h3>Accelerated death benefits</h3>
+              <p>If you are diagnosed with a qualifying terminal illness, some policies let you use part of your benefit early. That money can help with care, bills, or time with the people you love. Availability and terms vary by policy.</p>
+              <p class="ty-family"><strong>For your family:</strong> it can lighten the load when they need it most.</p>
+            </div>
           </div>
-          <!-- CALL AN AGENT BUTTON -->
-          <a href="tel:7738000116" class="btn-call-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 800; padding: 16px; border-radius: 50px; text-decoration: none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>Call an Agent</span>
-          </a>
 
-          <!-- TEXT US A QUESTION BUTTON -->
-          <a href="sms:7738000116" class="btn-sms-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; padding: 14px; border-radius: 50px; text-decoration: none; background: #E8FAED; color: #0B3C2A; border: 1.5px solid #A7F3D0;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Text Us a Question</span>
-          </a>
+          <div class="ty-highlight">
+            <div class="ty-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5L8 11v10c0 10 7 18.5 16 21.5C33 39.5 40 31 40 21V11L24 5z"/><path d="M16.5 23.5l5 5 10-11" stroke="#2EE59D"/></svg>
+            </div>
+            <div>
+              <h3>Guaranteed acceptance, no medical exam</h3>
+              <p>There is no medical exam. With guaranteed acceptance plans, your health history does not stand in the way of getting covered. Some of these plans have a waiting period before the full benefit is paid, and your agent will explain how it works for you.</p>
+              <p class="ty-family"><strong>For your family:</strong> coverage can be an option even when past health problems have made it hard to find elsewhere.</p>
+            </div>
+          </div>
 
-          <!-- EMAIL US BUTTON -->
-          <a href="mailto:support@alpinefairview.com" class="btn-email-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; padding: 14px; border-radius: 50px; text-decoration: none; background: #F1F5F9; color: #0F172A; border: 1.5px solid #CBD5E1;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>Email Us</span>
+          <div class="ty-highlight">
+            <div class="ty-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M15 20h18" stroke="#2EE59D"/><path d="M15 28h18" stroke="#2EE59D"/></svg>
+            </div>
+            <div>
+              <h3>Fixed premiums that never increase</h3>
+              <p>Your monthly cost is set when you start and stays the same for life. It does not go up as you get older or if your health changes.</p>
+              <p class="ty-family"><strong>For your family:</strong> a payment that is easier to plan around, especially on a fixed income.</p>
+            </div>
+          </div>
+
+          <div class="ty-highlight">
+            <div class="ty-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="21" width="28" height="20" rx="5"/><path d="M16 21v-5a8 8 0 0 1 16 0v5"/><path d="M20 31l3 3 6-6.5" stroke="#2EE59D"/></svg>
+            </div>
+            <div>
+              <h3>Coverage that can&rsquo;t be canceled</h3>
+              <p>As long as your premiums are paid, the insurance company cannot cancel your coverage because of your age or your health.</p>
+              <p class="ty-family"><strong>For your family:</strong> the protection you set up is still there when they need it.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4a. CALL TO ACTION (above the kept sections) -->
+      <section class="ty-section ty-narrow" aria-label="Next step">
+        <div class="ty-cta">
+          <div class="ty-cta-eyebrow">What happens next</div>
+          <h2>An Alpine Fairview agent will call you with your personalized quote.</h2>
+          <p>There is no pressure. If you would rather talk right now, you can call us anytime.</p>
+          <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now at (773) 800-0116">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="ty-call-text"><strong>Call Now</strong><small>(773) 800-0116</small></span>
           </a>
         </div>
+      </section>
+
+      <!-- KEPT SECTIONS: testimonials, carriers, contact (content unchanged) -->
+      <section class="ty-narrow" aria-label="Reviews, carriers and contact">
+        <div class="ty-kept-card">
 
         <!-- CLIENT REVIEWS & TESTIMONIALS SECTION (CONTINUOUS AUTO-SCROLLING HORIZONTAL MARQUEE) -->
         <div class="reviews-marquee-section" style="background-color: #F8FAFC; border-radius: 20px; padding: 28px 16px; border: 1px solid #E2E8F0; margin-top: 24px;">
@@ -864,133 +686,144 @@
           </div>
         </div>
 
+
+        <!-- CARRIER SHOWCASE SECTION (MOVED TO AFTER ALPINE FAIRVIEW SECTION) -->
+        <div class="quote-carriers-showcase" style="margin-top: 16px; border-top: 1px solid #E2E8F0; padding-top: 20px; margin-bottom: 24px;">
+          <h3 class="qc-showcase-title">We Compare Top A+ Rated Carriers</h3>
+          <p class="qc-showcase-sub">
+            As an independent agency, Alpine Fairview Group compares rates side-by-side across America's leading top-rated whole life insurers to guarantee you get the lowest price possible.
+          </p>
+
+          <!-- HORIZONTAL AUTO-MOVING LOGO TICKER -->
+          <div class="qc-logo-ticker-wrapper">
+            <div class="qc-logo-ticker-track">
+              <!-- SET 1 -->
+              <div class="qc-logo-card" title="Mutual of Omaha">
+                <img src="mutual_of_omaha_logo.png" alt="Mutual of Omaha" />
+              </div>
+              <div class="qc-logo-card" title="American-Amicable Group">
+                <img src="american_amicable_logo.png" alt="American-Amicable Group" />
+              </div>
+              <div class="qc-logo-card" title="Gerber Life Insurance">
+                <img src="gerber_life_logo.png" alt="Gerber Life Insurance" />
+              </div>
+              <div class="qc-logo-card" title="Guarantee Trust Life (GTL)">
+                <img src="gtl_logo.png" alt="Guarantee Trust Life (GTL)" />
+              </div>
+              <div class="qc-logo-card" title="Royal Neighbors of America">
+                <img src="royal_neighbors_logo.png" alt="Royal Neighbors of America" />
+              </div>
+              <div class="qc-logo-card" title="Citizens Life / CICA Life">
+                <img src="citizens_life_logo.png" alt="Citizens Life" />
+              </div>
+              <div class="qc-logo-card" title="Aflac">
+                <img src="aflac_logo.png" alt="Aflac" />
+              </div>
+              <div class="qc-logo-card" title="Transamerica">
+                <svg viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height: 28px;">
+                  <path d="M12 4L22 32H16L13.8 25.5H6.2L4 32H0L10 4H12Z" fill="#D32F2F"/>
+                  <text x="28" y="24" fill="#0A2540" font-family="Arial, sans-serif" font-weight="900" font-size="13" letter-spacing="0.5">TRANSAMERICA</text>
+                </svg>
+              </div>
+              <div class="qc-logo-card many-more-card" title="And Many More Top Insurers">
+                <span class="many-more-text">✨ &amp; Many More!</span>
+              </div>
+
+              <!-- SET 2 (DUPLICATE FOR SEAMLESS LOOP) -->
+              <div class="qc-logo-card" title="Mutual of Omaha">
+                <img src="mutual_of_omaha_logo.png" alt="Mutual of Omaha" />
+              </div>
+              <div class="qc-logo-card" title="American-Amicable Group">
+                <img src="american_amicable_logo.png" alt="American-Amicable Group" />
+              </div>
+              <div class="qc-logo-card" title="Gerber Life Insurance">
+                <img src="gerber_life_logo.png" alt="Gerber Life Insurance" />
+              </div>
+              <div class="qc-logo-card" title="Guarantee Trust Life (GTL)">
+                <img src="gtl_logo.png" alt="Guarantee Trust Life (GTL)" />
+              </div>
+              <div class="qc-logo-card" title="Royal Neighbors of America">
+                <img src="royal_neighbors_logo.png" alt="Royal Neighbors of America" />
+              </div>
+              <div class="qc-logo-card" title="Citizens Life / CICA Life">
+                <img src="citizens_life_logo.png" alt="Citizens Life" />
+              </div>
+              <div class="qc-logo-card" title="Aflac">
+                <img src="aflac_logo.png" alt="Aflac" />
+              </div>
+              <div class="qc-logo-card" title="Transamerica">
+                <svg viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height: 28px;">
+                  <path d="M12 4L22 32H16L13.8 25.5H6.2L4 32H0L10 4H12Z" fill="#D32F2F"/>
+                  <text x="28" y="24" fill="#0A2540" font-family="Arial, sans-serif" font-weight="900" font-size="13" letter-spacing="0.5">TRANSAMERICA</text>
+                </svg>
+              </div>
+              <div class="qc-logo-card many-more-card" title="And Many More Top Insurers">
+                <span class="many-more-text">✨ &amp; Many More!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+          <!-- 4b. CALL TO ACTION (near the contact section) -->
+          <div class="ty-cta">
+            <div class="ty-cta-eyebrow">Ready when you are</div>
+            <h2>An Alpine Fairview agent will call you with your personalized quote.</h2>
+            <p>If you have questions before then, we are happy to help.</p>
+            <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now at (773) 800-0116">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span class="ty-call-text"><strong>Call Now</strong><small>(773) 800-0116</small></span>
+            </a>
+          </div>
+
+        <!-- BOTTOM ACTION BUTTONS STACK -->
+        <div class="contact-cta-stack bottom-contact-stack" style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px; margin-bottom: 28px;">
+          <div style="font-size: 0.82rem; font-weight: 800; color: var(--color-slate-teal); text-transform: uppercase; letter-spacing: 0.06em; text-align: center; margin-bottom: -4px;">
+            Skip the line and call directly
+          </div>
+          <!-- CALL AN AGENT BUTTON -->
+          <a href="tel:7738000116" class="btn-call-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 800; padding: 16px; border-radius: 50px; text-decoration: none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Call an Agent</span>
+          </a>
+
+          <!-- TEXT US A QUESTION BUTTON -->
+          <a href="sms:7738000116" class="btn-sms-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; padding: 14px; border-radius: 50px; text-decoration: none; background: #E8FAED; color: #0B3C2A; border: 1.5px solid #A7F3D0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Text Us a Question</span>
+          </a>
+
+          <!-- EMAIL US BUTTON -->
+          <a href="mailto:support@alpinefairview.com" class="btn-email-direct" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; padding: 14px; border-radius: 50px; text-decoration: none; background: #F1F5F9; color: #0F172A; border: 1.5px solid #CBD5E1;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Email Us</span>
+          </a>
+        </div>
+
+
+        </div>
+      </section>
+
+      <!-- 5. DISCLAIMER -->
+      <p class="ty-disclaimer">
+        The coverage ranges on this page are general guidance, not a quote or an offer of coverage. Eligibility, benefits, and availability vary by carrier and state.<br />
+        Alpine Fairview Group &middot; NPN 18441151
+      </p>
+
       <div class="home-link-row">
-        <a href="index.html" class="back-home-link">← Return to Alpine Fairview Homepage</a>
+        <a href="index.html" class="back-home-link">&larr; Return to Alpine Fairview Homepage</a>
       </div>
 
     </div>
   </main>
 
   <script>
+    // Personalize the headline with the first name from the quiz (text only, never HTML).
     window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const targetCoverage = parseInt(params.get('coverage') || '10000', 10);
-      const name = params.get('name') || '';
-      const rate = params.get('rate') || '$24.50 / mo';
-
-      const formattedCoverage = '$' + targetCoverage.toLocaleString();
-
-      const covDisplay = document.getElementById('confirmed-coverage-display');
-      const rateDisplay = document.getElementById('confirmed-rate-display');
-      const quoteText = document.getElementById('specialist-quote-text');
-      const greeting = document.getElementById('client-sub-greeting');
-      const slider = document.getElementById('final-coverage-slider');
-      const sliderValDisplay = document.getElementById('final-coverage-val');
-
-      function calculateQuoteRate(age, gender, coverage, isSmoker) {
-        const kUnits = (coverage || 10000) / 1000;
-        if (age === 70 && isSmoker) {
-          if (gender === 'Female') return Math.max(5.00, (kUnits * 6.854) + 4.64);
-          else return Math.max(5.00, (kUnits * 9.568) + 2.63);
-        }
-        let baseRateK = 2.328;
-        if (age <= 40) baseRateK = 2.328 * (1 - (40 - Math.max(18, age)) * 0.012);
-        else if (age <= 50) baseRateK = 2.328 + ((age - 40) / 10) * (3.068 - 2.328);
-        else if (age <= 60) baseRateK = 3.068 + ((age - 50) / 10) * (4.376 - 3.068);
-        else if (age <= 70) baseRateK = 4.376 + ((age - 60) / 10) * (7.198 - 4.376);
-        else if (age <= 75) baseRateK = 7.198 + ((age - 70) / 5) * (9.7424 - 7.198);
-        else if (age <= 80) baseRateK = 9.7424 + ((age - 75) / 5) * (13.973 - 9.7424);
-        else if (age <= 85) baseRateK = 13.973 + ((age - 80) / 5) * (19.274 - 13.973);
-        else baseRateK = 19.274 + (age - 85) * 1.45;
-
-        if (gender === 'Female') baseRateK *= 0.84;
-        if (isSmoker) {
-          const smokerFactor = gender === 'Female' ? 1.1336 : 1.3293;
-          const policyFee = gender === 'Female' ? 4.64 : 2.63;
-          return Math.max(5.00, (kUnits * baseRateK * smokerFactor) + policyFee);
-        } else {
-          return Math.max(5.00, (kUnits * baseRateK) - 2.50);
-        }
-      }
-
-      function updateCoverageUI(amt) {
-        const formatted = '$' + amt.toLocaleString();
-        if (sliderValDisplay) sliderValDisplay.textContent = formatted;
-        if (covDisplay) covDisplay.textContent = formatted;
-        
-        const min = parseInt(slider ? slider.min : '5000', 10) || 5000;
-        const max = parseInt(slider ? slider.max : '50000', 10) || 50000;
-        const pct = ((amt - min) / (max - min)) * 100;
-        if (slider) {
-          slider.style.background = `linear-gradient(to right, #5F7B82 0%, #5F7B82 ${pct}%, #DCEAF5 ${pct}%, #DCEAF5 100%)`;
-        }
-
-        const estRate = '$' + calculateQuoteRate(70, 'Male', amt, false).toFixed(2) + ' / mo';
-        if (rateDisplay) rateDisplay.textContent = estRate;
-      }
-
-      if (slider) {
-        slider.value = 5000;
-        updateCoverageUI(5000);
-
-        let animFrame = null;
-        let userInterrupted = false;
-
-        function stopUser() {
-          userInterrupted = true;
-          if (animFrame) {
-            cancelAnimationFrame(animFrame);
-            animFrame = null;
-          }
-        }
-
-        slider.addEventListener('input', () => {
-          stopUser();
-          const amt = parseInt(slider.value, 10);
-          updateCoverageUI(amt);
-        });
-
-        // 400ms delay to allow initial page render and scroll on mobile
-        setTimeout(() => {
-          // Attach touch/mouse interrupt listeners after 200ms grace period
-          setTimeout(() => {
-            slider.addEventListener('mousedown', stopUser, { once: true });
-            slider.addEventListener('touchstart', stopUser, { once: true });
-          }, 200);
-
-          const startVal = 5000;
-          const endVal = targetCoverage;
-          const durationMs = 2500;
-          const startTime = performance.now();
-
-          function animateStep(currentTime) {
-            if (userInterrupted) return;
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / durationMs, 1);
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-            const currentVal = Math.round((startVal + (endVal - startVal) * easeProgress) / 1000) * 1000;
-
-            slider.value = currentVal;
-            updateCoverageUI(currentVal);
-
-            if (progress < 1) {
-              animFrame = requestAnimationFrame(animateStep);
-            } else {
-              slider.value = endVal;
-              updateCoverageUI(endVal);
-            }
-          }
-
-          animFrame = requestAnimationFrame(animateStep);
-        }, 400);
-      }
-
-      if (name && greeting) {
-        greeting.textContent = `Thank you, ${name}! Your whole life insurance application has been received and confirmed. Adjust the coverage scale below to view your instant locked-in rate:`;
-      }
-
-      if (quoteText) {
-        quoteText.innerHTML = `"Hello${name ? ' ' + name : ''}! Your application for <strong>${formattedCoverage}</strong> in Whole Life protection has been successfully received. A licensed agent in your state will reach out to you shortly to finalize your approved rate and answer any questions."`;
+      const name = (new URLSearchParams(window.location.search).get('name') || '').trim().slice(0, 40);
+      const title = document.getElementById('ty-title');
+      if (name && title) {
+        title.textContent = 'Thank you, ' + name + '. We’ve received your answers.';
       }
     });
   </script>

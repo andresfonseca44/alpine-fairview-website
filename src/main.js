@@ -1351,12 +1351,10 @@ END:VCARD`;
     finishLeadBtn.addEventListener('click', () => {
       const coverage = leadData.coverageAmount || 25000;
       const firstName = leadData.firstName || '';
-      const finalPrice = document.getElementById('final-price-val') ? document.getElementById('final-price-val').textContent : '$44.00 / mo';
-      
+
       const queryParams = new URLSearchParams({
         coverage: coverage,
-        name: firstName,
-        rate: finalPrice
+        name: firstName
       }).toString();
 
       window.location.href = `thank-you.html?${queryParams}`;
