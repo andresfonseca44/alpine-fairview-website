@@ -23,25 +23,16 @@
       flex-direction: column;
     }
 
-    .thank-you-header {
-      background-color: var(--color-white);
-      border-bottom: 1px solid var(--color-icy-blue);
-      padding: 16px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
     .thank-you-header-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    /* The site-wide styles make the logo white and hide the phone button on phones
-       (built for the home page's dark header). Fix both for this white header. */
-    .thank-you-header .brand-text-logo { color: var(--color-slate-teal-dark) !important; text-shadow: none !important; }
-    .thank-you-header .nav-contact-btn { display: inline-flex !important; align-items: center; min-height: 44px; text-decoration: none; }
+    /* The site stylesheet (loaded after this <style> in production) already draws this header as a
+       dark slate bar with a white logo, and hides .nav-contact-btn on phones. Keep that look, but show a
+       compact tap-to-call button on phones. The body.thank-you-page prefix makes these win regardless of load order. */
+    body.thank-you-page .thank-you-header .nav-contact-btn { display: inline-flex !important; align-items: center; min-height: 44px; text-decoration: none; white-space: nowrap; }
 
     .thank-you-main {
       flex: 1;
@@ -266,9 +257,8 @@
     }
 
     @media (max-width: 768px) {
-      .thank-you-header { padding: 10px 0; }
-      .thank-you-header .brand-text-logo { font-size: 1.1rem; letter-spacing: 0.05em; }
-      .thank-you-header .nav-contact-btn { padding: 10px 14px; font-size: 0.88rem; }
+      body.thank-you-page .thank-you-header .brand-text-logo { font-size: 1rem; letter-spacing: 0.06em; }
+      body.thank-you-page .thank-you-header .nav-contact-btn { padding: 8px 12px; font-size: 0.85rem; }
       .ty-kept-card { padding: 16px; }
     }
 
