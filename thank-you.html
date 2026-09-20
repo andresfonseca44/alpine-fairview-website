@@ -85,17 +85,16 @@
     }
 
     /* ---- Coverage cards ---- */
-    .ty-cards { display: grid; grid-template-columns: 1fr; gap: 18px; }
     .ty-card {
       background-color: var(--color-white);
       border: 1px solid var(--color-card-border);
       border-radius: 20px;
-      padding: 26px 22px;
+      padding: 22px 18px;
       text-align: left;
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 13px;
     }
     .ty-card-top { display: flex; align-items: center; gap: 14px; }
     .ty-icon {
@@ -107,10 +106,10 @@
     .ty-card-tag { font-size: 1.25rem; font-weight: 800; color: var(--color-near-black); line-height: 1.2; }
     .ty-card-range {
       font-family: var(--font-serif);
-      font-size: 2.3rem;
+      font-size: 2rem;
       line-height: 1.1;
       color: var(--color-slate-teal-dark);
-      padding-bottom: 14px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--color-card-border);
     }
     .ty-label {
@@ -118,7 +117,7 @@
       color: var(--color-slate-teal); margin-bottom: 8px;
     }
     .ty-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .ty-list li { position: relative; padding-left: 30px; font-size: 1.1rem; line-height: 1.55; color: var(--color-near-black); }
+    .ty-list li { position: relative; padding-left: 30px; font-size: 1.05rem; line-height: 1.55; color: var(--color-near-black); }
     .ty-list li::before {
       content: "\2713"; position: absolute; left: 0; top: 2px;
       width: 21px; height: 21px; border-radius: 50%;
@@ -126,7 +125,7 @@
       font-size: 0.72rem; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
     }
-    .ty-card p { font-size: 1.1rem; line-height: 1.6; color: var(--color-text-muted); }
+    .ty-card p { font-size: 1.05rem; line-height: 1.55; color: var(--color-text-muted); }
 
     .ty-note {
       display: flex; align-items: flex-start; gap: 14px;
@@ -141,12 +140,11 @@
     .ty-note svg { flex-shrink: 0; margin-top: 2px; }
 
     /* ---- Product highlights ---- */
-    .ty-highlights { display: grid; grid-template-columns: 1fr; gap: 16px; }
     .ty-highlight {
       background-color: var(--color-white);
       border: 1px solid var(--color-card-border);
       border-radius: 20px;
-      padding: 22px 20px;
+      padding: 20px 18px;
       display: grid; grid-template-columns: 56px 1fr; column-gap: 14px; row-gap: 12px; align-items: center; align-content: start;
       text-align: left;
       box-shadow: var(--shadow-sm);
@@ -156,7 +154,7 @@
     .ty-highlight h3 { grid-column: 2; grid-row: 1; margin: 0; }
     .ty-highlight p { grid-column: 1 / -1; margin: 0; }
     .ty-highlight h3 { font-size: 1.25rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 6px; line-height: 1.3; }
-    .ty-highlight p { font-size: 1.1rem; line-height: 1.6; color: var(--color-text-muted); }
+    .ty-highlight p { font-size: 1.05rem; line-height: 1.55; color: var(--color-text-muted); }
         .ty-highlight .ty-family { color: var(--color-near-black); }
     .ty-highlight .ty-family strong { color: var(--color-slate-teal-dark); }
 
@@ -173,10 +171,58 @@
     .ty-cta-eyebrow { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-mint-green); margin-bottom: 8px; }
     .ty-cta h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.7rem, 5.5vw, 2.2rem); line-height: 1.2; margin-bottom: 10px; color: var(--color-white); }
     .ty-cta p { font-size: 1.05rem; line-height: 1.6; color: var(--color-icy-blue); max-width: 520px; margin: 0 auto 20px auto; }
-    .ty-call-btn { width: 100%; max-width: 420px; min-height: 68px; padding: 12px 24px; gap: 14px; }
-    .ty-call-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
-    .ty-call-text strong { font-size: 1.35rem; font-weight: 800; }
-    .ty-call-text small { font-size: 1.02rem; font-weight: 700; opacity: 0.9; }
+    .ty-call-btn { width: 100%; max-width: 420px; min-height: 64px; padding: 12px 24px; gap: 12px; }
+    .ty-call-text strong { font-size: 1.4rem; font-weight: 800; line-height: 1.1; }
+
+
+    /* ---- Swipeable rows on phones (cards become a horizontal scroller; grid again on larger screens) ---- */
+    .ty-scroller {
+      display: flex; align-items: flex-start; gap: 14px;
+      overflow-x: auto; overflow-y: hidden;
+      margin: 0 -16px; padding: 18px 16px 10px 16px;
+      scroll-snap-type: x mandatory; scroll-padding-left: 16px;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .ty-scroller::-webkit-scrollbar { display: none; }
+    .ty-scroller > * { flex: 0 0 88%; max-width: 400px; scroll-snap-align: start; }
+    .ty-scroller:focus-visible { outline: 3px solid var(--color-slate-teal); outline-offset: -3px; border-radius: 12px; }
+
+    .ty-swipe { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 4px; }
+    .ty-scroll-hint { font-size: 0.92rem; font-weight: 700; color: var(--color-slate-teal); text-align: center; }
+    .ty-dots { display: flex; gap: 8px; justify-content: center; align-items: center; }
+    .ty-dots span { width: 9px; height: 9px; border-radius: 50%; background-color: var(--color-disabled); transition: all 0.2s ease; }
+    .ty-dots span.on { width: 24px; border-radius: 6px; background-color: var(--color-slate-teal); }
+
+    /* ---- Popular badge + "also works for" check-mark callouts ---- */
+    .ty-card-popular { position: relative; border: 2px solid var(--color-mint-green); box-shadow: 0 10px 26px rgba(46, 229, 157, 0.2); }
+    .ty-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background-color: var(--color-mint-green); color: var(--color-mint-text);
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 50px; white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(46, 229, 157, 0.35);
+    }
+    .ty-also {
+      display: flex; align-items: flex-start; gap: 12px; margin-top: auto;
+      background-color: #F0FDF6; border: 1.5px solid var(--color-mint-green); border-radius: 14px;
+      padding: 12px 13px; font-size: 1rem; font-weight: 700; line-height: 1.4; color: var(--color-near-black);
+    }
+    .ty-also::before {
+      content: "\2713"; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+      background-color: var(--color-mint-green); color: var(--color-mint-text);
+      font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ---- Carriers: manual sideways scroll, no auto-scroll ---- */
+    body.thank-you-page .qc-logo-ticker-wrapper.qc-manual-scroll {
+      overflow-x: auto !important; overflow-y: hidden;
+      -webkit-mask-image: none !important; mask-image: none !important;
+      scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+      margin-bottom: 6px; padding-bottom: 10px;
+    }
+    body.thank-you-page .qc-manual-scroll .qc-logo-ticker-track { animation: none !important; transform: none !important; }
+    body.thank-you-page .qc-manual-scroll .qc-logo-card { scroll-snap-align: start; }
+    body.thank-you-page .qc-manual-scroll:focus-visible { outline: 3px solid var(--color-slate-teal); outline-offset: 2px; border-radius: 12px; }
 
     /* ---- Kept sections card (same look they had before) ---- */
     .ty-kept-card {
@@ -250,9 +296,12 @@
     /* ---- Larger screens ---- */
     @media (min-width: 820px) {
       .thank-you-main { padding: 48px 24px 72px 24px; }
+      .ty-scroller { display: grid; align-items: stretch; overflow: visible; margin: 0; padding: 18px 0 0 0; scroll-snap-type: none; }
+      .ty-scroller > * { max-width: none; }
       .ty-cards { grid-template-columns: repeat(3, 1fr); gap: 22px; }
       .ty-highlights { grid-template-columns: repeat(2, 1fr); gap: 18px; }
       .ty-highlight:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 520px; margin: 0 auto; }
+      .ty-swipe { display: none; }
       .ty-cta { padding: 38px 32px; }
     }
 
@@ -276,7 +325,7 @@
         <span class="brand-text-logo">ALPINE FAIRVIEW</span>
       </a>
       <a href="tel:7738000116" class="nav-contact-btn">
-        📞 (773) 800-0116
+        📞 Call Now
       </a>
     </div>
   </header>
@@ -292,16 +341,16 @@
         </div>
         <h1 class="thank-you-title" id="ty-title">Thank you. We&rsquo;ve received your answers.</h1>
         <p class="thank-you-subtitle">
-          An Alpine Fairview agent will call you with your personalized quote. Until then, this page explains how much coverage most families actually need and what that coverage can do for the people you love.
+          An agent will call you with your personalized quote. Until then, this page explains how much coverage most families actually need and what that coverage can do for the people you love.
         </p>
       </section>
 
       <!-- 2. HOW MUCH COVERAGE DO YOU ACTUALLY NEED? -->
       <section class="ty-section" id="coverage-guide" aria-labelledby="coverage-h2">
         <h2 class="ty-h2" id="coverage-h2">How much coverage do you actually need?</h2>
-        <p class="ty-lead">Most families fall into one of three groups. Find the one that sounds like you.</p>
+        <p class="ty-lead">Most families fall into one of three groups. Find the one that sounds like you. Many people also add one of these as a second policy on top of coverage they already have.</p>
 
-        <div class="ty-cards">
+        <div class="ty-cards ty-scroller" id="coverage-scroller" role="region" aria-label="Coverage options. Swipe sideways to see all three." tabindex="0">
 
           <!-- Cremation -->
           <article class="ty-card">
@@ -315,19 +364,20 @@
             <div>
               <div class="ty-label">What it typically covers</div>
               <ul class="ty-list">
-                <li>The cremation and the funeral home&rsquo;s basic services</li>
+                <li>The cremation and basic funeral home services</li>
                 <li>Transportation and paperwork, like death certificates</li>
-                <li>An urn and a simple memorial or gathering</li>
+                <li>An urn and a simple memorial</li>
               </ul>
             </div>
             <div>
               <div class="ty-label">Why this range fits</div>
-              <p>Cremation usually costs less than a traditional burial. This range is often enough to cover the essentials without buying more coverage than you need.</p>
+              <p>Cremation usually costs less than burial, so this range often covers the essentials without over-buying.</p>
             </div>
           </article>
 
           <!-- Burial -->
-          <article class="ty-card">
+          <article class="ty-card ty-card-popular">
+            <span class="ty-badge">Popular</span>
             <div class="ty-card-top">
               <div class="ty-icon" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 41V21a11 11 0 0 1 22 0v20z"/><path d="M8 41h32"/><path d="M24 17v11M19.5 22h9" stroke="#2EE59D"/></svg>
@@ -339,15 +389,16 @@
               <div class="ty-label">Why it costs more</div>
               <ul class="ty-list">
                 <li>A casket, burial plot and vault</li>
-                <li>A headstone or grave marker</li>
+                <li>Headstone or grave marker</li>
                 <li>Opening and closing the grave</li>
-                <li>A funeral or graveside service, flowers and transportation</li>
+                <li>A service, flowers and transportation</li>
               </ul>
             </div>
             <div>
               <div class="ty-label">Why we recommend this range</div>
-              <p>Burial has more separate costs, and they add up quickly. This range helps your family cover a full service without having to scramble for the money.</p>
+              <p>Burial has more separate costs, and they add up quickly. This range helps your family cover a full service.</p>
             </div>
+            <div class="ty-also">Also works if you want to cover a cremation and leave extra money behind.</div>
           </article>
 
           <!-- Leaving money to family -->
@@ -362,18 +413,23 @@
             <div>
               <div class="ty-label">What this level can do</div>
               <ul class="ty-list">
-                <li>Replace lost income for a period of time</li>
+                <li>Replace lost income for a time</li>
                 <li>Pay off debts or a mortgage</li>
                 <li>Cover final expenses</li>
-                <li>Leave a gift or legacy for children or grandchildren</li>
+                <li>Leave a gift or legacy for loved ones</li>
               </ul>
             </div>
             <div>
               <div class="ty-label">Who it&rsquo;s for</div>
-              <p>Choose this level if others depend on you financially, or if you would like to leave something behind.</p>
+              <p>Choose this if others depend on you financially, or you would like to leave something behind.</p>
             </div>
+            <div class="ty-also">Flexible: use it for whatever you want it to do.</div>
           </article>
 
+        </div>
+        <div class="ty-swipe" aria-hidden="true">
+          <div class="ty-scroll-hint">Swipe to see all 3 options &rarr;</div>
+          <div class="ty-dots" data-dots="coverage-scroller"><span class="on"></span><span></span><span></span></div>
         </div>
 
         <div class="ty-note" role="note">
@@ -387,7 +443,7 @@
         <h2 class="ty-h2" id="highlights-h2">Product highlights</h2>
         <p class="ty-lead">Here is what these policies offer, in plain language, and what each one means for your family.</p>
 
-        <div class="ty-highlights">
+        <div class="ty-highlights ty-scroller" id="highlights-scroller" role="region" aria-label="Product highlights. Swipe sideways to see all five." tabindex="0">
 
           <div class="ty-highlight">
             <div class="ty-icon" aria-hidden="true">
@@ -395,7 +451,7 @@
             </div>
             <div>
               <h3>Cash value</h3>
-              <p>Part of your policy builds up savings over time. Depending on your policy, you may be able to borrow against it while you&rsquo;re living. Any loan you don&rsquo;t repay lowers what your family receives.</p>
+              <p>Part of your policy builds up savings over time. Depending on your policy, you may be able to borrow against it. Loans you don&rsquo;t repay lower what your family receives.</p>
               <p class="ty-family"><strong>For your family:</strong> an extra source of money that is yours while you&rsquo;re alive.</p>
             </div>
           </div>
@@ -406,7 +462,7 @@
             </div>
             <div>
               <h3>Accelerated death benefits</h3>
-              <p>If you are diagnosed with a qualifying terminal illness, some policies let you use part of your benefit early. That money can help with care, bills, or time with the people you love. Availability and terms vary by policy.</p>
+              <p>If you are diagnosed with a qualifying terminal illness, some policies let you use part of your benefit early, for care, bills, or time with loved ones. Terms vary by policy.</p>
               <p class="ty-family"><strong>For your family:</strong> it can lighten the load when they need it most.</p>
             </div>
           </div>
@@ -417,7 +473,7 @@
             </div>
             <div>
               <h3>Guaranteed acceptance, no medical exam</h3>
-              <p>There is no medical exam. With guaranteed acceptance plans, your health history does not stand in the way of getting covered. Some of these plans have a waiting period before the full benefit is paid, and your agent will explain how it works for you.</p>
+              <p>There is no medical exam. With guaranteed acceptance plans, your health history does not stand in the way of getting covered. Some plans have a waiting period before the full benefit is paid. Your agent will explain how it works.</p>
               <p class="ty-family"><strong>For your family:</strong> coverage can be an option even when past health problems have made it hard to find elsewhere.</p>
             </div>
           </div>
@@ -445,17 +501,21 @@
           </div>
 
         </div>
+        <div class="ty-swipe" aria-hidden="true">
+          <div class="ty-scroll-hint">Swipe to see all 5 &rarr;</div>
+          <div class="ty-dots" data-dots="highlights-scroller"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+        </div>
       </section>
 
       <!-- 4a. CALL TO ACTION (above the kept sections) -->
       <section class="ty-section ty-narrow" aria-label="Next step">
         <div class="ty-cta">
           <div class="ty-cta-eyebrow">What happens next</div>
-          <h2>An Alpine Fairview agent will call you with your personalized quote.</h2>
+          <h2>An agent will call you with your personalized quote.</h2>
           <p>There is no pressure. If you would rather talk right now, you can call us anytime.</p>
-          <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now at (773) 800-0116">
+          <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span class="ty-call-text"><strong>Call Now</strong><small>(773) 800-0116</small></span>
+            <span class="ty-call-text"><strong>Call Now</strong></span>
           </a>
         </div>
       </section>
@@ -684,10 +744,9 @@
             As an independent agency, Alpine Fairview Group compares rates side-by-side across America's leading top-rated whole life insurers to guarantee you get the lowest price possible.
           </p>
 
-          <!-- HORIZONTAL AUTO-MOVING LOGO TICKER -->
-          <div class="qc-logo-ticker-wrapper">
+          <!-- CARRIER LOGOS: manual sideways scroll (no auto-scroll) -->
+          <div class="qc-logo-ticker-wrapper qc-manual-scroll" role="region" aria-label="Insurance carriers we compare. Scroll sideways to see them all." tabindex="0">
             <div class="qc-logo-ticker-track">
-              <!-- SET 1 -->
               <div class="qc-logo-card" title="Mutual of Omaha">
                 <img src="mutual_of_omaha_logo.png" alt="Mutual of Omaha" />
               </div>
@@ -714,55 +773,20 @@
                   <path d="M12 4L22 32H16L13.8 25.5H6.2L4 32H0L10 4H12Z" fill="#D32F2F"/>
                   <text x="28" y="24" fill="#0A2540" font-family="Arial, sans-serif" font-weight="900" font-size="13" letter-spacing="0.5">TRANSAMERICA</text>
                 </svg>
-              </div>
-              <div class="qc-logo-card many-more-card" title="And Many More Top Insurers">
-                <span class="many-more-text">✨ &amp; Many More!</span>
-              </div>
-
-              <!-- SET 2 (DUPLICATE FOR SEAMLESS LOOP) -->
-              <div class="qc-logo-card" title="Mutual of Omaha">
-                <img src="mutual_of_omaha_logo.png" alt="Mutual of Omaha" />
-              </div>
-              <div class="qc-logo-card" title="American-Amicable Group">
-                <img src="american_amicable_logo.png" alt="American-Amicable Group" />
-              </div>
-              <div class="qc-logo-card" title="Gerber Life Insurance">
-                <img src="gerber_life_logo.png" alt="Gerber Life Insurance" />
-              </div>
-              <div class="qc-logo-card" title="Guarantee Trust Life (GTL)">
-                <img src="gtl_logo.png" alt="Guarantee Trust Life (GTL)" />
-              </div>
-              <div class="qc-logo-card" title="Royal Neighbors of America">
-                <img src="royal_neighbors_logo.png" alt="Royal Neighbors of America" />
-              </div>
-              <div class="qc-logo-card" title="Citizens Life / CICA Life">
-                <img src="citizens_life_logo.png" alt="Citizens Life" />
-              </div>
-              <div class="qc-logo-card" title="Aflac">
-                <img src="aflac_logo.png" alt="Aflac" />
-              </div>
-              <div class="qc-logo-card" title="Transamerica">
-                <svg viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height: 28px;">
-                  <path d="M12 4L22 32H16L13.8 25.5H6.2L4 32H0L10 4H12Z" fill="#D32F2F"/>
-                  <text x="28" y="24" fill="#0A2540" font-family="Arial, sans-serif" font-weight="900" font-size="13" letter-spacing="0.5">TRANSAMERICA</text>
-                </svg>
-              </div>
-              <div class="qc-logo-card many-more-card" title="And Many More Top Insurers">
-                <span class="many-more-text">✨ &amp; Many More!</span>
               </div>
             </div>
           </div>
+          <div class="ty-scroll-hint" aria-hidden="true">Swipe to see all carriers &rarr;</div>
         </div>
-
 
           <!-- 4b. CALL TO ACTION (near the contact section) -->
           <div class="ty-cta">
             <div class="ty-cta-eyebrow">Ready when you are</div>
-            <h2>An Alpine Fairview agent will call you with your personalized quote.</h2>
+            <h2>An agent will call you with your personalized quote.</h2>
             <p>If you have questions before then, we are happy to help.</p>
-            <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now at (773) 800-0116">
+            <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span class="ty-call-text"><strong>Call Now</strong><small>(773) 800-0116</small></span>
+              <span class="ty-call-text"><strong>Call Now</strong></span>
             </a>
           </div>
 
@@ -808,6 +832,27 @@
   </main>
 
   <script>
+    // Keep the little dots under each swipeable row in sync with the card currently in view.
+    (function () {
+      document.querySelectorAll('.ty-scroller').forEach(function (row) {
+        var dots = document.querySelector('[data-dots="' + row.id + '"]');
+        if (!dots) return;
+        var marks = dots.querySelectorAll('span');
+        function update() {
+          var kids = row.children, rowLeft = row.getBoundingClientRect().left, best = 0, bestDist = Infinity;
+          for (var i = 0; i < kids.length; i++) {
+            var dist = Math.abs(kids[i].getBoundingClientRect().left - rowLeft - 16);
+            if (dist < bestDist) { bestDist = dist; best = i; }
+          }
+          if (row.scrollLeft + row.clientWidth >= row.scrollWidth - 4) best = kids.length - 1;
+          for (var j = 0; j < marks.length; j++) marks[j].classList.toggle('on', j === best);
+        }
+        row.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+      });
+    })();
+
     // Personalize the headline with the first name from the quiz (text only, never HTML).
     window.addEventListener('DOMContentLoaded', () => {
       const name = (new URLSearchParams(window.location.search).get('name') || '').trim().slice(0, 40);
