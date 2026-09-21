@@ -146,25 +146,6 @@
     }
     .ty-note svg { flex-shrink: 0; margin-top: 2px; }
 
-    /* ---- Product highlights ---- */
-    .ty-highlight {
-      background-color: var(--color-white);
-      border: 1px solid var(--color-card-border);
-      border-radius: 20px;
-      padding: 20px 18px;
-      display: grid; grid-template-columns: 56px 1fr; column-gap: 14px; row-gap: 12px; align-items: center; align-content: start;
-      text-align: left;
-      box-shadow: var(--shadow-sm);
-    }
-    .ty-highlight > div:not(.ty-icon) { display: contents; }
-    .ty-highlight .ty-icon { grid-column: 1; grid-row: 1; }
-    .ty-highlight h3 { grid-column: 2; grid-row: 1; margin: 0; }
-    .ty-highlight p { grid-column: 1 / -1; margin: 0; }
-    .ty-highlight h3 { font-size: 1.25rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 6px; line-height: 1.3; }
-    .ty-highlight p { font-size: 1.05rem; line-height: 1.55; color: var(--color-text-muted); }
-        .ty-highlight .ty-family { color: var(--color-near-black); }
-    .ty-highlight .ty-family strong { color: var(--color-slate-teal-dark); }
-
     /* ---- Call to action ---- */
     .ty-cta {
       background: linear-gradient(160deg, var(--color-slate-teal-dark) 0%, var(--color-slate-footer) 100%);
@@ -193,8 +174,6 @@
     .ty-scroller::-webkit-scrollbar { display: none; }
     .ty-scroller > * { flex: 0 0 88%; max-width: 400px; scroll-snap-align: start; }
     .ty-scroller:focus-visible { outline: 3px solid var(--color-slate-teal); outline-offset: -3px; border-radius: 12px; }
-    /* Product highlight cards should match height with their row neighbor, even while swiping on phones */
-    #highlights-scroller { align-items: stretch; }
 
     .ty-swipe { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 4px 0 0 0; }
     .ty-scroll-hint { font-size: 0.92rem; font-weight: 700; color: var(--color-slate-teal); text-align: center; }
@@ -317,8 +296,6 @@
       .ty-scroller { display: grid; align-items: stretch; overflow: visible; margin: 0; padding: 18px 0 0 0; scroll-snap-type: none; }
       .ty-scroller > * { max-width: none; }
       .ty-cards { grid-template-columns: repeat(3, 1fr); gap: 22px; }
-      .ty-highlights { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-      .ty-highlight:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 520px; margin: 0 auto; }
       .ty-swipe { display: none; }
       .ty-cta { padding: 38px 32px; }
     }
@@ -461,76 +438,6 @@
         </div>
       </section>
 
-      <!-- 3. PRODUCT HIGHLIGHTS -->
-      <section class="ty-section" id="product-highlights" aria-labelledby="highlights-h2">
-        <h2 class="ty-h2" id="highlights-h2">Product highlights</h2>
-        <p class="ty-lead">Here is what these policies offer, in plain language, and what each one means for your family.</p>
-
-        <div class="ty-swipe" aria-hidden="true">
-          <div class="ty-scroll-hint">Swipe to see all 5 &rarr;</div>
-          <div class="ty-dots" data-dots="highlights-scroller"><span class="on"></span><span></span><span></span><span></span><span></span></div>
-        </div>
-
-        <div class="ty-highlights ty-scroller" id="highlights-scroller" role="region" aria-label="Product highlights. Swipe sideways to see all five." tabindex="0">
-
-          <div class="ty-highlight">
-            <div class="ty-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="14" rx="12" ry="5"/><path d="M12 14v9c0 2.8 5.4 5 12 5s12-2.2 12-5v-9"/><path d="M12 23v9c0 2.8 5.4 5 12 5s12-2.2 12-5v-9" stroke="#2EE59D"/></svg>
-            </div>
-            <div>
-              <h3>Cash value</h3>
-              <p>Part of your policy builds up savings over time. Depending on your policy, you may be able to borrow against it. Loans you don&rsquo;t repay lower what your family receives.</p>
-              <p class="ty-family"><strong>For your family:</strong> an extra source of money that is yours while you&rsquo;re alive.</p>
-            </div>
-          </div>
-
-          <div class="ty-highlight">
-            <div class="ty-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 40C11 31 6 25 6 18.5A9.5 9.5 0 0 1 24 14a9.5 9.5 0 0 1 18 4.5C42 25 37 31 24 40z"/><path d="M13 24h6l3-6 4 11 3-5h6" stroke="#2EE59D"/></svg>
-            </div>
-            <div>
-              <h3>Accelerated death benefits</h3>
-              <p>If you are diagnosed with a qualifying terminal illness, some policies let you use part of your benefit early, for care, bills, or time with loved ones. Terms vary by policy.</p>
-              <p class="ty-family"><strong>For your family:</strong> it can lighten the load when they need it most.</p>
-            </div>
-          </div>
-
-          <div class="ty-highlight">
-            <div class="ty-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5L8 11v10c0 10 7 18.5 16 21.5C33 39.5 40 31 40 21V11L24 5z"/><path d="M16.5 23.5l5 5 10-11" stroke="#2EE59D"/></svg>
-            </div>
-            <div>
-              <h3>Guaranteed acceptance &amp; immediate approval</h3>
-              <p>There is no medical exam. We write both guaranteed acceptance and immediate approval policies, with no waiting period. When we call, your agent will ask a few health questions to find the lowest price and immediate coverage.</p>
-              <p class="ty-family"><strong>For your family:</strong> coverage can be an option even when past health problems have made it hard to find elsewhere.</p>
-            </div>
-          </div>
-
-          <div class="ty-highlight">
-            <div class="ty-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M15 20h18" stroke="#2EE59D"/><path d="M15 28h18" stroke="#2EE59D"/></svg>
-            </div>
-            <div>
-              <h3>Fixed premiums that never increase</h3>
-              <p>Your monthly cost is set when you start and stays the same for life. It does not go up as you get older or if your health changes.</p>
-              <p class="ty-family"><strong>For your family:</strong> a payment that is easier to plan around, especially on a fixed income.</p>
-            </div>
-          </div>
-
-          <div class="ty-highlight">
-            <div class="ty-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="21" width="28" height="20" rx="5"/><path d="M16 21v-5a8 8 0 0 1 16 0v5"/><path d="M20 31l3 3 6-6.5" stroke="#2EE59D"/></svg>
-            </div>
-            <div>
-              <h3>Coverage that can&rsquo;t be canceled</h3>
-              <p>As long as your premiums are paid, the insurance company cannot cancel your coverage because of your age or your health.</p>
-              <p class="ty-family"><strong>For your family:</strong> the protection you set up is still there when they need it.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
       <!-- 3b. WHAT DOES A FUNERAL COST WHERE YOU LIVE? (same section as the homepage) -->
       <section class="funeral-costs-section ty-fullbleed" id="funeral-costs">
         <div class="container text-center">
@@ -580,9 +487,6 @@
             <!-- CALLOUT & CTA BUTTON -->
             <div class="funeral-cta-box">
               <h3 class="funeral-cta-heading">Would your family have this covered tomorrow?</h3>
-              <a href="quote.html" class="btn btn-mint check-price-btn funeral-cta-btn">
-                See what coverage costs for your age &rarr;
-              </a>
               <p class="coverage-privacy-note">
                 <span class="lock-icon">🔒</span> Your information is never sold.
               </p>
