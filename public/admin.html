@@ -79,8 +79,13 @@
 </div>
 
 <div id="app">
-  <h1>Lead Routing Admin</h1>
-  <div class="sub">Manage which agent gets which leads, daily caps, and remaining order balances.</div>
+  <div class="row" style="align-items:flex-start; justify-content:space-between;">
+    <div>
+      <h1>Lead Routing Admin</h1>
+      <div class="sub">Manage which agent gets which leads, daily caps, and remaining order balances.</div>
+    </div>
+    <button class="secondary" onclick="refreshAgents(this)">Refresh</button>
+  </div>
   <div id="status-msg"></div>
   <div id="agents-container"></div>
 
@@ -281,6 +286,13 @@
   async function toggleActive(btn, id, active) {
     await withBusy(btn, async () => {
       try { await api('POST', { action: 'setActive', agentId: id, active }); showStatus(active ? 'Agent resumed.' : 'Agent paused.', true); await loadAgents(); }
+      catch (e) { showStatus(e.message, false); }
+    });
+  }
+
+  async function refreshAgents(btn) {
+    await withBusy(btn, async () => {
+      try { await loadAgents(); showStatus('Data refreshed.', true); }
       catch (e) { showStatus(e.message, false); }
     });
   }
