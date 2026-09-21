@@ -39,16 +39,18 @@
       padding: 12px 16px 32px 16px;
     }
 
-    /* ---- Skip the line: call button, directly under the header ---- */
+    /* ---- Skip the line: call button, below the "Thanks..." headline ---- */
     .ty-skip-line {
-      max-width: 460px;
-      margin: 14px auto 0 auto;
-      padding: 0 16px;
+      max-width: 420px;
+      margin: 18px auto 0 auto;
     }
     .ty-skip-line-btn { width: 100%; }
 
     .ty-wrap { max-width: 1040px; margin: 0 auto; }
     .ty-narrow { max-width: 620px; margin: 0 auto; }
+
+    /* ---- Break a section out to full viewport width (used for the funeral-cost band) ---- */
+    .ty-fullbleed { width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
 
     /* ---- Intro ---- */
     .ty-hero { text-align: center; max-width: 720px; margin: 0 auto 10px auto; }
@@ -346,14 +348,6 @@
     </div>
   </header>
 
-  <!-- SKIP THE LINE: CALL BUTTON (directly under header) -->
-  <div class="ty-skip-line">
-    <a href="tel:7738000116" class="btn-call-direct ty-skip-line-btn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span>Skip the line &mdash; Call Now</span>
-    </a>
-  </div>
-
   <!-- MAIN CONTENT -->
   <main class="thank-you-main">
     <div class="ty-wrap">
@@ -363,6 +357,14 @@
         <svg class="ty-check-inline" width="38" height="38" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#E8FAED"/><polyline points="7 12.5 10.5 16 17 8.5" stroke="#059669" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h1 class="thank-you-title" id="ty-title"><span id="ty-title-text">Thanks. We&rsquo;ve received your answers.</span></h1>
         <p class="thank-you-subtitle">An agent will call you shortly with your personalized quote. Meanwhile, which of these sounds like you?</p>
+
+        <!-- SKIP THE LINE: CALL BUTTON -->
+        <div class="ty-skip-line">
+          <a href="tel:7738000116" class="btn-call-direct ty-skip-line-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Skip the line &mdash; Call Now</span>
+          </a>
+        </div>
       </section>
 
       <!-- 2. HOW MUCH COVERAGE DO YOU ACTUALLY NEED? -->
@@ -382,9 +384,9 @@
               <div class="ty-icon" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9h14"/><path d="M19 9v5c-5 2.5-8 6.5-8 11.5C11 33 16 39 24 39s13-6 13-13.5c0-5-3-9-8-11.5V9"/><path d="M19 27c1.5 2 3.2 3 5 3s3.5-1 5-3" stroke="#2EE59D"/></svg>
               </div>
-              <div class="ty-card-tag">Cremation</div>
+              <div class="ty-card-tag">Option 1: Cremation</div>
             </div>
-            <div class="ty-card-range">$5,000 to $8,000</div>
+            <div class="ty-card-range">$4,000 to $8,000</div>
             <div>
               <div class="ty-label">What it typically covers</div>
               <ul class="ty-list">
@@ -397,7 +399,7 @@
               <div class="ty-label">Why this range fits</div>
               <p>Cremation usually costs less than burial, so this range often covers the essentials without over-buying.</p>
             </div>
-            <div class="ty-also">Typical use: cremation, an add-on policy if you already have coverage, or leaving a little extra for the grandkids.</div>
+            <div class="ty-also">Typical use: cremation, an add-on policy if you already have coverage, or leaving a little extra for the kids / grandkids.</div>
           </article>
 
           <!-- Burial -->
@@ -407,7 +409,7 @@
               <div class="ty-icon" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 41V21a11 11 0 0 1 22 0v20z"/><path d="M8 41h32"/><path d="M24 17v11M19.5 22h9" stroke="#2EE59D"/></svg>
               </div>
-              <div class="ty-card-tag">Burial</div>
+              <div class="ty-card-tag">Option 2: Burial</div>
             </div>
             <div class="ty-card-range">$10,000 to $20,000</div>
             <div>
@@ -423,7 +425,7 @@
               <div class="ty-label">Why we recommend this range</div>
               <p>Burial has more separate costs, and they add up quickly. This range helps your family cover a full service.</p>
             </div>
-            <div class="ty-also">Typical use: burial, a second policy, or leaving money for a beneficiary.</div>
+            <div class="ty-also">Typical use: burial, a second policy, or leaving money for your beneficiary.</div>
           </article>
 
           <!-- Leaving money to family -->
@@ -432,7 +434,7 @@
               <div class="ty-icon" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#5F7B82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 23L24 8l17 15"/><path d="M11 20v20h26V20"/><path d="M24 34.5c-5-3.2-7.5-5.6-7.5-8.6a4 4 0 0 1 7.5-1.9 4 4 0 0 1 7.5 1.9c0 3-2.5 5.4-7.5 8.6z" stroke="#2EE59D"/></svg>
               </div>
-              <div class="ty-card-tag">Leaving money to family</div>
+              <div class="ty-card-tag">Option 3: Leaving money to family</div>
             </div>
             <div class="ty-card-range">$25,000 to $50,000</div>
             <div>
@@ -525,6 +527,72 @@
               <p class="ty-family"><strong>For your family:</strong> the protection you set up is still there when they need it.</p>
             </div>
           </div>
+
+        </div>
+      </section>
+
+      <!-- 3b. WHAT DOES A FUNERAL COST WHERE YOU LIVE? (same section as the homepage) -->
+      <section class="funeral-costs-section ty-fullbleed" id="funeral-costs">
+        <div class="container text-center">
+
+          <h2 class="section-title font-serif light-title">What does a funeral cost where you live?</h2>
+          <p class="section-subtitle light-subtitle">Most families are surprised. See the average cost in your state.</p>
+
+          <div class="funeral-calc-card">
+
+            <!-- CONTROLS ROW: STATE DROPDOWN & BURIAL/CREMATION TOGGLE -->
+            <div class="funeral-controls-grid">
+
+              <div class="funeral-state-select-wrapper">
+                <select id="funeral-state-select" class="funeral-state-select" aria-label="Select your state">
+                  <!-- 50 States Options populated dynamically by JS -->
+                </select>
+              </div>
+
+              <div class="funeral-type-toggle-group">
+                <button type="button" class="funeral-toggle-btn active" id="btn-type-burial" data-type="burial">
+                  Traditional burial
+                </button>
+                <button type="button" class="funeral-toggle-btn" id="btn-type-cremation" data-type="cremation">
+                  Cremation
+                </button>
+              </div>
+
+            </div>
+
+            <!-- DYNAMIC DISPLAY CONTAINER -->
+            <div class="funeral-display-box">
+              <p class="funeral-calc-intro" id="funeral-intro-text">
+                In Alabama, a traditional funeral with burial typically costs
+              </p>
+
+              <div class="funeral-price-range" id="funeral-price-range">
+                $6,500 &ndash; $9,300
+              </div>
+
+              <div class="funeral-breakdown-table" id="funeral-breakdown-table">
+                <!-- 4 Rows populated dynamically -->
+              </div>
+            </div>
+
+            <hr class="funeral-divider" />
+
+            <!-- CALLOUT & CTA BUTTON -->
+            <div class="funeral-cta-box">
+              <h3 class="funeral-cta-heading">Would your family have this covered tomorrow?</h3>
+              <a href="quote.html" class="btn btn-mint check-price-btn funeral-cta-btn">
+                See what coverage costs for your age &rarr;
+              </a>
+              <p class="coverage-privacy-note">
+                <span class="lock-icon">🔒</span> Your information is never sold.
+              </p>
+            </div>
+
+          </div>
+
+          <p class="funeral-disclaimer-text">
+            Estimates based on industry averages, including National Funeral Directors Association data. Actual costs vary by provider.
+          </p>
 
         </div>
       </section>
@@ -884,5 +952,6 @@
       }
     });
   </script>
+  <script type="module" src="src/main.js"></script>
 </body>
 </html>
