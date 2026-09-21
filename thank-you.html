@@ -55,6 +55,18 @@
     /* ---- Intro ---- */
     .ty-hero { text-align: center; max-width: 720px; margin: 0 auto 10px auto; }
     .ty-check-inline { display: block; margin: 0 auto 10px auto; }
+    .ty-preapproved-badge {
+      display: inline-block;
+      background-color: #E8FAED;
+      color: #059669;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
     .thank-you-title {
       font-family: var(--font-serif);
       font-size: 2rem;
@@ -342,8 +354,9 @@
       <!-- 1. HEADLINE + INTRO -->
       <section class="ty-hero">
         <svg class="ty-check-inline" width="38" height="38" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#E8FAED"/><polyline points="7 12.5 10.5 16 17 8.5" stroke="#059669" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h1 class="thank-you-title" id="ty-title"><span id="ty-title-text">Thanks. We&rsquo;ve received your answers.</span></h1>
-        <p class="thank-you-subtitle">An agent will call you shortly with your personalized quote. Meanwhile, which of these sounds like you?</p>
+        <span class="ty-preapproved-badge">You&rsquo;re Pre-Approved</span>
+        <h1 class="thank-you-title" id="ty-title"><span id="ty-title-text">Good news &mdash; you&rsquo;re pre-approved.</span></h1>
+        <p class="thank-you-subtitle">Based on your answers, you&rsquo;ve been pre-approved for all three coverage options below. An agent will call shortly to confirm your pre-approval and get your policy fully approved.</p>
 
         <!-- SKIP THE LINE: CALL BUTTON -->
         <div class="ty-skip-line">
@@ -354,9 +367,9 @@
         </div>
       </section>
 
-      <!-- 2. HOW MUCH COVERAGE DO YOU ACTUALLY NEED? -->
+      <!-- 2. HERE'S WHAT YOU'RE PRE-APPROVED FOR -->
       <section class="ty-section" id="coverage-guide" aria-labelledby="coverage-h2">
-        <h2 class="ty-h2 ty-h2-desktop" id="coverage-h2">How much coverage do you actually need?</h2>
+        <h2 class="ty-h2 ty-h2-desktop" id="coverage-h2">Here&rsquo;s what you&rsquo;re pre-approved for</h2>
 
         <div class="ty-swipe" aria-hidden="true">
           <div class="ty-scroll-hint">Swipe to see all 3 options &rarr;</div>
@@ -514,9 +527,9 @@
       <!-- 4b. CALL TO ACTION (right after the funeral-cost section) -->
       <section class="ty-section ty-narrow" aria-label="Next step">
         <div class="ty-cta">
-          <div class="ty-cta-eyebrow">Ready when you are</div>
-          <h2>An agent will call you with your personalized quote.</h2>
-          <p>If you have questions before then, we are happy to help.</p>
+          <div class="ty-cta-eyebrow">Final step</div>
+          <h2>An agent will call to confirm your pre-approval.</h2>
+          <p>We&rsquo;ll verify a few quick details and get your policy fully approved &mdash; no pressure, no obligation.</p>
           <a href="tel:7738000116" class="btn-call-direct ty-call-btn" aria-label="Call Alpine Fairview now">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <span class="ty-call-text"><strong>Call Now</strong></span>
@@ -838,7 +851,7 @@
       const name = (new URLSearchParams(window.location.search).get('name') || '').trim().slice(0, 40);
       const title = document.getElementById('ty-title-text');
       if (name && title) {
-        title.textContent = 'Thanks, ' + name + '. We’ve received your answers.';
+        title.textContent = 'Good news, ' + name + ' — you’re pre-approved.';
       }
     });
   </script>
