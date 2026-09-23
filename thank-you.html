@@ -807,6 +807,74 @@
         title.textContent = 'Good news, ' + name + ' — you’re pre-approved.';
       }
     });
+
+    // Celebration confetti: fires once on load to mark the pre-approval. Skips for
+    // anyone with reduced-motion set, and cleans up its own canvas when it's done.
+    (function () {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var canvas = document.createElement('canvas');
+      canvas.setAttribute('aria-hidden', 'true');
+      canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext('2d');
+
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      var colors = ['#2EE59D', '#5F7B82', '#F59E0B', '#FFFFFF', '#3C5055'];
+      var count = window.innerWidth < 600 ? 90 : 160;
+      var particles = [];
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: -20 - Math.random() * window.innerHeight * 0.6,
+          w: 6 + Math.random() * 6,
+          h: 8 + Math.random() * 8,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speedY: 2 + Math.random() * 3,
+          speedX: (Math.random() - 0.5) * 2,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      var start = null;
+      var duration = 3800;
+      var fadeStart = duration - 800;
+
+      function frame(ts) {
+        if (!start) start = ts;
+        var elapsed = ts - start;
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        particles.forEach(function (p) {
+          p.y += p.speedY;
+          p.x += p.speedX;
+          p.rotation += p.rotationSpeed;
+          if (elapsed > fadeStart) {
+            p.opacity = Math.max(0, 1 - (elapsed - fadeStart) / 800);
+          }
+          ctx.save();
+          ctx.globalAlpha = p.opacity;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+
+        if (elapsed < duration) {
+          requestAnimationFrame(frame);
+        } else {
+          canvas.remove();
+        }
+      }
+      requestAnimationFrame(frame);
+    })();
   </script>
   <script type="module" src="src/main.js"></script>
 </body>
