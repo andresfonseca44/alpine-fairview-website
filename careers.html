@@ -353,6 +353,26 @@
         flex: 0 0 78%;
         scroll-snap-align: start;
       }
+
+      /* Why Agents Choose: two rows that scroll horizontally together */
+      .why-agents-grid {
+        grid-template-columns: none;
+        grid-template-rows: repeat(2, auto);
+        grid-auto-flow: column;
+        grid-auto-columns: 72%;
+        margin: 28px -5vw 0;
+        padding: 4px 5vw 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .why-agents-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .why-agents-grid .feature-box {
+        scroll-snap-align: start;
+      }
       .swipe-hint {
         display: block;
         text-align: center;
@@ -476,13 +496,13 @@
       </div>
     </section>
 
-    <!-- SECTION 1: WHY TOP AGENTS CHOOSE ALPINE FAIRVIEW (Merged with former Compensation section — deduplicated) -->
+    <!-- SECTION 1: WHY AGENTS CHOOSE ALPINE FAIRVIEW (Merged with former Compensation section — deduplicated) -->
     <section class="careers-section">
       <div class="container text-center">
-        <h2 class="section-title font-serif">Why Top Agents Choose Alpine Fairview</h2>
+        <h2 class="section-title font-serif">Why Agents Choose Alpine Fairview</h2>
         <p class="section-subtitle">Everything you need to build a high-income, sustainable insurance career — full compensation, exclusive leads, and complete operational support, all in one place.</p>
 
-        <div class="grid-3 text-left">
+        <div class="grid-3 text-left why-agents-grid">
 
           <div class="feature-box">
             <h3 class="feature-box-title">Top Producer Commission Contracts</h3>
@@ -540,6 +560,7 @@
           </div>
 
         </div>
+        <p class="swipe-hint">Swipe to see all &rarr;</p>
       </div>
     </section>
 
