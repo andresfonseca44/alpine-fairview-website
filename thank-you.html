@@ -187,6 +187,8 @@
     .ty-scroller::-webkit-scrollbar { display: none; }
     .ty-scroller > * { flex: 0 0 88%; max-width: 400px; scroll-snap-align: start; }
     .ty-scroller:focus-visible { outline: 3px solid var(--color-slate-teal); outline-offset: -3px; border-radius: 12px; }
+    /* Tier cards should match height with their row neighbor, even while swiping on phones */
+    #coverage-scroller { align-items: stretch; }
 
     .ty-swipe { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 4px 0 0 0; }
     .ty-scroll-hint { font-size: 0.92rem; font-weight: 700; color: var(--color-slate-teal); text-align: center; }
