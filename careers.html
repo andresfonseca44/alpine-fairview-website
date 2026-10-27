@@ -258,8 +258,25 @@
       display: none;
     }
 
+    .coaching-card {
+      background-color: var(--color-white);
+      border-radius: 20px;
+      padding: 40px 32px;
+      border: 1.5px solid var(--color-card-border);
+      box-shadow: var(--shadow-sm);
+      max-width: 900px;
+      margin: 32px auto 0 auto;
+      text-align: left;
+    }
+
+    .careers-cta-banner {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+      padding: 36px 40px;
+    }
+
     @media (max-width: 900px) {
-      .grid-3, .grid-4, .check-list-grid {
+      .grid-3, .grid-4, .check-list-grid, .grid-2 {
         grid-template-columns: repeat(2, 1fr);
       }
       .role-card {
@@ -273,14 +290,11 @@
       }
     }
 
-    /* ---- Mobile: fewer screens of scrolling (side-by-side cards, tighter spacing) ---- */
+    /* ---- Mobile responsive layout ---- */
     @media (max-width: 600px) {
       .careers-hero {
-        padding: 52px 0 40px 0;
-        min-height: 320px;
-      }
-      .careers-hero-badge {
-        margin-bottom: 14px;
+        padding: 44px 0 36px 0;
+        min-height: 280px;
       }
       .careers-hero-title {
         font-size: 2rem;
@@ -291,40 +305,50 @@
         margin-bottom: 24px;
       }
       .careers-section, .roles-section {
-        padding: 40px 0;
+        padding: 36px 0;
       }
-      .grid-3, .grid-4, .check-list-grid {
+      .grid-3 {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        margin-top: 28px;
+        margin-top: 24px;
       }
-      .grid-2 {
+      .why-agents-grid,
+      .grid-4,
+      .grid-2,
+      .check-list-grid {
+        grid-template-columns: 1fr;
         gap: 12px;
-        margin-top: 28px;
+        margin-top: 20px;
+      }
+      .coaching-card {
+        padding: 20px 14px;
+        margin-top: 18px;
       }
       .feature-box {
         padding: 18px 16px;
         gap: 8px;
       }
       .feature-box-title {
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
       .feature-box-desc {
-        font-size: 0.88rem;
+        font-size: 0.9rem;
       }
       .check-item {
-        padding: 12px 14px;
-        font-size: 0.86rem;
-        gap: 10px;
+        padding: 14px 16px;
+        font-size: 0.92rem;
+        gap: 12px;
+        width: 100%;
       }
       .check-bullet {
-        width: 22px;
-        height: 22px;
-        font-size: 0.78rem;
+        width: 24px;
+        height: 24px;
+        font-size: 0.82rem;
       }
       .ai-question-card {
-        font-size: 0.92rem;
+        font-size: 0.98rem;
         padding: 14px 16px;
+        width: 100%;
       }
       .role-card {
         padding: 22px 18px;
@@ -332,13 +356,32 @@
       .role-title {
         font-size: 1.2rem;
       }
+      .community-section .section-subtitle {
+        margin-bottom: 10px !important;
+      }
+      .community-section .grid-3 {
+        margin-top: 12px !important;
+      }
+      .lock-price-section {
+        padding: 0 !important;
+      }
+      .careers-cta-banner {
+        padding: 20px 18px !important;
+        border-radius: 20px;
+      }
+      .careers-cta-banner .lock-price-title {
+        margin-bottom: 8px;
+      }
+      .careers-cta-banner .lock-price-subtext {
+        margin-bottom: 16px;
+      }
 
       /* CRM Features & Next Steps: horizontal swipeable rows */
       .crm-features-grid, .next-steps-grid {
         display: flex;
         grid-template-columns: none;
         max-width: none;
-        margin: 28px -5vw 0;
+        margin: 24px -5vw 0;
         padding: 4px 5vw 12px;
         gap: 12px;
         overflow-x: auto;
@@ -351,26 +394,6 @@
       }
       .crm-features-grid .feature-box, .next-steps-grid .feature-box {
         flex: 0 0 78%;
-        scroll-snap-align: start;
-      }
-
-      /* Why Agents Choose: two rows that scroll horizontally together */
-      .why-agents-grid {
-        grid-template-columns: none;
-        grid-template-rows: repeat(2, auto);
-        grid-auto-flow: column;
-        grid-auto-columns: 72%;
-        margin: 28px -5vw 0;
-        padding: 4px 5vw 12px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .why-agents-grid::-webkit-scrollbar {
-        display: none;
-      }
-      .why-agents-grid .feature-box {
         scroll-snap-align: start;
       }
       .swipe-hint {
@@ -482,7 +505,6 @@
       <div class="careers-hero-overlay"></div>
 
       <div class="container careers-hero-content">
-        <span class="careers-hero-badge">Careers at Alpine Fairview Agency</span>
         <h1 class="careers-hero-title">Build your life insurance telesales business on a foundation that's already done for you.</h1>
         <p class="careers-hero-sub">
           Top Producer Contracts • Exclusive In-House Leads • Premier A-Rated Carriers • 1-on-1 Mentorship &amp; Coaching • 100% Vested Book Ownership
@@ -535,7 +557,6 @@
           </div>
 
         </div>
-        <p class="swipe-hint">Swipe to see all &rarr;</p>
 
         <div style="text-align: center; margin-top: 40px;">
           <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="btn btn-mint" style="max-width: 360px;">
@@ -674,7 +695,7 @@
         <h2 class="section-title font-serif">Coaching: Meet Your Brokerage Manager</h2>
         <p class="section-subtitle">You’re independent, but you’re never left on your own.</p>
 
-        <div style="background-color: var(--color-white); border-radius: 20px; padding: 40px 32px; border: 1.5px solid var(--color-card-border); box-shadow: var(--shadow-sm); max-width: 900px; margin: 32px auto 0 auto; text-align: left;">
+        <div class="coaching-card">
           <p style="font-size: 1.05rem; line-height: 1.65; color: var(--color-near-black); margin-bottom: 24px;">
             Every agent at Alpine Fairview is assigned a personal <strong>Brokerage Manager</strong>—your dedicated sales coach, mentor, and point person. Our Brokerage Managers aren't recruiters who have never sold a policy; they are selected from active top-producing agents who succeeded on our platform. They understand the leads, sales process, tech stack, and carrier guidelines inside out.
           </p>
@@ -708,18 +729,14 @@
     </section>
 
     <!-- SECTION 10: ACTIVE AGENT COMMUNITY & COLLABORATION (No Emojis; Daily Huddles & Events Removed) -->
-    <section class="careers-section">
+    <section class="careers-section community-section">
       <div class="container text-center">
         <h2 class="section-title font-serif">Community: Don’t Sell From An Island</h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" style="margin-bottom: 12px;">
           Remote work offers incredible freedom, but isolation can stall growth. We surround you with active agents selling the same products, working the same leads, and using the same technology.
         </p>
 
-        <div style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-slate-teal); margin: 20px 0 36px 0;">
-          “When one agent solves a challenge, the entire community gets better.”
-        </div>
-
-        <div class="grid-3 text-left">
+        <div class="grid-3 text-left" style="margin-top: 20px;">
           <div class="feature-box">
             <h3 class="feature-box-title">Live Call Reviews</h3>
             <p class="feature-box-desc">Listen to real phone conversations and break down what worked, what didn't, and how to improve closing rates.</p>
@@ -809,7 +826,7 @@
 
     <!-- LOCK IN YOUR FUTURE BANNER -->
     <section class="lock-price-section container">
-      <div class="lock-price-banner" style="grid-template-columns: 1fr; text-align: center; padding: 56px 40px;">
+      <div class="lock-price-banner careers-cta-banner">
         <div class="lock-price-left" style="max-width: 720px; margin: 0 auto;">
           <h2 class="lock-price-title font-serif">Ready to start earning the right way?</h2>
           <p class="lock-price-subtext">
