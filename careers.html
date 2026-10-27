@@ -101,14 +101,41 @@
       background-color: var(--color-offwhite);
     }
     .careers-section-teal {
-      background-color: #2E4044;
+      position: relative;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(46, 229, 157, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(95, 123, 130, 0.35) 0%, transparent 50%),
+        linear-gradient(135deg, #0B131E 0%, #15252B 52%, #1E353D 100%);
       color: #FFFFFF;
+      overflow: hidden;
     }
     .careers-section-teal .section-title {
       color: #FFFFFF !important;
     }
     .careers-section-teal .section-subtitle {
-      color: #FFFFFF !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(46, 229, 157, 0.12);
+      border: 1px solid rgba(46, 229, 157, 0.35);
+      color: var(--color-mint-green);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .ai-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-mint-green);
+      box-shadow: 0 0 10px var(--color-mint-green);
     }
     .grid-3 {
       display: grid;
@@ -192,14 +219,24 @@
 
     /* AI QUESTIONS SHOWCASE */
     .ai-question-card {
-      background-color: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border: 1px solid rgba(46, 229, 157, 0.25);
+      border-left: 3px solid var(--color-mint-green);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 14px;
-      padding: 18px 20px;
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      color: #FFFFFF !important;
-      font-style: italic;
+      padding: 18px 22px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      color: #F8FAFC !important;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ai-question-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(46, 229, 157, 0.55);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), 0 0 20px rgba(46, 229, 157, 0.12);
     }
 
     /* OPEN OPPORTUNITIES SECTION */
@@ -534,7 +571,7 @@
 
           <div class="feature-box">
             <h3 class="feature-box-title">Competitive Compensation</h3>
-            <p class="feature-box-desc">Start at a strong day-one commission level—or bring proof of production to match your current contract—then follow a clear, transparent path to higher tiers.</p>
+            <p class="feature-box-desc">Start at 100% commissions—or bring proof of production to match your current contract level—then follow a clear, transparent path to higher tiers.</p>
           </div>
 
           <div class="feature-box">
@@ -651,15 +688,16 @@
       </div>
     </section>
 
-    <!-- SECTION 7: AI-ENABLED AGENCY OPERATING SYSTEM (High Contrast White Text) -->
+    <!-- SECTION 7: AI-ENABLED AGENCY OPERATING SYSTEM (Modern Gradient & Glassmorphism) -->
     <section class="careers-section careers-section-teal">
       <div class="container text-center">
+        <div class="ai-badge"><span class="ai-badge-dot"></span> MCP-Enabled AI Engine</div>
         <h2 class="section-title font-serif" style="color: #FFFFFF !important;">AI-Powered Business Intelligence</h2>
-        <p class="section-subtitle" style="color: #FFFFFF !important;">
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.92) !important;">
           Give Advanced AI Direct Access To Your Business Data. We’ve MCP-Enabled All Our Agency Systems.
         </p>
 
-        <div style="max-width: 800px; margin: 0 auto 36px auto; font-size: 1.05rem; line-height: 1.6; color: #FFFFFF;">
+        <div style="max-width: 800px; margin: 0 auto 36px auto; font-size: 1.05rem; line-height: 1.65; color: rgba(255,255,255,0.88);">
           You are no longer limited to pre-built dashboards or static reports. Connect supported AI tools like Claude or ChatGPT to query your agency performance in natural language.
         </div>
 
@@ -676,7 +714,7 @@
           <div class="ai-question-card">“Show me every client I should contact today and tell me why.”</div>
         </div>
 
-        <div style="background: rgba(0,0,0,0.25); border-radius: 16px; padding: 32px 28px; margin-top: 40px; text-align: left; border: 1px solid rgba(255,255,255,0.2);">
+        <div style="background: linear-gradient(135deg, rgba(46, 229, 157, 0.1) 0%, rgba(15, 23, 42, 0.55) 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 18px; padding: 32px 28px; margin-top: 40px; text-align: left; border: 1px solid rgba(46, 229, 157, 0.3); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);">
           <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--color-mint-green) !important; margin-bottom: 12px;">
             Don’t Wait For Us To Build The Dashboard.
           </h4>
