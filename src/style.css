@@ -2709,8 +2709,9 @@ body {
   .ethos-header.scrolled,
   .ethos-header.home-header,
   .ethos-header.home-header.scrolled {
-    height: 64px;
-    margin-bottom: -64px;
+    height: 78px;
+    margin-bottom: -78px;
+    padding: 8px 0;
   }
 
   .home-mega-menu {
@@ -2727,8 +2728,12 @@ body {
   }
 
   .ethos-hero-section {
-    padding: 100px 0 54px 0;
+    padding: 136px 0 60px 0;
     min-height: auto;
+  }
+
+  .ethos-policy-hero {
+    padding: 124px 0 44px 0;
   }
 
   .hero-title {
