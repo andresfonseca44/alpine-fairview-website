@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ethosHeader.classList.remove('scrolled');
       }
     });
+
+    ethosHeader.addEventListener('mouseleave', () => {
+      ethosHeader.classList.remove('menu-force-closed');
+    });
   }
 
   // Smooth scroll handler for menu links with header offset
@@ -25,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
           e.preventDefault();
+
+          if (ethosHeader && ethosHeader.contains(this)) {
+            ethosHeader.classList.add('menu-force-closed');
+            this.blur();
+          }
           
           // Ensure landing-view is visible if user is in quiz mode
           const quizView = document.getElementById('quiz-view');
