@@ -339,6 +339,9 @@
             <div class="calc-row calc-row-fixed"><span class="calc-label">Year 2+ residual<small>Fixed, avg. 6% of monthly premium after month 12</small></span>
               <div class="calc-fixed">6%</div></div>
 
+            <div class="calc-row calc-row-fixed"><span class="calc-label">Working days / month<small>Fixed, avg. 22 working days per month</small></span>
+              <div class="calc-fixed">22 days</div></div>
+
             </div>
 
             <div class="calc-actions">
@@ -350,7 +353,7 @@
           <div class="calc-card">
             <table class="calc-table">
               <thead>
-                <tr><th scope="col"></th><th scope="col">Daily</th><th scope="col">Monthly</th><th scope="col">Annual</th></tr>
+                <tr><th scope="col"></th><th scope="col">Daily</th><th scope="col">Monthly (22d)</th><th scope="col">Annual</th></tr>
               </thead>
               <tbody id="calc-body"></tbody>
             </table>
@@ -431,7 +434,7 @@
           </div>
         </div>
 
-        <p class="calc-disclaimer">For illustration only. This is not a guarantee or promise of income. Your results depend on your close rate, premium, placement rate, policy mix, carrier rules and effort. Advanced commissions can be charged back if a policy lapses within the carrier's chargeback period. Figures assume 22 selling days per month and exclude taxes and other business expenses.</p>
+        <p class="calc-disclaimer">For illustration only. This is not a guarantee or promise of income. Your results depend on your close rate, premium, placement rate, policy mix, carrier rules and effort. Advanced commissions can be charged back if a policy lapses within the carrier's chargeback period. Figures are based on an average of 22 working days per month (264 working days per year) and exclude taxes and other business expenses.</p>
       </div>
     </section>
   </main>
@@ -589,7 +592,7 @@
 
         var b = blended(v);
         $('calc-foot').innerHTML = '<strong>Blended commission: ' + (Math.round(b * 10) / 10) + '%</strong> (' +
-          (100 - v.gi) + '% level at ' + v.comm + '% with ' + v.adv + '-mo advance, ' + (v.gi / 2) + '% graded at ' + v.gicomm + '% with ' + v.gradedAdv + '-mo advance, and ' + (v.gi / 2) + '% GI at ' + v.gicomm + '% as-earned).';
+          (100 - v.gi) + '% level at ' + v.comm + '% with ' + v.adv + '-mo advance, ' + (v.gi / 2) + '% graded at ' + v.gicomm + '% with ' + v.gradedAdv + '-mo advance, and ' + (v.gi / 2) + '% GI at ' + v.gicomm + '% as-earned). Based on an avg. of <strong>' + DAYS + ' working days/month</strong>.';
 
         renderChart(v, d);
       }
