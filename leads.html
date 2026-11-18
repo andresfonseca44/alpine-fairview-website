@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Exclusive Final Expense Leads for Agents | Alpine Fairview</title>
-  <meta name="description" content="Exclusive, real-time final expense leads for independent agents. Start with the discounted $199/month membership (regularly $499), then choose a lead pack at $13–$15 per lead." />
+  <meta name="description" content="Exclusive, real-time final expense leads for independent agents. Start with the discounted $299/month membership (regularly $499), then choose a lead pack at $13–$15 per lead." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -186,6 +186,10 @@
     .calc-field input { width: 100%; min-width: 0; border: none; outline: none; padding: 9px 10px; font-family: var(--font-sans); font-size: .95rem; font-weight: 600; color: var(--color-near-black); background: transparent; -moz-appearance: textfield; }
     .calc-field input::-webkit-outer-spin-button, .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     .calc-field .adorn { display: flex; align-items: center; padding: 0 10px; background: var(--color-offwhite); color: var(--color-text-muted); font-weight: 700; font-size: .85rem; }
+    .calc-toggle { display: grid; grid-template-columns: 1fr 1fr; width: 122px; flex-shrink: 0; border: 1px solid var(--color-disabled); border-radius: 6px; overflow: hidden; background: var(--color-offwhite); padding: 2px; gap: 2px; }
+    .calc-toggle-btn { border: none; background: transparent; font-family: var(--font-sans); font-size: .78rem; font-weight: 800; color: var(--color-text-muted); padding: 7px 4px; border-radius: 4px; cursor: pointer; transition: var(--transition); }
+    .calc-toggle-btn.active { background: var(--color-mint-green); color: var(--color-mint-text); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    .calc-toggle-btn[data-sub="0"].active { background: var(--color-slate-teal-dark); color: var(--color-white); }
     .calc-fixed { width: 122px; flex-shrink: 0; text-align: right; font-weight: 800; font-size: .95rem; color: var(--color-slate-teal-dark); padding: 9px 4px; }
     .calc-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 14px; background: var(--color-offwhite); }
     .calc-chip { font-family: var(--font-sans); font-size: .76rem; font-weight: 700; color: var(--color-slate-teal-dark); background: var(--color-white); border: 1px solid var(--color-slate-teal); border-radius: 50px; padding: 6px 12px; cursor: pointer; }
@@ -287,6 +291,7 @@
       .calc-fields .calc-row { background: var(--color-white); flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 6px; padding: 10px 12px; border-top: none; }
       .calc-fields .calc-row label, .calc-fields .calc-row .calc-label { font-size: .84rem; }
       .calc-fields .calc-field { width: 100%; margin-top: auto; }
+      .calc-fields .calc-toggle { width: 100%; margin-top: auto; }
       .calc-fields .calc-fixed { width: auto; text-align: left; padding: 4px 0 0; font-size: 1.05rem; margin-top: auto; }
       .calc-chips { gap: 6px; }
       .calc-chip { font-size: .7rem; padding: 5px 9px; }
@@ -477,7 +482,7 @@
       <div class="container leads-hero-content">
         <span class="leads-eyebrow">Alpine Fairview Leads</span>
         <h1>Exclusive, real-time final expense leads for independent agents.</h1>
-        <p>Start with the monthly membership, now $199/month (regularly $499), then choose your lead pack. Fixed pricing from $13 to $15 per lead.</p>
+        <p>Start with the monthly membership, now $299/month (regularly $499), then choose your lead pack. Fixed pricing from $13 to $15 per lead.</p>
       </div>
     </section>
 
@@ -492,7 +497,7 @@
           <div class="step-card">
             <div class="step-num">1</div>
             <h3>Get your membership</h3>
-            <p>Join for $199/month (regularly $499) to plug into our Meta video and ad campaigns.</p>
+            <p>Join for $299/month (regularly $499) to plug into our Meta video and ad campaigns.</p>
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
@@ -521,12 +526,12 @@
           <p>Everything you need to keep a steady flow of final expense leads coming in.</p>
         </div>
         <div class="lead-card membership-card">
-          <span class="discount-badge">Discounted rate &middot; Save $300/month</span>
+          <span class="discount-badge">Discounted rate &middot; Save $200/month</span>
           <h3>Alpine Fairview Leads Membership</h3>
           <div class="was-price">Regularly <s>$499 / month</s></div>
-          <div class="lead-price">$199 <small>/ month</small></div>
+          <div class="lead-price">$299 <small>/ month</small></div>
           <p>Plug into a Meta video and ad campaign delivering hundreds of exclusive, real-time final expense leads, designed for independent agents looking to convert high-quality leads into final expense clients. Fixed $13&ndash;$15 per lead, depending on purchase size.</p>
-          <a class="lead-btn" href="https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04" target="_blank" rel="noopener noreferrer">Join for $199/month</a>
+          <a class="lead-btn" href="https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04" target="_blank" rel="noopener noreferrer">Join for $299/month</a>
         </div>
       </div>
     </section>
@@ -623,17 +628,17 @@
                 <td class="pack" data-label="Lead pack">100 leads</td>
                 <td data-label="Lasts about">2 weeks</td>
                 <td data-label="Lead cost for the month"><span>$2,800<small>2 packs &times; $1,400</small></span></td>
-                <td data-label="Membership">$199</td>
-                <td class="total" data-label="Monthly total">$2,999</td>
-                <td class="eff" data-label="Cost per lead">about $15 / lead</td>
+                <td data-label="Membership">$299</td>
+                <td class="total" data-label="Monthly total">$3,099</td>
+                <td class="eff" data-label="Cost per lead">about $15.50 / lead</td>
               </tr>
               <tr>
                 <td class="pack" data-label="Lead pack">200 leads</td>
                 <td data-label="Lasts about">4 weeks</td>
                 <td data-label="Lead cost for the month"><span>$2,600<small>1 pack &times; $2,600</small></span></td>
-                <td data-label="Membership">$199</td>
-                <td class="total" data-label="Monthly total">$2,799</td>
-                <td class="eff" data-label="Cost per lead">about $14 / lead</td>
+                <td data-label="Membership">$299</td>
+                <td class="total" data-label="Monthly total">$2,899</td>
+                <td class="eff" data-label="Cost per lead">about $14.50 / lead</td>
               </tr>
             </tbody>
           </table>
@@ -768,6 +773,12 @@
 
             <div class="calc-row"><label for="in-cpl">Cost per lead<small>$13&ndash;$15 by pack</small></label>
               <div class="calc-field"><span class="adorn">$</span><input id="in-cpl" type="number" inputmode="decimal" min="0" step="0.5" value="14"></div></div>
+
+            <div class="calc-row"><span class="calc-label">Monthly subscription<small>$299/mo &middot; Off for inbounds</small></span>
+              <div class="calc-toggle" role="group" aria-label="Monthly subscription">
+                <button type="button" class="calc-toggle-btn active" data-sub="1">On</button>
+                <button type="button" class="calc-toggle-btn" data-sub="0">Off</button>
+              </div></div>
 
             <div class="calc-row"><label for="in-lpd">Leads / day<small>10 minimum</small></label>
               <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="10" step="1" value="10"></div></div>
@@ -999,7 +1010,7 @@
         <h2>Ready to start receiving leads?</h2>
         <p>Join today, or book a quick call if you have questions first.</p>
         <div class="cta-buttons">
-          <a class="lead-btn" href="https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04" target="_blank" rel="noopener noreferrer">Join for $199/month</a>
+          <a class="lead-btn" href="https://buy.stripe.com/aFa00i7TW23lfYc4MA77O04" target="_blank" rel="noopener noreferrer">Join for $299/month</a>
           <a class="lead-btn lead-btn-outline" href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener noreferrer">Book a 10-minute call</a>
         </div>
         <p class="cta-contact">Questions? Email <a href="mailto:support@alpinefairview.com">support@alpinefairview.com</a> or call <a href="tel:7738000116">773-800-0116</a>.</p>
@@ -1095,11 +1106,12 @@
       var body = $('calc-body');
       if (!body) return;
 
-      var DAYS = 22, MEMBERSHIP = 199;
+      var DAYS = 22, MEMBERSHIP = 299;
       var DEFAULTS = { cpl: 14, lpd: 10, close: 6, spouse: 15, premium: 1000, place: 80, gi: 15, comm: 100 };
       var FIXED = { gicomm: 65, adv: 9 };  // graded/GI commission % and advance months are not adjustable
       var LIMITS = { cpl: [0, 1000], lpd: [10, 500], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
       var keys = Object.keys(DEFAULTS);
+      var subOn = true;
 
       function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
       function read() {
@@ -1110,6 +1122,7 @@
         });
         v.gicomm = FIXED.gicomm;
         v.adv = FIXED.adv;
+        v.sub = subOn;
         return v;
       }
       function blended(v) { return ((100 - v.gi) * v.comm + v.gi * v.gicomm) / 100; }
@@ -1124,7 +1137,7 @@
         var gross = inForce * blended(v) / 100;
         var advance = gross * v.adv / 12;
         var leadCost = lpd * v.cpl;
-        var member = MEMBERSHIP / DAYS;
+        var member = v.sub ? (MEMBERSHIP / DAYS) : 0;
         return { leadCost: leadCost, member: member, leads: lpd, unique: unique, spouse: spouse, sales: sales, sold: sold,
                  inForce: inForce, gross: gross, totalNet: gross - leadCost - member, advance: advance,
                  net: advance - leadCost - member, receivable: gross - advance };
@@ -1139,7 +1152,7 @@
 
       var ROWS = [
         ['leadCost', 'Lead costs', '', 'usd'],
-        ['member', 'Membership', '$199 per month', 'usd'],
+        ['member', 'Membership', '$299 per month', 'usd'],
         ['leads', 'Total leads', '', 'int'],
         ['unique', 'Unique issued sales', '', 'dec'],
         ['spouse', 'Spouse sales', 'Extra sales from the same leads, no added lead cost.', 'dec'],
@@ -1160,7 +1173,7 @@
           var val = d[r[0]];
           var note = r[0] === 'advance'
             ? 'Gross commissions &times; ' + v.adv + '/12 (' + v.adv + '-month advance).'
-            : r[2];
+            : (r[0] === 'member' ? (v.sub ? '$299 per month' : 'Off (no subscription for Insurance Calls Direct inbounds)') : r[2]);
           return '<tr' + (r[4] ? ' class="' + r[4] + '"' : '') + '><th scope="row">' + r[1] +
             (note ? '<small>' + note + '</small>' : '') + '</th>' +
             '<td>' + fmt(r[3], val) + '</td>' +
@@ -1180,18 +1193,27 @@
           }).join('') + '</tr>';
         }).join('');
         $('matrix-assump').textContent = 'For illustration only, not a guarantee of income. Uses the calculator settings below: ' + usd(v.cpl) +
-          ' per lead, ' + usd(v.premium) + ' average annual premium, ' + v.place + '% placement, ' + (Math.round(b * 10) / 10) +
+          ' per lead, ' + (v.sub ? '$299/month subscription, ' : 'no monthly subscription, ') + usd(v.premium) + ' average annual premium, ' + v.place + '% placement, ' + (Math.round(b * 10) / 10) +
           '% blended commission, ' + v.spouse + '% spouse sales and 22 selling days per month. Months 1-9 reflect the ' + v.adv + '-month advance. From month 12 assumes steady volume and that your policies stay in force. Change the inputs below and this table updates.';
       }
 
+      function setSub(on) {
+        subOn = !!on;
+        Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
+          btn.classList.toggle('active', (btn.getAttribute('data-sub') === '1') === subOn);
+        });
+      }
       function write(k, n) { $('in-' + k).value = n; }
       keys.forEach(function (k) {
         var el = $('in-' + k);
         el.addEventListener('input', render);
         el.addEventListener('change', function () { write(k, read()[k]); render(); });
       });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
+        btn.addEventListener('click', function () { setSub(btn.getAttribute('data-sub') === '1'); render(); });
+      });
       $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
-      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); render(); });
+      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(true); render(); });
       Array.prototype.forEach.call(document.querySelectorAll('[data-lpd]'), function (btn) {
         btn.addEventListener('click', function () { write('lpd', btn.getAttribute('data-lpd')); render(); });
       });
