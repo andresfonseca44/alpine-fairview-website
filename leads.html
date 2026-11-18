@@ -78,6 +78,24 @@
     .cost-note { text-align: center; color: var(--color-text-muted); font-size: .95rem; margin-top: 20px; }
     .cost-note.cost-note-rate { margin-top: 8px; }
 
+    /* ---- Inbound leads ---- */
+    .inbound-section { background: linear-gradient(180deg, #edf4f6 0%, var(--color-offwhite) 100%); border-top: 1px solid var(--color-card-border); border-bottom: 1px solid var(--color-card-border); }
+    .inbound-eyebrow { display: inline-block; background: var(--color-mint-green); color: var(--color-mint-text); font-size: .75rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; margin-bottom: 12px; }
+    .inbound-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+    .inbound-card { background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); box-shadow: var(--shadow-md); padding: 30px 26px; display: flex; flex-direction: column; text-align: left; }
+    .inbound-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+    .inbound-card h3 { font-size: 1.18rem; font-weight: 800; color: var(--color-near-black); margin: 0; }
+    .inbound-tag { background: var(--color-icy-blue); color: var(--color-slate-teal-dark); font-size: .72rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 50px; white-space: nowrap; }
+    .inbound-stat { font-family: var(--font-serif); font-size: 2.8rem; line-height: 1.05; color: var(--color-slate-teal-dark); margin: 6px 0 12px; }
+    .inbound-stat small { font-family: var(--font-sans); font-size: .95rem; font-weight: 600; color: var(--color-text-muted); }
+    .inbound-conv { display: inline-flex; align-items: center; align-self: flex-start; background: rgba(46, 229, 157, .24); color: var(--color-mint-text); font-size: .85rem; font-weight: 800; padding: 6px 14px; border-radius: 50px; margin-bottom: 14px; }
+    .inbound-card p { color: var(--color-text-muted); font-size: .95rem; line-height: 1.6; margin: 0; flex: 1; }
+    .inbound-provider-bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 28px; background: linear-gradient(160deg, var(--color-slate-teal-dark) 0%, var(--color-slate-footer) 100%); color: var(--color-white); border: 2px solid var(--color-mint-green); border-radius: var(--radius-card); padding: 24px 30px; text-align: left; }
+    .inbound-provider-bar h3 { font-size: 1.1rem; font-weight: 800; color: var(--color-white); margin: 0 0 4px; }
+    .inbound-provider-bar p { color: var(--color-icy-blue); font-size: .95rem; line-height: 1.55; margin: 0; max-width: 640px; }
+    .inbound-provider-bar p a { color: var(--color-mint-green); font-weight: 700; text-decoration: underline; }
+    .inbound-provider-bar .lead-btn { flex-shrink: 0; padding: 13px 22px; min-height: 46px; font-size: .94rem; }
+
     /* ---- Sample lead ---- */
     .sample-lead { max-width: 560px; margin: 0 auto; background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); box-shadow: var(--shadow-md); overflow: hidden; text-align: left; }
     .sample-lead-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--color-slate-teal-dark); color: var(--color-white); padding: 14px 22px; }
@@ -304,6 +322,16 @@
       .fit-card ul { gap: 9px; }
       .fit-card li { font-size: .84rem; padding-left: 26px; line-height: 1.4; }
       .fit-card li::before { width: 18px; height: 18px; font-size: .68rem; }
+
+      /* Inbound leads mobile */
+      .inbound-grid { grid-template-columns: 1fr; gap: 12px; }
+      .inbound-card { padding: 20px 18px; }
+      .inbound-stat { font-size: 2.2rem; margin: 4px 0 10px; }
+      .inbound-provider-bar { flex-direction: column; align-items: stretch; padding: 20px 18px; gap: 16px; }
+      .inbound-provider-bar .lead-btn { width: 100%; }
+    }
+    @media (max-width: 1000px) and (min-width: 701px) {
+      .inbound-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -611,6 +639,57 @@
           </table>
           <p class="cost-note">Membership is billed monthly. Lead packs are one-time purchases. The 50-lead pack works as a one-week trial, so it is not included in this monthly comparison.</p>
           <p class="cost-note cost-note-rate">Close rates generally range from 4% to 10%+ and depend heavily on the individual agent. Results vary and are not guaranteed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INBOUND LEADS INFO -->
+    <section class="leads-section inbound-section" id="inbound-leads">
+      <div class="container">
+        <div class="leads-section-head">
+          <span class="inbound-eyebrow">Internal Agent Rates</span>
+          <h2>Inbound leads &amp; live calls</h2>
+          <p>In addition to our exclusive Meta lead packs, Alpine Fairview agents get access to internal agent rates on high-intent inbound leads and live consumer-initiated calls through <a href="https://www.insurancecallsdirect.com/" target="_blank" rel="noopener noreferrer" style="color: var(--color-slate-teal-dark); font-weight: 700;">Insurance Calls Direct</a>.</p>
+        </div>
+
+        <div class="inbound-grid">
+          <div class="inbound-card">
+            <div class="inbound-card-top">
+              <h3>Facebook Inbounds</h3>
+              <span class="inbound-tag">Internal Rate</span>
+            </div>
+            <div class="inbound-stat">$16 <small>/ inbound</small></div>
+            <div class="inbound-conv">Converting at avg. 8&ndash;10%</div>
+            <p>High-intent Facebook inbound leads from prospects actively requesting final expense coverage, available at our $16 internal agent rate and converting at 8&ndash;10% on average.</p>
+          </div>
+
+          <div class="inbound-card">
+            <div class="inbound-card-top">
+              <h3>Inbound Web Calls</h3>
+              <span class="inbound-tag">Internal Rate</span>
+            </div>
+            <div class="inbound-stat">$43 <small>/ call</small></div>
+            <div class="inbound-conv">Converting at avg. 15%</div>
+            <p>Live, consumer-initiated inbound phone calls generated from high-intent digital and web search campaigns, priced at $43 per call for internal agents and converting at 15% on average.</p>
+          </div>
+
+          <div class="inbound-card">
+            <div class="inbound-card-top">
+              <h3>Inbound TV Calls</h3>
+              <span class="inbound-tag">Internal Rate</span>
+            </div>
+            <div class="inbound-stat">25% <small>avg. conversion</small></div>
+            <div class="inbound-conv">Converting at avg. 25%</div>
+            <p>Live inbound calls from seniors calling in directly from television commercials for final expense life insurance&mdash;our highest-intent call source, converting at 25% on average at internal agent rates.</p>
+          </div>
+        </div>
+
+        <div class="inbound-provider-bar">
+          <div>
+            <h3>Powered by Insurance Calls Direct</h3>
+            <p>All rates above are exclusive internal agent rates for Alpine Fairview producers using <a href="https://www.insurancecallsdirect.com/" target="_blank" rel="noopener noreferrer">InsuranceCallsDirect.com</a>.</p>
+          </div>
+          <a class="lead-btn" href="https://www.insurancecallsdirect.com/" target="_blank" rel="noopener noreferrer">Visit InsuranceCallsDirect.com &rarr;</a>
         </div>
       </div>
     </section>
