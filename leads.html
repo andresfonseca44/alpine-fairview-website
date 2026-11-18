@@ -146,6 +146,7 @@
     /* ---- Income potential ---- */
     .roi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .roi-card { background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: var(--radius-card); padding: 26px 22px; text-align: left; }
+    .leads-section.alt .roi-card { background: var(--color-offwhite); }
     .roi-stat { font-family: var(--font-serif); font-size: 2.3rem; line-height: 1.05; color: var(--color-slate-teal-dark); margin-bottom: 10px; }
     .roi-card h3 { font-size: 1rem; font-weight: 800; color: var(--color-near-black); margin-bottom: 6px; }
     .roi-card p { color: var(--color-text-muted); font-size: .92rem; line-height: 1.55; }
@@ -700,7 +701,7 @@
     </section>
 
     <!-- INCOME POTENTIAL -->
-    <section class="leads-section" id="income-potential">
+    <section class="leads-section alt" id="income-potential">
       <div class="container">
         <div class="leads-section-head">
           <h2>Income potential</h2>
@@ -733,7 +734,7 @@
         <div class="spouse-callout">
           <div>
             <h3>Spouse sales: essentially free leads</h3>
-            <p>A spouse sale is a second policy from the same lead, so there is no extra lead cost. The calculator below assumes 15% of your closed sales include a spouse sale. You can change it.</p>
+            <p>A spouse sale is a second policy from the same lead, so there is no extra lead cost. The estimates below assume 15% of your closed sales include a spouse sale.</p>
           </div>
           <div class="spouse-stat">15%</div>
         </div>
@@ -755,78 +756,6 @@
           </table>
         </div>
         <p class="calc-disclaimer" id="matrix-assump"></p>
-      </div>
-    </section>
-
-    <!-- INCOME CALCULATOR -->
-    <section class="leads-section alt" id="income-calculator">
-      <div class="container">
-        <div class="leads-section-head">
-          <h2>Income calculator</h2>
-          <p>Enter your cost per lead, close rate and daily volume to estimate your income on a 9-month advance.</p>
-        </div>
-
-        <div class="calc-layout">
-          <div class="calc-card calc-inputs">
-            <div class="calc-card-head">Inputs</div>
-            <div class="calc-fields">
-
-            <div class="calc-row"><label for="in-cpl">Cost per lead</label>
-              <div class="calc-field"><span class="adorn">$</span><input id="in-cpl" type="number" inputmode="decimal" min="0" step="0.5" value="14"></div></div>
-
-            <div class="calc-row"><span class="calc-label">Monthly subscription<small>$299/mo &middot; Off for inbounds</small></span>
-              <div class="calc-toggle" role="group" aria-label="Monthly subscription">
-                <button type="button" class="calc-toggle-btn" data-sub="1">On</button>
-                <button type="button" class="calc-toggle-btn active" data-sub="0">Off</button>
-              </div></div>
-
-            <div class="calc-row"><label for="in-lpd">Leads / day</label>
-              <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="0" max="40" step="1" value="10"></div></div>
-
-            <div class="calc-row"><label for="in-close">Close rate</label>
-              <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="8"><span class="adorn">%</span></div></div>
-
-            <div class="calc-row"><label for="in-spouse">Spouse sale rate<small>Free leads, about 15%</small></label>
-              <div class="calc-field"><input id="in-spouse" type="number" inputmode="decimal" min="0" max="100" step="1" value="15"><span class="adorn">%</span></div></div>
-
-            <div class="calc-row"><label for="in-premium">Avg annual premium<small>$800&ndash;$1,200 typical</small></label>
-              <div class="calc-field"><span class="adorn">$</span><input id="in-premium" type="number" inputmode="numeric" min="0" step="50" value="1000"></div></div>
-
-            <div class="calc-row"><label for="in-place">Placement rate<small>75&ndash;85% typical</small></label>
-              <div class="calc-field"><input id="in-place" type="number" inputmode="decimal" min="0" max="100" step="1" value="75"><span class="adorn">%</span></div></div>
-
-            <div class="calc-row"><label for="in-gi">Graded / GI share of sales<small>10&ndash;20% typical (~50/50 split)</small></label>
-              <div class="calc-field"><input id="in-gi" type="number" inputmode="decimal" min="0" max="100" step="5" value="15"><span class="adorn">%</span></div></div>
-
-            <div class="calc-row"><label for="in-comm">Level commission</label>
-              <div class="calc-field"><input id="in-comm" type="number" inputmode="decimal" min="0" max="200" step="1" value="100"><span class="adorn">%</span></div></div>
-
-            <div class="calc-row calc-row-fixed"><span class="calc-label">Graded / GI commission<small>Fixed, about 65% vs 100% level</small></span>
-              <div class="calc-fixed">65%</div></div>
-
-            <div class="calc-row calc-row-fixed"><span class="calc-label">Advance<small>Level: 9 mo &middot; Graded: 6 mo &middot; GI: as-earned (50/50 Graded/GI)</small></span>
-              <div class="calc-fixed">9 / 6 mo</div></div>
-
-            </div>
-
-            <div class="calc-actions">
-              <button type="button" class="lead-btn" id="calc-go">Calculate</button>
-              <button type="button" class="lead-btn calc-btn-outline" id="calc-reset">Reset defaults</button>
-            </div>
-          </div>
-
-          <div class="calc-card">
-            <table class="calc-table">
-              <thead>
-                <tr><th scope="col"></th><th scope="col">Daily</th><th scope="col">Monthly</th><th scope="col">Annual</th></tr>
-              </thead>
-              <tbody id="calc-body"></tbody>
-            </table>
-            <div class="calc-foot" id="calc-foot"></div>
-          </div>
-        </div>
-
-        <p class="calc-disclaimer">For illustration only. This is not a guarantee or promise of income. Your results depend on your close rate, premium, placement rate, policy mix, carrier rules and effort. Advanced commissions can be charged back if a policy lapses within the carrier's chargeback period. Figures assume 22 selling days per month and exclude taxes and other business expenses.</p>
       </div>
     </section>
 
@@ -1050,6 +979,7 @@
         <a href="carriers.html" class="footer-link">Affiliates</a>
         <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="footer-link">Agent Contracting</a>
         <a href="leads.html" class="footer-link">Leads</a>
+        <a href="calculator.html" class="footer-link">Calculator</a>
       </div>
 
       <div class="footer-col">
@@ -1098,34 +1028,15 @@
   </script>
   <script>
     (function () {
-      var $ = function (id) { return document.getElementById(id); };
-      var body = $('calc-body');
-      if (!body) return;
+      var matrixBody = document.getElementById('matrix-body');
+      var matrixAssump = document.getElementById('matrix-assump');
+      if (!matrixBody) return;
 
       var DAYS = 22, MEMBERSHIP = 299;
-      var DEFAULTS = { cpl: 14, lpd: 10, close: 8, spouse: 15, premium: 1000, place: 75, gi: 15, comm: 100 };
-      var FIXED = { gicomm: 65, adv: 9, gradedAdv: 6 };  // level 9-mo advance, graded 6-mo advance, GI as-earned (50/50 graded/GI)
-      var LIMITS = { cpl: [0, 1000], lpd: [0, 40], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
-      var keys = Object.keys(DEFAULTS);
-      var subOn = false;
+      var v = { cpl: 14, spouse: 15, premium: 1000, place: 75, gi: 15, comm: 100, gicomm: 65, adv: 9, gradedAdv: 6 };
+      var b = ((100 - v.gi) * v.comm + v.gi * v.gicomm) / 100;
 
-      function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
-      function read() {
-        var v = {};
-        keys.forEach(function (k) {
-          var n = parseFloat($('in-' + k).value);
-          v[k] = clamp(k, isNaN(n) ? DEFAULTS[k] : n);
-        });
-        v.gicomm = FIXED.gicomm;
-        v.adv = FIXED.adv;
-        v.gradedAdv = FIXED.gradedAdv;
-        v.sub = subOn;
-        return v;
-      }
-      function blended(v) { return ((100 - v.gi) * v.comm + v.gi * v.gicomm) / 100; }
-
-      // One selling day of results for a given close rate and daily lead volume.
-      function day(v, closeRate, lpd) {
+      function day(closeRate, lpd) {
         var unique = lpd * closeRate / 100;
         var spouse = unique * v.spouse / 100;
         var sales = unique + spouse;
@@ -1137,84 +1048,24 @@
         var gross = levelGross + giTotalGross;
         var advance = (levelGross * v.adv / 12) + (gradedGross * v.gradedAdv / 12);
         var leadCost = lpd * v.cpl;
-        var member = v.sub ? (MEMBERSHIP / DAYS) : 0;
-        return { leadCost: leadCost, member: member, leads: lpd, unique: unique, spouse: spouse, sales: sales, sold: sold,
-                 inForce: inForce, gross: gross, totalNet: gross - leadCost - member, advance: advance,
-                 net: advance - leadCost - member, receivable: gross - advance };
+        var member = MEMBERSHIP / DAYS;
+        return { totalNet: gross - leadCost - member, net: advance - leadCost - member };
       }
 
       function usd(n) { var r = Math.round(n); return (r < 0 ? '-' : '') + '$' + Math.abs(r).toLocaleString('en-US'); }
-      function fmt(kind, n) {
-        if (kind === 'usd') return usd(n);
-        if (kind === 'int') return Math.round(n).toLocaleString('en-US');
-        return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      var CLOSES = [4, 6, 8, 10], VOLUMES = [10, 15, 20];
+      matrixBody.innerHTML = CLOSES.map(function (c) {
+        return '<tr><th scope="row">' + c + (c === CLOSES[CLOSES.length - 1] ? '%+' : '%') + '</th>' + VOLUMES.map(function (l) {
+          var d = day(c, l);
+          return '<td><span class="mx-a">' + usd(d.net * DAYS) + '</span><span class="mx-b">' + usd(d.totalNet * DAYS) + '</span></td>';
+        }).join('') + '</tr>';
+      }).join('');
+      if (matrixAssump) {
+        matrixAssump.textContent = 'For illustration only, not a guarantee of income. Assumes ' + usd(v.cpl) +
+          ' per lead, $299/month membership, ' + usd(v.premium) + ' average annual premium, ' + v.place + '% placement, ' + (Math.round(b * 10) / 10) +
+          '% blended commission, ' + v.spouse + '% spouse sales and 22 selling days per month. Months 1-9 reflect a ' + v.adv + '-month advance on level, ' + v.gradedAdv + '-month advance on graded, and GI paid as-earned (50/50 Graded/GI split). From month 12 assumes steady volume and that your policies stay in force.';
       }
-
-      var ROWS = [
-        ['leadCost', 'Lead costs', '', 'usd'],
-        ['member', 'Membership', '$299 per month', 'usd'],
-        ['leads', 'Total leads', '', 'int'],
-        ['unique', 'Unique issued sales', '', 'dec'],
-        ['spouse', 'Spouse sales', 'Extra sales from the same leads, no added lead cost.', 'dec'],
-        ['sales', 'Total sales made', '', 'dec'],
-        ['sold', 'Total premium sold', '', 'usd'],
-        ['inForce', 'Total premium in force', 'After your placement rate.', 'usd'],
-        ['gross', 'Gross commissions', 'Blended level and graded/GI commission.', 'usd'],
-        ['totalNet', 'Total net', 'Gross commissions &minus; lead costs &minus; membership. Your monthly profit once as-earned and deferred commissions are paid (from month 12).', 'usd'],
-        ['advance', 'Advance received', '', 'usd'],
-        ['net', 'Net profit (after lead costs)', 'Advance received &minus; lead costs &minus; membership.', 'usd', 'hl'],
-        ['receivable', 'As-earned first-year commissions receivable', 'Gross &minus; advance. Paid as premiums are collected, so do not spend it before it is earned.', 'usd']
-      ];
-
-      function render() {
-        var v = read();
-        var d = day(v, v.close, v.lpd);
-        body.innerHTML = ROWS.map(function (r) {
-          var val = d[r[0]];
-          var note = r[0] === 'advance'
-            ? 'Level: ' + v.adv + '-mo advance (75%) &middot; Graded (half of Graded/GI): ' + v.gradedAdv + '-mo advance (50%) &middot; GI (half of Graded/GI): paid as-earned.'
-            : (r[0] === 'member' ? (v.sub ? '$299 per month' : 'Off (no subscription for Insurance Calls Direct inbounds)') : r[2]);
-          return '<tr' + (r[4] ? ' class="' + r[4] + '"' : '') + '><th scope="row">' + r[1] +
-            (note ? '<small>' + note + '</small>' : '') + '</th>' +
-            '<td>' + fmt(r[3], val) + '</td>' +
-            '<td>' + fmt(r[3], val * DAYS) + '</td>' +
-            '<td>' + fmt(r[3], val * DAYS * 12) + '</td></tr>';
-        }).join('');
-
-        var b = blended(v);
-        $('calc-foot').innerHTML = '<strong>Blended commission: ' + (Math.round(b * 10) / 10) + '%</strong> (' +
-          (100 - v.gi) + '% level at ' + v.comm + '% with ' + v.adv + '-mo advance, ' + (v.gi / 2) + '% graded at ' + v.gicomm + '% with ' + v.gradedAdv + '-mo advance, and ' + (v.gi / 2) + '% GI at ' + v.gicomm + '% as-earned).';
-
-        var CLOSES = [4, 6, 8, 10], VOLUMES = [10, 15, 20];
-        $('matrix-body').innerHTML = CLOSES.map(function (c) {
-          return '<tr><th scope="row">' + c + (c === CLOSES[CLOSES.length - 1] ? '%+' : '%') + '</th>' + VOLUMES.map(function (l) {
-            var d = day(v, c, l);
-            return '<td><span class="mx-a">' + usd(d.net * DAYS) + '</span><span class="mx-b">' + usd(d.totalNet * DAYS) + '</span></td>';
-          }).join('') + '</tr>';
-        }).join('');
-        $('matrix-assump').textContent = 'For illustration only, not a guarantee of income. Uses the calculator settings below: ' + usd(v.cpl) +
-          ' per lead, ' + (v.sub ? '$299/month subscription, ' : 'no monthly subscription, ') + usd(v.premium) + ' average annual premium, ' + v.place + '% placement, ' + (Math.round(b * 10) / 10) +
-          '% blended commission, ' + v.spouse + '% spouse sales and 22 selling days per month. Months 1-9 reflect a ' + v.adv + '-month advance on level, ' + v.gradedAdv + '-month advance on graded, and GI paid as-earned (50/50 Graded/GI split). From month 12 assumes steady volume and that your policies stay in force. Change the inputs below and this table updates.';
-      }
-
-      function setSub(on) {
-        subOn = !!on;
-        Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
-          btn.classList.toggle('active', (btn.getAttribute('data-sub') === '1') === subOn);
-        });
-      }
-      function write(k, n) { $('in-' + k).value = n; }
-      keys.forEach(function (k) {
-        var el = $('in-' + k);
-        el.addEventListener('input', render);
-        el.addEventListener('change', function () { write(k, read()[k]); render(); });
-      });
-      Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
-        btn.addEventListener('click', function () { setSub(btn.getAttribute('data-sub') === '1'); render(); });
-      });
-      $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
-      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(false); render(); });
-      render();
     })();
   </script>
 </body>

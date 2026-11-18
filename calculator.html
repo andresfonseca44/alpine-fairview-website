@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Income Calculator | Alpine Fairview</title>
+  <meta name="description" content="Estimate your daily, monthly, and annual final expense insurance commissions and net profit with the Alpine Fairview Agent Income Calculator." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <style>
+    .leads-hero { position: relative; background: var(--color-slate-teal); color: var(--color-white); text-align: center; padding: 130px 0 64px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 360px; }
+    .leads-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; }
+    .leads-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(27, 40, 44, 0.75) 0%, rgba(95, 123, 130, 0.9) 100%); z-index: 2; }
+    .leads-hero-content { position: relative; z-index: 3; }
+    .leads-eyebrow { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 50px; padding: 6px 16px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 20px; }
+    .leads-hero h1 { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; max-width: 860px; margin: 0 auto 16px; }
+    .leads-hero p { font-size: 1.1rem; line-height: 1.6; max-width: 640px; margin: 0 auto; color: var(--color-icy-blue); }
+
+    .leads-section { background: var(--color-offwhite); padding: 72px 0; }
+    .leads-section.alt { background: var(--color-white); }
+    .leads-section-head { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+    .leads-section-head h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--color-near-black); margin-bottom: 10px; }
+    .leads-section-head p { color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.6; }
+
+    .lead-btn { display: flex; align-items: center; justify-content: center; text-align: center; background: var(--color-mint-green); color: var(--color-mint-text); font-family: var(--font-sans); font-weight: 800; font-size: 1rem; text-decoration: none; padding: 15px 24px; border-radius: 50px; min-height: 52px; box-shadow: 0 8px 24px #2ee59d66; transition: var(--transition); }
+    .lead-btn:hover { background: var(--color-mint-green-hover); transform: translateY(-2px); }
+
+    .calc-disclaimer { max-width: 860px; margin: 24px auto 0; text-align: center; color: var(--color-text-muted); font-size: .84rem; line-height: 1.6; }
+
+    /* ---- Calculator ---- */
+    .calc-layout { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
+    .calc-card { background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; text-align: left; }
+    .calc-card-head { background: var(--color-slate-footer); color: var(--color-white); font-weight: 800; padding: 16px 20px; }
+    .calc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--color-card-border); }
+    .calc-row:nth-of-type(odd) { background: var(--color-offwhite); }
+    .calc-row label, .calc-row .calc-label { font-weight: 700; font-size: .92rem; color: var(--color-near-black); line-height: 1.3; }
+    .calc-row .calc-label small, .calc-row label small { display: block; font-weight: 500; font-size: .74rem; color: var(--color-text-muted); margin-top: 2px; }
+    .calc-field { display: flex; align-items: stretch; width: 122px; flex-shrink: 0; border: 1px solid var(--color-disabled); border-radius: 6px; overflow: hidden; background: var(--color-white); }
+    .calc-field:focus-within { border-color: var(--color-mint-green); box-shadow: 0 0 0 3px rgba(46, 229, 157, .3); }
+    .calc-field input { width: 100%; min-width: 0; border: none; outline: none; padding: 9px 10px; font-family: var(--font-sans); font-size: .95rem; font-weight: 600; color: var(--color-near-black); background: transparent; -moz-appearance: textfield; }
+    .calc-field input::-webkit-outer-spin-button, .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .calc-field .adorn { display: flex; align-items: center; padding: 0 10px; background: var(--color-offwhite); color: var(--color-text-muted); font-weight: 700; font-size: .85rem; }
+    .calc-toggle { display: grid; grid-template-columns: 1fr 1fr; width: 122px; flex-shrink: 0; border: 1px solid var(--color-disabled); border-radius: 6px; overflow: hidden; background: var(--color-offwhite); padding: 2px; gap: 2px; }
+    .calc-toggle-btn { border: none; background: transparent; font-family: var(--font-sans); font-size: .78rem; font-weight: 800; color: var(--color-text-muted); padding: 7px 4px; border-radius: 4px; cursor: pointer; transition: var(--transition); }
+    .calc-toggle-btn.active { background: var(--color-mint-green); color: var(--color-mint-text); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    .calc-toggle-btn[data-sub="0"].active { background: var(--color-slate-teal-dark); color: var(--color-white); }
+    .calc-fixed { width: 122px; flex-shrink: 0; text-align: right; font-weight: 800; font-size: .95rem; color: var(--color-slate-teal-dark); padding: 9px 4px; }
+    .calc-actions { display: grid; gap: 10px; padding: 18px 20px 20px; border-top: 1px solid var(--color-card-border); }
+    button.lead-btn { border: none; cursor: pointer; width: 100%; }
+    button.lead-btn.calc-btn-outline { background: var(--color-white); color: var(--color-slate-teal-dark); border: 2px solid var(--color-slate-teal); box-shadow: none; }
+    button.lead-btn.calc-btn-outline:hover { background: var(--color-icy-blue); }
+    .calc-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    .calc-table thead th { background: var(--color-slate-footer); color: var(--color-white); text-align: right; font-weight: 800; padding: 16px; }
+    .calc-table tbody tr { border-top: 1px solid var(--color-card-border); }
+    .calc-table tbody tr:nth-child(even) { background: var(--color-offwhite); }
+    .calc-table tbody th { text-align: left; font-weight: 700; color: var(--color-near-black); padding: 15px 16px; }
+    .calc-table tbody th small { display: block; font-weight: 500; font-size: .76rem; color: var(--color-text-muted); margin-top: 4px; line-height: 1.4; max-width: 300px; }
+    .calc-table tbody td { text-align: right; padding: 15px 16px; font-variant-numeric: tabular-nums; color: var(--color-near-black); white-space: nowrap; }
+    .calc-table tbody tr.hl { background: var(--color-mint-green); border-top-color: var(--color-mint-green); }
+    .calc-table tbody tr.hl th, .calc-table tbody tr.hl td { color: var(--color-mint-text); font-weight: 800; }
+    .calc-table tbody tr.hl th small { color: var(--color-mint-text); opacity: .8; }
+    .calc-foot { padding: 16px 20px; font-size: .84rem; color: var(--color-text-muted); border-top: 1px solid var(--color-card-border); line-height: 1.55; }
+    .calc-foot strong { color: var(--color-near-black); }
+
+    @media (max-width: 1000px) {
+      .calc-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .leads-section { padding: 40px 0; }
+      .leads-section-head { margin-bottom: 22px; }
+      .leads-section-head h2 { font-size: 1.75rem; }
+      .leads-section-head p { font-size: .95rem; }
+      .leads-hero { min-height: 320px; padding: 128px 0 44px; }
+      .calc-disclaimer { font-size: .78rem; }
+      .calc-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-card-border); border-top: 1px solid var(--color-card-border); }
+      .calc-fields .calc-row { background: var(--color-white); flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 6px; padding: 10px 12px; border-top: none; }
+      .calc-fields .calc-row label, .calc-fields .calc-row .calc-label { font-size: .84rem; }
+      .calc-fields .calc-field { width: 100%; margin-top: auto; }
+      .calc-fields .calc-toggle { width: 100%; margin-top: auto; }
+      .calc-fields .calc-fixed { width: auto; text-align: left; padding: 4px 0 0; font-size: 1.05rem; margin-top: auto; }
+      .calc-actions { grid-template-columns: 1fr 1fr; padding: 12px; }
+      .calc-actions .lead-btn { font-size: .85rem; padding: 12px 8px; min-height: 46px; }
+      .calc-table { font-size: .8rem; }
+      .calc-table thead th { padding: 12px 8px; }
+      .calc-table tbody th { padding: 9px 6px 9px 12px; }
+      .calc-table tbody td { padding: 9px 6px; }
+      .calc-table tbody th small { display: none; }
+      .calc-foot { padding: 12px 14px; font-size: .78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="ethos-header home-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-text-logo">ALPINE FAIRVIEW</span>
+      </a>
+
+      <nav class="header-nav-menu">
+        <div class="nav-dropdown">
+          <a href="whole-life-policies.html" class="nav-link dropdown-toggle">Life insurance ▾</a>
+          <div class="dropdown-menu">
+            <a href="whole-life-policies.html" class="dropdown-item">Whole Life &amp; Final Expense Insurance</a>
+            <a href="no-medical-exam.html" class="dropdown-item">No Medical Exam Life Insurance</a>
+            <a href="how-life-insurance-works.html" class="dropdown-item">How Life Insurance Works</a>
+          </div>
+        </div>
+        <a href="index.html#about-us" class="nav-link">About us ▾</a>
+        <div class="nav-dropdown">
+          <a href="how-life-insurance-works.html" class="nav-link dropdown-toggle">Resources ▾</a>
+          <div class="dropdown-menu">
+            <a href="how-life-insurance-works.html" class="dropdown-item">How Life Insurance Works</a>
+            <a href="index.html#funeral-costs" class="dropdown-item">What does a funeral cost?</a>
+            <a href="index.html#faqs" class="dropdown-item">FAQs &amp; Guides</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-right-actions">
+        <button class="nav-contact-btn" id="nav-contact-btn">
+          Contact Us
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+          ☰ Menu
+        </button>
+      </div>
+
+    </div>
+
+    <!-- EXPANDED FULL WHITE MENU ON HOVER -->
+    <div class="home-mega-menu" aria-label="Expanded Navigation Menu">
+      <div class="home-mega-menu-inner">
+        <div class="home-mega-col">
+          <span class="home-mega-heading">Life Insurance</span>
+          <a href="whole-life-policies.html" class="home-mega-link">
+            <span class="home-mega-link-title">Whole Life &amp; Final Expense Insurance</span>
+            <span class="home-mega-link-desc">Permanent coverage with locked-in lifetime rates</span>
+          </a>
+          <a href="no-medical-exam.html" class="home-mega-link">
+            <span class="home-mega-link-title">No Medical Exam Life Insurance</span>
+            <span class="home-mega-link-desc">Fast online approval with no needles or doctor visits</span>
+          </a>
+          <a href="how-life-insurance-works.html" class="home-mega-link">
+            <span class="home-mega-link-title">How Life Insurance Works</span>
+            <span class="home-mega-link-desc">Simple step-by-step guide to protecting your family</span>
+          </a>
+        </div>
+
+        <div class="home-mega-col">
+          <span class="home-mega-heading">About Us</span>
+          <a href="index.html#about-us" class="home-mega-link">
+            <span class="home-mega-link-title">About Alpine Fairview</span>
+            <span class="home-mega-link-desc">Our mission to make final expense protection effortless</span>
+          </a>
+          <a href="carriers.html" class="home-mega-link">
+            <span class="home-mega-link-title">Our A+ Rated Carriers</span>
+            <span class="home-mega-link-desc">Compare rates across America's most trusted insurers</span>
+          </a>
+        </div>
+
+        <div class="home-mega-col">
+          <span class="home-mega-heading">Resources</span>
+          <a href="how-life-insurance-works.html" class="home-mega-link">
+            <span class="home-mega-link-title">How Life Insurance Works</span>
+            <span class="home-mega-link-desc">Everything you need to know about whole life policies</span>
+          </a>
+          <a href="index.html#funeral-costs" class="home-mega-link">
+            <span class="home-mega-link-title">What does a funeral cost?</span>
+            <span class="home-mega-link-desc">Interactive 50-state burial &amp; cremation cost calculator</span>
+          </a>
+          <a href="index.html#faqs" class="home-mega-link">
+            <span class="home-mega-link-title">FAQs &amp; Guides</span>
+            <span class="home-mega-link-desc">Answers to common questions about coverage &amp; claims</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-overlay hidden" id="mobile-nav-drawer">
+    <div class="mobile-nav-card">
+      <div class="mobile-nav-header">
+        <span class="brand-text-logo" style="color: var(--color-near-black);">ALPINE FAIRVIEW</span>
+        <button class="mobile-nav-close-btn" id="close-mobile-nav" aria-label="Close menu">✕</button>
+      </div>
+
+      <div class="mobile-nav-body">
+        <div class="mobile-nav-group-title">LIFE INSURANCE</div>
+        <a href="whole-life-policies.html" class="mobile-nav-link">
+          <span>Whole Life &amp; Final Expense</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="no-medical-exam.html" class="mobile-nav-link">
+          <span>No Medical Exam Insurance</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-nav-group-title">COMPANY &amp; RESOURCES</div>
+        <a href="about-us.html" class="mobile-nav-link">
+          <span>About Us</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="carriers.html" class="mobile-nav-link">
+          <span>Our Carriers</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="index.html#faqs" class="mobile-nav-link">
+          <span>FAQs &amp; Resources</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-nav-actions" style="margin-top: 24px;">
+          <a href="quote.html" class="btn btn-mint" style="width: 100%; text-align: center; font-weight: 700; font-size: 1rem; display: block; padding: 14px 0; border-radius: 50px;">
+            Check Instant Rates →
+          </a>
+          <a href="tel:7738000116" class="mobile-nav-contact-opt" style="margin-top: 12px;">
+            📞 Call 773-800-0116
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="leads-hero">
+      <img src="matterhorn.jpg" alt="Iconic Matterhorn Alpine Mountain Peak" class="leads-hero-bg" />
+      <div class="leads-hero-overlay"></div>
+      <div class="container leads-hero-content">
+        <span class="leads-eyebrow">Alpine Fairview Producers</span>
+        <h1>Agent income calculator</h1>
+        <p>Enter your cost per lead, close rate and daily volume to estimate your commissions and net profit.</p>
+      </div>
+    </section>
+
+    <!-- INCOME CALCULATOR -->
+    <section class="leads-section" id="income-calculator">
+      <div class="container">
+        <div class="calc-layout">
+          <div class="calc-card calc-inputs">
+            <div class="calc-card-head">Inputs</div>
+            <div class="calc-fields">
+
+            <div class="calc-row"><label for="in-cpl">Cost per lead</label>
+              <div class="calc-field"><span class="adorn">$</span><input id="in-cpl" type="number" inputmode="decimal" min="0" step="0.5" value="14"></div></div>
+
+            <div class="calc-row"><span class="calc-label">Monthly subscription<small>$299/mo &middot; Off for inbounds</small></span>
+              <div class="calc-toggle" role="group" aria-label="Monthly subscription">
+                <button type="button" class="calc-toggle-btn" data-sub="1">On</button>
+                <button type="button" class="calc-toggle-btn active" data-sub="0">Off</button>
+              </div></div>
+
+            <div class="calc-row"><label for="in-lpd">Leads / day</label>
+              <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="0" max="40" step="1" value="10"></div></div>
+
+            <div class="calc-row"><label for="in-close">Close rate</label>
+              <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="8"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-spouse">Spouse sale rate<small>Free leads, about 15%</small></label>
+              <div class="calc-field"><input id="in-spouse" type="number" inputmode="decimal" min="0" max="100" step="1" value="15"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-premium">Avg annual premium<small>$800&ndash;$1,200 typical</small></label>
+              <div class="calc-field"><span class="adorn">$</span><input id="in-premium" type="number" inputmode="numeric" min="0" step="50" value="1000"></div></div>
+
+            <div class="calc-row"><label for="in-place">Placement rate<small>75&ndash;85% typical</small></label>
+              <div class="calc-field"><input id="in-place" type="number" inputmode="decimal" min="0" max="100" step="1" value="75"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-gi">Graded / GI share of sales<small>10&ndash;20% typical (~50/50 split)</small></label>
+              <div class="calc-field"><input id="in-gi" type="number" inputmode="decimal" min="0" max="100" step="5" value="15"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row"><label for="in-comm">Level commission</label>
+              <div class="calc-field"><input id="in-comm" type="number" inputmode="decimal" min="0" max="200" step="1" value="100"><span class="adorn">%</span></div></div>
+
+            <div class="calc-row calc-row-fixed"><span class="calc-label">Graded / GI commission<small>Fixed, about 65% vs 100% level</small></span>
+              <div class="calc-fixed">65%</div></div>
+
+            <div class="calc-row calc-row-fixed"><span class="calc-label">Advance<small>Level: 9 mo &middot; Graded: 6 mo &middot; GI: as-earned (50/50 Graded/GI)</small></span>
+              <div class="calc-fixed">9 / 6 mo</div></div>
+
+            </div>
+
+            <div class="calc-actions">
+              <button type="button" class="lead-btn" id="calc-go">Calculate</button>
+              <button type="button" class="lead-btn calc-btn-outline" id="calc-reset">Reset defaults</button>
+            </div>
+          </div>
+
+          <div class="calc-card">
+            <table class="calc-table">
+              <thead>
+                <tr><th scope="col"></th><th scope="col">Daily</th><th scope="col">Monthly</th><th scope="col">Annual</th></tr>
+              </thead>
+              <tbody id="calc-body"></tbody>
+            </table>
+            <div class="calc-foot" id="calc-foot"></div>
+          </div>
+        </div>
+
+        <p class="calc-disclaimer">For illustration only. This is not a guarantee or promise of income. Your results depend on your close rate, premium, placement rate, policy mix, carrier rules and effort. Advanced commissions can be charged back if a policy lapses within the carrier's chargeback period. Figures assume 22 selling days per month and exclude taxes and other business expenses.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="ethos-site-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-col">
+        <h4 class="footer-col-title">Contact Us</h4>
+        <p class="footer-text">Alpine Fairview Group</p>
+        <p class="footer-text"><a href="tel:7738000116" class="footer-link-inline">773-800-0116</a></p>
+        <p class="footer-text" style="margin-top: 6px;">
+          <a href="mailto:support@alpinefairview.com" class="footer-email-btn">Email Us</a>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Life Insurance</h4>
+        <a href="whole-life-policies.html" class="footer-link">Whole Life &amp; Final Expense</a>
+        <a href="no-medical-exam.html" class="footer-link">No Medical Exam Life Insurance</a>
+        <a href="how-life-insurance-works.html" class="footer-link">How Life Insurance Works</a>
+        <a href="whole-life-policies.html" class="footer-link">Our policies</a>
+        <a href="index.html#faqs" class="footer-link">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Company</h4>
+        <a href="index.html#about-us" class="footer-link">About us</a>
+        <a href="carriers.html" class="footer-link">Our carriers</a>
+        <a href="careers.html" class="footer-link">Careers</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Partnerships</h4>
+        <a href="careers.html" class="footer-link">Alpine Fairview for Agents</a>
+        <a href="carriers.html" class="footer-link">Affiliates</a>
+        <a href="https://calendar.app.google/B7DcVNaZKozSsyeHA" target="_blank" rel="noopener" class="footer-link">Agent Contracting</a>
+        <a href="leads.html" class="footer-link">Leads</a>
+        <a href="calculator.html" class="footer-link">Calculator</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Legal</h4>
+        <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Alpine Fairview Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var drawer = document.getElementById('mobile-nav-drawer');
+      var open = document.getElementById('mobile-menu-toggle');
+      var close = document.getElementById('close-mobile-nav');
+      var contact = document.getElementById('nav-contact-btn');
+      if (open && drawer) open.addEventListener('click', function () { drawer.classList.remove('hidden'); });
+      if (close && drawer) close.addEventListener('click', function () { drawer.classList.add('hidden'); });
+      if (contact) contact.addEventListener('click', function () { window.location.href = 'mailto:support@alpinefairview.com'; });
+    })();
+  </script>
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      var body = $('calc-body');
+      if (!body) return;
+
+      var DAYS = 22, MEMBERSHIP = 299;
+      var DEFAULTS = { cpl: 14, lpd: 10, close: 8, spouse: 15, premium: 1000, place: 75, gi: 15, comm: 100 };
+      var FIXED = { gicomm: 65, adv: 9, gradedAdv: 6 };  // level 9-mo advance, graded 6-mo advance, GI as-earned (50/50 graded/GI)
+      var LIMITS = { cpl: [0, 1000], lpd: [0, 40], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
+      var keys = Object.keys(DEFAULTS);
+      var subOn = false;
+
+      function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
+      function read() {
+        var v = {};
+        keys.forEach(function (k) {
+          var n = parseFloat($('in-' + k).value);
+          v[k] = clamp(k, isNaN(n) ? DEFAULTS[k] : n);
+        });
+        v.gicomm = FIXED.gicomm;
+        v.adv = FIXED.adv;
+        v.gradedAdv = FIXED.gradedAdv;
+        v.sub = subOn;
+        return v;
+      }
+      function blended(v) { return ((100 - v.gi) * v.comm + v.gi * v.gicomm) / 100; }
+
+      // One selling day of results for a given close rate and daily lead volume.
+      function day(v, closeRate, lpd) {
+        var unique = lpd * closeRate / 100;
+        var spouse = unique * v.spouse / 100;
+        var sales = unique + spouse;
+        var sold = sales * v.premium;
+        var inForce = sold * v.place / 100;
+        var levelGross = inForce * ((100 - v.gi) / 100) * (v.comm / 100);
+        var giTotalGross = inForce * (v.gi / 100) * (v.gicomm / 100);
+        var gradedGross = giTotalGross * 0.5;
+        var gross = levelGross + giTotalGross;
+        var advance = (levelGross * v.adv / 12) + (gradedGross * v.gradedAdv / 12);
+        var leadCost = lpd * v.cpl;
+        var member = v.sub ? (MEMBERSHIP / DAYS) : 0;
+        return { leadCost: leadCost, member: member, leads: lpd, unique: unique, spouse: spouse, sales: sales, sold: sold,
+                 inForce: inForce, gross: gross, totalNet: gross - leadCost - member, advance: advance,
+                 net: advance - leadCost - member, receivable: gross - advance };
+      }
+
+      function usd(n) { var r = Math.round(n); return (r < 0 ? '-' : '') + '$' + Math.abs(r).toLocaleString('en-US'); }
+      function fmt(kind, n) {
+        if (kind === 'usd') return usd(n);
+        if (kind === 'int') return Math.round(n).toLocaleString('en-US');
+        return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      var ROWS = [
+        ['leadCost', 'Lead costs', '', 'usd'],
+        ['member', 'Membership', '$299 per month', 'usd'],
+        ['leads', 'Total leads', '', 'int'],
+        ['unique', 'Unique issued sales', '', 'dec'],
+        ['spouse', 'Spouse sales', 'Extra sales from the same leads, no added lead cost.', 'dec'],
+        ['sales', 'Total sales made', '', 'dec'],
+        ['sold', 'Total premium sold', '', 'usd'],
+        ['inForce', 'Total premium in force', 'After your placement rate.', 'usd'],
+        ['gross', 'Gross commissions', 'Blended level and graded/GI commission.', 'usd'],
+        ['totalNet', 'Total net', 'Gross commissions &minus; lead costs &minus; membership. Your monthly profit once as-earned and deferred commissions are paid (from month 12).', 'usd'],
+        ['advance', 'Advance received', '', 'usd'],
+        ['net', 'Net profit (after lead costs)', 'Advance received &minus; lead costs &minus; membership.', 'usd', 'hl'],
+        ['receivable', 'As-earned first-year commissions receivable', 'Gross &minus; advance. Paid as premiums are collected, so do not spend it before it is earned.', 'usd']
+      ];
+
+      function render() {
+        var v = read();
+        var d = day(v, v.close, v.lpd);
+        body.innerHTML = ROWS.map(function (r) {
+          var val = d[r[0]];
+          var note = r[0] === 'advance'
+            ? 'Level: ' + v.adv + '-mo advance (75%) &middot; Graded (half of Graded/GI): ' + v.gradedAdv + '-mo advance (50%) &middot; GI (half of Graded/GI): paid as-earned.'
+            : (r[0] === 'member' ? (v.sub ? '$299 per month' : 'Off (no subscription for Insurance Calls Direct inbounds)') : r[2]);
+          return '<tr' + (r[4] ? ' class="' + r[4] + '"' : '') + '><th scope="row">' + r[1] +
+            (note ? '<small>' + note + '</small>' : '') + '</th>' +
+            '<td>' + fmt(r[3], val) + '</td>' +
+            '<td>' + fmt(r[3], val * DAYS) + '</td>' +
+            '<td>' + fmt(r[3], val * DAYS * 12) + '</td></tr>';
+        }).join('');
+
+        var b = blended(v);
+        $('calc-foot').innerHTML = '<strong>Blended commission: ' + (Math.round(b * 10) / 10) + '%</strong> (' +
+          (100 - v.gi) + '% level at ' + v.comm + '% with ' + v.adv + '-mo advance, ' + (v.gi / 2) + '% graded at ' + v.gicomm + '% with ' + v.gradedAdv + '-mo advance, and ' + (v.gi / 2) + '% GI at ' + v.gicomm + '% as-earned).';
+      }
+
+      function setSub(on) {
+        subOn = !!on;
+        Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
+          btn.classList.toggle('active', (btn.getAttribute('data-sub') === '1') === subOn);
+        });
+      }
+      function write(k, n) { $('in-' + k).value = n; }
+      keys.forEach(function (k) {
+        var el = $('in-' + k);
+        el.addEventListener('input', render);
+        el.addEventListener('change', function () { write(k, read()[k]); render(); });
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
+        btn.addEventListener('click', function () { setSub(btn.getAttribute('data-sub') === '1'); render(); });
+      });
+      $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
+      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(false); render(); });
+      render();
+    })();
+  </script>
+</body>
+</html>
