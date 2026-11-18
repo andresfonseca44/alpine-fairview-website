@@ -66,8 +66,52 @@
     .calc-foot { padding: 16px 20px; font-size: .84rem; color: var(--color-text-muted); border-top: 1px solid var(--color-card-border); line-height: 1.55; }
     .calc-foot strong { color: var(--color-near-black); }
 
+    /* ---- 24-Month Compounding Chart ---- */
+    .compound-card { margin-top: 32px; background: var(--color-white); border: 1px solid var(--color-card-border); border-radius: 14px; box-shadow: var(--shadow-md); overflow: hidden; text-align: left; }
+    .compound-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; background: var(--color-slate-footer); color: var(--color-white); padding: 18px 24px; }
+    .compound-head h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1.45rem; color: var(--color-white); margin: 0 0 2px; }
+    .compound-head p { color: var(--color-powder-blue); font-size: .86rem; margin: 0; }
+    .compound-mode-toggle { display: inline-flex; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 8px; padding: 3px; gap: 3px; }
+    .compound-mode-btn { border: none; background: transparent; color: var(--color-icy-blue); font-family: var(--font-sans); font-size: .78rem; font-weight: 800; padding: 7px 12px; border-radius: 6px; cursor: pointer; transition: var(--transition); }
+    .compound-mode-btn.active { background: var(--color-mint-green); color: var(--color-mint-text); }
+    .compound-body { padding: 24px; }
+    .compound-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+    .compound-kpi { background: var(--color-offwhite); border: 1px solid var(--color-card-border); border-radius: 10px; padding: 14px 16px; }
+    .compound-kpi.highlight { background: rgba(46, 229, 157, .14); border-color: var(--color-mint-green); }
+    .compound-kpi-label { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--color-text-muted); }
+    .compound-kpi-val { font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.15; color: var(--color-slate-teal-dark); margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+    .compound-kpi.highlight .compound-kpi-val { color: var(--color-mint-text); }
+    .compound-kpi-sub { font-size: .78rem; font-weight: 600; color: var(--color-text-muted); }
+    .compound-kpi.highlight .compound-kpi-sub { color: var(--color-mint-text); font-weight: 700; }
+    .compound-legend-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; font-size: .8rem; }
+    .compound-legend-items { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--color-near-black); font-weight: 600; }
+    .compound-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .compound-swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; flex-shrink: 0; }
+    .sw-base { background: #4a6670; }
+    .sw-gi { background: #38bdf8; }
+    .sw-graded { background: #f59e0b; }
+    .sw-level { background: #2ee59d; }
+    .compound-readout { font-size: .82rem; font-weight: 700; color: var(--color-slate-teal-dark); background: var(--color-icy-blue); padding: 5px 12px; border-radius: 50px; }
+    .compound-years-head { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+    .compound-yr-tag { text-align: center; font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; background: var(--color-offwhite); color: var(--color-slate-teal-dark); border: 1px solid var(--color-card-border); }
+    .compound-yr-tag.yr2 { background: rgba(46, 229, 157, .2); color: var(--color-mint-text); border-color: var(--color-mint-green); }
+    .compound-bars { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 5px; align-items: end; height: 220px; padding: 18px 4px 0; border-bottom: 2px solid var(--color-card-border); position: relative; }
+    .compound-bar-col { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; cursor: pointer; position: relative; }
+    .compound-bar-val { font-size: .64rem; font-weight: 700; color: var(--color-slate-teal-dark); margin-bottom: 4px; white-space: nowrap; font-variant-numeric: tabular-nums; opacity: .85; }
+    .compound-bar-col.m12 .compound-bar-val { color: var(--color-mint-text); font-weight: 800; opacity: 1; }
+    .compound-bar-stack { width: 100%; border-radius: 4px 4px 0 0; overflow: hidden; display: flex; flex-direction: column-reverse; transition: transform .15s ease, filter .15s ease; }
+    .compound-bar-col:hover .compound-bar-stack { filter: brightness(1.08); transform: scaleY(1.02); transform-origin: bottom; }
+    .compound-bar-col.m12 .compound-bar-stack { box-shadow: 0 0 0 2px var(--color-mint-text); }
+    .compound-xlabels { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 5px; padding: 6px 4px 0; text-align: center; font-size: .72rem; font-weight: 700; color: var(--color-text-muted); }
+    .compound-xlabels .m-hl { color: var(--color-mint-text); font-weight: 800; }
+    .compound-milestones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--color-card-border); }
+    .compound-ms { font-size: .84rem; line-height: 1.5; color: var(--color-text-muted); }
+    .compound-ms strong { display: block; color: var(--color-near-black); font-size: .88rem; margin-bottom: 2px; }
+
     @media (max-width: 1000px) {
       .calc-layout { grid-template-columns: 1fr; }
+      .compound-kpis { grid-template-columns: repeat(2, 1fr); }
+      .compound-milestones { grid-template-columns: 1fr; gap: 10px; }
     }
     @media (max-width: 700px) {
       .leads-section { padding: 40px 0; }
@@ -90,6 +134,14 @@
       .calc-table tbody td { padding: 9px 6px; }
       .calc-table tbody th small { display: none; }
       .calc-foot { padding: 12px 14px; font-size: .78rem; }
+      .compound-head { padding: 16px; }
+      .compound-body { padding: 16px 12px; }
+      .compound-kpis { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .compound-kpi { padding: 10px 12px; }
+      .compound-kpi-val { font-size: 1.35rem; }
+      .compound-bars { gap: 2px; height: 170px; }
+      .compound-bar-val { display: none; }
+      .compound-xlabels { gap: 2px; font-size: .62rem; }
     }
   </style>
 </head>
@@ -302,6 +354,78 @@
           </div>
         </div>
 
+        <!-- 24-MONTH COMPOUNDING AS-EARNED INCOME GRAPH -->
+        <div class="compound-card" id="compound-chart-card">
+          <div class="compound-head">
+            <div>
+              <h3>24-Month Compounding Income Trajectory (Year 1 vs. Year 2)</h3>
+              <p>How as-earned &amp; deferred first-year commissions stack onto your monthly income and lock in at Month 12+</p>
+            </div>
+            <div class="compound-mode-toggle" role="group" aria-label="Chart display mode">
+              <button type="button" class="compound-mode-btn active" data-cmode="net">Net Profit (After Leads)</button>
+              <button type="button" class="compound-mode-btn" data-cmode="gross">Gross Commissions</button>
+            </div>
+          </div>
+
+          <div class="compound-body">
+            <div class="compound-kpis">
+              <div class="compound-kpi">
+                <div class="compound-kpi-label">Month 1 Income</div>
+                <div class="compound-kpi-val" id="cp-m1">$0/mo</div>
+                <div class="compound-kpi-sub">Upfront advance + Mo 1 GI</div>
+              </div>
+              <div class="compound-kpi highlight">
+                <div class="compound-kpi-label">Month 12+ Monthly Income</div>
+                <div class="compound-kpi-val" id="cp-m12">$0/mo</div>
+                <div class="compound-kpi-sub" id="cp-boost">+$0/mo as-earned stack</div>
+              </div>
+              <div class="compound-kpi">
+                <div class="compound-kpi-label">Year 1 Total (Mo 1&ndash;12)</div>
+                <div class="compound-kpi-val" id="cp-y1">$0</div>
+                <div class="compound-kpi-sub">While back-end commissions ramp</div>
+              </div>
+              <div class="compound-kpi highlight">
+                <div class="compound-kpi-label">Year 2 Total (Mo 13&ndash;24)</div>
+                <div class="compound-kpi-val" id="cp-y2">$0</div>
+                <div class="compound-kpi-sub" id="cp-y2-diff">+$0 vs. Year 1</div>
+              </div>
+            </div>
+
+            <div class="compound-legend-bar">
+              <div class="compound-legend-items">
+                <span class="compound-legend-item"><span class="compound-swatch sw-base"></span><span id="cp-leg-base">Upfront Advance</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-gi"></span><span id="cp-leg-gi">GI As-Earned (Stacks Mo 1&ndash;12)</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-graded"></span><span id="cp-leg-graded">Graded Back-End (Stacks Mo 7&ndash;12)</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-level"></span><span id="cp-leg-level">Level Back-End (Stacks Mo 10&ndash;12)</span></span>
+              </div>
+              <div class="compound-readout" id="cp-readout">Tap or hover any bar for monthly breakdown</div>
+            </div>
+
+            <div class="compound-years-head">
+              <div class="compound-yr-tag">Year 1: As-Earned Commissions Stacking (Months 1&ndash;12)</div>
+              <div class="compound-yr-tag yr2">Year 2: Full Compounded Monthly Income (Months 13&ndash;24)</div>
+            </div>
+
+            <div class="compound-bars" id="cp-bars"></div>
+            <div class="compound-xlabels" id="cp-xlabels"></div>
+
+            <div class="compound-milestones">
+              <div class="compound-ms">
+                <strong>Months 1&ndash;6: GI As-Earned Stacks Monthly</strong>
+                Because GI policies pay as-earned (1/12th per month), each new month of sales adds another layer of monthly residual income from day one.
+              </div>
+              <div class="compound-ms">
+                <strong>Months 7&ndash;9: Graded Back-End Kicks In</strong>
+                Your 6-month Graded advances finish their initial advance window in Month 7, adding months 7&ndash;12 of Graded commissions on top of your pay.
+              </div>
+              <div class="compound-ms">
+                <strong>Months 10&ndash;12+: Level Back-End Surge &amp; Year 2 Lock-In</strong>
+                In Month 10, your 9-month Level policies begin paying their remaining 3 months (months 10&ndash;12), stepping your income up to full velocity for all of Year 2.
+              </div>
+            </div>
+          </div>
+        </div>
+
         <p class="calc-disclaimer">For illustration only. This is not a guarantee or promise of income. Your results depend on your close rate, premium, placement rate, policy mix, carrier rules and effort. Advanced commissions can be charged back if a policy lapses within the carrier's chargeback period. Figures assume 22 selling days per month and exclude taxes and other business expenses.</p>
       </div>
     </section>
@@ -381,6 +505,7 @@
       var LIMITS = { cpl: [0, 1000], lpd: [0, 40], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
       var keys = Object.keys(DEFAULTS);
       var subOn = false;
+      var chartMode = 'net'; // 'net' or 'gross'
 
       function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
       function read() {
@@ -457,6 +582,95 @@
         var b = blended(v);
         $('calc-foot').innerHTML = '<strong>Blended commission: ' + (Math.round(b * 10) / 10) + '%</strong> (' +
           (100 - v.gi) + '% level at ' + v.comm + '% with ' + v.adv + '-mo advance, ' + (v.gi / 2) + '% graded at ' + v.gicomm + '% with ' + v.gradedAdv + '-mo advance, and ' + (v.gi / 2) + '% GI at ' + v.gicomm + '% as-earned).';
+
+        renderChart(v, d);
+      }
+
+      function renderChart(v, d) {
+        var barsEl = $('cp-bars');
+        var xlEl = $('cp-xlabels');
+        if (!barsEl || !xlEl) return;
+
+        var inForceMo = d.inForce * DAYS;
+        var levelGrossMo = inForceMo * ((100 - v.gi) / 100) * (v.comm / 100);
+        var giTotalGrossMo = inForceMo * (v.gi / 100) * (v.gicomm / 100);
+        var gradedGrossMo = giTotalGrossMo * 0.5;
+        var giOnlyGrossMo = giTotalGrossMo * 0.5;
+        var advanceGrossMo = (levelGrossMo * v.adv / 12) + (gradedGrossMo * v.gradedAdv / 12);
+        var expensesMo = (d.leadCost + d.member) * DAYS;
+        var baseMo = chartMode === 'net' ? (advanceGrossMo - expensesMo) : advanceGrossMo;
+
+        var months = [];
+        for (var m = 1; m <= 24; m++) {
+          var giEarned = Math.min(m, 12) * (giOnlyGrossMo / 12);
+          var gradedDef = Math.max(0, Math.min(m - v.gradedAdv, 12 - v.gradedAdv)) * (gradedGrossMo / 12);
+          var levelDef = Math.max(0, Math.min(m - v.adv, 12 - v.adv)) * (levelGrossMo / 12);
+          var asEarnedTotal = giEarned + gradedDef + levelDef;
+          var total = baseMo + asEarnedTotal;
+          months.push({ m: m, base: baseMo, gi: giEarned, graded: gradedDef, level: levelDef, asEarned: asEarnedTotal, total: total });
+        }
+
+        var m1 = months[0], m12 = months[11];
+        var y1Total = months.slice(0, 12).reduce(function (s, x) { return s + x.total; }, 0);
+        var y2Total = months.slice(12, 24).reduce(function (s, x) { return s + x.total; }, 0);
+        var yDiff = y2Total - y1Total;
+        var yPct = y1Total > 0 ? Math.round((yDiff / y1Total) * 100) : 0;
+
+        $('cp-m1').textContent = usd(m1.total) + '/mo';
+        $('cp-m12').textContent = usd(m12.total) + '/mo';
+        $('cp-boost').textContent = '+' + usd(m12.asEarned) + '/mo as-earned stack';
+        $('cp-y1').textContent = usd(y1Total);
+        $('cp-y2').textContent = usd(y2Total);
+        $('cp-y2-diff').textContent = '+' + usd(yDiff) + (yPct > 0 ? ' (+' + yPct + '%)' : '') + ' vs. Year 1';
+
+        $('cp-leg-base').textContent = (chartMode === 'net' ? 'Upfront Net (' : 'Upfront Advance (') + usd(baseMo) + '/mo)';
+        $('cp-leg-gi').textContent = 'GI As-Earned (+' + usd(giOnlyGrossMo) + '/mo by Mo 12)';
+        $('cp-leg-graded').textContent = 'Graded Back-End (+' + usd(gradedGrossMo * (12 - v.gradedAdv) / 12) + '/mo by Mo 12)';
+        $('cp-leg-level').textContent = 'Level Back-End (+' + usd(levelGrossMo * (12 - v.adv) / 12) + '/mo by Mo 12)';
+        $('cp-readout').innerHTML = 'Month 12+: <strong>' + usd(m12.total) + '/mo</strong> (' + usd(m12.base) + ' base + ' + usd(m12.asEarned) + ' as-earned)';
+
+        var maxVal = Math.max.apply(null, months.map(function (x) { return Math.max(0, x.total); })) * 1.12;
+        if (maxVal <= 0) maxVal = 1;
+
+        barsEl.innerHTML = '';
+        xlEl.innerHTML = '';
+
+        months.forEach(function (x) {
+          var posTotal = Math.max(0, x.total);
+          var posBase = Math.max(0, x.base);
+          var denom = posBase + x.asEarned;
+          var hPct = denom > 0 ? Math.max(6, (posTotal / maxVal) * 100) : 4;
+          var bPct = denom > 0 ? (posBase / denom) * 100 : 100;
+          var giPct = denom > 0 ? (x.gi / denom) * 100 : 0;
+          var grPct = denom > 0 ? (x.graded / denom) * 100 : 0;
+          var lvPct = denom > 0 ? (x.level / denom) * 100 : 0;
+
+          var col = document.createElement('div');
+          col.className = 'compound-bar-col' + (x.m === 12 ? ' m12' : '');
+          var showTopVal = (x.m === 1 || x.m === 6 || x.m === 9 || x.m === 10 || x.m === 11 || x.m === 12 || x.m === 18 || x.m === 24);
+          col.innerHTML =
+            '<div class="compound-bar-val">' + (showTopVal ? ('$' + (Math.round(x.total / 100) / 10) + 'k') : '') + '</div>' +
+            '<div class="compound-bar-stack" style="height:' + hPct + '%">' +
+              '<div class="sw-base" style="width:100%;height:' + bPct + '%"></div>' +
+              '<div class="sw-gi" style="width:100%;height:' + giPct + '%"></div>' +
+              '<div class="sw-graded" style="width:100%;height:' + grPct + '%"></div>' +
+              '<div class="sw-level" style="width:100%;height:' + lvPct + '%"></div>' +
+            '</div>';
+
+          function showDetail() {
+            $('cp-readout').innerHTML =
+              '<strong>Month ' + x.m + ': ' + usd(x.total) + '/mo</strong> &mdash; Base: ' + usd(x.base) +
+              ' + GI: ' + usd(x.gi) + ' + Graded: ' + usd(x.graded) + ' + Level: ' + usd(x.level);
+          }
+          col.addEventListener('mouseenter', showDetail);
+          col.addEventListener('click', showDetail);
+          barsEl.appendChild(col);
+
+          var lbl = document.createElement('div');
+          lbl.className = (x.m === 12 || x.m === 24) ? 'm-hl' : '';
+          lbl.textContent = 'M' + x.m;
+          xlEl.appendChild(lbl);
+        });
       }
 
       function setSub(on) {
@@ -473,6 +687,15 @@
       });
       Array.prototype.forEach.call(document.querySelectorAll('[data-sub]'), function (btn) {
         btn.addEventListener('click', function () { setSub(btn.getAttribute('data-sub') === '1'); render(); });
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-cmode]'), function (btn) {
+        btn.addEventListener('click', function () {
+          chartMode = btn.getAttribute('data-cmode');
+          Array.prototype.forEach.call(document.querySelectorAll('[data-cmode]'), function (b) {
+            b.classList.toggle('active', b.getAttribute('data-cmode') === chartMode);
+          });
+          render();
+        });
       });
       $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
       $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(false); render(); });
