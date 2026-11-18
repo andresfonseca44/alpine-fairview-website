@@ -780,12 +780,8 @@
                 <button type="button" class="calc-toggle-btn" data-sub="0">Off</button>
               </div></div>
 
-            <div class="calc-row"><label for="in-lpd">Leads / day<small>10 minimum</small></label>
-              <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="10" step="1" value="10"></div></div>
-            <div class="calc-chips">
-              <button type="button" class="calc-chip" data-lpd="10">10 / day (minimum)</button>
-              <button type="button" class="calc-chip" data-lpd="20">20 / day (most veterans)</button>
-            </div>
+            <div class="calc-row"><label for="in-lpd">Leads / day<small>0&ndash;40 per day</small></label>
+              <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="0" max="40" step="1" value="10"></div></div>
 
             <div class="calc-row"><label for="in-close">Close rate<small>Generally 4&ndash;10%+</small></label>
               <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="6"><span class="adorn">%</span></div></div>
@@ -1109,7 +1105,7 @@
       var DAYS = 22, MEMBERSHIP = 299;
       var DEFAULTS = { cpl: 14, lpd: 10, close: 6, spouse: 15, premium: 1000, place: 80, gi: 15, comm: 100 };
       var FIXED = { gicomm: 65, adv: 9 };  // graded/GI commission % and advance months are not adjustable
-      var LIMITS = { cpl: [0, 1000], lpd: [10, 500], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
+      var LIMITS = { cpl: [0, 1000], lpd: [0, 40], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
       var keys = Object.keys(DEFAULTS);
       var subOn = true;
 
@@ -1214,9 +1210,6 @@
       });
       $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
       $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(true); render(); });
-      Array.prototype.forEach.call(document.querySelectorAll('[data-lpd]'), function (btn) {
-        btn.addEventListener('click', function () { write('lpd', btn.getAttribute('data-lpd')); render(); });
-      });
       render();
     })();
   </script>
