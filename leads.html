@@ -776,15 +776,15 @@
 
             <div class="calc-row"><span class="calc-label">Monthly subscription<small>$299/mo &middot; Off for inbounds</small></span>
               <div class="calc-toggle" role="group" aria-label="Monthly subscription">
-                <button type="button" class="calc-toggle-btn active" data-sub="1">On</button>
-                <button type="button" class="calc-toggle-btn" data-sub="0">Off</button>
+                <button type="button" class="calc-toggle-btn" data-sub="1">On</button>
+                <button type="button" class="calc-toggle-btn active" data-sub="0">Off</button>
               </div></div>
 
             <div class="calc-row"><label for="in-lpd">Leads / day</label>
               <div class="calc-field"><input id="in-lpd" type="number" inputmode="numeric" min="0" max="40" step="1" value="10"></div></div>
 
             <div class="calc-row"><label for="in-close">Close rate</label>
-              <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="6"><span class="adorn">%</span></div></div>
+              <div class="calc-field"><input id="in-close" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="8"><span class="adorn">%</span></div></div>
 
             <div class="calc-row"><label for="in-spouse">Spouse sale rate<small>Free leads, about 15%</small></label>
               <div class="calc-field"><input id="in-spouse" type="number" inputmode="decimal" min="0" max="100" step="1" value="15"><span class="adorn">%</span></div></div>
@@ -793,7 +793,7 @@
               <div class="calc-field"><span class="adorn">$</span><input id="in-premium" type="number" inputmode="numeric" min="0" step="50" value="1000"></div></div>
 
             <div class="calc-row"><label for="in-place">Placement rate<small>75&ndash;85% typical</small></label>
-              <div class="calc-field"><input id="in-place" type="number" inputmode="decimal" min="0" max="100" step="1" value="80"><span class="adorn">%</span></div></div>
+              <div class="calc-field"><input id="in-place" type="number" inputmode="decimal" min="0" max="100" step="1" value="75"><span class="adorn">%</span></div></div>
 
             <div class="calc-row"><label for="in-gi">Graded / GI share of sales<small>10&ndash;20% typical (~50/50 split)</small></label>
               <div class="calc-field"><input id="in-gi" type="number" inputmode="decimal" min="0" max="100" step="5" value="15"><span class="adorn">%</span></div></div>
@@ -1103,11 +1103,11 @@
       if (!body) return;
 
       var DAYS = 22, MEMBERSHIP = 299;
-      var DEFAULTS = { cpl: 14, lpd: 10, close: 6, spouse: 15, premium: 1000, place: 80, gi: 15, comm: 100 };
+      var DEFAULTS = { cpl: 14, lpd: 10, close: 8, spouse: 15, premium: 1000, place: 75, gi: 15, comm: 100 };
       var FIXED = { gicomm: 65, adv: 9, gradedAdv: 6 };  // level 9-mo advance, graded 6-mo advance, GI as-earned (50/50 graded/GI)
       var LIMITS = { cpl: [0, 1000], lpd: [0, 40], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
       var keys = Object.keys(DEFAULTS);
-      var subOn = true;
+      var subOn = false;
 
       function clamp(k, n) { return Math.min(Math.max(n, LIMITS[k][0]), LIMITS[k][1]); }
       function read() {
@@ -1213,7 +1213,7 @@
         btn.addEventListener('click', function () { setSub(btn.getAttribute('data-sub') === '1'); render(); });
       });
       $('calc-go').addEventListener('click', function () { var v = read(); keys.forEach(function (k) { write(k, v[k]); }); render(); });
-      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(true); render(); });
+      $('calc-reset').addEventListener('click', function () { keys.forEach(function (k) { write(k, DEFAULTS[k]); }); setSub(false); render(); });
       render();
     })();
   </script>
