@@ -91,6 +91,7 @@
     .sw-gi { background: #38bdf8; }
     .sw-graded { background: #f59e0b; }
     .sw-level { background: #2ee59d; }
+    .sw-resid { background: #a855f7; }
     .compound-readout { font-size: .82rem; font-weight: 700; color: var(--color-slate-teal-dark); background: var(--color-icy-blue); padding: 5px 12px; border-radius: 50px; }
     .compound-years-head { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
     .compound-yr-tag { text-align: center; font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; background: var(--color-offwhite); color: var(--color-slate-teal-dark); border: 1px solid var(--color-card-border); }
@@ -335,6 +336,9 @@
             <div class="calc-row calc-row-fixed"><span class="calc-label">Advance<small>Level: 9 mo &middot; Graded: 6 mo &middot; GI: as-earned (50/50 Graded/GI)</small></span>
               <div class="calc-fixed">9 / 6 mo</div></div>
 
+            <div class="calc-row calc-row-fixed"><span class="calc-label">Year 2+ residual<small>Fixed, avg. 7% of monthly premium after month 12</small></span>
+              <div class="calc-fixed">7%</div></div>
+
             </div>
 
             <div class="calc-actions">
@@ -359,7 +363,7 @@
           <div class="compound-head">
             <div>
               <h3>24-Month Compounding Income Trajectory (Year 1 vs. Year 2)</h3>
-              <p>How as-earned &amp; deferred first-year commissions stack onto your monthly income and lock in at Month 12+</p>
+              <p>How first-year as-earned commissions (Months 1&ndash;12) and 7% monthly residuals (Months 13&ndash;24) compound your monthly income</p>
             </div>
             <div class="compound-mode-toggle" role="group" aria-label="Chart display mode">
               <button type="button" class="compound-mode-btn active" data-cmode="net">Net Profit (After Leads)</button>
@@ -374,36 +378,37 @@
                 <div class="compound-kpi-val" id="cp-m1">$0/mo</div>
                 <div class="compound-kpi-sub">Upfront advance + Mo 1 GI</div>
               </div>
-              <div class="compound-kpi highlight">
-                <div class="compound-kpi-label">Month 12+ Monthly Income</div>
-                <div class="compound-kpi-val" id="cp-m12">$0/mo</div>
-                <div class="compound-kpi-sub" id="cp-boost">+$0/mo as-earned stack</div>
-              </div>
               <div class="compound-kpi">
-                <div class="compound-kpi-label">Year 1 Total (Mo 1&ndash;12)</div>
-                <div class="compound-kpi-val" id="cp-y1">$0</div>
-                <div class="compound-kpi-sub">While back-end commissions ramp</div>
+                <div class="compound-kpi-label">Month 12 Income (1st-Yr Stack)</div>
+                <div class="compound-kpi-val" id="cp-m12">$0/mo</div>
+                <div class="compound-kpi-sub" id="cp-boost">+$0/mo 1st-yr as-earned</div>
+              </div>
+              <div class="compound-kpi highlight">
+                <div class="compound-kpi-label">Month 24 Income (+7% Residual)</div>
+                <div class="compound-kpi-val" id="cp-m24">$0/mo</div>
+                <div class="compound-kpi-sub" id="cp-resid-boost">+$0/mo 7% renewal residual</div>
               </div>
               <div class="compound-kpi highlight">
                 <div class="compound-kpi-label">Year 2 Total (Mo 13&ndash;24)</div>
                 <div class="compound-kpi-val" id="cp-y2">$0</div>
-                <div class="compound-kpi-sub" id="cp-y2-diff">+$0 vs. Year 1</div>
+                <div class="compound-kpi-sub" id="cp-y2-diff">vs. $0 in Year 1</div>
               </div>
             </div>
 
             <div class="compound-legend-bar">
               <div class="compound-legend-items">
                 <span class="compound-legend-item"><span class="compound-swatch sw-base"></span><span id="cp-leg-base">Upfront Advance</span></span>
-                <span class="compound-legend-item"><span class="compound-swatch sw-gi"></span><span id="cp-leg-gi">GI As-Earned (Stacks Mo 1&ndash;12)</span></span>
-                <span class="compound-legend-item"><span class="compound-swatch sw-graded"></span><span id="cp-leg-graded">Graded Back-End (Stacks Mo 7&ndash;12)</span></span>
-                <span class="compound-legend-item"><span class="compound-swatch sw-level"></span><span id="cp-leg-level">Level Back-End (Stacks Mo 10&ndash;12)</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-gi"></span><span id="cp-leg-gi">GI As-Earned (Mo 1&ndash;12)</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-graded"></span><span id="cp-leg-graded">Graded Back-End (Mo 7&ndash;12)</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-level"></span><span id="cp-leg-level">Level Back-End (Mo 10&ndash;12)</span></span>
+                <span class="compound-legend-item"><span class="compound-swatch sw-resid"></span><span id="cp-leg-resid">7% Residual (Stacks Mo 13&ndash;24)</span></span>
               </div>
               <div class="compound-readout" id="cp-readout">Tap or hover any bar for monthly breakdown</div>
             </div>
 
             <div class="compound-years-head">
-              <div class="compound-yr-tag">Year 1: As-Earned Commissions Stacking (Months 1&ndash;12)</div>
-              <div class="compound-yr-tag yr2">Year 2: Full Compounded Monthly Income (Months 13&ndash;24)</div>
+              <div class="compound-yr-tag">Year 1: 1st-Year As-Earned Stacking (Months 1&ndash;12)</div>
+              <div class="compound-yr-tag yr2">Year 2: Full 1st-Year Stack + 7% Monthly Residuals (Months 13&ndash;24)</div>
             </div>
 
             <div class="compound-bars" id="cp-bars"></div>
@@ -411,16 +416,16 @@
 
             <div class="compound-milestones">
               <div class="compound-ms">
-                <strong>Months 1&ndash;6: GI As-Earned Stacks Monthly</strong>
-                Because GI policies pay as-earned (1/12th per month), each new month of sales adds another layer of monthly residual income from day one.
+                <strong>Months 1&ndash;9: GI &amp; Graded As-Earned Build</strong>
+                GI pays 1/12th monthly as-earned from Month 1, and Graded policies begin paying their remaining 6 months (months 7&ndash;12) starting in Month 7.
               </div>
               <div class="compound-ms">
-                <strong>Months 7&ndash;9: Graded Back-End Kicks In</strong>
-                Your 6-month Graded advances finish their initial advance window in Month 7, adding months 7&ndash;12 of Graded commissions on top of your pay.
+                <strong>Months 10&ndash;12: Level Back-End Surge</strong>
+                In Month 10, your 9-month Level policies begin paying their remaining 3 months (months 10&ndash;12), completing your full first-year commission stack by Month 12.
               </div>
               <div class="compound-ms">
-                <strong>Months 10&ndash;12+: Level Back-End Surge &amp; Year 2 Lock-In</strong>
-                In Month 10, your 9-month Level policies begin paying their remaining 3 months (months 10&ndash;12), stepping your income up to full velocity for all of Year 2.
+                <strong>Months 13&ndash;24+: 7% Renewal Residual Compounds</strong>
+                Once each monthly cohort passes 12 months in force, all policies switch to an average 7% monthly as-earned residual on the monthly premium&mdash;stacking every month through Year 2 and beyond.
               </div>
             </div>
           </div>
@@ -501,7 +506,7 @@
 
       var DAYS = 22, MEMBERSHIP = 299;
       var DEFAULTS = { cpl: 14, lpd: 10, close: 8, spouse: 15, premium: 1000, place: 75, gi: 15, comm: 100 };
-      var FIXED = { gicomm: 65, adv: 9, gradedAdv: 6 };  // level 9-mo advance, graded 6-mo advance, GI as-earned (50/50 graded/GI)
+      var FIXED = { gicomm: 65, adv: 9, gradedAdv: 6, residual: 7 };  // level 9-mo advance, graded 6-mo advance, GI as-earned, 7% residual after mo 12
       var LIMITS = { cpl: [0, 1000], lpd: [0, 40], close: [0, 100], spouse: [0, 100], premium: [0, 100000], place: [0, 100], gi: [0, 100], comm: [0, 200] };
       var keys = Object.keys(DEFAULTS);
       var subOn = false;
@@ -517,6 +522,7 @@
         v.gicomm = FIXED.gicomm;
         v.adv = FIXED.adv;
         v.gradedAdv = FIXED.gradedAdv;
+        v.residual = FIXED.residual;
         v.sub = subOn;
         return v;
       }
@@ -534,11 +540,12 @@
         var gradedGross = giTotalGross * 0.5;
         var gross = levelGross + giTotalGross;
         var advance = (levelGross * v.adv / 12) + (gradedGross * v.gradedAdv / 12);
+        var residual = inForce * (v.residual / 100);
         var leadCost = lpd * v.cpl;
         var member = v.sub ? (MEMBERSHIP / DAYS) : 0;
         return { leadCost: leadCost, member: member, leads: lpd, unique: unique, spouse: spouse, sales: sales, sold: sold,
                  inForce: inForce, gross: gross, totalNet: gross - leadCost - member, advance: advance,
-                 net: advance - leadCost - member, receivable: gross - advance };
+                 net: advance - leadCost - member, receivable: gross - advance, residual: residual };
       }
 
       function usd(n) { var r = Math.round(n); return (r < 0 ? '-' : '') + '$' + Math.abs(r).toLocaleString('en-US'); }
@@ -561,7 +568,8 @@
         ['totalNet', 'Total net', 'Gross commissions &minus; lead costs &minus; membership. Your monthly profit once as-earned and deferred commissions are paid (from month 12).', 'usd'],
         ['advance', 'Advance received', '', 'usd'],
         ['net', 'Net profit (after lead costs)', 'Advance received &minus; lead costs &minus; membership.', 'usd', 'hl'],
-        ['receivable', 'As-earned first-year commissions receivable', 'Gross &minus; advance. Paid as premiums are collected, so do not spend it before it is earned.', 'usd']
+        ['receivable', 'As-earned first-year commissions receivable', 'Gross &minus; advance. Paid as premiums are collected, so do not spend it before it is earned.', 'usd'],
+        ['residual', 'Year 2+ residual commission (7% as-earned)', 'After 12 months in force, policies pay an average 7% monthly residual on the monthly premium (reaching the Monthly figure by Month 24).', 'usd']
       ];
 
       function render() {
@@ -591,7 +599,10 @@
         var xlEl = $('cp-xlabels');
         if (!barsEl || !xlEl) return;
 
-        var inForceMo = d.inForce * DAYS;
+        var inForceMo = d.inForce * DAYS; // Annual premium placed per monthly cohort
+        var cohortMonthlyPremium = inForceMo / 12; // Monthly premium collected per monthly cohort
+        var cohortResidualMo = cohortMonthlyPremium * (v.residual / 100); // 7% monthly as-earned per cohort past 12 months
+
         var levelGrossMo = inForceMo * ((100 - v.gi) / 100) * (v.comm / 100);
         var giTotalGrossMo = inForceMo * (v.gi / 100) * (v.gicomm / 100);
         var gradedGrossMo = giTotalGrossMo * 0.5;
@@ -605,12 +616,24 @@
           var giEarned = Math.min(m, 12) * (giOnlyGrossMo / 12);
           var gradedDef = Math.max(0, Math.min(m - v.gradedAdv, 12 - v.gradedAdv)) * (gradedGrossMo / 12);
           var levelDef = Math.max(0, Math.min(m - v.adv, 12 - v.adv)) * (levelGrossMo / 12);
-          var asEarnedTotal = giEarned + gradedDef + levelDef;
+          // After policies have been in effect for 12 months (starting Month 13 for Cohort 1),
+          // (m - 12) cohorts pay 7% monthly as-earned of their monthly premium
+          var residMo = Math.max(0, m - 12) * cohortResidualMo;
+          var asEarnedTotal = giEarned + gradedDef + levelDef + residMo;
           var total = baseMo + asEarnedTotal;
-          months.push({ m: m, base: baseMo, gi: giEarned, graded: gradedDef, level: levelDef, asEarned: asEarnedTotal, total: total });
+          months.push({
+            m: m,
+            base: baseMo,
+            gi: giEarned,
+            graded: gradedDef,
+            level: levelDef,
+            resid: residMo,
+            asEarned: asEarnedTotal,
+            total: total
+          });
         }
 
-        var m1 = months[0], m12 = months[11];
+        var m1 = months[0], m12 = months[11], m24 = months[23];
         var y1Total = months.slice(0, 12).reduce(function (s, x) { return s + x.total; }, 0);
         var y2Total = months.slice(12, 24).reduce(function (s, x) { return s + x.total; }, 0);
         var yDiff = y2Total - y1Total;
@@ -618,16 +641,18 @@
 
         $('cp-m1').textContent = usd(m1.total) + '/mo';
         $('cp-m12').textContent = usd(m12.total) + '/mo';
-        $('cp-boost').textContent = '+' + usd(m12.asEarned) + '/mo as-earned stack';
-        $('cp-y1').textContent = usd(y1Total);
+        $('cp-boost').textContent = '+' + usd(m12.asEarned) + '/mo 1st-yr as-earned';
+        $('cp-m24').textContent = usd(m24.total) + '/mo';
+        $('cp-resid-boost').textContent = '+' + usd(m24.resid) + '/mo 7% residual (12 cohorts)';
         $('cp-y2').textContent = usd(y2Total);
-        $('cp-y2-diff').textContent = '+' + usd(yDiff) + (yPct > 0 ? ' (+' + yPct + '%)' : '') + ' vs. Year 1';
+        $('cp-y2-diff').textContent = 'vs. ' + usd(y1Total) + ' Yr 1 (+' + usd(yDiff) + (yPct > 0 ? ' / +' + yPct + '%' : '') + ')';
 
         $('cp-leg-base').textContent = (chartMode === 'net' ? 'Upfront Net (' : 'Upfront Advance (') + usd(baseMo) + '/mo)';
         $('cp-leg-gi').textContent = 'GI As-Earned (+' + usd(giOnlyGrossMo) + '/mo by Mo 12)';
         $('cp-leg-graded').textContent = 'Graded Back-End (+' + usd(gradedGrossMo * (12 - v.gradedAdv) / 12) + '/mo by Mo 12)';
         $('cp-leg-level').textContent = 'Level Back-End (+' + usd(levelGrossMo * (12 - v.adv) / 12) + '/mo by Mo 12)';
-        $('cp-readout').innerHTML = 'Month 12+: <strong>' + usd(m12.total) + '/mo</strong> (' + usd(m12.base) + ' base + ' + usd(m12.asEarned) + ' as-earned)';
+        $('cp-leg-resid').textContent = '7% Residual (+' + usd(cohortResidualMo) + '/mo per cohort, +' + usd(m24.resid) + '/mo at Mo 24)';
+        $('cp-readout').innerHTML = 'Month 24: <strong>' + usd(m24.total) + '/mo</strong> (' + usd(m24.base) + ' base + ' + usd(m12.asEarned) + ' 1st-yr as-earned + ' + usd(m24.resid) + ' 7% residual)';
 
         var maxVal = Math.max.apply(null, months.map(function (x) { return Math.max(0, x.total); })) * 1.12;
         if (maxVal <= 0) maxVal = 1;
@@ -644,10 +669,11 @@
           var giPct = denom > 0 ? (x.gi / denom) * 100 : 0;
           var grPct = denom > 0 ? (x.graded / denom) * 100 : 0;
           var lvPct = denom > 0 ? (x.level / denom) * 100 : 0;
+          var rsPct = denom > 0 ? (x.resid / denom) * 100 : 0;
 
           var col = document.createElement('div');
-          col.className = 'compound-bar-col' + (x.m === 12 ? ' m12' : '');
-          var showTopVal = (x.m === 1 || x.m === 6 || x.m === 9 || x.m === 10 || x.m === 11 || x.m === 12 || x.m === 18 || x.m === 24);
+          col.className = 'compound-bar-col' + ((x.m === 12 || x.m === 24) ? ' m12' : '');
+          var showTopVal = (x.m === 1 || x.m === 6 || x.m === 9 || x.m === 12 || x.m === 15 || x.m === 18 || x.m === 21 || x.m === 24);
           col.innerHTML =
             '<div class="compound-bar-val">' + (showTopVal ? ('$' + (Math.round(x.total / 100) / 10) + 'k') : '') + '</div>' +
             '<div class="compound-bar-stack" style="height:' + hPct + '%">' +
@@ -655,12 +681,14 @@
               '<div class="sw-gi" style="width:100%;height:' + giPct + '%"></div>' +
               '<div class="sw-graded" style="width:100%;height:' + grPct + '%"></div>' +
               '<div class="sw-level" style="width:100%;height:' + lvPct + '%"></div>' +
+              '<div class="sw-resid" style="width:100%;height:' + rsPct + '%"></div>' +
             '</div>';
 
           function showDetail() {
             $('cp-readout').innerHTML =
               '<strong>Month ' + x.m + ': ' + usd(x.total) + '/mo</strong> &mdash; Base: ' + usd(x.base) +
-              ' + GI: ' + usd(x.gi) + ' + Graded: ' + usd(x.graded) + ' + Level: ' + usd(x.level);
+              ' + GI: ' + usd(x.gi) + ' + Graded: ' + usd(x.graded) + ' + Level: ' + usd(x.level) +
+              (x.resid > 0 ? (' + 7% Residual: ' + usd(x.resid)) : '');
           }
           col.addEventListener('mouseenter', showDetail);
           col.addEventListener('click', showDetail);
